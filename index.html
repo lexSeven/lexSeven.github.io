@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Lex_visual</title>
+<link href="images/icon.ico" rel="icon" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div id="box" class="box">
+<!--dotStar-->
+<div class="dot dot1"></div>
+<div class="dot dot2"></div>
+<div class="dot dot3"></div>
+<div class="dot dot4"></div>
+<div class="dot dot5"></div>
+<div class="dot dot6"></div>
+<div class="dot dot7"></div>
+<div class="dot dot8"></div>
+<div class="dot dot9"></div>
+<div class="dot dot10"></div>
+<!--dotEnd-->
+
+<div class="ps"></div>
+<div class="dw"></div>
+<div class="js"></div>
+
+<!--logoStar-->
+<div class="logo logo_orange"></div>
+<div class="logo logo_yellow"></div>
+<div class="logo logo_green"></div>
+<div class="logo logo_blue"></div>
+<!--logoEnd-->
+</div>
+
+<!--case-->
+<div class="case1"><div class="case2">
+<div class="case3">&nbsp;</div>
+	<img src="images/case_01.jpg" />
+</div></div>
+
+<!--menu-->
+<div class="menu" id="menu">
+	<div id="Mclose" class="M_close"></div>
+    <ul>
+    	<li><a href="index.html">网站首页</a></li>
+        <li><a href="case.html">案例展示</a></li>
+        <li><a href="inf.html">个人信息</a></li>
+        <li><a href="#">个人收藏</a></li>
+    </ul>
+</div>
+
+
+<div class="tell">
+    <div class="number"><span>Tel</span><i>QQ 305346765 / 1867399124</i></div>
+    <div class="copy">Width Our Young Sitll Has A Dream! Lex Visual  Copyright:BeiJing Sino Sincere Technology Development.,LTD</div>
+</div>
+
+
+
+</body>
+<script src="js/common.js"></script>
+<script src="js/tween.js"></script>
+<script src="js/data.js"></script>
+<script src="js/all.js"></script>
+<script>
+
+var Width = document.documentElement.clientWidth;
+var Height = document.documentElement.clientHeight;
+var box = document.getElementById('box');
+var menu = document.getElementById('menu');
+var arr = getByClass( 'dot',box );
+var arrlogo = getByClass( 'logo',box );
+var off = false;
+
+window.onresize = function(){
+	Width = document.documentElement.clientWidth;
+	Height = document.documentElement.clientHeight;
+	BoxPosition();
+};
+
+
+BoxPosition();//box定位
+/*预出场定位*/
+for(var i=0;i<arr.length;i++){
+	arr[i].style.left = '649px';
+	arr[i].style.top = '351px';
+};
+
+out();//出场动画
+menuDrag( menu , Mclose );//导航拖拽
+
+
+
+/*鼠标移动动画*/
+bind(document,'mousemove',function( ev ){
+	box.style.transition = '1s';
+	if(!off){return;};
+	var ev = ev||event;
+	ileft = ev.clientX;
+	itop = ev.clientY;
+	
+	boxmove(box,ileft,itop,0.05);
+	move(arr[0],ileft,itop,0.07);
+	move(arr[1],ileft,itop,0.03);
+	move(arr[2],ileft,itop,0.2);
+	move(arr[3],ileft,itop,0.09);
+	move(arr[4],ileft,itop,0.05);
+	move(arr[5],ileft,itop,0.02);
+	move(arr[6],ileft,itop,0.05);
+	move(arr[7],ileft,itop,0.09);
+	move(arr[8],ileft,itop,0.04);
+	move(arr[8],ileft,itop,0.06);
+	move(arr[9],ileft,itop,0.2);
+	
+	move(arrlogo[0],ileft,itop,0.02);
+	move(arrlogo[1],ileft,itop,0.02);
+	move(arrlogo[2],ileft,itop,0.02);
+	move(arrlogo[3],ileft,itop,0.02);
+});
+</script>
+</html>

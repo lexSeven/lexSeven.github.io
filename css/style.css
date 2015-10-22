@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*样式重置*/
+body,div,ul,li,dl,dt,dd,span,p,b,i,em,a,input,h1,h2,h3{ margin:0px; padding:0px;}
+body{ font-size:12px; font-family:Arial,'微软雅黑','宋体'; color:#666; overflow:hidden; background:#e4e4e4; overflow:hidden;}
+li{ list-style:none;}
+input:focus{ outline:none;}
+a{ text-decoration:none; color:#555;}
+a:hover{ color:#c60303;}
+
+
+
+/*公共样式*/
+.Fl{ float:left;}
+.Fr{ float:right;}
+
+
+.box{ width:1314px; height:788px; background:url(../images/dot.jpg) no-repeat center center; position:relative;}
+.box .logo_orange{ width:104px; height:0; position:absolute; left:531px; top:243px; background:url(../images/col_1.png) no-repeat;}
+.box .logo_yellow{ width:162px; height:0; position:absolute; left:643px; top:278px; background:url(../images/col_2.png) no-repeat;}
+.box .logo_green{ width:104px; height:0; position:absolute; left:708px; top:405px; background:url(../images/col_4.png) no-repeat;}
+.box .logo_blue{ width:159px; height:0; position:absolute; left:538px; top:356px; background:url(../images/col_3.png) no-repeat;}
+.box .dot{ width:45px; height:45px; position:absolute; left:649px; top:351px;}
+.box .dot1{ background:url(../images/dot1.png) no-repeat; left:146px; top:299px;}
+.box .dot2{ background:url(../images/dot2.png) no-repeat; left:250px; top:371px;}
+.box .dot3{ background:url(../images/dot3.png) no-repeat; left:373px; top:275px;}
+.box .dot4{ background:url(../images/dot4.png) no-repeat; left:433px; top:341px;}
+.box .dot5{ background:url(../images/dot5.png) no-repeat; left:507px; top:441px;}
+.box .dot6{ background:url(../images/dot4.png) no-repeat; left:503px; top:275px;}
+.box .dot7{ background:url(../images/dot6.png) no-repeat; left:844px; top:299px;}
+.box .dot8{ background:url(../images/dot7.png) no-repeat; left:941px; top:312px;}
+.box .dot9{ background:url(../images/dot8.png) no-repeat; left:1003px; top:242px;}
+.box .dot10{ background:url(../images/dot9.png) no-repeat; left:1086px; top:405px;}
+
+.box .dw{ width:101px; height:70px; position:absolute; background:url(../images/dw.png) no-repeat; left:272px; top:424px;}
+.box .ps{ width:68px; height:55px; position:absolute; background:url(../images/ps.png) no-repeat; left:478px; top:174px;}
+.box .js{ width:81px; height:60px; position:absolute; background:url(../images/js.png) no-repeat; left:944px; top:362px;}
+
+.inf{ width:1314px; height:788px; background:url(../images/inf_bg.jpg) no-repeat center center; position:relative;}
+.inf .text{ width:670px; height:399px; position:absolute; left:115px; top:220px;}
+.inf .text .scroll{ width:5px; height:399px; float:left; position:relative; background:#eee; border:1px solid #999; border-radius:3px;}
+.inf .text .scrollM{ width:3px; position:absolute; height:50px; top:0px; left:0px; background:#4fc202; border:1px solid #abff72; cursor:pointer; border-radius:2px;}
+
+.inf .text .t{ width:650px; height:399px; float:right; position:relative; overflow:hidden;}
+.inf .text .t .tM{ line-height:28px; color:#333; position:absolute; left:0px; top:0px; font-size:14px; font-family:'微软雅黑';}
+
+.menu{ width:320px; height:46px; background:url(../images/menu.png) no-repeat; position:absolute; left:30px;
+ top:30px; padding-left:62px; padding-top:16px; z-index:8;}
+.menu .M_close{ width:28px; height:28px; position:absolute; right:-10px; top:-15px; display:none; background:url(../images/close2.png) no-repeat;}
+.menu_bg{ padding-left:62px; padding-top:16px; width:320px; height:46px; position:absolute; background:url(../images/menu.png) no-repeat; opacity:0.4; filter:alpha(opacity:40);}
+.menu_bg ul,.menu ul{ width:310px; height:30px; display:block;}
+.menu_bg ul li,.menu ul li{ width:75px; float:left; line-height:30px; text-align:center; font-size:14px;}
+ 
+.case1{ width:252px; height:144px; background:url(../images/case_bg.png) no-repeat; position:absolute;
+left:30px; bottom:30px; transition:1s;}
+.case2{ width:240px; height:132px; background:url(../images/case_bg.gif) no-repeat; position:relative; padding:6px;}
+.case3{ width:252px; height:144px; background:url(../images/case_bg2.png) no-repeat; position:absolute; left:0px; top:0px;}
+
+.show{ width:909px; height:505px; position:absolute; left:175px; top:123px;}
+.show span{ width:100px; height:100px; display:block; position:absolute; margin:0px 1px 1px 0px; border-radius:2px; color:#FFF; cursor:pointer; z-index:5;}
+.show span.over{ box-shadow:0px 0px 10px 0px #333; border:1px solid #FFF; z-index:99;}
+.show span.big{ box-shadow:0px 0px 10px 0px #333; border:3px solid #FFF; z-index:99; opacity:1; filter:alpha(opacity:100);}
+.show span .close{ width:74px; height:74px; position:absolute; right:10px; top:10px; background:#FFF; background:url(../images/close.png) no-repeat; transition:1s; opacity:0.2; filter:alpha(opacity:20);}
+.show span:hover .close{ background:url(../images/close.gif) no-repeat; opacity:1; filter:alpha(opacity:100);}
+.show span .text_bg{ position:absolute; left:0px; bottom:0px; width:100%; height:50px; background:#666; opacity:0.5;filter:alpha(opacity:50);}
+.show span .text{ width:100%; position:absolute; left:0px; bottom:0px; height:50px; line-height:50px; text-indent:30px; color:#FFF; z-index:9; transition:1s;}
+.show span .text a{ color:#FFF;}
+.show span .text a:hover{ text-decoration:underline;}
+
+.shaw { width: 100px; height: 100px; border: 2px dashed #333; position: absolute;}
+
+
+.tell{ width:610px; height:50px; position:absolute; right:10px; bottom:30px; transition:1s;}
+.tell .number{ width:100%; height:34px;}
+.tell .number span{ float:right; font:normal 36px/32px Arial; color:#999; width:60px; height:32px; margin-top:2px;}
+.tell .number i{ width:500px; height:18px; line-height:18px; text-align:right; font-size:18px; color:#999; float:right; font-style:normal; display:block; margin-top:16px;}
+.tell .copy{ width:100%; height:16px; line-height:16px; font-size:12px; color:#999;}
+
+.bg{ width:100%; height:100%; position:absolute; left:0px; top:0px; background:#333; opacity:0;filter:alpha(opacity:0); z-index:8; display:none;}
+
+.btn{ width:50px; height:80px; border-radius:2px; border:1px solid #369; position:absolute; cursor:pointer;}
+#next{ background:url(../images/next.png) no-repeat; right:-100px; top:50%; margin-top:-40px;}
+#prev{ background:url(../images/prev.png) no-repeat; left:-100px; top:50%; margin-top:-40px;}
+
+
+
+
+
+
+
+

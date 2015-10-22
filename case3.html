@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Lex_visual</title>
+<link href="images/icon.ico" rel="icon" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div id="box" class="box">
+<!--dotStar-->
+<div class="dot dot1"></div>
+<div class="dot dot2"></div>
+<div class="dot dot3"></div>
+<div class="dot dot4"></div>
+<div class="dot dot5"></div>
+<div class="dot dot6"></div>
+<div class="dot dot7"></div>
+<div class="dot dot8"></div>
+<div class="dot dot9"></div>
+<div class="dot dot10"></div>
+<!--dotEnd-->
+
+<div class="ps"></div>
+<div class="dw"></div>
+<div class="js"></div>
+
+<!--案例开始-->
+<div class="show" id="show">
+</div>
+<!--案例结束-->
+
+</div>
+
+<!--case-->
+<div class="case1"><div class="case2">
+<div class="case3">&nbsp;</div>
+	<img src="images/case_01.jpg" />
+</div></div>
+
+<!--menu-->
+<div class="menu" id="menu">
+	<ul>
+    	<li><a href="index.html">网站首页</a></li>
+        <li><a href="case.html">案例展示</a></li>
+        <li><a href="#">个人信息</a></li>
+        <li><a href="#">个人收藏</a></li>
+    </ul>
+</div>
+
+
+<div class="tell">
+    <div class="number"><span>Tel</span><i>QQ 305346765 / 1867399124</i></div>
+    <div class="copy">Width Our Young Sitll Has A Dream! Lex Visual  Copyright:BeiJing Sino Sincere Technology Development.,LTD</div>
+</div>
+
+
+</body>
+<script src="js/common.js"></script>
+<script>
+
+var Width = document.documentElement.clientWidth;
+var Height = document.documentElement.clientHeight;
+var box = document.getElementById('box');
+var show = document.getElementById('show');
+var menu = document.getElementById('menu');
+var menua = menu.getElementsByTagName('a');
+var arr = getByClass( 'dot',box );
+var span = show.getElementsByTagName('span');
+//var off = false;
+
+//alert(menua.length);
+//alert(arrlogo.length);
+
+window.onresize = function(){
+	Width = document.documentElement.clientWidth;
+	Height = document.documentElement.clientHeight;
+	BoxPosition();
+};
+
+
+BoxPosition();//box定位
+function BoxPosition(){
+	box.style.marginLeft = (Width-box.clientWidth)/2+'px';
+	box.style.marginTop = (Height-box.clientHeight)/2+'px';
+};
+
+
+/*鼠标移动动画*/
+document.onmousemove = function( ev ){
+	//if(!off){return;};
+	var ev = ev||event;
+	ileft = ev.clientX;
+	itop = ev.clientY;
+	boxmove(box,ileft,itop,0.03);
+	move(arr[0],ileft,itop,0.04);
+	move(arr[1],ileft,itop,0.03);
+	move(arr[2],ileft,itop,0.07);
+	move(arr[3],ileft,itop,0.06);
+	move(arr[4],ileft,itop,0.05);
+	move(arr[5],ileft,itop,0.01);
+	move(arr[6],ileft,itop,0.02);
+	move(arr[7],ileft,itop,0.03);
+	move(arr[8],ileft,itop,0.04);
+	move(arr[8],ileft,itop,0.06);
+	move(arr[9],ileft,itop,0.09);
+	//move(arr[10],ileft,itop,0.01);
+};
+
+//案例定位
+
+Caseshow();
+function Caseshow(){
+	show.style.opacity = 0;
+	show.style.filter = 'alpha(opacity:0)';
+	var arrLeft = getNum();
+	var arrTop = getNum();
+	var arrsrc = [
+		'images/case1.jpg'
+	]
+	var arropacity = [
+		[0 ,0 ,0 ,100 ,0 ,0 ,0 ,70,0 ,
+		 0 ,40,60,80,90,60,100,0 ,0 ,
+		 0 ,0 ,50,90,80,90,100,60,100,
+		 0 ,0 ,0 ,0 ,50,100,0 ,20,0 ,
+		 0 ,0 ,0 ,0 ,0 ,30,0 ,0 ,0 ],
+		 
+		[0 ,0 ,20,0 ,0 ,0 ,100,80,0 ,
+		 0 ,70,100,90,100,80,0 ,0 ,0 ,
+		 0 ,0 ,40,100,60,100,100,80,0 ,
+		 0 ,100,0 ,100,60,0 ,20,0 ,0 ,
+		 0 ,0 ,0 ,0 ,40,0 ,0 ,0 ,0 ],
+		 
+		 [0 ,0 ,0 ,100,0 ,30,0 ,100,0 ,
+		 40,70,100,60,100,80,0 ,0 ,0 ,
+		 0 ,0 ,40,100,100,100,80,90,0 ,
+		 0 ,0 ,0 ,100,40,0 ,20,0 ,0 ,
+		 0 ,0 ,0 ,0 ,80,0 ,0 ,0 ,0 ]
+	];
+	
+	var str = '';
+	for(var i=0;i<45;i++){
+		str+='<span></span>';
+	};
+	show.innerHTML = str;
+	for(var i=0;i<span.length;i++){
+		//span[i].innerHTML = i;
+		span[i].style.opacity = 0;
+		span[i].style.filter = 'alpha(opacity:0)';
+		span[i].index = i;
+		
+		span[i].style.top = 100*i-1000+'px';
+		span[i].style.left = 100*(span.length/2-i)-2000+'px';
+		if(i>span.length/4){span[i].style.left = 100*i-1900+'px';};
+		if(i>span.length/2){span[i].style.top = 100*(span.length-i)-1000+'px';};
+		if(i>span.length/4*3){span[i].style.left = 100*((span.length-i)+span.length/2)-2000+'px';};
+		
+		span[i].style.background = 'url('+ arrsrc[0] +') no-repeat -'+ (span[i].offsetWidth+1)*(i%9) +'px -'+ (span[i].offsetHeight+1)*Math.floor(i/9) +'px';
+	};
+	
+	opacity(show , 5 , 100,function(){
+		for(var i=0;i<span.length;i++){
+			//span[i].mLeft = (span[i].offsetWidth+1)*(i%9);
+			//alert(span[i].mLeft);
+			//span[i].mTop = (span[i].offsetHeight+1)*Math.floor(i/9);
+			opacity(span[i] , 1 , arropacity[0][i])
+			startMove(span[i], {left :(span[i].offsetWidth+1)*(i%9) , top :(span[i].offsetHeight+1)*Math.floor(i/9)});
+		};
+	});
+	
+
+	for(var i=0;i<span.length;i++){
+		span[i].mLeft = span[i].offsetLeft;
+		span[i].mTop = span[i].offsetTop;
+		span[i].onmouseover = function(){
+			this.className = 'over';
+			//opacity(this , 5 , 100)
+			startMove2( this , {width : 150 , height : 150 , left : this.offsetLeft-25 , top:this.offsetTop-25} );
+		}
+		//span[i].onmouseover = function(){
+			//startMove2( this , {width : 150 , height : 150 , left : this.mLeft-25 , top:this.mTop-25} );
+		//}
+		span[i].onmouseout = function(){
+			//opacity(this , 5 , arropacity[0][this.index])
+			startMove2( this , {width : 100 , height : 100 , left : this.mLeft , top:this.mTop} );
+			this.className = '';
+		}
+	};
+
+};
+</script>
+</html>
