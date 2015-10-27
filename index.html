@@ -1,47 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Lex_visual</title>
+<meta charset="utf-8">
+<title>lexSeven Visual</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="images/icon.ico" rel="icon" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 
-<div id="box" class="box">
-<!--dotStar-->
-<div class="dot dot1"></div>
-<div class="dot dot2"></div>
-<div class="dot dot3"></div>
-<div class="dot dot4"></div>
-<div class="dot dot5"></div>
-<div class="dot dot6"></div>
-<div class="dot dot7"></div>
-<div class="dot dot8"></div>
-<div class="dot dot9"></div>
-<div class="dot dot10"></div>
-<!--dotEnd-->
-
-<div class="ps"></div>
-<div class="dw"></div>
-<div class="js"></div>
-
-<!--logoStar-->
-<div class="logo logo_orange"></div>
-<div class="logo logo_yellow"></div>
-<div class="logo logo_green"></div>
-<div class="logo logo_blue"></div>
-<!--logoEnd-->
+<div class="box">
+	<div class="dot dot1"><img src="images/dot1.png"></div>
+    <div class="dot dot2"><img src="images/dot2.png"></div>
+    <div class="dot dot3"><img src="images/dot3.png"></div>
+    <div class="dot dot4"><img src="images/dot4.png"></div>
+    <div class="dot dot5"><img src="images/dot5.png"></div>
+    <div class="dot dot6"><img src="images/dot6.png"></div>
+    <div class="dot dot7"><img src="images/dot7.png"></div>
+    <div class="dot dot8"><img src="images/dot8.png"></div>
+    <div class="dot dot9"><img src="images/dot9.png"></div>
+    <div class="dot dot10"><img src="images/dot1.png"></div>
+    <div class="dot dot11"><img src="images/dot1.png"></div>
+    <div class="dot dot12"><img src="images/dot2.png"></div>
+    <div class="dot dot13"><img src="images/dot3.png"></div>
+    <div class="dot dot14"><img src="images/dot4.png"></div>
+    <div class="dot dot15"><img src="images/dot5.png"></div>
+    <div class="dot dot16"><img src="images/dot6.png"></div>
+    <div class="logo"><img src="images/logo.png"></div>
 </div>
 
-<!--case-->
-<div class="case1"><div class="case2">
-<div class="case3">&nbsp;</div>
-	<img src="images/case_01.jpg" />
-</div></div>
-
-<!--menu-->
 <div class="menu" id="menu">
 	<div id="Mclose" class="M_close"></div>
     <ul>
@@ -52,73 +39,95 @@
     </ul>
 </div>
 
-
 <div class="tell">
     <div class="number"><span>Tel</span><i>QQ 305346765 / 1867399124</i></div>
-    <div class="copy">Width Our Young Sitll Has A Dream! Lex Visual  Copyright:BeiJing Sino Sincere Technology Development.,LTD</div>
+    <div class="copy">Width Our Young Sitll Has A Dream! Lex Visual  Copyright:BeiJing Lex Visual Technology Development.,LTD</div>
 </div>
 
-
+<div class="case1"><div class="case2">
+<div class="case3">&nbsp;</div>
+	<img src="images/case_01.jpg" />
+</div></div>
 
 </body>
-<script src="js/common.js"></script>
-<script src="js/tween.js"></script>
-<script src="js/data.js"></script>
-<script src="js/all.js"></script>
+<script src="js/zepto.min.js"></script>
 <script>
-
-var Width = document.documentElement.clientWidth;
-var Height = document.documentElement.clientHeight;
-var box = document.getElementById('box');
-var menu = document.getElementById('menu');
-var arr = getByClass( 'dot',box );
-var arrlogo = getByClass( 'logo',box );
-var off = false;
-
-window.onresize = function(){
-	Width = document.documentElement.clientWidth;
-	Height = document.documentElement.clientHeight;
-	BoxPosition();
-};
-
-
-BoxPosition();//box定位
-/*预出场定位*/
-for(var i=0;i<arr.length;i++){
-	arr[i].style.left = '649px';
-	arr[i].style.top = '351px';
-};
-
-out();//出场动画
-menuDrag( menu , Mclose );//导航拖拽
-
-
-
-/*鼠标移动动画*/
-bind(document,'mousemove',function( ev ){
-	box.style.transition = '1s';
-	if(!off){return;};
-	var ev = ev||event;
-	ileft = ev.clientX;
-	itop = ev.clientY;
-	
-	boxmove(box,ileft,itop,0.05);
-	move(arr[0],ileft,itop,0.07);
-	move(arr[1],ileft,itop,0.03);
-	move(arr[2],ileft,itop,0.2);
-	move(arr[3],ileft,itop,0.09);
-	move(arr[4],ileft,itop,0.05);
-	move(arr[5],ileft,itop,0.02);
-	move(arr[6],ileft,itop,0.05);
-	move(arr[7],ileft,itop,0.09);
-	move(arr[8],ileft,itop,0.04);
-	move(arr[8],ileft,itop,0.06);
-	move(arr[9],ileft,itop,0.2);
-	
-	move(arrlogo[0],ileft,itop,0.02);
-	move(arrlogo[1],ileft,itop,0.02);
-	move(arrlogo[2],ileft,itop,0.02);
-	move(arrlogo[3],ileft,itop,0.02);
-});
+var lexSeven = {
+	int:function(){
+		var _this = lexSeven;
+		_this.nowMusic = 0;
+		$('body').height($(window).height());
+		_this.bindEvent();
+		_this.playMusic(_this.bgmusic[_this.nowMusic++]);
+	},
+	bindEvent:function(){
+		var _this = lexSeven;
+		
+		$(document).on('touchstart',function(ev){
+			
+            for(a in _this.clickArea){
+                if($(ev.target).data('function')==a){
+                    _this.clickArea[a]($(ev.target));
+					break;
+                }
+            }
+        });
+		
+	},
+	bgmusic:[
+		'music/b.mp3',
+		'music/Remix.mp3',
+		'music/mo.mp3',
+		'music/Neptune Illusion Dennis Kuo .mp3'
+	],
+	playMusic:function( music ){
+		var _this = lexSeven;
+		var aImg = $('.dot');
+		_this.audio = new Audio();
+		var audioContext,analyser,sourceNode,freqArray,nowbtn,num,k,m,n;
+		int()
+		function int(){
+			_this.audio.pause();
+			_this.audio = null;
+			_this.audio = new Audio();
+			_this.audio.src = music;
+		}
+		_this.audio.addEventListener("canplay", function(e) {
+			analyser = sourceNode = null;
+			setup();
+		}, false);
+		function setup() {
+			audioContext = audioContext || new AudioContext();
+			analyser = (analyser || audioContext.createAnalyser());
+			sourceNode = audioContext.createMediaElementSource(_this.audio);
+			sourceNode.connect(analyser);
+			sourceNode.connect(audioContext.destination);
+			_this.audio.play();
+			update();
+		};
+		function update() {
+			freqArray = new Uint8Array(analyser.frequencyBinCount);
+			analyser.getByteFrequencyData(freqArray);
+			fn(freqArray);
+			if(_this.audio.paused){
+				freqArray = null;
+				_this.playMusic(_this.bgmusic[_this.nowMusic++]);
+			}else{
+				requestAnimationFrame(update);
+			}
+		};
+		function fn(arr){
+			var step = Math.round(arr.length / 50); 
+			for( var i = 0; i < 16; i++ ){
+				num = arr[i * step];
+				k = (num) / aImg[i].offsetHeight * 100;
+				m = 100 - k;
+				//n = (m-80)>0?(m-80):0;
+				aImg.eq(i).get(0).style.cssText = "margin-top:" + m + "px";
+			}
+		}
+	}
+}
+lexSeven.int();
 </script>
 </html>
