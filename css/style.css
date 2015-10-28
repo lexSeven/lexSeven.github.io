@@ -2,7 +2,7 @@
 /* CSS Document */
 
 body,span,h1,h2,h3,h4,h5,h6,article,del,em,img,i,nav,aside,canvas,footer,header,menu,section,ul,li,dl,dt,dd,input{ margin: 0px; padding: 0px; font-size:24px;}
-body { font-family: Arial, 'Microsoft YaHei'; font-size:18px; color: #005555; background:url(../images/bg2.JPG) no-repeat center center; position:relative; background-size:100% 100%;}
+body { font-family: Arial, 'Microsoft YaHei'; font-size:18px; color: #005555; background:url(../images/bg2.jpg) no-repeat center center; position:relative; background-size:100% 100%;}
 h1,h2,h3{ font-weight:normal;}
 li {list-style: none;}
 img {vertical-align: top; border: 0;}
