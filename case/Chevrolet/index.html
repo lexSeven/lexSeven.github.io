@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,target-densityDpi=device-dpi">
+<title>雪佛兰</title>
+<link href="css/move.css" rel="stylesheet" type="text/css">
+<link href="css/commons2.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="music run" id="music" data-function="musicStop">
+	<audio preload="auto" src="../../music/img/AlmostLover.mp3" autoplay style="display:none;"></audio>
+</div>
+
+<div class="bgStart" id="start1"><img src="images/startbg_2.png"></div>
+<div class="bgStart" id="start2"><img src="images/startbg_1.png"></div>
+
+<section class="section1 in active">
+	<div class="moonBg">&nbsp;</div>
+	<div class="moonCake">
+    	<div class="light">&nbsp;</div>
+        <div class="water">&nbsp;</div>
+    	<div class="mon1"><img src="images/moonCake01.png" data-function="tian"><div class="text" data-function="tian"><img src="images/t.png" data-function="tian"></div></div>
+        <div class="mon2"><img src="images/moonCake02.png" data-function="xian"><div class="text" data-function="xian"><img src="images/x.png" data-function="xian"></div></div>
+    </div>
+    <div class="chioseText"><img src="images/chiose.png"></div>
+    <div class="chiose">
+    	<div class="t" data-function="tian">
+        	<div class="text"><img src="images/tSmalltext.png"></div>
+            <div class="corrow" data-function="tian"><img src="images/corrow.png" data-function="tian"></div>
+            <div class="moon" data-function="tian"><img src="images/tSmall.png" data-function="tian"></div>
+        </div>
+        <div class="x" data-function="xian">
+        	<div class="text"><img src="images/xSmalltext.png"></div>
+            <div class="corrow" data-function="xian"><img src="images/corrow.png" data-function="xian"></div>
+            <div class="moon" data-function="xian"><img src="images/xSmall.png" data-function="xian"></div>
+        </div>
+    </div>
+	<div class="btn"><img src="images/btn.png" id="firstBtn" data-function="chiose"></div>
+</section>
+
+<section class="section2">
+	<div class="tian" style="display:none;">
+    	<div class="s2moonCake"><img src="images/moonCaket.png"></div>
+        <div class="s2moonText"><img src="images/xtext.png"></div>
+        <div class="s2number"></div>
+        <div class="s2moonBg" id="moonbg2"><img src="images/moonCake.png"></div>
+        <div class="s2moonBg2" id="moonbg3"><img src="images/moonCakesmall.png"></div>
+        <div class="s2text1"><img src="images/s2text.png"><div class="num">10086</div></div>
+        <div class="s2text2"><img src="images/s2text3.png"></div>
+        <div class="leftCrror"><div class="crror" data-function="slideleft">&nbsp;</div></div>
+    </div>
+    <div class="xian">
+    	<div class="s2moonCake"><img src="images/moonCakex.png"></div>
+        <div class="s2moonText"><img src="images/ttext.png"></div>
+        <div class="s2number"></div>
+        <div class="s2moonBg" id="moonbg2"><img src="images/moonCake.png"></div>
+        <div class="s2moonBg2" id="moonbg3"><img src="images/moonCakesmall.png"></div>
+        <div class="s2text1"><img src="images/s2text2.png"><div class="num">10086</div></div>
+        <div class="s2text2"><img src="images/s2text3.png"></div>
+        <div class="leftCrror"><div class="crror" data-function="slideleft">&nbsp;</div></div>
+    </div>
+</section>
+
+<section class="earth">
+	<div class="moon"><img src="images/moon.png" data-function="next"></div>
+    <div class="earthText"><img src="images/earthText.png"></div>
+    <div class="earth"><img src="images/earthbg.png"></div>
+</section>
+
+<section class="moon">
+	<div class="earth"><img src="images/earth.png" data-function="next"></div>
+    <div class="moonText"><img src="images/moonText.png"></div>
+    <div class="moon"><img src="images/moonbg.png"></div>
+</section>
+
+<section class="end">
+	<div class="logo"><img src="images/logo.png"></div>
+    <div class="text1"><img src="images/text.png"><div class="text2"><img src="images/text2.png"></div></div>
+    <div class="car"><img src="images/car.png"></div>
+    <div class="carbg"><img src="images/light2.png"></div>
+    <div class="text3"><img src="images/text3.png"></div>
+</section>
+
+</body>
+
+<script src="js/lex.js"></script>
+<script src="js/zepto.min.js"></script>
+<script>
+
+document.body.style.height = document.documentElement.clientHeight + 'px';
+
+var chevrolet = {
+	int:function(){
+		var _this = chevrolet;
+		_this.start1 = document.getElementById('start1');
+		_this.start2 = document.getElementById('start2');
+		_this.moonbg2 = document.getElementById('moonbg2');
+		_this.moonbg3 = document.getElementById('moonbg3');
+		_this.bgmusic = $('#music audio').get(0);
+		_this.lastPosition = 0;
+		_this.num = 0;
+		_this.like = null;
+		
+		if (window.DeviceOrientationEvent){  
+			window.addEventListener("deviceorientation", _this.orientationHandler, false);
+		}
+		_this.bindEvent();
+	},
+	
+	bindEvent:function(){
+		var _this = chevrolet;
+		$(document).on('touchstart',function(ev){
+            for(a in _this.clickArea){
+                if($(ev.target).data('function')==a){
+                    _this.clickArea[a]($(ev.target));
+					break;
+                }
+            }
+        });
+	},
+	
+	orientationHandler:function( event ){
+		var _this = chevrolet;
+		clearTimeout(_this.positionTimer);
+		_this.lastPosition = event.gamma;
+		_this.positionTimer = setTimeout(function(){
+			_this.start1.style.cssText = '-webkit-transform:translateX(0px) translateY(0px); transition:1s;';
+			_this.start2.style.cssText = '-webkit-transform:translateX(0px) translateY(0px); transition:1s;';
+			_this.moonbg2.style.cssText = '-webkit-transform:translateX(0px) translateY(0px); transition:1s;';
+			_this.moonbg3.style.cssText = '-webkit-transform:translateX(0px) translateY(0px); transition:1s;';
+		},1000);
+		_this.start1.style.cssText = '-webkit-transform:translateX('+ event.gamma/5 +'px) translateY('+ event.beta/5 +'px);';
+		_this.start2.style.cssText = '-webkit-transform:translateX('+ event.gamma/2 +'px) translateY('+ event.beta/2 +'px);';
+		_this.moonbg2.style.cssText = '-webkit-transform:translateX('+ event.gamma/4 +'px) translateY('+ event.beta/3 +'px);';
+		_this.moonbg3.style.cssText = '-webkit-transform:translateX('+ event.gamma/4 +'px) translateY('+ event.beta/8 +'px);';
+	},
+	
+	number:function(n){
+		var num = 45;
+		var change = 0;
+		var _this = chevrolet;
+		var number = $('.s2number').get(n);
+		/* 探测浏览器种类 */
+		function whichTransitionEvent(){
+			var t;
+			var el = document.createElement('fakeelement');
+			var animations = {
+			  'animation':'animationend',
+			  'OAnimation':'oAnimationEnd',
+			  'MozAnimation':'animationend',
+			  'WebkiTanimation':'webkitAnimationEnd'
+			}
+		
+			for(t in animations){
+				if( el.style[t] !== undefined ){
+					return animations[t];
+				}
+			}
+		}
+		
+		/* 监听变换事件! */
+		var transitionEvent = whichTransitionEvent();
+		transitionEvent && number.addEventListener(transitionEvent, function() {
+			
+			_this.timer = setInterval(function(){
+				change ++ ;
+				if(change<10){
+					number.innerHTML = '<img src="images/0.png"><img src="images/'+change%10 + '.png"><img src="images/p.png">';
+				}else if(change<20){
+					number.innerHTML = '<img src="images/1.png"><img src="images/'+change%10 + '.png"><img src="images/p.png">';
+				}else if(change<30){
+					number.innerHTML = '<img src="images/2.png"><img src="images/'+change%10 + '.png"><img src="images/p.png">';
+				}else if(change<40){
+					number.innerHTML = '<img src="images/3.png"><img src="images/'+change%10 + '.png"><img src="images/p.png">';
+				}else if(change<50){
+					number.innerHTML = '<img src="images/4.png"><img src="images/'+change%10 + '.png"><img src="images/p.png">';
+				}else if(change<60){
+					number.innerHTML = '<img src="images/5.png"><img src="images/'+change%10 + '.png"><img src="images/p.png">';
+				}else if(change<70){
+					number.innerHTML = '<img src="images/6.png"><img src="images/'+change%10 + '.png"><img src="images/p.png">';
+				}
+				
+				if(change > num){
+					clearInterval(_this.timer);
+				}
+			},10);
+		});
+	},
+	
+	clickArea:{
+		musicplay:function(){
+			var _this = chevrolet;
+			if(_this.bgmusic.paused){
+				_this.bgmusic.play();
+				$('#music').addClass('run');
+				$('#music').data('function','musicStop');
+			}
+		},
+		musicStop:function(){
+			var _this = chevrolet;
+			_this.bgmusic.pause();
+			$('#music').removeClass('run');
+			$('#music').data('function','musicplay');
+		},
+		slideleft:function( _this ){
+			
+			var that = chevrolet;
+			var obj = _this.get(0);
+			var ev = ev || event;
+			var touch = ev.changedTouches[0];
+			var initialPosition = touch.pageX - obj.offsetWidth;
+			var off = false;
+			addClass(obj,'active');
+			
+			obj.ontouchmove=function(ev){
+				var ev = ev || event;
+				var touch = ev.changedTouches[0];
+				if(obj.offsetWidth<=obj.parentNode.offsetWidth - 6 && obj.offsetWidth>=32){
+					obj.style.width = touch.pageX - initialPosition + 'px';
+					if(obj.offsetWidth>obj.parentNode.offsetWidth - 6){
+						obj.style.width = obj.parentNode.offsetWidth - 6 + 'px';
+					}else if(obj.offsetWidth<32){
+						obj.style.width=32;
+					}
+				}
+			};
+			obj.ontouchend = function(){
+				if(obj.offsetWidth<obj.parentNode.offsetWidth/2){
+					_this.animate({ width:32},200);
+				}else{
+					_this.animate({ width:obj.parentNode.offsetWidth - 6},200);
+					that.clickArea['next']();
+				}
+				obj.ontouchmove = null;
+			}
+		},
+		next:function( obj ){
+			var _this = chevrolet;
+			_this.num ++;
+			$('section').eq(_this.num).prev('section').addClass('out');
+			setTimeout(function(){
+				$('section').eq(_this.num).prev('section').removeClass('out active');
+				$('section').eq(_this.num).addClass('in active');
+			},1000);
+		},
+		tian:function(){
+			var _this = chevrolet;
+			$('.xian').hide();
+			$('.tian').show();
+			_this.number(0);
+			$('#firstBtn').data('function','next');
+		},
+		xian:function(){
+			var _this = chevrolet;
+			$('.xian').show();
+			$('.tian').hide();
+			_this.number(1);
+			$('#firstBtn').data('function','next');
+		},
+		chiose:function(){
+			alert('请选择你喜欢的口味！');
+		}
+	},
+};
+chevrolet.int();
+
+</script>
+
+</html>

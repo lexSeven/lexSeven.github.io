@@ -1,0 +1,178 @@
+@charset "utf-8";
+/* CSS Document */
+body,div,span,h1,h2,h3,h4,h5,h6,article,del,em,img,i,nav,aside,canvas,footer,header,menu,section,ul,li { margin: 0px; padding: 0px;}
+body {font-family: Arial, 'Microsoft YaHei';color: #666; background:url(../images/bg.jpg) no-repeat; background-size:cover; overflow-x:hidden;position:relative; width:100%; height:100%;}
+li {list-style: none;}
+img {vertical-align: top; border: 0; width:100%;}
+em,i,dfn {font-style: normal;}
+button { cursor: pointer; transition: 0.5s;}
+button:focus { border: none; outline: none; opacity: 0.6; filter: alpha(opacity=60);}
+.clear { zoom: 1;}
+.clear:after { display: block; clear: both; content: '';}
+
+
+.animation(@animation:myfirst , @time:2s , @infinite:infinite) {/*可以控制动画循环的次数，停止的时候恢复到动画前的样式*/
+  animation:@animation @time;
+  -webkit-animation:@animation @time; /* Safari and Chrome */
+  animation-iteration-count:@infinite;
+  -webkit-animation-iteration-count:@infinite;
+}
+
+.animation2(@animation:myfirst , @time:2s , @delay:0s) {/*动画播放一次之后保持最后一帧的样式，并且停止*/
+  animation:@animation @time;
+  -webkit-animation:@animation @time; /* Safari and Chrome */
+  -webkit-animation-delay: @delay;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.bgStart{ width:100%; height:100%; position:absolute; top:0px; left:0px; transition:0.1s;}
+
+.music{ width:29px; height:29px; background:url(../images/music.png) no-repeat; background-size:29px 29px; position:absolute; top:18px; right:16px; z-index:10;  }
+.music.run{.animation(music , 5s); -webkit-animation-timing-function:cubic-bezier(0,0,0,0);}
+
+section{ width:100%; height:100%; position:absolute; top:0px; left:0px; display:none;}
+section.active{ z-index:9; display:block; opacity:1;}
+
+
+section{
+	&.section1{
+		.moonBg{ width:100%; height:182px; background:url(../images/moonCakebg.png) no-repeat; background-size:100% 182px; position:absolute; top:10%; left:0px;}
+		.moonCake{ width:182px; height:182px; position:absolute; top:10%; left:50%; margin-left:-91px; opacity:0;}
+		.moonCake .light{ width:249px; height:175px; background:url(../images/light.png) no-repeat; background-size:249px 175px; position:absolute; left:-60px; top:20px; z-index:3; opacity:0; -webkit-transform:scale(0.1,0.1);}
+		.moonCake .water{ width:84px; height:68px; background:url(../images/water.png) no-repeat; background-size:84px 68px; position:absolute; top:0px; right:-30px; z-index:4; opacity:0;}
+		.moonCake .mon1{ width:155px; height:133px; position:absolute; top:0px; left:0px; z-index:2;}
+		.moonCake .mon1 .text{ width:52px; height:52px; position:absolute; top:40px; left:30px;}
+		.moonCake .mon2{ width:168px; height:149px; position:absolute; bottom:2px; right:4px;}
+		.moonCake .mon2 .text{ width:46px; height:48px; position:absolute; top:70px; left:76px;}
+		.chioseText{ width:223px; height:55px; position:absolute; top:50%; left:50%; margin-left:-112px; opacity:0;}
+		
+		.chiose{ width:153px; height:75px; position:absolute; top:64%; left:50%; margin-left:-76px; opacity:0;}
+		.chiose .t{ width:60px; height:68px; float:left;}
+		.chiose .t .text{ width:38px; height:9px; position:absolute; top:0px; left:0px;}
+		.chiose .t .corrow{ width:9px; height:16px; position:absolute; top:16px; left:20px;.animation(shake , 1.1s);}
+		.chiose .t .moon{ width:32px; height:30px; position:absolute; bottom:0px; left:0px;}
+		
+		.chiose .x{ width:59px; height:52px; position:absolute; bottom:0px; right:0px;}
+		.chiose .x .text{ width:38px; height:9px; position:absolute; bottom:0px; right:0px;}
+		.chiose .x .corrow{ width:9px; height:16px; position:absolute; top:27px; left:25px; transform:rotate(90deg);.animation(shake , 1s);}
+		.chiose .x .moon{ width:22px; height:22px; position:absolute; top:0px; left:0px;}
+		
+		.btn{ width:119px; height:48px; position:absolute; bottom:5%; left:50%; margin-left:-55px; opacity:0;}
+	}
+	
+	&.section2{
+		.s2moonCake{ width:233px; height:228px; position:absolute; top:-110px; left:50%; margin-left:-116px; opacity:0;}
+		.s2moonText{ width:133px; height:36px; position:absolute; top:26%; left:50%; margin-left:-62px; opacity:0;}
+		.s2number{ width:155px; height:66px; position:absolute; top:38%; left:50%; margin-left:-82px; border:3px solid #fff; opacity:0; padding:4px;}
+		.s2number img{ width:50px; height:66px; display:block; float:left;}
+		.s2moonBg{ width:290px; height:132px; position:absolute; top:40%; left:50%; margin-left:-145px;}
+		.s2moonBg2{ width:290px; height:132px; position:absolute; top:40%; left:50%; margin-left:-145px;}
+		.s2text1{ width:252px; height:40px; position:absolute; top:65%; left:50%; margin-left:-126px; opacity:0;}
+		.s2text1 .num{ width:60px; height:18px; line-height:18px; text-align:center; color:#09366f; font-size:14px; position:absolute; top:0px; left:60px;}
+		.s2text2{ width:205px; height:16px; position:absolute; top:73%; left:50%; margin-left:-102px; opacity:0;}
+		
+		.leftCrror{ width:161px; height:38px; background:#03b5e1 url(../images/left.png) no-repeat; border-radius:19px; overflow:hidden; position:absolute; bottom:5%; left:50%; margin-left:-80px; background-size:161px 38px; opacity:0;}
+		.leftCrror .crror{ width:32px; height:32px; position:absolute; background:#03b5e1 url(../images/leftCrror.png) no-repeat right center; border-radius:16px; overflow:hidden; left:3px; top:3px; background-size:32px 32px;}
+	}
+	
+	&.earth{ background:#171522 url(../images/bg2.png) no-repeat; background-size:100%;
+		.moon{ width:135px; height:135px; position:absolute; right:0px; top:0px; opacity:0;}
+		.earthText{ width:48px; height:110px; position:absolute; top:22px; left:40px; opacity:0;}
+		.earth{ width:100%; height:auto; position:absolute; bottom:0px; left:0px; opacity:0;}
+	}
+	
+	&.moon{ background:#171522 url(../images/bg3.png) no-repeat; background-size:100%;
+		.earth{ width:135px; height:135px; position:absolute; left:0px; top:0px; opacity:0; z-index:5;}
+		.moonText{ width:46px; height:117px; position:absolute; top:31px; left:40%; opacity:0;}
+		.moon{ width:100%; height:auto; position:absolute; bottom:0px; left:0px; opacity:0;}
+	}
+	&.end{ background:rgba(0,0,0,0.6);
+		.logo{ width:81px; height:26px; position:absolute; top:20px; left:30px;}
+		.text1{ width:177px; height:16px; position:absolute; top:26%; left:50%; margin-left:-88px; opacity:0;
+			.text2{ width:228px; height:16px; position:absolute; top:30px; left:50%; margin-left:-114px; opacity:0;}
+		}
+		.car{ width:180px; height:70px; position:absolute; top:44%; left:50%; margin-left:-90px; opacity:0; z-index:2;}
+		.carbg{ width:320px; height:200px; top:32%; left:50%; margin-left:-160px; position:absolute; opacity:0;}
+		.text3{ width:177px; height:63px; position:absolute; bottom:20%; left:50%; margin-left:-88px; opacity:0;}
+	}
+}
+
+section.in{
+	&.section1{
+		.moonCake{.animation2(opacityIn , 1s);}
+		.moonCake .light{.animation2(light , 0.4s , 1.4s);}
+		.moonCake .water{.animation2(opacityInout , 0.2s, 1.5s);}
+		.moonCake .mon1{ -webkit-transform-origin:bottom left; .animation2(roate , 1s, 2s);}
+		.chioseText{.animation2(bottomIn , 1s , 0.6s);}
+		
+		.chiose{.animation2(opacityIn , 1s , 0.8s);}
+		
+		.btn{.animation2(bottomIn , 1s , 1s);}
+	}
+	
+	&.section2{
+		.s2moonCake{.animation2(topIn , 0.2s);}
+		.s2moonText{.animation2(topIn , 1s , 0.6s);}
+		.s2number{.animation2(opacityIn , 1s , 0.8s);}
+		.s2text1{.animation2(bottomIn , 1s , 1s);}
+		.s2text2{.animation2(bottomIn , 1s , 1.2s);}
+		
+		.leftCrror{.animation2(leftIn , 1s , 1.4s);}
+	}
+	
+	&.earth{
+		.moon{.animation2(rightIn , 1s );}
+		.earthText{.animation2(topIn , 1s, 0.6s);}
+		.earth{.animation2(bottomIn , 1s );}
+	}
+	
+	&.moon{
+		.earth{.animation2(leftIn , 1s );}
+		.moonText{.animation2(topIn , 1s , 0.6s);}
+		.moon{.animation2(bottomIn , 1s );}
+	}
+	&.end{
+		.text1{ .animation2(topIn , 1s);
+			.text2{ .animation2(topIn , 1s , 0.2s);}
+		}
+		.car{ .animation2(rightIn , 1s , 0.8s);}
+		.carbg{ .animation2(opacityIn , 1s , 1.6s);}
+		.text3{ .animation2(bottomIn , 1s , 1s);}
+	}
+}
+
+section.out{
+	transition:1s;
+	opacity:0;
+	-webkit-transform:translateY(-100px) scale(0.5,0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
