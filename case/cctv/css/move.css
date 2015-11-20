@@ -1,0 +1,721 @@
+
+
+@charset "utf-8";
+/* CSS Document */
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+article,
+del,
+em,
+img,
+i,
+nav,
+aside,
+canvas,
+footer,
+header,
+menu,
+section,
+ul,
+li {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-family: Arial, 'Microsoft YaHei';
+    color: #666;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+    border: 0;
+}
+em,
+i,
+dfn {
+    font-style: normal;
+}
+button {
+    cursor: pointer;
+    transition: 0.5s;
+}
+button:focus {
+    border: none;
+    outline: none;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+input {
+    border: none;
+}
+input:focus {
+    border: none;
+    outline: none;
+}
+textarea {
+    border: none;
+}
+textarea:focus {
+    border: none;
+    outline: none;
+}
+.clear {
+    zoom: 1;
+}
+.clear:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+/*按钮样式*/
+.button {
+    background-color: #3c9bbb;
+    color: #FFF;
+    text-align: center;
+    border-radius: 3px;
+    border: 0px;
+}
+/*图标*/
+.backImg2 {
+    background-image: url(http://7xipof.com1.z0.glb.clouddn.com/CCTVicon.png);
+    background-repeat: no-repeat;
+    background-size: 50px 25px;
+}
+.page {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.page.hide {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: url(http://bj-gugong.cctv-demo.sensoro.com/css/#blur-effect-1);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5);
+}
+.popup {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 0.9em;
+    color: #333;
+    position: absolute;
+    left: 0px;
+    bottom: 50px;
+    opacity: 0;
+    /*动画播放一次之后保持最后一帧的样式，并且停止*/
+    animation: pop 3s;
+    -webkit-animation: pop 3s;
+    /* Safari and Chrome */
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-delay: 0s;
+    -webkit-animation-timing-function: ease-in-out;
+    text-align: center;
+}
+
+.markWelcome {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+    -webkit-animation: markOut 1s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-delay: 4s;
+    -webkit-animation-timing-function: ease-in-out;
+}
+
+.welcome {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 10%;
+}
+
+.welcome .tree {
+    width: 100%;
+    position: relative;
+    margin-top: 34px;
+    height:
+    opacity: 0;
+    -webkit-animation: treeeIn 0.6s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease-in-out;
+}
+
+.welcome .cloud1 {
+    background-image: url(http://7xipof.com1.z0.glb.clouddn.com/CCTVcloud.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 53px;
+    height: 40px;
+    background-size: 53px 40px;
+    margin: -75px 0px 0px -141px;
+    -webkit-animation: cloud 2s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: ease-in-out;
+}
+.welcome .cloud2 {
+    background-image: url(http://7xipof.com1.z0.glb.clouddn.com/CCTVcloud.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 34px;
+    height: 26px;
+    background-size: 34px 26px;
+    margin: -48px 0px 0px 37.5px;
+    -webkit-animation: cloud 3s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: ease-in-out;
+}
+.welcome .cloud3 {
+    background-image: url(http://7xipof.com1.z0.glb.clouddn.com/CCTVcloud.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 32px;
+    height: 25px;
+    background-size: 32px 25px;
+    margin: -112px 0px 0px 65px;
+    -webkit-animation: cloud 4s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: ease-in-out;
+}
+
+.welcome .title {
+    width: 100%;
+    position: relative;
+    opacity: 0;
+}
+
+.welcome .first {
+    margin-top: 37px;
+    -webkit-animation: titOut1 0.4s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-delay: 0.5s;
+    -webkit-animation-timing-function: ease-in-out;
+}
+.welcome .second {
+    margin-top: 20px;
+    margin-top: 37px;
+    -webkit-animation: titOut2 0.4s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-delay: 0.6s;
+    -webkit-animation-timing-function: ease-in-out;
+}
+.welcome img{ width:100%;}
+.welcome .shake {
+    width: 16px;
+    height: 17px;
+    background-image: url(http://7xipof.com1.z0.glb.clouddn.com/CCTVshake.png);
+    background-repeat: no-repeat;
+    background-size: 16px 17px;
+    position: absolute;
+    left: 50%;
+    top: -18px;
+    margin-left:30%;
+    -webkit-animation:shake 3s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function:ease-in-out;
+}
+
+.welcome .logo {
+    width: 250px;
+    height: 18px;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    opacity: 0;
+    margin-left: -125px;
+    -webkit-animation:logoIn 2s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-timing-function:ease-in-out;
+}
+
+.welcome .logo img{ width:250px; height:18px;}
+
+@-webkit-keyframes markOut
+{
+    0% { opacity: 1; }
+    99% { opacity: 0; }
+    100%{ opacity: 0; }
+}
+
+
+@-webkit-keyframes treeeIn
+{
+    0% { margin-top:34px; opacity: 0;}
+    100%{ margin-top:0px; opacity: 1;}
+}
+
+@-webkit-keyframes cloud
+{
+    0% { left:50%;}
+    50% { left:52%;}
+    100%{  left:50%;}
+}
+
+@-webkit-keyframes titOut1
+{
+    0% { margin-top:37px; opacity: 0; }
+    100%{ margin-top:27px; opacity: 1;}
+}
+
+@-webkit-keyframes titOut2
+{
+    0% { margin-top:20px; opacity: 0; }
+    100%{ margin-top:10px; opacity: 1;}
+}
+
+@-webkit-keyframes logoIn
+{
+    0% { opacity: 0; }
+    100%{ opacity: 1;}
+}
+
+@-webkit-keyframes shake
+{
+    0% { -webkit-transform:rotate(0deg); -webkit-transform-origin: 0% 100%; }
+    80%{ -webkit-transform:rotate(0deg); -webkit-transform-origin: 0% 100%; }
+    82% { -webkit-transform:rotate(10deg); -webkit-transform-origin: 0% 100%; }
+    84% { -webkit-transform:rotate(-10deg); -webkit-transform-origin: 0% 100%; }
+    86% { -webkit-transform:rotate(8deg); -webkit-transform-origin: 0% 100%; }
+    88% { -webkit-transform:rotate(-8deg); -webkit-transform-origin: 0% 100%; }
+    90% { -webkit-transform:rotate(0deg); -webkit-transform-origin: 0% 100%; }
+    100%{-webkit-transform:rotate(0deg); -webkit-transform-origin: 0% 100%; }
+}
+
+@-webkit-keyframes markOut
+{
+    0% { opacity: 1; }
+    99% { opacity: 0; }
+    100%{ opacity: 0; }
+}
+
+.logo {
+    width: 250px;
+    height: 18px;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    opacity: 0;
+    margin-left: -125px;
+    /*动画播放一次之后保持最后一帧的样式，并且停止*/
+    animation: logoIn 2s;
+    -webkit-animation: logoIn 2s;
+    /* Safari and Chrome */
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-delay: 0s;
+    -webkit-animation-timing-function: ease-in-out;
+}
+.logo img {
+    width: 250px;
+    height: 18px;
+}
+.banner {
+    width: 100%;
+    height: 30%;
+    overflow: hidden;
+    position: relative;
+}
+.banner .img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.banner .img ul {
+    height: 100%;
+    position: absolute;
+    left: 0px;
+}
+.banner .img ul li {
+    width: 100%;
+    height: 100%;
+    display: block;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.banner .img ul li img {
+    position: absolute;
+}
+.banner .title {
+    width: 100%;
+    height: 50px;
+    font-size: 1em;
+    position: absolute;
+    bottom: 0px;
+    background-image: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+}
+.banner .title span {
+    line-height: 50px;
+    height: 50px;
+    display: block;
+    text-indent: 15px;
+    color: #FFFFFF;
+    width: 100%;
+    font-weight: normal;
+    opacity: 1;
+    transition: 0.4s;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.banner .nowBtn {
+    width: 50px;
+    height: 15px;
+    position: absolute;
+    bottom: 16px;
+    right: 10px;
+}
+.banner .nowBtn li {
+    width: 15px;
+    height: 15px;
+    display: block;
+    float: left;
+    position: relative;
+}
+.banner .nowBtn li:before {
+    width: 6px;
+    height: 6px;
+    background-color: #FFFFFF;
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    opacity: 0.3;
+}
+.banner .nowBtn li.active:before {
+    opacity: 1;
+}
+
+h3 {
+    text-indent: 15px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 1em;
+    font-weight: normal;
+}
+.line1 {
+    width: 100%;
+    height: 1px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    line-height: 1px;
+}
+.score {
+    padding-bottom: 10px;
+}
+.score .line {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+}
+.score .line span {
+    width: 80px;
+    float: left;
+    height: 32px;
+    display: block;
+    font-size: 0.9em;
+    text-indent: 15px;
+    margin-right: 32px;
+}
+.score .line a {
+    width: 32.5px;
+    height: 32px;
+    display: block;
+    margin: 0px 3.2px;
+    float: left;
+    background-position: -22px 5px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAyCAYAAACqNX6+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTJDNzBERkVFMDAzMTFFNEEwQkZEQzNEMjlGOTcxQ0IiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTJDNzBERkRFMDAzMTFFNEEwQkZEQzNEMjlGOTcxQ0IiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OThEMDQwRDNFN0E5MTFFNDkwNDFDMzFBQUM2QjBCQjEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OThEMDQwRDRFN0E5MTFFNDkwNDFDMzFBQUM2QjBCQjEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4FC+CjAAAG4UlEQVR42uxbfWhTVxS/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");
+    background-repeat: no-repeat;
+    background-size: 50px 25px;
+    transition: 0.5s;
+}
+.score .line a.active {
+    background-position: 6px 5px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAyCAYAAACqNX6+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTJDNzBERkVFMDAzMTFFNEEwQkZEQzNEMjlGOTcxQ0IiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTJDNzBERkRFMDAzMTFFNEEwQkZEQzNEMjlGOTcxQ0IiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OThEMDQwRDNFN0E5MTFFNDkwNDFDMzFBQUM2QjBCQjEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OThEMDQwRDRFN0E5MTFFNDkwNDFDMzFBQUM2QjBCQjEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4FC+CjAAAG4UlEQVR42uxbfWhTVxS/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");
+    background-repeat: no-repeat;
+    background-size: 50px 25px;
+}
+.textBtn {
+    width: 90%;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    bottom: 10px;
+    left: 5%;
+    font-size: 1.1em;
+    background-color: #3c9bbb;
+    color: #FFF;
+    text-align: center;
+    border-radius: 3px;
+    border: 0px;
+    background-color: #eeeeee;
+    color: #333;
+}
+.label {
+    padding: 0px 10px;
+}
+.label span {
+    padding: 0px 15px;
+    height: 28px;
+    border: 1px solid #cdd6e1;
+    border-radius: 14px;
+    display: block;
+    float: left;
+    white-space: nowrap;
+    color: #525252;
+    margin: 0px 3px 3px 3px;
+    line-height: 28px;
+    font-size: 0.7em;
+    transition: 0.5s;
+}
+.label span.active {
+    background-color: #3c9bbb;
+    color: #FFF;
+    border: 1px solid #3c9bbb;
+}
+.scenicTalk .keyVisual {
+    width:100%;
+}
+.scenicTalk .keyVisual img {
+    width: 100%;
+}
+.scenicTalk .title {
+    padding: 30px 0px 10px;
+    text-indent: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.scenicTalk .button {
+    width: 50%;
+    height: 110px;
+    background-color: #FFF;
+    float: left;
+    border: none;
+    font-size: 1em;
+    line-height: 140px;
+    color: #999999;
+    background-position: center 20px;
+}
+.scenicTalk .button1 {
+    background-image: url(http://7xipof.com1.z0.glb.clouddn.com/CCTVcamera1.png);
+    background-repeat: no-repeat;
+    background-size: 40px 35px;
+    width: 50%;
+    height: 110px;
+    background-color: #FFF;
+    float: left;
+    border: none;
+    font-size: 1em;
+    line-height: 140px;
+    color: #999999;
+    background-position: center 20px;
+    border-right: 1px solid #ddd;
+    text-align: center;
+}
+.scenicTalk .button1:active {
+    opacity: 0.6;
+}
+.scenicTalk .button1 input {
+    display: none;
+}
+.scenicTalk .button2 {
+    background-image: url(http://7xipof.com1.z0.glb.clouddn.com/CCTVcamera2.png);
+    background-repeat: no-repeat;
+    background-size: 41px 31px;
+    width: 49%;
+    height: 110px;
+    background-color: #FFF;
+    float: left;
+    border: none;
+    font-size: 1em;
+    line-height: 140px;
+    color: #999999;
+    background-position: center 20px;
+    text-align: center;
+}
+.scenicTalk .button2:active {
+    opacity: 0.6;
+}
+.scenicTalk .button2 input {
+    display: none;
+}
+.upload .keyVisual {
+    width: 100%;
+    background-color: #000000;
+    color: #FFF;
+    position: relative;
+}
+.upload .keyVisual img {
+    width: 100%;
+    opacity: 0.5;
+}
+.upload .keyVisual .addlabel {
+    padding: 0px 10px;
+    position: absolute;
+    top: 30px;
+}
+.upload .keyVisual .addlabel h3 {
+    text-indent: 5px;
+}
+.upload .keyVisual .addlabel span {
+    padding: 0px 15px;
+    height: 28px;
+    border: 1px solid #FFF;
+    border-radius: 14px;
+    display: block;
+    float: left;
+    white-space: nowrap;
+    color: #FFF;
+    margin: 0px 3px 3px 3px;
+    line-height: 28px;
+    font-size: 0.7em;
+}
+.upload .keyVisual .addlabel span.active {
+    background-color: #3c9bbb;
+    color: #FFF;
+    border: 1px solid #3c9bbb;
+}
+.upload .keyVisual .progress {
+    width: 100%;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0px;
+}
+.upload .keyVisual .progress span {
+    width: 1%;
+    height: 100%;
+    overflow: hidden;
+    display: block;
+    background-color: rgba(60, 155, 187, 0.7);
+    line-height: 30px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 0.7em;
+}
+.upload textarea {
+    padding:8px 5%;
+    width:90%;
+    border: none;
+    height: 20%;
+    background-color: #FFF;
+    line-height: 15px;
+    font-size: 0.7em;
+    margin-top: 10px;
+}
+.upload input {
+    padding:8px 5%;
+    width:90%;
+    border: none;
+    height: 20px;
+    background-color: #FFF;
+    line-height: 20px;
+    font-size: 0.7em;
+    margin-top: 10px;
+}
+
+.scrollBg{
+    width:100%;
+    height:120%;
+    background-color:rgba(0,0,0,0.7);
+    position: absolute;
+    opacity: 0;
+    left:0px;
+    top: 0px;
+    z-index:9;
+    display: none;
+}
+.scrollBg img{ margin-top:40%; width:100%;}
+
+.newBtn{
+    width:43px;
+    height:43px;
+    background-color:rgba(230,0,18,0.6);
+    color:#FFF;
+    line-height:17.5px;
+    padding:7px;
+    padding-top:7px;
+    position:fixed;
+    top:4%;
+    right:0px;
+    z-index:5;
+    border:0px;
+    border-radius:50%;
+    font-size:0.7em;
+    -webkit-animation: btnOut 2s;
+    -webkit-animation-delay:1s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: ease-in-out;
+}
+.btnSub{
+    width:90%;
+    height:44px;
+    line-height:44px;
+    position:absolute;
+    bottom:10px;
+    left:5%;
+    font-size:1.1em;
+    background-color:#3c9bbb;
+    color:#FFF;
+    text-align:center;
+    border-radius:3px;
+    border:0px;
+}
+
+.unUse{ background-color:#cacaca;}
+
+@-webkit-keyframes btnOut
+{
+    0% { box-shadow: 0px 0px 0px 0px rgba(0,0,0,0),0px 0px 0px 1px rgba(230,0,18,0); }
+    10%{ box-shadow: 0px 0px 0px 1px rgba(0,0,0,0), 0px 0px 0px 2px rgba(230,0,18,0.1);}
+    20%{ box-shadow: 0px 0px 0px 2px rgba(0,0,0,0), 0px 0px 0px 4px rgba(230,0,18,0.2);}
+    40%{ box-shadow: 0px 0px 0px 0px rgba(0,0,0,0), 0px 0px 0px 1px rgba(230,0,18,0.1),0px 0px 0px 4px rgba(0,0,0,0), 0px 0px 0px 6px rgba(230,0,18,0.3);}
+    50%{ box-shadow: 0px 0px 0px 1px rgba(0,0,0,0), 0px 0px 0px 3px rgba(230,0,18,0.2),0px 0px 0px 5px rgba(0,0,0,0), 0px 0px 0px 8px rgba(230,0,18,0.4);}
+    60%{ box-shadow: 0px 0px 0px 2px rgba(0,0,0,0), 0px 0px 0px 5px rgba(230,0,18,0.3),0px 0px 0px 6px rgba(0,0,0,0), 0px 0px 0px 10px rgba(230,0,18,0.5);}
+    70%{ box-shadow: 0px 0px 0px 3px rgba(0,0,0,0), 0px 0px 0px 6px rgba(230,0,18,0.4),0px 0px 0px 7px rgba(0,0,0,0), 0px 0px 0px 11px rgba(230,0,18,0.4);}
+    80%{ box-shadow: 0px 0px 0px 4px rgba(0,0,0,0), 0px 0px 0px 7px rgba(230,0,18,0.3),0px 0px 0px 8px rgba(0,0,0,0), 0px 0px 0px 12px rgba(230,0,18,0.3);}
+    90%{ box-shadow: 0px 0px 0px 5px rgba(0,0,0,0), 0px 0px 0px 6px rgba(230,0,18,0.2),0px 0px 0px 9px rgba(0,0,0,0), 0px 0px 0px 13px rgba(230,0,18,0.2);}
+    100%{ box-shadow: 0px 0px 0px 7px rgba(0,0,0,0), 0px 0px 0px 7px rgba(230,0,18,0.1),0px 0px 0px 10px rgba(0,0,0,0), 0px 0px 0px 14px rgba(230,0,18,0);}
+
+}
+
+@-webkit-keyframes pop
+{
+    0% { bottom:50px; opacity: 0; }
+    10% { bottom:60px; opacity: 1; }
+    90% { bottom:60px; opacity: 1; }
+    1000% { bottom:70px; opacity: 0; }
+}

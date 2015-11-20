@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>round</title>
+
+<style>
+.block{ 
+  width:50px; 
+  height:30px; 
+  background-color:#369;
+  border-radius:3px; 
+  position:absolute;
+}
+</style>
+</head>
+
+<body>
+
+<div class="block" id="div1"></div>
+
+<script>
+	var round = {
+		obj:document.getElementById('div1'),
+		r:200,//半径
+		oX:800,//圆心X坐标
+		oY:500,//圆心Y坐标
+		t:30,//初始角度
+		s:10,//变化时间间隔
+		timer:null,
+		int:function(){
+			var _this = this;
+			_this.timer = setInterval(function(){
+				_this.t++;
+				var x = _this.oX - Math.cos(_this.t*Math.PI/180)*_this.r;
+				var y = _this.oY - Math.sin(_this.t*Math.PI/180)*_this.r;
+				_this.obj.style.webkitTransform = 'translateX('+ x +'px) translateY('+ y +'px) rotate('+ _this.t +'deg)';
+			},_this.s);
+		}
+	};
+	
+	round.int();
+</script>
+
+</body>
+</html>

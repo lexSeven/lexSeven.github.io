@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>妙味课堂常见问题解答</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="top"></div>
+<div class="main clear">
+	<div class="topmain"><div class="logo"><img src="images/logo.png"></div><div class="title">妙味课堂常见问题解答</div></div>
+    <div class="contMain clear">
+    	<div class="menu" id="menu"></div>
+        <div class="stopTop" id="stop">
+        	课程咨询顾问：<br>
+            QQ：3315116152<br>
+            QQ：3202399611<br>  
+            电话：010-82176510<br>
+        </div>
+        
+        <div class="conRight">
+        	<div class="search" id="search"><input data-function="inputsearch" id="searchbox" type="text" class="inp"><input type="button" data-function="searcall" class="btn" value="搜　索" id="btn">
+            	<ul class="list" id="noteList"></ul>
+                <div class="now" id="now"></div>
+                <div class="show" data-function="showList" id="show"></div>
+            </div>
+            <div class="answer" id="answer"></div>
+        </div>
+    </div>
+</div>
+
+<div class="back" id="backTop">
+	<div class="service" data-function="alertmark"></div>
+    <div class="backtop" data-function="backtop"></div>
+</div>
+
+
+<div class="mark" data-function="closemark"><div class="alert">
+<div class="close" data-function="closemark">&nbsp;</div>
+课程咨询顾问：<br>
+QQ：3315116152<br>
+QQ：3202399611<br>  
+电话：010-82176510<br>
+</div></div>
+</body>
+
+<script src="js/lex.js"></script>
+<script src="js/question.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+
+var question = {
+	int:function(){
+		var _this = question;
+		_this.menu = $('#menu');
+		_this.answer = $('#answer');
+		_this.searchinputbox = $('#searchbox');
+		_this.searchbtn = $('#btn');
+		_this.noteList = $('#noteList');
+		_this.eachNum = 0;
+		_this.searchResultArray = [];
+		_this.chioseNum = -1;
+		_this.searchType = 1;
+		_this.searchinputbox.focus();
+		_this.value = '';
+		_this.resaultNum = 0;
+		_this.height = $(window).height()/2;
+		
+		stopTop(s('search'), 130);
+		stopTop(s('stop'),0);
+		_this.bindEvent();
+		_this.createDom();
+		_this.Search();
+		$('#stop').css('top',_this.menu.height());
+		
+	},
+	createDom:function(){
+		var _this = question;
+		$.each(data,function(label,list){
+			var liststr = '<dl><dt data-function="closeparent">'+label+'</dt>';
+			$.each(list,function(num,block){
+				_this.eachNum ++;
+				console.log(_this.eachNum);
+				liststr += '<dd title="'+ block.question +'" data-num="'+ block.num +'"  data-function="jump">'+ block.question +'</dd>';
+				$('<div class="ansMain"><div class="tit" data-num ="'+ block.num +'">'+ block.question +'</div><div class="block">'+ block.answer +'</div></div>').appendTo(_this.answer);
+			});
+			$(liststr+'</dl>').appendTo(_this.menu);
+		});
+		_this.eachNum = 0;
+	},
+	bindEvent:function(){
+		var _this = question;
+		$(document).on('touchstart',function(ev){
+            for(a in _this.clickArea){
+                if($(ev.target).data('function')==a){
+                    _this.clickArea[a]($(ev.target));
+					break;
+                }
+            }
+        });
+		$(document).on('click',function(ev){
+            for(a in _this.clickArea){
+                if($(ev.target).data('function')==a){
+                    _this.clickArea[a]($(ev.target));
+					break;
+                }
+            }
+        });
+		$(document).keyup(function (event) {  
+			var keycode = event.which;
+			if (keycode == 70) {  
+				_this.searchinputbox.focus();
+				_this.Search();
+			};
+			if (keycode == 40) {
+				_this.chioseNum = _this.chioseNum<_this.noteList.find('li').length-1?_this.chioseNum+1:0;
+				_this.noteList.get(0).style.height = 'auto';
+				_this.searchinputbox.focus();
+				if(_this.noteList.find('li').length>0){
+					_this.noteList.find('li').removeClass('active');
+					_this.noteList.find('li').eq(_this.chioseNum).addClass('active');
+					_this.searchType = 2;
+				};
+			};
+			if (keycode == 38) {
+				_this.chioseNum = _this.chioseNum>0?(_this.chioseNum-1):_this.noteList.find('li').length-1;
+				console.log(_this.chioseNum);
+				_this.noteList.get(0).style.height = 'auto';
+				_this.searchinputbox.focus();
+				if(_this.noteList.find('li').length>0){
+					_this.noteList.find('li').removeClass('active');
+					_this.noteList.find('li').eq(_this.chioseNum).addClass('active');
+					_this.searchType = 2;
+				};
+			};
+			if (keycode == 13) {
+				if( _this.searchType == 2 ){
+					_this.SearchAll($.trim(_this.value));
+					var num = _this.noteList.find('li').eq(_this.chioseNum).data('num');
+					var element = null;//_this.answer.find('.tit').eq(num-1);
+					_this.noteList.find('li').removeClass('active');
+					_this.answer.find('.tit').removeClass('active');
+					
+					$.each(_this.answer.find('.tit'),function( k,v ){
+						if($(v).data('num') == num){
+							return element = $(v);
+						}
+					});
+					
+					element.addClass('active');
+					$(window).scrollTop((element.offset().top)-_this.height);
+					_this.noteList.height(0);
+					$('#show').show();
+					 _this.searchType = 3;
+					return false;
+				};
+				if( _this.searchType == 1 ){
+					if(_this.value.length<1){return false;}
+					_this.SearchAll($.trim(_this.value));
+					_this.noteList.find('li').removeClass('active');
+					_this.answer.find('.tit').removeClass('active');
+					_this.noteList.height(0);
+					
+					/*var num = _this.noteList.find('li').eq(0).data('num');
+					var element = _this.answer.find('.tit').eq(num-1);
+					element.addClass('active');
+					$(window).scrollTop((element.offset().top)-_this.height);
+					$('#show').show();
+					return false;*/
+				}
+				if( _this.searchType == 3 ){
+					var elementResault = _this.answer.find('span.resault');
+					if(_this.resaultNum >= elementResault.length){
+						_this.resaultNum = 0;
+					}
+					if(elementResault.length == 0){
+						$('#now').html('第'+(_this.resaultNum) +'条，共'+ (elementResault.length) +'条');
+					}else{
+						$('#now').html('第'+(_this.resaultNum+1) +'条，共'+ (elementResault.length) +'条');
+					}
+					elementResault.removeClass('active');
+					elementResault.eq(_this.resaultNum).addClass('active');
+					$(window).scrollTop((elementResault.eq(_this.resaultNum).offset().top)-_this.height);
+					_this.resaultNum ++;
+					//console.log(_this.resaultNum);
+				}
+			};
+		 });
+		 $(window).resize(function(e) {
+            window.location.reload();
+         });
+	},
+	clickArea:{
+		backtop:function(){
+			$(window).scrollTop('0');
+		},
+		inputsearch:function(){
+			var _this = question;
+			_this.Search();
+		},
+		jump:function( obj ){
+			var _this = question;
+			var num = obj.data('num');
+			var element = null;//_this.answer.find('.tit').eq(num-1);
+			_this.answer.find('.tit').removeClass('active');
+			
+			$.each(_this.answer.find('.tit'),function( k,v ){
+				if($(v).data('num') == num){
+					return element = $(v);
+				}
+			});
+			
+			element.addClass('active');
+			$(window).scrollTop((element.offset().top)-_this.height);
+			_this.noteList.height(0);
+			$('#show').show();
+		},
+		showList:function(){
+			var _this = question;
+			_this.noteList.get(0).style.height = 'auto';
+		},
+		searcall:function( obj ){
+			var _this = question;
+			_this.noteList.height(0);
+			_this.searchType = 3;
+			_this.SearchAll($.trim(_this.value));
+			_this.searchinputbox.focus();
+		},
+		alertmark:function(){
+			$('.mark').show().animate({opacity:1},50);
+		},
+		closemark:function(){
+			$('.mark').animate({opacity:0},50,function(){
+				$('.mark').hide();
+			});
+		},
+		closeparent:function( obj ){
+			var _this = question;
+			obj.parent().css('overflow','hidden');
+			obj.parent().css('padding',0);
+			obj.parent().animate({height:obj.height()},200,function(){
+				obj.data('function','openparent');
+				$('#stop').css('top',_this.menu.height()+80);
+			});
+		},
+		openparent:function( obj ){
+			var _this = question;
+			obj.parent().animate({height:200},100,function(){
+				obj.parent().get(0).style.cssText = '';
+				obj.data('function','closeparent');
+				$('#stop').css('top',_this.menu.height() + 80);
+			});
+		}
+	},
+	Search:function(){
+		var _this = question;
+		_this.searchinputbox.keyup(function(event){
+			var keycode = event.which;
+			if(_this.value!=$.trim($(this).val())){
+				_this.value=$.trim($(this).val());
+				_this.searchType = 1;
+				_this.searchResultArray = [];
+				_this.noteList.html('');
+				$('#now').html('');
+				if(_this.value.length<1){ return false };
+				$.each(data,function(label,list){
+					$.each(list,function(num,block){
+						if(block.question.indexOf(_this.value) != -1){
+							_this.searchResultArray.push({title:block.question,num:block.num});
+						}else if(block.question.indexOf(_this.value.toUpperCase()) != -1){
+							_this.searchResultArray.push({title:block.question,num:block.num});
+						}else if(block.question.indexOf(_this.value.toLowerCase()) != -1){
+							_this.searchResultArray.push({title:block.question,num:block.num});
+						}
+					});
+				});
+				
+				if(keycode == 32 && _this.searchResultArray.length<1){}
+				
+				$.each(_this.searchResultArray,function( key,val ){
+					_this.chioseNum = -1;
+					$('<li data-num="'+ val.num +'" data-function="jump">'+ val.title +'</li>').appendTo(_this.noteList);
+					_this.noteList.get(0).style.height = 'auto';
+				});
+			}
+		});
+	},
+	SearchAll:function( val ){
+		var _this = question;
+		var numa = 0;
+		_this.resaultNum = 0;
+		_this.menu.html('');
+		_this.answer.html('');
+		$.each(data,function(label,list){
+			var liststr = '<dl><dt data-function="closeparent">'+label+'</dt>';
+			$.each(list,function(num,block){
+				var reg =  new RegExp(val + '|' + val.toUpperCase() + '|' + val.toLowerCase());
+				var que = block.question.replace(reg,function(value){
+					numa ++;
+					return "<span class='resault'>"+ value +"</span>";
+				});
+				var ans = block.answer.replace(reg,function( value ){
+					numa ++;
+					return "<span class='resault'>"+ value +"</span>";
+				});
+				$('<div class="ansMain"><div class="tit"  data-num ="'+ block.num +'">'+ que +'</div><div class="block">'+ ans +'</div></div>').appendTo(_this.answer);
+				liststr += '<dd title="'+ que +'" data-num="'+ block.num +'"  data-function="jump">'+ que +'</dd>';
+			});
+			$(liststr+'</dl>').appendTo(_this.menu);
+		});
+		_this.answer.find('span.resault').eq(0).addClass('active');
+		_this.searchType = 3;
+	},
+	showNote:function( val ){
+		
+	}
+}
+
+question.int();
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=640, minimum-scale=0.5, maximum-scale=0.75, user-scalable=no,target-densityDpi=device-dpi">
+    <title>妙味VIP会员打怪游戏</title>
+    <link href="css/move.css" rel="stylesheet" type="text/css">
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <script src="js/lex.js"></script>
+</head>
+<body style="opacity:0;">
+
+<script>
+    document.body.style.height = view().h + 'px';
+</script>
+
+<section class="bg-welcome sectionIn">
+    <div class="circle-welcome">&nbsp;</div>
+    <div class="starSmall">&nbsp;</div>
+    <div class="starLine">&nbsp;</div>
+    <div class="welcomeMain">
+    	<div class="thanks"><img src="images/thanks.png"/></div>
+        <div class="widthyou"><img src="images/widthyou.png"/></div>
+        <div class="rocket"><img src="images/rocket.png"/></div>
+        <div class="miaov"><img src="images/miaov.png"/></div>
+    </div>
+    <div class="ProgressBar" id="ProgressBar"><span>&nbsp;</span><em>0%</em></div>
+</section>
+
+<script>
+	var loadF = false;
+    var loadingArr = [
+		'images/miaov.png',
+		'images/thanks.png',
+		'images/widthyou.png',
+		'images/rocket.png',
+		'images/alert.png',
+		'images/human.png',
+		'images/human2.png',
+		'images/human3.png',
+		'images/human4.png',
+		'images/human5.png',
+		'images/human6.png',
+		'images/lighthouse.png',
+		'images/monster1.png',
+		'images/monster2.png',
+		'images/monster3.png',
+		'images/monster4.png',
+		'images/monster11.png',
+		'images/monster12.png',
+		'images/monster13.png',
+		'images/monster14.png',
+		'images/pirate.png',
+		'images/pirate2.png',
+		'images/planet.png',
+		'images/planet2.png',
+		'images/planet3.png',
+		'images/planet4.png',
+		'images/planet5.png',
+		'images/rocket.png',
+		'images/rocket2.png',
+		'images/rocket3.png',
+		'images/smork.png',
+		'images/smork2.png',
+		'images/smork3.png',
+		'images/smork4.png',
+		'images/star.png',
+		'images/star_bg.png',
+		'images/starLine.png',
+		'images/starotund.png',
+		'images/starSmall.png',
+		'images/start.png',
+		'images/stop.png',
+		'images/sun.png',
+		'images/text1.png',
+		'images/text2.png',
+		'images/text3.png',
+		'images/time.png',
+		'images/game-icon_share.png',
+		'images/arrow2.png',
+		'images/share-icon_01.png'
+		];
+	
+	var imgNum = 0;
+	for( var i=0;i<loadingArr.length;i++){
+		var img = document.createElement('img');
+		img.src = loadingArr[i];
+		img.onload = function(){
+			imgNum ++ ;
+			lexChildren( s('ProgressBar') )[0].style.width = ((imgNum/loadingArr.length).toFixed(2)*100) + '%';
+			lexChildren( s('ProgressBar') )[1].innerHTML = Math.floor(((imgNum/loadingArr.length).toFixed(2)*100));
+			if(imgNum == loadingArr.length){
+				remove( s('ProgressBar') );
+				loadF = true;
+			}
+		};
+	};
+</script>
+
+
+<section class="sectionHid bg-page2">
+	<div class="circle-page2">&nbsp;</div>
+    <div class="rocket2">&nbsp;</div>
+    <div class="light">&nbsp;</div>
+    <div class="page2">
+    	<div class="human">&nbsp;</div>
+        <div class="start1">&nbsp;</div>
+        <div class="start2">&nbsp;</div>
+        <div class="start3">&nbsp;</div>
+        <div class="start4">&nbsp;</div>
+        <div class="pirate">&nbsp;</div>
+        
+    </div>
+    <div class="text"></div>
+</section>
+
+<section class="sectionHid bg-page3">
+	<div class="text3">&nbsp;</div>
+	<div class="circle-page3">&nbsp;</div>
+    <div class="startAll">&nbsp;</div>
+    <div class="smork1">&nbsp;</div>
+    <div class="smork2">&nbsp;</div>
+    <div class="rocket3">&nbsp;</div>
+    
+    <div class="page3">
+        <div class="human1">&nbsp;</div>
+        <div class="human2">&nbsp;</div>
+        <div class="human3">&nbsp;</div>
+        <div class="human4">&nbsp;</div>
+        <div class="human5">&nbsp;</div>
+        <div class="pirate2">&nbsp;</div>
+        <div class="meteor">&nbsp;</div>
+        
+    </div>
+</section>
+
+<section class="sectionHid bg-page4">
+	<div class="circle-page4">&nbsp;</div>
+    <div class="page4">
+        <div class="smork4">&nbsp;</div>
+        <div class="smork5">&nbsp;</div>
+        <div class="rocket4">&nbsp;</div>
+        <button class="btn" id="start">开始游戏</button>
+        <div class="text4"></div>
+    </div>
+</section>
+
+<div class="upArrow" id="upArrow"></div>
+
+<div class="bgMusic" id="music">
+	<audio preload="auto" src="video/bg.mp3" autoplay style="display:none;"></audio>
+</div>
+
+<audio loop preload="auto" src="video/music.mp3" style="display:none;"></audio>
+
+</body>
+
+<script>
+
+document.body.style.opacity = 1;
+
+changePage();
+function changePage(){
+	
+	var off = true;
+	
+	var section = document.getElementsByTagName('section');
+	
+	var now = getByClass(document, 'section', 'sectionIn')[0];
+	var index = 0
+	
+	var downY = 0;
+	bind(document, 'touchstart', function( ev ){
+		ev.preventDefault();
+		var touchs = ev.changedTouches[0];
+		console.log(touchs);
+		downY = touchs.pageY;
+	});
+	
+	bind(document, 'touchend', function( ev ){
+		var touchs = ev.changedTouches[0];
+		if(downY - touchs.pageY > 40 && off && loadF){
+			c( -1 );
+		}else if(downY - touchs.pageY < -40 && off && loadF){
+			c( +1 );
+		}
+	});
+	
+	function c( num ){
+		
+		if(index == 0 && num == 1 ){
+			return false;
+		}
+		
+		if(index == 3 && num == -1 ){
+			window.location.href = 'game.html';
+		};
+		
+		removeClass(section[index], 'sectionIn');
+		addClass(section[index], 'sectionOut');
+		off = false;
+		setTimeout(function(){
+			removeClass(section[index], 'sectionOut');
+			addClass(section[index], 'sectionHid');
+			removeClass(section[index - num], 'sectionHid');
+			addClass(section[index - num], 'sectionIn');
+			index = index - num;
+			off = true;
+		},600);
+	};
+	
+	s('start').ontouchend = function(){
+		window.location.href = 'game.html';
+	};
+};
+
+musicShow();
+function musicShow(){
+	var au = s('music').getElementsByTagName('audio')[0];
+	
+	au.autoplay = true;
+	au.play();
+	console.log(au);
+	stopPP(s('music'));
+	
+	bind(s('music'),'touchstart',function(){
+		if(au.paused){
+			au.play();
+			addClass(s('music'), 'bgMusic');
+			removeClass(s('music'),'bgMusicStop');
+		}
+		else{
+			au.pause();
+			removeClass(s('music'), 'bgMusic');
+			addClass(s('music'),'bgMusicStop');
+		}
+	});
+}
+
+</script>
+<script src="js/jCanvaScript.1.5.18.min.js"></script>
+</html>

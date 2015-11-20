@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=640,user-scalable=no, target-densityDpi=device-dpi">
+<title>点击弹窗</title>
+<style>
+body{ background-color:#ccc;}
+.bg{ width:100%; height:100%; background-color:rgba(0,16,64,0.6); display:none;}
+.block{ width:432px; height:342px; background:url(images/bg.png) no-repeat; position:absolute; top:50%; left:50%; margin:-171px 0px 0px -216px;}
+.block p{ top:163px; left:110px; position:absolute; font-size:26px; color:#f69f23; font-family:'微软雅黑';}
+.btn{ width:154px; height:46px; background-color:#f69f23; border-radius:3px; position:absolute; bottom:23px; left:175px; border:none; color:#FFF; font-size:20px; font-family:'微软雅黑'; cursor:pointer;}
+.btn:focus{ outline:none;}
+.btn.alert{ width:20%; left:20px; bottom:70px;}
+.btn.confirm{ width:20%; left:20px;}
+</style>
+</head>
+
+<body>
+
+<button type="button" class="btn confirm"data-function="confirmbtn" data-target="confirm">对话</button>
+
+
+<div class="bg" id="confirm">
+<div class="block">
+<p>这里是提示内容...</p>
+<button type="button" class="btn" data-function="closebtn" data-target="confirm">确定</button>
+</div>
+</div>
+
+<script>
+document.body.style.height = document.documentElement.clientHeight + 'px';
+bindEvent();
+function bindEvent(){
+    var _this = this;
+    bind(document,'touchstart',function( ev ){//移动端
+        var ev = ev || event;
+        var target = ev.target || srcElement;
+        for(a in _this.clickArea){
+            if(target.dataset.function == a){
+                _this.clickArea[a](target);
+            }
+        };
+    });
+
+    bind(document,'click',function( ev ){//pc端
+        var ev = ev || event;
+        var target = ev.target || srcElement;
+        for(a in _this.clickArea){
+            if(target.dataset.function == a){
+                _this.clickArea[a](target);
+            }
+        };
+    });
+	
+	this.clickArea = {
+		alertbtn:function( obj ){
+			console.log(obj.dataset.target);
+			s(obj.dataset.target).style.display = 'block';
+		},
+		confirmbtn:function( obj ){
+			console.log(obj.dataset.target);
+			s(obj.dataset.target).style.display = 'block';
+		},
+		closebtn:function( obj ){
+			s(obj.dataset.target).style.display = 'none';
+		}
+	};
+};
+
+
+/*---------------------------工具函数------------------------------*/
+
+function bind(obj, ev, fn) { //事件绑定
+    if (obj.addEventListener) {
+        obj.addEventListener(ev, fn, false);
+    } else {
+        obj.attachEvent('on' + ev, function() {
+            fn.call(obj);
+        });
+    }
+}
+
+function s(obj) {
+    return document.getElementById(obj);
+};
+
+
+
+function setup_countdowntimer(name){
+	for (i = 0; i < $(name).length; i++){
+		$(name).eq(i).attr('id','countdown'+i)
+    	var times=$(name).eq(i).attr('data-countdown');//获取标签上的时间
+		var array = times.split(',');//创建数组
+    	$(name).eq(i).countdowntimer({
+        	hours: array[0],
+        	minutes: array[1],
+        	seconds: array[2],
+			timeUp : timeisUp,
+			timeSeparator : " : "
+    	});
+		function timeisUp() {
+			alert(i)//为什么这里一直都是弹窗0
+		}
+	}
+}
+
+</script>
+
+</body>
+</html>

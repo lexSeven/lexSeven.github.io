@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CCTV"五一E起游"</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <link href="css/move.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="markWelcome" id="markWelcome">
+    <div class="welcome">
+        <div class="tree">
+            <img src="http://7xipof.com1.z0.glb.clouddn.com/CCTVtree.jpg">
+            <span class="cloud1">&nbsp;</span>
+            <span class="cloud2">&nbsp;</span>
+            <span class="cloud3">&nbsp;</span>
+        </div>
+        <div class="title first">
+            <img src="http://7xipof.com1.z0.glb.clouddn.com/CCTVtitle.png">
+            <div class="shake">&nbsp;</div>
+        </div>
+        <div class="title second">
+            <img src="http://7xipof.com1.z0.glb.clouddn.com/CCTVtitle2.png">
+        </div>
+    </div>
+    <div class="logo"><img src="http://7xipof.com1.z0.glb.clouddn.com/CCTVlogo.png"></div>
+</div>
+
+<script>
+  document.getElementById('markWelcome').style.height = document.documentElement.clientHeight + 'px';
+  setTimeout(function(){
+      var img = document.getElementById('markWelcome').getElementsByTagName('img');
+      for(var i=0;i<img.length;i++){
+        img[i].style.display = 'block';
+      };
+  },100);
+</script>
+
+<div class="page" id="mainindex"><!---------首页---------->
+    <div class="banner">
+        <button class="newBtn" data-function="newsClues">新闻线索</button>
+        <div class="img" id="img">
+            <ul id="list">
+                <li><img src="images/1.jpg"></li>
+                <li><img src="images/2.jpg"></li>
+                <li><img src="images/3.jpg"></li>
+                <li><img src="images/4.jpg"></li>
+                <li><img src="images/5.jpg"></li>
+            </ul>
+        </div>
+        <div class="title" id="title">
+            <span class="">南京明孝陵</span>
+            <span class="active">南京明孝陵</span>
+            <span class="">南京明孝陵</span>
+            <span class="">南京明孝陵</span>
+            <span class="">南京明孝陵</span>
+        </div>
+        <div class="nowBtn" id="nowBtn"style="width: 75px;">
+            <ul><li class="active">&nbsp;</li>
+                <li class="">&nbsp;</li>
+                <li class="">&nbsp;</li>
+                <li class="">&nbsp;</li>
+                <li class="">&nbsp;</li></ul>
+        </div>
+    </div>
+
+    <h3>给景点评分</h3>
+    <div class="score">
+        <div class="line"><span>综合印象</span><a data-function="comprehensive">&nbsp;</a><a data-function="comprehensive">&nbsp;</a><a data-function="comprehensive">&nbsp;</a><a data-function="comprehensive">&nbsp;</a><a data-function="comprehensive">&nbsp;</a></div>
+        <div class="line"><span>服务指数</span><a data-function="service">&nbsp;</a><a data-function="service">&nbsp;</a><a data-function="service">&nbsp;</a><a data-function="service">&nbsp;</a><a data-function="service">&nbsp;</a></div>
+        <div class="line"><span>消费指数</span><a data-function="consumption">&nbsp;</a><a data-function="consumption">&nbsp;</a><a data-function="consumption">&nbsp;</a><a data-function="consumption">&nbsp;</a><a data-function="consumption">&nbsp;</a></div>
+    </div>
+    <div class="line1">&nbsp;</div>
+    <h3>五一你为什么出发</h3>
+    <div class="label" id="scenic"><span data-function="reusableActive" id="1">司空见惯</span><span data-function="reusableActive" id="2">个别现象</span><span data-function="reusableActive" id="3">素质普遍有所提高</span><span data-function="reusableActive" id="4">仍有待提高</span></div>
+    <button class="btnSub" data-function="subScore">提交</button>
+</div>
+
+<div class="page" style="background-color: rgb(238, 238, 238);" id="mainnew"><!-----------新闻----------->
+    <div class="scenicTalk">
+        <div class="keyVisual"><img src="http://7xipof.com1.z0.glb.clouddn.com/CCTV3.gif"></div>
+        <h3>请上传您的分享</h3>
+        <label class="button1">导入视频<input type="file" name="file" data-function="uploadVideo" ></label>
+        <label class="button2">上传照片<input type="file" name="file" data-function="uploadImage" ></label>
+    </div>
+    <div class="textBtn" data-function="backIndex">点击返回</div>
+</div>
+
+<div class="page" style="background-color: rgb(238, 238, 238);" id="mainscenicTalk"><!--------景区说吧----------->
+    <div class="scenicTalk">
+        <div class="keyVisual"><img src="http://7xipof.com1.z0.glb.clouddn.com/CCTV2.gif"></div>
+        <div class="title" id="scenicTitle"></div>
+        <h3>请上传您的分享</h3>
+        <label class="button1">导入视频<input type="file" name="file" data-function="uploadVideo" ></label>
+        <label class="button2">上传照片<input type="file" name="file" data-function="uploadImage" ></label>
+    </div>
+</div>
+
+<div class="page" style="background-color: rgb(238, 238, 238);" id="mainupload"><!-----------上传------------>
+    <div class="upload">
+        <div class="keyVisual">
+            <img src="http://7xipof.com1.z0.glb.clouddn.com/CCTVbanner.jpg">
+            <div class="addlabel" id="addVideoLabel">
+
+            </div>
+            <div class="progress"><span id="schedule" style="width:50%">视频上传中</span></div>
+        </div>
+        <textarea id="comment" placeholder="（选填：说点什么呢~~）"></textarea>
+        <input type="text" id="phone" placeholder="（选填：您的联系方式）">
+    </div>
+    <button id="subComment" class="btnSub unUse">上传</button>
+</div>
+
+<div class="page" id="mainSuccess">
+    <div class="welcome">
+      <div class="tree">
+        <img src="http://7xipof.com1.z0.glb.clouddn.com/CCTVtree.jpg">
+        <span class="cloud1">&nbsp;</span>
+        <span class="cloud2">&nbsp;</span>
+        <span class="cloud3">&nbsp;</span>
+      </div>
+      <div class="title first">
+        <img src="http://7xipof.com1.z0.glb.clouddn.com/CCTVsuccess.png">
+      </div>
+    </div>
+    <button class="btnSub" data-function="reload">重新评价</button>
+</div>
+
+<div class="scrollBg"><img src="http://7xipof.com1.z0.glb.clouddn.com/CCTVthanks.png"></div>
+
+<script src="js/commons.js"></script>
+<script src="js/move.js"></script>
+<script>
+
+mypage = new page();
+mypage.init(document.querySelector('#mainindex'));
+
+</script>
+
+
+</body>
+</html>

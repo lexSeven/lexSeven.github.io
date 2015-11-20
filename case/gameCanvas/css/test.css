@@ -1,0 +1,6 @@
+@charset "utf-8";
+/* CSS Document */
+body,div,span,h1,h2,h3,h4,h5,h6,article,del,em,img,i,nav,aside,canvas,footer,header,menu,section,ul,li { margin: 0px; padding: 0px; font-size:12px;}
+
+.bg{ width:100%; height:100%; background-color:#535c79;}
+.color1{ width:10px; height:10px; background:#FFF; position:absolute; right:30%; top:50%;}
