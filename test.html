@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>无标题文档</title>
+<title>浜嬩欢浠ｇ悊demo</title>
 <style>
 .div1{ width:10px; height:10px; border-width:50px; border-style:solid solid solid solid; border-color:#369 #f00 #0F0 #000; cursor:default;}
 </style>
@@ -10,7 +10,7 @@
 
 <body>
 <div class="div1" data-drag="null" data-close="div2"></div>
-<div class="div2" id="div2" data-drag="null">这要被关闭</div>
+<div class="div2" id="div2" data-drag="null">this well be close!</div>
 
 <script>
 var test = {
@@ -65,7 +65,7 @@ function s(obj) {
     return document.getElementById(obj);
 };
 
-function bind(obj, ev, fn) { //事件绑定
+function bind(obj, ev, fn) { //浜嬩欢缁戝畾
     if (obj.addEventListener) {
         obj.addEventListener(ev, fn, false);
     } else {
