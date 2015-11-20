@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <title>事件代理demo</title>
 <style>
-.div1{ width:10px; height:10px; border-width:50px; border-style:solid solid solid solid; border-color:#369 #f00 #0F0 #000; cursor:default;}
+.div1{ width:100px; height:100px; border-width:50px; border-style:solid solid solid solid; border-color:#369 #f00 #0F0 #000; cursor:default;}
+.div2{ width:100px; height:100px; background:#369; color:#fff; cursor:default;}
 </style>
 </head>
 
 <body>
-<div class="div1" data-drag="null" data-close="div2"></div>
+<div class="div1" data-drag="null" data-close="div2">拖动我   顺便把下面那个家伙干掉</div>
 <div class="div2" id="div2" data-drag="null">this well be close!</div>
 
 <script>
