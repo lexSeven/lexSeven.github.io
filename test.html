@@ -14,16 +14,17 @@
 
 <script>
 var test = {
+	/*初始化*/
 	int:function(){
 		var _this = test;
 		_this.bindevent();
 	},
+	/*绑定事件*/
 	bindevent:function(){
 		var _this = test;
 		bind(document,'mousedown',function( ev ){
 			var ev = ev || event;
 			var target = ev.target || srcElement;
-			console.log(target.dataset);
 			for(b in target.dataset){
 				for(a in _this.clickArea){
 					if( b == a){
@@ -34,6 +35,7 @@ var test = {
 			
 		});
 	},
+	/*事件库*/
 	clickArea:{
 		drag:function(option){
 			var obj = option.obj,ev = option.ev;
@@ -56,11 +58,12 @@ var test = {
 			s(target).style.display = 'none';
 		}
 	}
+	/*事件库*/
 }
 
 test.int();
 
-
+/*---------------------工具函数------------------------------*/
 function s(obj) {
     return document.getElementById(obj);
 };
