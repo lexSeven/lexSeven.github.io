@@ -1,236 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!doctype html>
 <html>
 <head>
-<meta charset=gbk>
-<title>椭圆曲线</title>
-</head>
+<meta charset="utf-8">
+<title>无标题文档</title>
 <style>
-*{
-margin:0px;padding:0px; 
-}
-div{
-border:1px solid #111;
-}
-.points{
-width:1px;height:1px;border:0px solid #111;
-position:absolute;
-line-height:1px;font-size:1px;
-background:#111;
-}
-.go-oval{
-width:10px;height:10px;border:0px solid #111;
-position:absolute;
-line-height:1px;font-size:1px;
-background:#111;
-border-radius:5px;
-}
-.position{position:absolute;left:900px;top:430px;height:1px;width:1px;}
+.div1{ width:10px; height:10px; border-width:50px; border-style:solid solid solid solid; border-color:#369 #f00 #0F0 #000; cursor:default;}
 </style>
+</head>
+
 <body>
- <div class="position">
-  <div id="tuoyuan1" style="height:0px;width:0px;"></div>
-  <div id="go-oval1" class="go-oval"></div>
- </div>
- 
- <div class="position">
-  <div id="tuoyuan2" style="height:0px;width:0px;"></div>
-  <div id="go-oval2" class="go-oval"></div>
- </div>
- 
- <div class="position">
-  <div id="tuoyuan3" style="height:0px;width:0px;"></div>
-  <div id="go-oval3" class="go-oval"></div>
- </div>
- 
- <div  class="position">
-  <div id="tuoyuan4" style="height:0px;width:0px;"></div>
-  <div id="go-oval4" class="go-oval"></div>
- </div>
- 
- <div  class="position">
-  <div id="tuoyuan5" style="height:0px;width:0px;"></div>
-  <div id="go-oval5" class="go-oval"></div>
- </div>
- 
- <div class="position">
-  <div id="tuoyuan6" style="height:0px;width:0px;"></div>
-  <div id="go-oval6" class="go-oval"></div>
- </div>
- 
- <div class="position">
-  <div id="tuoyuan7" style="height:0px;width:0px;"></div>
-  <div id="go-oval7" class="go-oval"></div>
- </div>
- 
- <div  class="position">
-  <div id="tuoyuan8" style="height:0px;width:0px;"></div>
-  <div id="go-oval8" class="go-oval"></div>
- </div>
- 
- 
+<div class="div1" data-drag="null" data-close="div2"></div>
+<div class="div2" id="div2" data-drag="null">这要被关闭</div>
+
+<script>
+var test = {
+	int:function(){
+		var _this = test;
+		_this.bindevent();
+	},
+	bindevent:function(){
+		var _this = test;
+		bind(document,'mousedown',function( ev ){
+			var ev = ev || event;
+			var target = ev.target || srcElement;
+			console.log(target.dataset);
+			for(b in target.dataset){
+				for(a in _this.clickArea){
+					if( b == a){
+						_this.clickArea[a]({obj:target,ev:ev,target:target.dataset[b]});
+					}
+				};
+			}
+			
+		});
+	},
+	clickArea:{
+		drag:function(option){
+			var obj = option.obj,ev = option.ev;
+			obj.style.position = 'absolute';
+			var downX = ev.clientX;
+			var downY = ev.clientY;
+			var objleft = downX - obj.offsetLeft;
+			var objtop = downY - obj.offsetTop;
+			obj.onmousemove = document.onmousemove = function( ev ){
+				var ev = ev || event;
+				obj.style.left = ev.clientX - objleft + 'px';
+				obj.style.top = ev.clientY - objtop + 'px';
+			}
+			obj.onmouseup = document.onmouseup = function(){
+				 obj.onmousemove = document.onmousemove = null;
+			}
+		},
+		close:function( option ){
+			var target = option.target;
+			s(target).style.display = 'none';
+		}
+	}
+}
+
+test.int();
+
+
+function s(obj) {
+    return document.getElementById(obj);
+};
+
+function bind(obj, ev, fn) { //事件绑定
+    if (obj.addEventListener) {
+        obj.addEventListener(ev, fn, false);
+    } else {
+        obj.attachEvent('on' + ev, function() {
+            fn.call(obj);
+        });
+    }
+}
+</script>
 </body>
 </html>
-<script>
-(function(){})();
-	
-	
- function $(idd){
-  var obj = {};
-  if( typeof( idd ) === 'string'){
-   var idName = idd.substr(1, idd.length );
-   //alert(idName)
-
-   if( idd.substr(0,1) === '#' ){
-    obj = document.getElementById(idName);
-   }
-   else if( idd.substr(0,1) === '.'){
-    obj =  document.getElementsByName(idName);
-    //obj = obj.length ? document.getElementsByClassName(idName) : null;
-    //alert(obj.length);
-    //alert( obj[0].className )
-   }
-   else if( idd == 'document' ){
-    obj = document;
-   }
-   else {
-    obj = document.getElementsByTagName(idd);
-    //alert(idd)
-   }
-  }
-  else {
-   obj = idd;
-  }
-
-  return obj;
- }
- 
- //alert(document.body.clientWidth  )
- 
- //生成椭圆曲线的点（数组）
- function make_points(a, b, interval, addX, addY){
-  var x,y;
-  var xy = [],xy1 = [],xy2 = [];
-  
-  addX = addX ? addX : a;
-  addY = addY ? addY : b;
-  
-  x = - Math.sqrt( (b*b)*a*a/(b*b) );
-  
-  for(var n = 0; 1; n ++){
-   y = Math.sqrt( b*b - (b*b*x*x)/(a*a) );
-   
-   if( n == 0 ){
-    y0 = y;
-   }
-   
-   xy1[n] = [x + addX,y + addY];
-   //n++;
-   xy2[n] = [x + addX,-y + addY];
-   x = x + interval;
-   
-   if( x > Math.sqrt( (b*b)*a*a/(b*b) ) ){
-    break;
-   }
-  }
-  
-  //xy2倒序
-  /*
-  xy2 = xy2.sort(function(x,y){
-    return x == y ? 0 : (x > y ? -1 : 1);
-  });
-  */
-  for(var n = 0, n2 = len = xy2.length - 1 ; n <= len; n ++, n2--){
-   xy[n] = xy2[n2];
-  }
-  
-  xy = xy1.concat(xy);
-  
-  return xy;
- }
- 
- 
- 
- //画椭圆曲线
- function draw_oval(points){
-  var len = points.length;
-  var divs = '';
-  
-  for(var n = 0; n < len; n ++){
-   divs += '<div class="points" style="left:'+ points[n][0] +'px;top:'+ points[n][1] +'px;"></div>';
-  }
-  
-  return divs;
- }
- 
-
- //沿着曲线跑动
- function go_oval(idd,points, n, t, addX, addY){
-  var len = points.length;
-  n = n ? n : 0;
-  t = t ? t : 10;
-  addX = addX ? addX : 0;
-  addY = addY ? addY : 0;
-  
-  var $obj = $(idd).style;
-  $obj.left = points[n][0] + addX + 'px';
-  $obj.top = points[n][1] + addY + 'px';
-  
-  n ++;
-  
-  n = n == len ? 0 : n;
-  
-  setTimeout(function(){
-   go_oval(idd, points, n, t, addX, addY);
-  },t);
-  
-  
- }
- 
- window.onload = function(){
-  
-  var points1 = make_points(100,40,2,-1,-1);
- // var points2 = make_points(200,100,1);
-  var points2 = make_points(200,80,2,-1,-1);
-  
-  var points3 = make_points(300,120,2,-1,-1);
- // var points2 = make_points(200,100,1);
-  var points4 = make_points(400,160,2,-1,-1);
-  
-  var points5 = make_points(500,200,2,-1,-1);
- // var points2 = make_points(200,100,1);
-  var points6 = make_points(600,240,2,-1,-1);
-  
-  var points7 = make_points(700,280,2,-1,-1);
-  
-  var points8 = make_points(800,320,2,-1,-1);
-  
-  //alert(points1);
-  
-  //画椭圆曲线
-  $('#tuoyuan1').innerHTML =  draw_oval( points1 );
-  $('#tuoyuan2').innerHTML =  draw_oval( points2 );
-  $('#tuoyuan3').innerHTML =  draw_oval( points3 );
-  $('#tuoyuan4').innerHTML =  draw_oval( points4 );
-  $('#tuoyuan5').innerHTML =  draw_oval( points5 );
-  $('#tuoyuan6').innerHTML =  draw_oval( points6 );
-  $('#tuoyuan7').innerHTML =  draw_oval( points7 );
-  $('#tuoyuan8').innerHTML =  draw_oval( points8 );
-  
-  //alert( make_points(200,100,3) )
-  
-  //小点在曲线上跑动
-  go_oval('#go-oval1',points1,0,10 ,-5,-5);
-  go_oval('#go-oval2',points2,0,10 ,-5,-5);
-  go_oval('#go-oval3',points3,0,10 ,-5,-5);
-  go_oval('#go-oval4',points4,0,10 ,-5,-5);
-  go_oval('#go-oval5',points5,0,10 ,-5,-5);
-  go_oval('#go-oval6',points6,0,10 ,-5,-5);
-  go_oval('#go-oval7',points7,0,10 ,-5,-5);
-  go_oval('#go-oval8',points8,0,10 ,-5,-5);
-  
- };
- 
-
-
-
-</script>
