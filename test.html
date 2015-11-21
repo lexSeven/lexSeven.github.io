@@ -6,78 +6,23 @@
 <style>
 .div1{ width:100px; height:100px; border-width:50px; border-style:solid solid solid solid; border-color:#369 #f00 #0F0 #000; cursor:default;}
 .div2{ width:100px; height:100px; background:#369; color:#fff; cursor:default;}
+.mark{ width:100%; height:100%; background:rgba(0,0,0,0.3); position:absolute; top:0px; left:0px; display:none; opacity:0; transition:0.5s; }
+.alert{ width:500px; height:300px; border:1px solid #ddd; border-radius:5px; position:absolute; top:50%; left:50%; margin:-150px 0px 0px -250px; padding:10px; background:#FFF;}
+.alert .close{ width:50px; height:50px; border-radius:50%; background:#ddd; transform:rotate(45deg); position:absolute; top:-20px; right:-20px; color:#fff;}
+.mark.active{ display:block; opacity:1; }
 </style>
 </head>
 
 <body>
-<div class="div1" data-drag="null" data-close="div2">拖动我   顺便把下面那个家伙干掉</div>
-<div class="div2" id="div2" data-drag="null">this well be close! I can be grag by the way...</div>
+<div class="div1" data-drag="null" data-close="div2" data-open="mark">拖动我   顺便弹个窗</div>
+<div class="div2" id="div2" data-drag="null">I can be grag by the way...</div>
+<div class="mark" id="mark" data-close="mark">
+	<div class="alert">这是弹出来的内容
+    	<div class="close" data-close="mark">X</div>
+    </div>
+</div>
 
-<script>
-var test = {
-	/*初始化*/
-	int:function(){
-		var _this = test;
-		_this.bindevent();
-	},
-	/*绑定事件*/
-	bindevent:function(){
-		var _this = test;
-		bind(document,'mousedown',function( ev ){
-			var ev = ev || event;
-			var target = ev.target || srcElement;
-			for(b in target.dataset){
-				for(a in _this.clickArea){
-					if( b == a){
-						_this.clickArea[a]({obj:target,ev:ev,target:target.dataset[b]});
-					}
-				};
-			}
-			
-		});
-	},
-	/*事件库*/
-	clickArea:{
-		drag:function(option){
-			var obj = option.obj,ev = option.ev;
-			obj.style.position = 'absolute';
-			var downX = ev.clientX;
-			var downY = ev.clientY;
-			var objleft = downX - obj.offsetLeft;
-			var objtop = downY - obj.offsetTop;
-			obj.onmousemove = document.onmousemove = function( ev ){
-				var ev = ev || event;
-				obj.style.left = ev.clientX - objleft + 'px';
-				obj.style.top = ev.clientY - objtop + 'px';
-			}
-			obj.onmouseup = document.onmouseup = function(){
-				 obj.onmousemove = document.onmousemove = null;
-			}
-		},
-		close:function( option ){
-			var target = option.target;
-			s(target).style.display = 'none';
-		}
-	}
-	/*事件库*/
-}
-
-test.int();
-
-/*---------------------工具函数------------------------------*/
-function s(obj) {
-    return document.getElementById(obj);
-};
-
-function bind(obj, ev, fn) { //事件绑定
-    if (obj.addEventListener) {
-        obj.addEventListener(ev, fn, false);
-    } else {
-        obj.attachEvent('on' + ev, function() {
-            fn.call(obj);
-        });
-    }
-}
-</script>
+<script src="js/event.js"></script>
+<script src="js/eventK.js"></script>
 </body>
 </html>
