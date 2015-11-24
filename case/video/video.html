@@ -1,0 +1,424 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>粒子视频</title>
+<style>
+	body{ margin:0px; padding:0px;}
+	
+	.control{ width:790px; height:30px; background-color:rgba(0,0,0,0.8); margin:-100px 0px 0px 100px; padding-left:10px; position:relative; z-index:999;}
+	
+	.control .play{ width:20px; height:20px; float:left; position:relative; cursor:pointer;}
+	.control .play.run{ width:0px; height:0px; border-width:5px; border-style:dashed dashed dashed solid; 
+	border-color:transparent transparent transparent #fff; margin:10px;}
+	.control .play.stop{ width:30px; height:20px;}
+	.control .play.stop:before{ content:''; width:2px; height:10px; background:#FFF; position:absolute; left:10px; top:10px;}
+	.control .play.stop:after{ content:''; width:2px; height:10px; background:#FFF; position:absolute; left:14px; top:10px;}
+	
+	.control .progress{ width:500px; height:2px; background:#666; border-radius:2px; float:left; margin-top:14px; line-height:2px; font-size:0px; position:relative; margin-left:10px;}
+	.control .progress .dot{ width:20px; height:4px; background:#ddd; border-radius:2px; position:absolute; top:-1px; left:0px; cursor:pointer;}
+	.control .progress .active{ background:#FFF;}
+	
+	.control .time{ width:100px; text-align:center; height:30px; line-height:30px; color:#FFF; float:left; margin-left:20px;}
+	
+	.control .video{ width:0px; height:0px; border-width:5px; border-style:dashed solid dashed dashed; 
+	border-color:transparent #fff transparent transparent; margin:10px; float:left; position:relative;}
+	.control .video:before{ content:''; width:2px; height:10px; background:#FFF; position:absolute; left:7px; top:-5px;}
+	.control .video:after{ content:''; width:2px; height:10px; background:#FFF; position:absolute; left:11px; top:-5px;}
+	.control .video .vidPro{ width:50px; height:2px; background:#666; border-radius:2px; float:left; margin-top:0px; line-height:2px; font-size:0px; position:relative; margin-left:20px;}
+	.control .video .vidPro .dotCon{ width:10px; height:4px; background:#fff; border-radius:2px; position:absolute; top:-1px; right:0px; cursor:pointer;}
+	
+	.control .allSroll{ width:20px; height:20px; float:right; margin-right:10px; position:relative; cursor:pointer;}
+	.control .allSroll:before{ content:'';  width:0px; height:0px; border-width:5px; border-style:solid dashed dashed solid; border-color:#fff transparent transparent #fff; position:absolute; top:9px; left:0px;}
+	.control .allSroll:after{ content:'';  width:0px; height:0px; border-width:5px; border-style:dashed solid solid dashed; border-color:transparent #fff #fff transparent; position:absolute; bottom:-1px; right:6px;}
+	
+	.cover{ width:1000px; height:800px; background:#FFF; position:absolute; top:0px; left:0px; z-index:99;}
+</style>
+</head>
+
+<body>
+<video id="video1" style="display:none;" autoplay>
+	<source src="images/iceAge.mp4" type='video/mp4'>
+</video>
+
+
+<canvas id="myCanvas"></canvas>
+<canvas id="myCanvas2" style="display:none;"></canvas>
+<div class="control" id="control" onselectstart="return false">
+	<div class="play stop">&nbsp;</div>
+    <div class="progress"><div class="dot"></div></div>
+    <div class="time"><span id="nowTime">00:00</span>/<span id="allTime">00:00</span></div>
+    <div class="video"><div class="vidPro"><div class="dotCon"></div></div></div>
+    <div class="allSroll">&nbsp;</div>
+</div>
+
+<!--<img id="img">
+<img id="img2">-->
+</body>
+<script>
+
+function video(){
+	
+	s('myCanvas').width = s('myCanvas2').width = 1000;
+	s('myCanvas').height = s('myCanvas2').height = 800;
+	
+	var v = document.getElementById("video1");
+	var c = document.getElementById("myCanvas");
+	var c2 = document.getElementById("myCanvas2");
+	var ctx = c.getContext('2d');
+	var ctx2 = c2.getContext('2d');
+	var progress = getByClass(s('control'), 'div', 'progress')[0];
+	var progressBtn = getByClass(s('control'), 'div', 'dot')[0];
+	var playBtn = getByClass(s('control'), 'div', 'play')[0];
+	var audioBtn = getByClass(s('control'), 'div', 'dotCon')[0];
+	var schedule = null;
+	var scheduleVol = 1;
+	var timer = null;
+	
+	var offShow = true;
+	
+	int();
+	function int(){
+		v.addEventListener('play', function(){
+			
+			if( offShow ){
+				timer=window.setInterval(function(){
+					ctx.drawImage(v,100,100,800,600);
+					ctx2.drawImage(v,100,100,800,600);
+					scheduleDot();
+					run();
+				},20);
+			}else{
+				timer=window.setInterval(function(){
+					ctx2.drawImage(v,100,100,800,600);
+				},20);
+			}
+			
+		},false);
+		v.addEventListener('pause',function() {
+			window.clearInterval(timer);
+			stop();
+		},false);
+		v.addEventListener('ended',function() {
+			clearInterval(timer);
+			stop();
+		},false);
+		
+		bind(playBtn,'mouseup',function(){
+			hasClass(this, 'stop')?stop():run();
+		})
+		
+		progressdot();
+		//progressBar();
+		audioControl();
+	};
+	
+	function scheduleDot(){
+		var digit = '';
+		var digit1 = '';
+		var digit2 = '';
+		v.duration/60<10?digit='0':digit='';
+		v.currentTime/60<10?digit1='0':digit1='';
+		v.currentTime%60<10?digit2='0':digit2='';
+		
+		s('allTime').innerHTML =digit + Math.floor(v.duration/60) +':'+ Math.floor(v.duration%60);
+		nowTime.innerHTML =digit1+ Math.floor(v.currentTime/60) +':'+ digit2 + Math.floor(v.currentTime%60);
+		progressBtn.style.left = v.currentTime/v.duration * (progressBtn.parentNode.offsetWidth - progressBtn.offsetWidth) + 'px';
+	};
+	
+	function stop(){
+		removeClass(playBtn,'stop');
+		addClass(playBtn,'run');
+		v.pause();
+	}
+	
+	function run(){
+		removeClass(playBtn,'run');
+		addClass(playBtn,'stop');
+		v.play();
+	};
+	
+	function progressBar(){
+		progress.onmouseup = function( ev ){
+			var ev = ev || event;
+			var downX = ev.clientX;
+			progressBtn.style.left = ev.clientX - progress.offsetLeft - progressBtn.offsetWidth + 'px';
+			v.currentTime = Math.floor(progressBtn.offsetLeft/(progress.offsetWidth-progressBtn.offsetWidth) * v.duration);
+		};
+	};
+	
+	
+	function progressdot(){
+		var obj = progressBtn;
+		obj.onmousedown = function( ev ){
+			var initialPosition = ev.clientX - obj.offsetLeft;
+			var off = false;
+			addClass(obj,'active');
+			
+			obj.onmousemove = document.onmousemove = function( ev ){
+				var ev = ev || event;
+				if(obj.offsetLeft<=obj.parentNode.offsetWidth - obj.offsetWidth && obj.offsetLeft>=0){
+					off = true;
+					v.pause();
+					obj.style.left = ev.clientX - initialPosition + 'px';
+					schedule = obj.offsetLeft/(obj.parentNode.offsetWidth-obj.offsetWidth);
+					if(obj.offsetLeft>obj.parentNode.offsetWidth - obj.offsetWidth){
+						obj.style.left = obj.parentNode.offsetWidth - obj.offsetWidth + 'px';
+						schedule = 1;
+					}else if(obj.offsetLeft<0){
+						obj.style.left=0;
+						schedule = 0;
+					}
+				}
+			};
+			obj.onmouseup = document.onmouseup = function(){
+				if(off){
+					var i=0;
+					var lengthNum = 100;
+					var block = {};
+					var randomNum =getNum( {min:0,max:360,num:lengthNum} );
+					var x = 0;
+					var speed = 20;
+					
+					for(var i=0;i<lengthNum;i++){
+						block[''+i] = ctx.getImageData(100+80*(i%10),100+60*Math.floor(i/10),80,60);
+						block[''+i].x = 100+80*(i%10);
+						block[''+i].y = 100+60*Math.floor(i/10);
+						block[''+i].angle = randomNum[i];
+					}
+					
+					var timer = setInterval(function(){
+						ctx.clearRect(0,0,1000,800);
+						
+						for(var i=0;i<lengthNum;i++){
+							if(block[''+i].angle>90&&block[''+i].angle<270){
+								block[''+i].x-=speed;
+								x = -speed;
+							}else{
+								block[''+i].x+=speed;
+								x = speed;
+							}
+							block[''+i].y = Math.tan(block[''+i].angle*Math.PI/180)*x + block[''+i].y;
+							
+							ctx.putImageData(block[''+i],block[''+i].x,block[''+i].y);
+						}
+					},10);
+					
+					offShow = false;
+					v.currentTime = Math.floor(v.duration * schedule);
+					v.play();
+					v.volume=0;
+					
+					setTimeout(function(){
+						v.pause();
+						offShow = true;
+						clearInterval(timer);
+						block = {};
+						ctx.clearRect(0,0,1000,800);
+						
+						setTimeout(function(){
+							var num = getSpiral( {line:10,list:10} );
+							for(var i=0;i<lengthNum;i++){
+								block[''+i] = ctx2.getImageData(100+80*(i%10),100+60*Math.floor(i/10),80,60);
+								block[''+i].x = 100+80*(i%10);
+								block[''+i].y = 100+60*Math.floor(i/10);
+							}
+							
+							var now = num.length-1;
+							show();
+							function show(){
+								setTimeout(function(){
+									ctx.putImageData(block[''+num[now]],block[''+num[now]].x,block[''+num[now]].y);
+									now--;
+									if(now>0){
+										show();
+									}else{
+										v.play();
+										v.volume=scheduleVol;
+									}
+								},10);
+							}
+						},100);
+					},500);
+				};
+				
+				removeClass(obj,'active');
+				obj.onmousemove = obj.onmouseup = document.onmousemove = document.onmouseup =  null;
+			};
+		};
+	};
+	
+	function audioControl(){
+		var obj = audioBtn;
+		obj.onmousedown = function( ev ){
+			var initialPosition = ev.clientX - obj.offsetLeft;
+			addClass(obj,'active');
+			
+			obj.onmousemove = document.onmousemove = function( ev ){
+				var ev = ev || event;
+				if(obj.offsetLeft<=obj.parentNode.offsetWidth - obj.offsetWidth && obj.offsetLeft>=0){
+					obj.style.left = ev.clientX - initialPosition + 'px';
+					scheduleVol = obj.offsetLeft/(obj.parentNode.offsetWidth-obj.offsetWidth);
+					if(obj.offsetLeft>obj.parentNode.offsetWidth - obj.offsetWidth){
+						obj.style.left = obj.parentNode.offsetWidth - obj.offsetWidth + 'px';
+						scheduleVol = 1;
+					}else if(obj.offsetLeft<0){
+						obj.style.left=0;
+						scheduleVol = 0;
+					}
+					v.volume = scheduleVol;
+				}
+			};
+			obj.onmouseup = document.onmouseup = function(){
+				removeClass(obj,'active');
+				obj.onmousemove = obj.onmouseup = document.onmousemove = null;
+			};
+		};
+	};
+};
+
+video();
+
+function getSpiral( option ){
+	var sW = option.line;
+	var sH = option.list;
+	var w = 0;
+	var h = 0;
+	var min = 0;
+	var len = sW * sH;
+	var maxW = sW-1;
+	var maxH = sH-1;
+	var arr = [];
+	for(var i=0;i<len;i++){
+		arr.push( w * sH + h );
+		if( w == min && h < maxH ){
+			h = h + 1;
+		}
+		else if( h == maxH && w < maxW ){
+			w = w + 1;
+		}
+		else if( w == maxW && h > min ){
+			h = h - 1;
+		}
+		else if( h == min && w > min ){
+			w = w - 1;
+		}
+		if( w - 1 == min && h == min ){
+			min = min + 1;
+			maxW = maxW - 1;
+			maxH = maxH - 1;
+		}
+	}
+	return arr;
+}
+
+function remove( obj ){
+	obj.parentNode.removeChild( obj );
+}
+
+function getNum( option ){
+
+    var min = option.min || 0;
+    var num = option.num;//随机数个数
+    var max = option.max;//随机数最大值
+    var sort = option.sort;//是否排序  '>'：从大到小排序   '<'：从小到大排序  不传则不排序
+
+    var arr = []; //[10,20]
+    var json = {}; //{'10':1,'20':1}   10
+
+    while( arr.length < num ){
+
+        var iNum =  Math.round( Math.random()*max );
+
+        if( !json[iNum] && iNum > min ){
+
+            arr.push( iNum );
+            json[iNum] = 1;
+            //必须是一个真值，否则过滤不掉重复的数字。
+        }
+
+    }
+
+    if(sort=='>'){
+        arr.sort( function(a,b){ return b - a; } );
+        return arr;
+    }else if(sort=='<'){
+        arr.sort( function(a,b){ return a - b; } );
+        return arr;
+    }else{
+        return arr;
+    }
+    //
+    //return arr.length;
+}
+
+function hasClass(obj, sClass) { //添加class样式
+    var aClass = obj.className.split(' ');
+    if (!obj.className) {
+        return false;
+    }
+    for (var i = 0; i < aClass.length; i++) {
+        if (aClass[i] === sClass) return true;
+    }
+    return false;
+}
+
+function getByClass(parent, tagname, classname) { //通过Class名字获取元素
+    var aEls = parent.getElementsByTagName(tagname);
+    var arr = [];
+    var re = new RegExp('(^|\\s)' + classname + '(\\s|$)');
+    for (var i = 0; i < aEls.length; i++) {
+        if (re.test(aEls[i].className)) {
+            arr.push(aEls[i]);
+        }
+    }
+    return arr;
+}
+
+function addClass(obj, sClass) { //添加class样式
+    var aClass = obj.className.split(' ');
+    if (!obj.className) {
+        obj.className = sClass;
+        return;
+    }
+    for (var i = 0; i < aClass.length; i++) {
+        if (aClass[i] === sClass) return;
+    }
+    obj.className += ' ' + sClass;
+}
+
+
+function removeClass(obj, sClass) { //移除class样式
+    var aClass = obj.className.split(' ');
+    if (!obj.className) return;
+    for (var i = 0; i < aClass.length; i++) {
+        if (aClass[i] === sClass) {
+            aClass.splice(i, 1);
+            obj.className = aClass.join(' ');
+            break;
+        }
+    }
+}
+
+function s(obj) {
+    return document.getElementById(obj);
+};
+
+function view() {//获取可视区的宽高
+    return {
+        w: document.documentElement.clientWidth,
+        h: document.documentElement.clientHeight
+    };
+}
+
+function bind(obj, ev, fn) { //事件绑定
+    if (obj.addEventListener) {
+        obj.addEventListener(ev, fn, false);
+    } else {
+        obj.attachEvent('on' + ev, function() {
+            fn.call(obj);
+        });
+    }
+}
+</script>
+</html>
