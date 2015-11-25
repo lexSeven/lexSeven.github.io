@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>妙味课堂-探索未知、拨云见日</title>
+<meta name="viewport" content="width=640,target-densityDpi=device-dpi, user-scalable=no">
+<style>
+*{ margin:0; padding:0;}
+body{ font-family:Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC",sans-self; }
+li{ list-style:none;}
+img{ display:block }
+#main{ width:640px; overflow:hidden; position:relative;}
+#ul1{ width:100%; height:100%; -webkit-perspective:800;}
+#ul1 li{ width:100%; height:100%; position:absolute; top:0; left:0; display:none; z-index:1; -webkit-transform-origin:bottom;}
+#ul1 li img:nth-of-type(1){ -webkit-transform:scale(1.5);}
+#ul1 li img:nth-of-type(2){ -webkit-transform:translate(0,200px); opacity:0;}
+#ul1 li img:nth-of-type(3){ position:absolute; display:none;} 
+#c1{position:absolute; left:0; top:0; z-index:10;}
+@-webkit-keyframes title{
+    0%{-webkit-transform:scale(1); opacity:0;}
+    20%{-webkit-transform:scale(1); opacity:0.5;}
+    100%{-webkit-transform:scale(1.2); opacity:0;}
+}
+#arrow{width:28px; height:16px; background:url(img/arr.png) no-repeat; position:absolute; bottom:70px; left:50%; margin-left:-14px; z-index:3; -webkit-transform: translate(0,42px); -webkit-animation:arrowTop 1.5s infinite;}
+#numPage{ width:100%; text-align:center; position:absolute; bottom:20px; font-size:26px; color:#666;}
+@-webkit-keyframes arrowTop{
+	0%{-webkit-transform: translate(0,42px); opacity: 0;}
+	60%{-webkit-transform: translate(0,12px); opacity: 1;}
+	100%{-webkit-transform: translate(0,0); opacity: 0;}
+}
+#div1{ width:100%; height:100%;position:absolute; left:0; top:0; z-index:15;}
+.lx img:nth-child(1){ position:absolute; left:500px; top:500px; -webkit-animation:liuxing 3s linear infinite; height:20px; -webkit-transform-origin:0 0;}
+.lx img:nth-child(2){ position:absolute; left:200px; top:500px; -webkit-animation:liuxing 5s linear infinite; -webkit-transform-origin:0 0;}
+.lx img:nth-child(3){ position:absolute; left:500px; top:300px; -webkit-animation:liuxing 7s linear infinite; -webkit-transform-origin:0 0;}
+.lx img:nth-child(4){ position:absolute; left:600px; top:700px; -webkit-animation:liuxing 4s linear infinite; -webkit-transform-origin:0 0;}
+@-webkit-keyframes liuxing{
+    0%{-webkit-transform:rotate(-45deg) translate(0) scaleX(0); opacity:0;}
+    50%{-webkit-transform:rotate(-45deg) translate(-300px)  scaleX(1); opacity:1;}
+    100%{-webkit-transform:rotate(-45deg) translate(-500px) scaleX(0); opacity:0;}
+}
+#img1{ position:absolute; top:20%; left:50%; width:100px; height:100px; margin-left:-50px; -webkit-animation:shan 1s linear infinite;}
+@-webkit-keyframes shan{
+    0%{ opacity:1;}
+    50%{ opacity:0.6;}
+    100%{opacity:1;}
+}
+#text1{ position:absolute; top:40%; left:50%; width:348px; height:200px; margin-left:-174px; }
+#text2{ position:absolute; top:40%; left:50%; width:418px; height:390px; margin-left:-209px; opacity:0;}
+#music{width:14px; height:14px; background:url(img/musicon.gif); position:absolute; right:20px; bottom:20px; z-index:9; overflow:hidden; -webkit-transform:scale(2);}
+
+#loading{ width:100%; height:100%; background:black;position:absolute; left:0; top:0; z-index:20;}
+.spinner { width:40px; height:40px; position:fixed; top:45%; left:50%; margin-left:-20px;}
+#loading span{ position:fixed; top:55%; width:100%; text-align:center; color:white; font-size:40px;}
+.container2 > div, .container3 > div { width:12px; height:12px; background-color: #fff; border-radius:50%; position:absolute; -webkit-animation:loadingRun 1.2s infinite ease-in-out;}
+@-webkit-keyframes loadingRun{
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+.spinner .spinner-container { position:absolute; width:100%; height:100%;}
+.container2{ -webkit-transform: rotateZ(45deg); }
+.container3{-webkit-transform: rotateZ(90deg);}
+.circle1{ top: 0; left: 0; }
+.circle2{ top: 0; right: 0; }
+.circle3{ right: 0; bottom: 0; }
+.circle4{ left: 0; bottom: 0; }
+.container2 .circle1{-webkit-animation-delay: -1.1s;}
+.container3 .circle1{-webkit-animation-delay: -1.0s;}
+.container2 .circle2{-webkit-animation-delay: -0.9s;}
+.container3 .circle2{-webkit-animation-delay: -0.8s;}
+.container2 .circle3{-webkit-animation-delay: -0.7s;}
+.container3 .circle3{-webkit-animation-delay: -0.5s;}
+.container2 .circle4{-webkit-animation-delay: -0.3s;}
+.container3 .circle4{-webkit-animation-delay: -0.1s;}
+
+</style>
+<script src="jquery-2.1.3.min.js"></script>
+<script>
+
+$(document).on('touchmove',function(ev){
+	ev.preventDefault();
+});
+$(function(){
+	var viewHeight = $(window).height();
+	var $Li = $('#ul1').find('li');
+	$('#main').css('height',viewHeight);
+	
+	loadImg();
+	beginScene();
+	slideCanvas();
+	slideImg();
+	
+	function slideCanvas(){
+		var $c = $('#c1');
+		var gc = $c.get(0).getContext('2d');
+		$c.attr('height',viewHeight);
+		var yImg = new Image();
+		var moveImg = new Image();
+		yImg.src = 'img/a.jpg';
+		moveImg.src = 'img/Touch4.png';
+		var timer = null;
+		var iNow = 0;
+		yImg.onload = function(){
+			gc.drawImage(yImg,0,0,640,viewHeight);
+			$c.on('touchstart',function(ev){
+				gc.globalCompositeOperation = 'destination-out';
+				clearInterval(timer);
+				sceneAnimate.inAn(0);
+				musicShow();
+				timer = setInterval(function(){
+					var i = iNow%4;
+					var j = Math.floor(iNow/4);
+					gc.drawImage(moveImg,i*254,j*400,254,400,0,0,640,viewHeight);
+					iNow++;
+					if(iNow == 19){
+						clearInterval(timer);
+						$c.remove();
+					}
+				},100);
+			});
+		};
+	}
+	
+	function slideImg(){
+		var startPageY = 0;
+		var nowIndex = 0;
+		var nextorperIndex = 0;
+		var bBtn = true;
+		$('#numPage').html( (nextorperIndex+1) + '/' + $Li.length );
+		$Li.on('touchstart',function(ev){
+			if(bBtn){
+				bBtn = false;
+				var touchs = ev.originalEvent.changedTouches[0];
+				startPageY = touchs.pageY;
+				nowIndex = $(this).index();
+				$(this).on('touchend.drag',function(ev){
+					var touchs = ev.originalEvent.changedTouches[0];
+					if(touchs.pageY - startPageY<0){  //上
+						nextorperIndex = nowIndex==$Li.length-1 ? 0 : nowIndex+1;	
+						$Li.eq(nextorperIndex).css('transform','rotateX(-50deg)');
+						$Li.eq(nextorperIndex).show().css('opacity',0);		
+						setTimeout(function(){
+							$Li.eq(nowIndex).css('transform','rotateX(90deg)');
+							$Li.eq(nowIndex).css('opacity',0);
+							$Li.eq(nowIndex).css('transition','all 1s linear');
+							$Li.eq(nextorperIndex).css('transform','rotateX(0deg)');
+							$Li.eq(nextorperIndex).css('opacity',1);
+							$Li.eq(nextorperIndex).css('transition','all 1s linear');
+						},1);
+					}
+					else if(touchs.pageY - startPageY>0){ //下
+						nextorperIndex = nowIndex==0 ? $Li.length-1 : nowIndex-1;
+						$Li.eq(nextorperIndex).css('transform','rotateX(90deg)');
+						$Li.eq(nextorperIndex).show().css('opacity',0);
+						setTimeout(function(){
+							$Li.eq(nowIndex).css('transform','rotateX(-50deg)');
+							$Li.eq(nowIndex).css('opacity',0);
+							$Li.eq(nowIndex).css('transition','all 1s linear');
+							$Li.eq(nextorperIndex).css('transform','rotateX(0deg)');
+							$Li.eq(nextorperIndex).css('opacity',1);
+							$Li.eq(nextorperIndex).css('transition','all 1s linear');
+						},1);
+					}
+					else{
+						bBtn = true;
+					}
+					$(this).off('.drag');
+					$('#numPage').html( (nextorperIndex+1) + '/' + $Li.length );
+				});
+			}
+		});
+		
+		$Li.on('webkitTransitionEnd',function(ev){
+			if( !$Li.is(ev.target) ){ return; }
+			resetFn();
+			sceneAnimate.inAn(nextorperIndex);
+			sceneAnimate.outAn(nowIndex);
+		});
+		function resetFn(){
+			bBtn = true;
+			$Li.css('transition','');
+			$Li.css('transform','');
+			$Li.eq(nextorperIndex).siblings().hide();
+		}
+	}
+	
+	var sceneAnimate = {
+		outAn : function(index){
+			var $img = $Li.eq(index).find('img');
+			$img.eq(0).css('transform','scale(1.5)');
+			$img.eq(1).css('transform','translate(0,200px)');
+			$img.eq(1).css('opacity',0);
+			$img.eq(2).hide();
+			$img.eq(2).css('-webkit-animation','');
+		},
+		inAn : function(index){
+			var $img = $Li.eq(index).find('img');
+			$img.eq(0).css('transform','scale(1)');
+			$img.eq(0).css('transition','all 1s');
+			$img.eq(1).css('transform','translate(0,0)');
+			$img.eq(1).css('opacity',1);
+			$img.eq(1).css('transition','all 1s .5s');
+			$img.eq(1).on('webkitTransitionEnd',function(){
+				$img.eq(2).show();
+				$img.eq(2).css('-webkit-animation','title 2s infinite');
+			});
+		}
+	};
+	
+	function beginScene(){
+		$('#text1').css('webkitAnimation','shan 1s linear infinite');
+		$('#text1').on('webkitAnimationIteration',function(ev){
+			if(ev.originalEvent.elapsedTime == 4){
+				$('#text1').css('webkitAnimation','');
+				$('#text1').css('display','none');
+				$('#text2').css('webkitAnimation','shan 1s linear infinite');
+			}
+		});
+		$('#div1').on('touchstart',function(){
+			$(this).remove();
+			$('#c1').trigger('touchstart');
+		});
+		
+	}
+	
+	function musicShow(){
+		var au = $('#music').find('audio').get(0);
+		au.play();
+		
+		$('#music').on('touchstart',function(){
+			if(au.paused){
+				au.play();
+				$('#music').css('background','url(img/musicon.gif)');
+			}
+			else{
+				au.pause();
+				$('#music').css('background','url(img/musicoff.gif)');
+			}
+		});
+	}
+	
+	function loadImg(){
+		var arr = ['a.jpg','img3.jpg','img4.jpg','img5.jpg','img6.jpg','img7.jpg','img8.jpg','img9.jpg','img10.jpg','text3.jpg','text4.jpg','text5.jpg','text6.jpg','text7.jpg','text8.jpg','text9.jpg','text10.jpg','sun.png','t1.png','t2.png','Touch4.png'];
+		var imgNow = 0;
+		$.each(arr,function(i,img){
+			var yImg = new Image();
+			yImg.src = 'img/'+img;
+			yImg.onload = function(){
+				imgNow++;
+				if(imgNow==arr.length){
+					$('#loading').animate({opacity:0},1000,function(){
+						$(this).remove();
+					});
+				}
+			};
+			yImg.error = function(){
+				$('#loading').animate({opacity:0},1000,function(){
+					$(this).remove();
+				});
+			}
+		});
+	}
+	
+});
+
+</script>
+</head>
+
+<body>
+<img src="img/logo.jpg" style="position:absolute; top:-9999px; left:-9999px;" />
+<div id="main">
+	<div id="loading">
+    	<div class="spinner">
+            <div class="spinner-container container2">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container3">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+		</div>
+        <span>您的技能是否会逐渐满载...</span>
+    </div>
+	<div id="div1">
+    	<img id="img1" src="img/sun.png">
+        <img id="text1" src="img/t1.png">
+        <img id="text2" src="img/t2.png">
+        <div class="lx">
+            <img src="img/lx.png">
+            <img src="img/lx.png">
+            <img src="img/lx.png">
+            <img src="img/lx.png">
+        </div>
+    </div>
+	<canvas id="c1" width="640"></canvas>
+    <ul id="ul1">
+    	<li style="display:block">
+        	<img src="img/img3.jpg">
+            <img src="img/text3.jpg">
+            <img src="img/title3.png" style="left:90px; top:520px;">
+        </li>
+        <li>
+        	<img src="img/img4.jpg">
+            <img src="img/text4.jpg">
+            <img src="img/title4.png" style="left:153px; top:586px;">
+        </li>
+        <li>
+        	<img src="img/img5.jpg">
+            <img src="img/text5.jpg" style="padding-top:30px;">
+            <img src="img/title5.png" style="left:117px; top:732px;">
+        </li>
+        <li>
+        	<img src="img/img6.jpg">
+            <img src="img/text6.jpg">
+            <img src="img/title6.png" style="left:154px; top:512px;">
+        </li>
+        <li>
+        	<img src="img/img7.jpg">
+            <img src="img/text7.jpg">
+            <img src="img/title7.png" style="left:195px; top:733px;">
+        </li>
+        <li>
+        	<img src="img/img8.jpg">
+            <img src="img/text8.jpg">
+            <img src="img/title8.png" style="left:51px; top:501px;">
+        </li>
+        <li>
+        	<img src="img/img9.jpg">
+            <img src="img/text9.jpg">
+            <img src="img/title9.png" style="left:236px; top:618px;">
+        </li>
+        <li>
+        	<img src="img/img10.jpg">
+            <img src="img/text10.jpg">
+            <img src="img/title10.png" style="left:232px; top:613px;">
+        </li>
+    </ul>
+    <div id="arrow"></div>
+    <div id="numPage"></div>
+    <div id="music">
+    	<audio loop="" src="img/music.mp3" preload style="display:none;"></audio>
+    </div>
+</div>
+</body>
+</html>
