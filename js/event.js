@@ -8,7 +8,7 @@ var test = {
 	/*绑定事件*/
 	bindevent:function(){
 		var _this = test;
-		bind(document,'mousedown',function( ev ){
+		bind(document,'touchstart',function( ev ){
 			var ev = ev || event;
 			var target = ev.target || srcElement;
 			for(b in target.dataset){

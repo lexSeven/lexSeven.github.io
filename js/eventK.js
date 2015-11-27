@@ -2,18 +2,20 @@
 test.clickArea={
 	drag:function(option){
 		var obj = option.obj,ev = option.ev;
+		var touch = ev.changedTouches[0];
 		obj.style.position = 'absolute';
-		var downX = ev.clientX;
-		var downY = ev.clientY;
+		var downX = touch.pageX;
+		var downY = touch.pageY;
 		var objleft = downX - obj.offsetLeft;
 		var objtop = downY - obj.offsetTop;
-		obj.onmousemove = document.onmousemove = function( ev ){
+		obj.ontouchmove = document.ontouchmove = function( ev ){
 			var ev = ev || event;
-			obj.style.left = ev.clientX - objleft + 'px';
-			obj.style.top = ev.clientY - objtop + 'px';
+			var touch = ev.changedTouches[0];
+			obj.style.left = touch.pageX; - objleft + 'px';
+			obj.style.top = touch.pageY; - objtop + 'px';
 		}
-		obj.onmouseup = document.onmouseup = function(){
-			 obj.onmousemove = document.onmousemove = null;
+		obj.ontouchend = document.ontouchend = function(){
+			 obj.ontouchmove = document.ontouchmove = null;
 		}
 	},
 	close:function( option ){
