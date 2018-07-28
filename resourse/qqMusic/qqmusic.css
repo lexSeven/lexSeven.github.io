@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'qqmusic';
+    src: url('fonts/qqmusic.eot');
+    src: url('fonts/qqmusic.eot') format('embedded-opentype'),
+         url('fonts/qqmusic.woff2') format('woff2'),
+         url('fonts/qqmusic.woff') format('woff'),
+         url('fonts/qqmusic.ttf') format('truetype'),
+         url('fonts/qqmusic.svg#qqmusic') format('svg');
+}

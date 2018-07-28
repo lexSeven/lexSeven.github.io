@@ -1,0 +1,59 @@
+.rightMenu{
+  width:316px;
+  position: absolute;
+  top:200px;
+  left:400px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 5px;
+  border:1px solid #899;
+
+  ul{
+    padding:5px 0 6px;
+    border-bottom: 1px solid #c3c4c4;
+
+    &:last-child{
+      border:0;
+    }
+
+    li{
+      height:38px;
+      line-height:38px;
+      padding-left: 11px;
+      overflow: hidden;
+      cursor: pointer;
+
+      &:hover{
+        background: rgba(0,0,0,0.1);
+      }
+
+      i{
+        width:39px;
+        float: left;
+        text-align: center;
+        svg{
+          width:20px;
+          margin-top:9px;
+        }
+      }
+      span{
+        float: left;
+      }
+      em{
+        min-width:39px;
+        text-align: right;
+        float: right;
+        padding-right:10px;
+        font-style: normal;
+        svg{
+          width:20px;
+          margin-top:9px;
+        }
+        .arrow{
+          width:10px;
+          margin-top:4px;
+        }
+      }
+    }
+  }
+
+}

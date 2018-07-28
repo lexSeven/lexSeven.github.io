@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.list-wrapper{
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	background: #fff;
+} 
+.index-list-content{
+	background: #fff;
+	border-radius: 2px;
+}
+
+.index-list-title{
+	padding: 14px 16px;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #333;	
+}
+
+.index-list-anchor{
+	padding: 16px 16px 10px 16px;
+	line-height: 1;
+	font-size: 14px;
+	color: #999;
+	background: #f7f7f7;	
+}
+
+.index-list-item {
+	position: relative;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 16px;
+	font-size: 14px;
+	color: #333;
+}
+.index-list-item:last-child{
+	border: none;
+}
+.index-list-item_active{
+	background: #ddd;	
+}
+.index-list-fixed{
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 16px 16px 10px 16px;
+	box-sizing: border-box;
+	font-size: 14px;
+	line-height: 1;
+	color: #999;
+	background: #f7f7f7;	
+}
+
+.index-list-nav {
+	position: absolute;
+	z-index: 30;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	font-family: Helvetica;	
+}
+.index-list-nav ul {
+	padding: 0;
+	margin: 0;
+}       
+.index-list-nav li{
+	padding: 6px 16px 0 16px;
+	line-height: 1;
+	text-align: center;
+	box-sizing: border-box;
+	font-size: 12px;
+	color: gray;
+}          
+.index-list-nav .active {
+	color: blue;
+}
+                
+</style>
+</head>
+<body>
+<div class="list-wrapper">
+    <div class="scroll-content">
+        <div class="index-list-content">
+            <div class="index-list-title">
+                定位城市: 背景
+            </div>
+            <ul>
+                <li>
+                    <h2 class="index-list-anchor">
+                        ★热门城市
+                    </h2>
+                    <ul>
+                        <li class="index-list-item border-bottom-1px">
+                            北京市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            上海市
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="index-list-anchor">
+                        A
+                    </h2>
+                    <ul>
+                        <li class="index-list-item border-bottom-1px">
+                            鞍山市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            安庆市
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="index-list-anchor">
+                        B
+                    </h2>
+                    <ul>
+                        <li class="index-list-item border-bottom-1px">
+              
+                            北京市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            巴音郭楞州
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            博尔塔拉州
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="index-list-anchor">
+                        C
+                    </h2>
+                    <ul>
+                        <li class="index-list-item border-bottom-1px">
+                            成都市
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="index-list-anchor">
+                        E
+                    </h2>
+                    <ul>
+                        <li class="index-list-item border-bottom-1px">
+                            鄂尔多斯市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            鄂州市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            恩施州
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="index-list-anchor">
+                        F
+                    </h2>
+                    <ul>
+                        <li class="index-list-item border-bottom-1px">
+                            福州市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            佛山市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            防城港市
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="index-list-anchor">
+                        G
+                    </h2>
+                    <ul>
+                        <li class="index-list-item border-bottom-1px">
+                            广州市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            贵阳市
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="index-list-anchor">
+                        H
+                    </h2>
+                    <ul>
+                        <li class="index-list-item border-bottom-1px">
+                            杭州市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            和田地区
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="index-list-anchor">
+                        Z
+                    </h2>
+                    <ul>
+                        <li class="index-list-item border-bottom-1px">
+                            郑州市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            张家口市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            张家界市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            珠海市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            中山市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            自贡市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            资阳市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            枣庄市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            舟山
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            遵义市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            淄博市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            株洲市
+                        </li>
+                        <li class="index-list-item border-bottom-1px">
+                            中卫市
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="index-list-nav">
+    <ul>
+        <li data-index="0" class="active">
+            ★
+        </li>
+        <li data-index="1">
+            A
+        </li>
+        <li data-index="2" class="">
+            B
+        </li>
+        <li data-index="3" class="">
+            C
+        </li>
+        <li data-index="4" class="">
+            E
+        </li>
+        <li data-index="5" class="">
+            F
+        </li>
+        <li data-index="6" class="">
+            G
+        </li>
+        <li data-index="7" class="">
+            H
+        </li>
+        <li data-index="8" class="">
+            Z
+        </li>
+    </ul>
+</div>
+<div class="index-list-fixed" style="display: none;">
+    A
+</div>
+<script type="text/javascript" src="bscroll.js"></script>	
+<script type="text/javascript" src="js/index6.js"></script>
+</body>
+</html>

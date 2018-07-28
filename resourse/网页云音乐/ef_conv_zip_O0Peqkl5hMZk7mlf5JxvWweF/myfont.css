@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'myfont';
+    src:url('fonts/myfont.woff2') format('woff2');
+}
+
+.myfont{
+    font-family:'myfont';
+    font-size:100px;
+    color: transparent;
+    background: linear-gradient(red,yellow);
+    -webkit-background-clip: text;
+    letter-spacing: 10px;
+}

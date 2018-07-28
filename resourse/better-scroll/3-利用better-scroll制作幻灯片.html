@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.wrap {
+	width: 100vw;
+	overflow: hidden;
+	position: relative;
+	left: 0;
+	bottom: 20px;
+}
+
+.list {
+	width: 400vw;
+	overflow: hidden;
+	postion: relative;
+}
+.list li {
+	float:left;
+	width: 100vw;
+	height: 140px;
+	box-sizing: border-box;
+	font: 80px/138px "宋体";
+	text-align:center;
+	border: 1px solid #000;
+	background: #f1f1f1;
+}
+.nav {
+	position: absolute;
+	left: 0;
+	bottom: 20px;
+	width: 100vw;
+	height: 10px; 
+	text-align: center;
+}
+.nav a {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background: #fff;
+
+}
+.nav a.active {
+	background:#f60;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<ul class="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+	<nav class="nav">
+		<a class="active"></a>
+		<a></a>
+		<a></a>
+		<a></a>
+	</nav>
+</div>
+<script type="text/javascript" src="bscroll.js"></script>
+<script type="text/javascript" src="js/index3.js"></script>
+</body>
+</html>

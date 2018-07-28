@@ -1,0 +1,30 @@
+
+本次公开课讲解的是 移动端滑屏组件 better-scroll
+
+相关知识讲解：
+- 初始化 BetterScroll
+- BetterScroll
+- BetterScroll 相关的配置参数说明
+- BetterScroll 相关方法说明
+- BetterScroll 提供的事件说明
+- BetterScroll 相关属性
+- 在 React 中使用BetterScroll
+- 利用 BetterScroll 实现上拉加载和下拉刷新
+
+前置知识点：https://study.miaov.com/study/show/chapter/103
+	
+—————————————————————————————	                                                         
+
+	
+本次公开课的视频获取，请加入妙味web前端交流QQ群，关注群内通知及文件，
+如未在群内，可以加客服QQ:2852509866，联系加群
+
+本次公开课附带全部项目源码、效果图等资料
+	
+
+大家可以下载全套资料学习研究。
+
+
+——————————————————————————————
+
+想要了解妙味最新公开课信息，请关注妙味课堂微信公众号：miaoweiclass
