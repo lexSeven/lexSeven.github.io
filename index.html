@@ -304,7 +304,7 @@
     </div>
     <div class="qqMProgress">
         <div class="cdDesk">
-
+            <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M0000014e2ad1SGElc.jpg?max_age=2592000">
         </div>
         <div class="soundEffect">
             <div class="effBtn">
@@ -379,6 +379,7 @@
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bscroll.js"></script>
 <script src="js/tool.js"></script>
+<script src="data/qqMusic.js"></script>
 <script src="js/music.js"></script>
 <script>
 //    document.addEventListener('click',fullScreen);
@@ -509,7 +510,7 @@ var workes = {
     }
 };
 workes.init();
-music.init();
+music.init(data);
 
 var wrapper = $s('.scrollBox');
 let scroll = new BScroll(wrapper,{

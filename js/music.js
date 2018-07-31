@@ -1,16 +1,24 @@
 var music = {
-    init:function(){
+    init:function(data){
         var _this = this;
-        _this.musicList = [
-            'music/夏小虎 - 逝年.mp3'
-        ];
+
+        _this.data = data;
+        _this.now = 0;
         _this.musicObject = document.createElement('audio');
-        _this.musicObject.src = _this.musicList[0];
+        _this.musicObject.src = _this.data[_this.now].src;
         document.body.appendChild(_this.musicObject);
         _this.controlPlay = $s('.qqMControl .playBtn');
         _this.proLine = $s('.qqMProgress .proMain');
         _this.proBtn = $s('.qqMProgress .proMain span');
         _this.proTime = $s('.qqMProgress .playLine .inf em');
+
+        _this.musicTitle = $s('.playLine .inf span');
+        _this.cdDesk = $s('.cdDesk');
+
+        _this.musicTitle.innerText =_this.data[_this.now].title;
+        _this.cdDesk.innerHTML = '<img src="'+ _this.data[_this.now].img +'"/>'
+
+
         _this.controlPlay.onclick = function(){
             _this.playMusic();
         };
@@ -73,6 +81,7 @@ var music = {
             var left = this.getBoundingClientRect().left;
             var time = (ev.clientX-left)/width * _this.musicObject.duration;
             _this.musicObject.currentTime=time;
+            _this.musicObject.pause();
             _this.playMusic();
         }
     }

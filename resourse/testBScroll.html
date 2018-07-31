@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/bscroll.js"></script>
+    <style>
+        .scrollBox{
+            width:400px;
+            height: 600px;
+            border:1px solid #1b6d85;
+            overflow: hidden;
+            position: relative;
+        }
+        p{
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="scrollBox">
+    <div class="box"></div>
+</div>
+
+
+<script>
+    var str = '';
+    for(var i=0;i<100;i++){
+        str += '<p>这是第'+ i +'个元素</p>'
+    }
+    var box = document.querySelector('.box');
+    box.innerHTML = str;
+
+    let scroll = new BScroll('.scrollBox',{
+        scrollY: true,
+        click: true,
+        scrollbar: {
+            fade: true,
+            interactive: false // 1.8.0 新增
+        },
+        mouseWheel: {
+            speed: 20,
+            invert: false,
+            easeTime: 300
+        },
+        pullDownRefresh: {
+            threshold: 50,
+            stop: 20
+        },
+        pullUpLoad: {
+            threshold: 50
+        }
+    });
+
+    scroll.on('pullingDown',function(){
+        console.log('开始加载数据');
+        setTimeout(function(){
+            console.log('加载完成了');
+            scroll.finishPullDown();
+        },2000);
+    });
+    scroll.on('pullingUp',function(){
+        console.log('开始加载数据');
+        setTimeout(function(){
+            console.log('加载完成了');
+            scroll.finishPullUp();
+        },2000);
+    });
+
+
+</script>
+
+</body>
+</html>
