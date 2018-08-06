@@ -86,7 +86,7 @@
             _this.now = 0;
         },
         musicList:[
-            'img/mo.mp3',
+            'http://zhangmenshiting.qianqian.com/data2/music/c0c05e4a304bfc69a89e3730e3413fde/599516589/599516589.m4a?xcode=61c1702be3057091718197b4a0f16666',
             'img/Rihanna - Only Girl (In The World).mp3',
             'img/Remix.mp3',
             'img/Neptune Illusion Dennis Kuo .mp3'
@@ -117,6 +117,7 @@
             _this.analyser = null;
             _this.sourceNode = null;
             _this.freqArray = null;
+            cancelAnimationFrame(_this.getData);
         },
         play:function(){
             var _this = music;

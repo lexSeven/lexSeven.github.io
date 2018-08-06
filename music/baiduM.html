@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        li{
+            line-height:30px;
+            padding:0 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        li:hover{
+            background: #eee;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<input type="text" class="inp" value="海阔天空"><input type="button" class="btn" value="搜索">
+<ul></ul>
+<audio id="au" src="" autoplay="autoplay"></audio>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    var inp = document.querySelector('.inp');
+    var btn = document.querySelector('.btn');
+    var list = document.querySelector('ul')
+
+    btn.onclick = function(){
+
+//        soo(inp.value);
+
+        $.ajax({
+            url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',
+            type: 'get',
+            dataType: 'jsonp',
+            data: {
+                format:'json',
+                calback:'',
+                from:'webapp_music',
+                method:'baidu.ting.search.catalogSug',
+                query:inp.value
+            },
+            success:function(res){
+                var str = '';
+                res.song.forEach(function(item){
+                    str += '<li data-id="'+ item.songid +'">\
+                        <span data-id="'+ item.songid +'">'+ item.songname +'</span>\
+                        <span data-id="'+ item.songid +'">'+ item.artistname +'</span>\
+                        </li>'
+                });
+                list.innerHTML = str;
+            }
+        });
+    };
+
+    list.onclick = function(ev){
+        audiopay(ev.target.dataset.id);
+    };
+
+
+    function audiopay(songid) {
+
+        $.ajax({
+            url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',
+            type: 'get',
+            dataType: 'jsonp',
+            data: {
+                format:'json',
+                calback:'',
+                from:'webapp_music',
+                method:'baidu.ting.song.play',
+                songid:songid
+            },
+            success: function (data1) {
+                document.getElementById('au').src = data1.bitrate.file_link;
+                window.onload = function () {
+                    if (document.getElementById('au').paused) {
+                        document.getElementById('au').play();
+                    }
+                }
+            }
+        });
+    }
+
+
+    function soo(qury){
+        $.ajax({
+            url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',
+            type: 'get',
+            dataType: 'jsonp',
+            data: {
+                format:'json',
+                calback:'',
+                from:'webapp_music',
+                method:'baidu.ting.search.catalogSug',
+                query:qury
+            },
+            success: function (data2) {
+                console.log(data2);
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
