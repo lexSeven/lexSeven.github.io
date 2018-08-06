@@ -27,17 +27,16 @@
 
 <input type="text" class="inp" value="海阔天空"><input type="button" class="btn" value="搜索">
 <ul></ul>
-<audio id="au" src="" controls autoplay="autoplay"></audio>
+<audio id="au" src="" controls=""></audio>
 <script src="js/jquery-1.11.3.min.js"></script>
 <script>
     var inp = document.querySelector('.inp');
     var btn = document.querySelector('.btn');
-    var list = document.querySelector('ul')
+    var list = document.querySelector('ul');
+    var au = document.querySelector('#au');
+
 
     btn.onclick = function(){
-
-//        soo(inp.value);
-
         $.ajax({
             url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',
             type: 'get',
@@ -61,12 +60,9 @@
             }
         });
     };
-
     list.onclick = function(ev){
         audiopay(ev.target.dataset.id);
     };
-
-
     function audiopay(songid) {
         $.ajax({
             url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',
@@ -79,12 +75,10 @@
                 method:'baidu.ting.song.play',
                 songid:songid
             },
-            success: function (data1) {
-                document.getElementById('au').src = data1.bitrate.file_link;
-                window.onload = function () {
-                    if (document.getElementById('au').paused) {
-                        document.getElementById('au').play();
-                    }
+            success: function (res) {
+                au.src = res.bitrate.file_link;
+                au.oncanplay = function(){
+                    au.play();
                 }
             }
         });
