@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--<meta name="referrer" content="no-referrer">-->
+    <meta name="referrer" content="never">
     <title>Title</title>
     <style>
         ul{
@@ -25,7 +27,7 @@
 
 <input type="text" class="inp" value="海阔天空"><input type="button" class="btn" value="搜索">
 <ul></ul>
-<audio id="au" src="" autoplay="autoplay"></audio>
+<audio id="au" src="" controls autoplay="autoplay"></audio>
 <script src="js/jquery-1.11.3.min.js"></script>
 <script>
     var inp = document.querySelector('.inp');
@@ -66,7 +68,6 @@
 
 
     function audiopay(songid) {
-
         $.ajax({
             url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',
             type: 'get',
@@ -85,25 +86,6 @@
                         document.getElementById('au').play();
                     }
                 }
-            }
-        });
-    }
-
-
-    function soo(qury){
-        $.ajax({
-            url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',
-            type: 'get',
-            dataType: 'jsonp',
-            data: {
-                format:'json',
-                calback:'',
-                from:'webapp_music',
-                method:'baidu.ting.search.catalogSug',
-                query:qury
-            },
-            success: function (data2) {
-                console.log(data2);
             }
         });
     }
