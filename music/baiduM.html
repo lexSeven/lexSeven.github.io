@@ -35,8 +35,19 @@
     var list = document.querySelector('ul');
     var au = document.querySelector('#au');
 
-
+    inp.onkeydown = function(ev){
+        if(ev.keyCode==13){
+            search();
+        }
+    }
     btn.onclick = function(){
+        search();
+    };
+    list.onclick = function(ev){
+        audiopay(ev.target.dataset.id);
+    };
+
+    function search(){
         $.ajax({
             url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',
             type: 'get',
@@ -59,10 +70,7 @@
                 list.innerHTML = str;
             }
         });
-    };
-    list.onclick = function(ev){
-        audiopay(ev.target.dataset.id);
-    };
+    }
     function audiopay(songid) {
         $.ajax({
             url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',

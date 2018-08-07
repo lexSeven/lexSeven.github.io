@@ -6,6 +6,7 @@ var music = {
         _this.now = 0;
         _this.musicObject = document.createElement('audio');
         _this.musicObject.src = _this.data[_this.now].src;
+        _this.musicObject.remove();
         document.body.appendChild(_this.musicObject);
         _this.controlPlay = $s('.qqMControl .playBtn');
         _this.proLine = $s('.qqMProgress .proMain');
@@ -16,7 +17,7 @@ var music = {
         _this.cdDesk = $s('.cdDesk');
 
         _this.musicTitle.innerText =_this.data[_this.now].title;
-        _this.cdDesk.innerHTML = '<img src="'+ _this.data[_this.now].img +'"/>'
+        _this.cdDesk.innerHTML = '<img src="'+ _this.data[_this.now].img +'"/>';
 
 
         _this.controlPlay.onclick = function(){
@@ -24,6 +25,26 @@ var music = {
         };
         _this.setPro();
         _this.setHeight(690);
+    },
+    resetMusic:function(data){
+        var _this = music;
+        _this.musicObject.remove();
+        _this.musicObject.src = data.playSrc;
+        document.body.appendChild(_this.musicObject);
+
+        _this.musicTitle.innerText = data.songName;
+        _this.cdDesk.innerHTML = '<img src="'+ data.img +'"/>';
+
+        var duraMin = parseInt(data.time/60);
+        duraMin = duraMin<10?'0'+duraMin:duraMin;
+        var durSec = parseInt(data.time%60);
+        durSec = durSec<10?'0'+durSec:durSec;
+        _this.musicStatic = {
+            durationMin:duraMin + ':' + durSec,
+            duration:parseInt(data.time)
+        };
+        _this.musicObject.pause();
+        _this.playMusic();
     },
     setHeight:function(height){
         var _this = this;
@@ -34,7 +55,7 @@ var music = {
 
         _this.parent.style.height = height+'px';
         _this.leftMenu.style.height = height - 70 + 'px';
-        _this.content.style.height = height - 70 - 85 + 'px';
+        _this.content.style.height = height - 70 - 104 + 'px';
         _this.leftScrollBox.style.height = height - 70 - 147 + 'px';
     },
     playMusic:function(){
@@ -42,14 +63,6 @@ var music = {
         if(_this.musicObject.paused){
             _this.musicObject.play();
             _this.controlPlay.innerText = 'i';
-            var duraMin = parseInt(_this.musicObject.duration/60);
-            duraMin = duraMin<10?'0'+duraMin:duraMin;
-            var durSec = parseInt(_this.musicObject.duration%60);
-            durSec = durSec<10?'0'+durSec:durSec;
-            _this.musicStatic = {
-                durationMin:duraMin + ':' + durSec,
-                duration:parseInt(_this.musicObject.duration)
-            };
             window.requestAnimationFrame(_this.renderProgress);
         }else{
             _this.musicObject.pause();
@@ -73,6 +86,7 @@ var music = {
         _this.proTime.style.color = '#666';
         _this.proTime.innerText = currMin + ':' + currSec + ' / ' + _this.musicStatic.durationMin;
         _this.proBtn.style.width = (_this.musicObject.currentTime/_this.musicStatic.duration)*100+'%';
+        console.log(_this.musicObject.currentTime);
     },
     setPro:function(){
         var _this = this;
