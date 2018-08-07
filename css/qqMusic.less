@@ -18,6 +18,11 @@
   vertical-align: top;
 }
 
+
+em{
+  font-style: normal;
+}
+
 .qqMusicPlay{
   width:1010px;
   height:690px;
@@ -301,6 +306,53 @@
       }
 
     }
+    .searchTit{
+      border-top:1px solid #e9e9e9;
+      background: rgba(234,234,234,0.1);
+      height:53px;
+      font:14px/53px '微软雅黑';
+      color: #000;
+
+      span{
+        display: inline-block;
+        margin:0 15px;
+        cursor: pointer;
+        &:hover{
+          color: #31c27c;
+        }
+        &.active{
+          color: #31c27c;
+          &:after{
+            content: '';
+            display:block;
+            position: relative;
+            bottom:1px;
+            width:100%;
+            height:2px;
+            background-color: #31c27c;
+          }
+        }
+      }
+
+      .resList{
+        float: left;
+        height: 53px;
+      }
+
+      .response{
+        height:53px;
+        float: right;
+        font-size:12px;
+        line-height:55px;
+        overflow: hidden;
+        padding-right:30px;
+        color: #929292;
+        em{
+          color: #494949;
+        }
+      }
+
+    }
   }
 
   .musicLab_musicList{
@@ -355,6 +407,36 @@
 
     }
 
+  }
+
+  .searchResaultList{
+    background: rgba(255,255,255,0.8);
+    min-height: 100%;
+    padding:0 30px;
+    li{
+      height:47px;
+      border-bottom:1px solid #f0f0f0;
+      display: flex;
+      line-height:47px;
+      .songName{
+        width:50%;
+      }
+      .singer{
+        width:15%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .album{
+        width:20%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .duration{
+        width:15%;
+      }
+    }
   }
 
   .scrollBox{
