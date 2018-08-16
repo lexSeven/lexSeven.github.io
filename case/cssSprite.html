@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height:100%;
+        }
+        body{
+            overflow: hidden;
+        }
+        .box{
+            width:30px;
+            height:30px;
+            border:1px solid #0c5460;
+            position: relative;
+            left:20%;
+            top:20%;
+        }
+        .box .main{
+            width:1500px;
+            height:520px;
+            background:#ddd url("https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/global/img/icons_5859e57.png") no-repeat;
+            opacity: 0.3;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        .tool{
+            position: absolute;
+            bottom:10%;
+            left:50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="main"></div>
+</div>
+
+<div class="tool">
+    <label><span>调整宽度 </span><input type="number"></label><br>
+    <label><span>调整高度 </span><input type="number"></label><br>
+    <label><span>调整X轴 </span><input type="number"></label><br>
+    <label><span>调整Y轴 </span><input type="number"></label><br>
+    <p>可以拖拽改变元素的宽高，也可以通过键盘的方向键来进行调整X,Y轴哦！</p>
+</div>
+
+
+<script>
+
+    let input = document.querySelectorAll('.tool input');
+    let boxW = input[0];
+    let boxH = input[1];
+    let xNum = input[2];
+    let yNum = input[3];
+    let showBox = document.querySelector('.box');
+    let box = document.querySelector('.main');
+
+    boxW.oninput = function(){
+        if(!isNaN(this.value)){
+            showBox.style.width = Number(this.value) + 'px';
+        }
+    };
+    boxH.oninput = function(){
+        if(!isNaN(this.value)){
+            showBox.style.height = Number(this.value) + 'px';
+        }
+    };
+
+    xNum.oninput = function(){
+        if(!isNaN(this.value)){
+            box.style.left = -Number(this.value) + 'px';
+        }
+    };
+    yNum.oninput = function(){
+        if(!isNaN(this.value)){
+            box.style.top = -Number(this.value) + 'px';
+        }
+    };
+
+    document.onkeydown = function(ev){
+        let top = parseInt(window.getComputedStyle(box).top);
+        let left = parseInt(window.getComputedStyle(box).left);
+        switch(ev.keyCode){
+            case 37:
+                box.style.left = left - 2 + 'px';
+                break;
+            case 38:
+                box.style.top = top - 2 + 'px';
+                break;
+            case 39:
+                box.style.left = left + 2 + 'px';
+                break;
+            case 40:
+                box.style.top = top + 2 + 'px';
+                break;
+        }
+    }
+
+    showBox.onmousedown = function(ev){
+
+        var vLeft = this.getBoundingClientRect().left;
+        var vTop = this.getBoundingClientRect().top;
+        var valueLeft = this.getBoundingClientRect().right - ev.clientX;
+        var valueTop = this.getBoundingClientRect().bottom - ev.clientY;
+
+        document.onmousemove = function(ev){
+            showBox.style.width = ev.clientX - vLeft + valueLeft + 'px';
+            showBox.style.height = ev.clientY - vTop + valueTop + 'px';
+        }
+
+        document.onmouseup = function(){
+            document.onmousemove = null;
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
