@@ -1,3 +1,168 @@
+var musicD = {
+    init:function(){
+        var _this = musicD;
+        _this.resBox = document.querySelector('.searchResaultList');
+        _this.parent = document.querySelector('.qqMusicPlay');
+        _this.bindFunc();//为整个播放器界面添加事件
+        music.init(data);//初始化音乐播放器
+        dragAndDrop( $s('.qqMusicPlay') );//为播放器添加拖拽事件(工具库里面的方法)
+        _this.setHeight(690);//初始化高度
+        _this.initScroll();//初始化滚动条（betterScroll库）
+
+    },
+    bindFunc:function(){
+        var _this = musicD;
+        _this.parent.onmousedown=function(ev){
+            _this.event(ev,_this.clickArea);
+        }
+    },
+    event:function(ev,eventArea){
+        var _this = musicD;
+        var ev = ev || event;
+        var target = ev.target || ev.srcElement;
+        var dataset = target.dataset || $(target).data();
+        var parent = target.parentNode;
+        var num = 0;
+
+        for( a in dataset){
+            num ++ ;
+        }
+
+        if(num<1){
+            popup(parent);
+            num = 0;
+        }else{
+            for(b in dataset){
+                if(eventArea[b]){
+                    eventArea[b]({obj:target,ev:ev,target:dataset[b]});
+                }
+            }
+        }
+
+        function popup(obj){
+            if(obj == _this.parent){ return false;}
+            dataset = obj.dataset || $(obj).data();
+
+            for( a in dataset){
+                num ++ ;
+            }
+            if(num<1){
+                parent = obj.parentNode;
+                if(parent == _this.parent){ return false;}
+                popup(parent);
+                num = 0;
+            }else{
+                for(b in dataset){
+                    if(eventArea[b]){
+                        eventArea[b]({obj:parent,ev:ev,target:dataset[b]});
+                    }
+                }
+            }
+        }
+    },
+    clickArea:{
+        playmusic:function(option){//点击播放音乐
+            audiopay(option.obj.dataset.hash);
+        },
+        searchfocus:function(option){//搜索音乐
+            var _this = musicD;
+            option.obj.onkeydown = function(ev){
+                if(ev.keyCode == 13){
+                    search(this.value,function(res){
+                        var str = '';
+                        res.data.info.forEach(function(item){
+                            str += '<li data-playmusic="javascript" data-hash="'+ item.hash +'" >\
+                        <span class="songName">'+ item.songname +'</span>\
+                        <span class="singer">'+ item.singername +'</span>\
+                        <span class="album">'+ item.album_name +'</span>\
+                        <span class="duration">03:00</span>\
+                    </li>'
+                        });
+                        _this.resBox.innerHTML = str;
+                    });
+                }
+            };
+        },
+        minimize:function(){
+
+        }
+    },
+    initScroll:function(){
+        var wrapper = $s('.scrollBox');
+        let scroll = new BScroll(wrapper,{
+            scrollY:true,
+            mouseWheel: {
+                speed: 20,
+                invert: false,
+                easeTime: 300
+            },
+            scrollbar: {
+                fade: true,
+                interactive: false // 1.8.0 新增
+            }
+        });
+
+        var leftWrapper = $s('.leftScrollBox');
+        let leftScroll = new BScroll(leftWrapper,{
+            scrollY:true,
+            mouseWheel: {
+                speed: 20,
+                invert: false,
+                easeTime: 300
+            },
+            scrollbar: {
+                fade: true,
+                interactive: false // 1.8.0 新增
+            }
+        });
+    },
+    initHeight:function(){
+        var _this = 'setHeight';
+        _this.parent = $s('.qqMusicPlay');
+        _this.leftMenu = $s('.qqMleftMenu');
+        _this.leftScrollBox = $s('.leftScrollBox');
+        _this.content = $s('.qqMContent .scrollBox');
+
+        _this.parent.style.height = height+'px';
+        _this.leftMenu.style.height = height - 70 + 'px';
+        _this.content.style.height = height - 70 - 104 + 'px';
+        _this.leftScrollBox.style.height = height - 70 - 147 + 'px';
+    }
+};
+function audiopay(songid) {/*酷狗播放音乐*/
+    $.ajax({
+        url: 'http://www.kugou.com/yy/index.php?r=play/getdata&hash='+songid,
+        type: 'get',
+        dataType: 'jsonp',
+        success: function (res) {
+            var obj = {
+                playSrc:res.data.play_url,
+                img:res.data.img,
+                time:res.data.timelength/1000,
+                songName:res.data.audio_name
+            };
+            music.resetMusic(obj);
+        }
+    });
+}
+function search(keyWord,fn){/*酷狗搜索音乐*/
+    $.ajax({
+        url: 'http://mobilecdn.kugou.com/api/v3/search/song',
+        type: 'get',
+        dataType: 'jsonp',
+        data: {
+            format:'jsonp',
+            calback:'',
+            pagesize:20,
+            showtype:2,
+            page:1,
+            keyword:keyWord
+        },
+        success:function(res){
+            fn&&fn(res);
+        }
+    });
+}
 var music = {
     init:function(data){
         var _this = this;
@@ -20,11 +185,10 @@ var music = {
         _this.cdDesk.innerHTML = '<img src="'+ _this.data[_this.now].img +'"/>';
 
 
-        _this.controlPlay.onclick = function(){
-            _this.playMusic();
-        };
-        _this.setPro();
-        _this.setHeight(690);
+        // _this.controlPlay.onclick = function(){
+        //     _this.playMusic();
+        // };
+        // _this.setPro();
     },
     resetMusic:function(data){
         var _this = music;
@@ -45,18 +209,6 @@ var music = {
         };
         _this.musicObject.pause();
         _this.playMusic();
-    },
-    setHeight:function(height){
-        var _this = this;
-        _this.parent = $s('.qqMusicPlay');
-        _this.leftMenu = $s('.qqMleftMenu');
-        _this.leftScrollBox = $s('.leftScrollBox');
-        _this.content = $s('.qqMContent .scrollBox');
-
-        _this.parent.style.height = height+'px';
-        _this.leftMenu.style.height = height - 70 + 'px';
-        _this.content.style.height = height - 70 - 104 + 'px';
-        _this.leftScrollBox.style.height = height - 70 - 147 + 'px';
     },
     playMusic:function(){
         var _this = this;
@@ -86,7 +238,7 @@ var music = {
         _this.proTime.style.color = '#666';
         _this.proTime.innerText = currMin + ':' + currSec + ' / ' + _this.musicStatic.durationMin;
         _this.proBtn.style.width = (_this.musicObject.currentTime/_this.musicStatic.duration)*100+'%';
-        console.log(_this.musicObject.currentTime);
+        // console.log(_this.musicObject.currentTime);
     },
     setPro:function(){
         var _this = this;

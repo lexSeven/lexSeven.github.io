@@ -83,13 +83,13 @@
         </div>
     </div>
     <div class="qqMContent">
-        <div class="contHead">
+        <div class="contHead" data-function="drag">
             <i class="qqMIcon">e</i>
             <i class="qqMIcon">f</i>
             <i class="qqMIcon">U</i>
             <div class="inpBox">
                 <svg aria-hidden="true" data-prefix="fal" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search fa-w-16 fa-2x"><path fill="currentColor" d="M508.5 481.6l-129-129c-2.3-2.3-5.3-3.5-8.5-3.5h-10.3C395 312 416 262.5 416 208 416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c54.5 0 104-21 141.1-55.2V371c0 3.2 1.3 6.2 3.5 8.5l129 129c4.7 4.7 12.3 4.7 17 0l9.9-9.9c4.7-4.7 4.7-12.3 0-17zM208 384c-97.3 0-176-78.7-176-176S110.7 32 208 32s176 78.7 176 176-78.7 176-176 176z" class=""></path></svg>
-                <input type="text" placeholder="搜索音乐、MV、歌单、用户">
+                <input type="text" placeholder="搜索音乐、MV、歌单、用户" data-searchfocus="javascript">
             </div>
             <i class="qqMIcon" title="听歌识曲">d</i>
 
@@ -221,151 +221,7 @@
 <script src="data/qqMusic.js"></script>
 <script src="js/music.js"></script>
 <script>
-
-    var searchInp = document.querySelector('.contHead .inpBox input');
-    var resBox = document.querySelector('.searchResaultList');
-    var au = document.querySelector('#au');
-
-    music.init(data);
-
-    searchInp.onkeydown = function(ev){
-        if(ev.keyCode == 13){
-           search(this.value,function(res){
-                console.log(res);
-                var str = '';
-                res.data.info.forEach(function(item){
-                    str += '<li data-hash="'+ item.hash +'" >\
-                        <span class="songName">'+ item.songname +'</span>\
-                        <span class="singer">'+ item.singername +'</span>\
-                        <span class="album">'+ item.album_name +'</span>\
-                        <span class="duration">03:00</span>\
-                    </li>'
-                });
-                resBox.innerHTML = str;
-            });
-
-            /*Bsearch(this.value,function(res){
-//                console.log(res);
-                var str = '';
-                res.song.forEach(function(item){
-                    str += '<li data-hash="'+ item.songid +'" >\
-                        <span class="songName">'+ item.songname +'</span>\
-                        <span class="singer">'+ item.artistname +'</span>\
-                        <span class="album"></span>\
-                        <span class="duration">03:00</span>\
-                    </li>'
-                });
-                resBox.innerHTML = str;
-            });*/
-        }
-    };
-
-    resBox.onclick = function(ev){
-        var target = ev.target;
-        if(ev.target.tagName == 'SPAN'){
-            target = ev.target.parentNode;
-        }
-        audiopay(target.dataset.hash);
-    };
-
-    function audiopay(songid) {/*酷狗播放音乐*/
-        console.log(songid);
-        $.ajax({
-            url: 'http://www.kugou.com/yy/index.php?r=play/getdata&hash='+songid,
-            type: 'get',
-            dataType: 'jsonp',
-            success: function (res) {
-                var obj = {
-                    playSrc:res.data.play_url,
-                    img:res.data.img,
-                    time:res.data.timelength/1000,
-                    songName:res.data.audio_name
-                };
-                music.resetMusic(obj);
-            }
-        });
-    }
-
-
-    function search(keyWord,fn){/*酷狗搜索音乐*/
-        $.ajax({
-            url: 'http://mobilecdn.kugou.com/api/v3/search/song',
-            type: 'get',
-            dataType: 'jsonp',
-            data: {
-                format:'jsonp',
-                calback:'',
-                pagesize:20,
-                showtype:2,
-                page:1,
-                keyword:keyWord
-            },
-            success:function(res){
-                fn&&fn(res);
-            }
-        });
-    }
-
-    function Bsearch(keyWord,fn){/* 百度搜索音乐 */
-        $.ajax({
-            url: 'http://tingapi.ting.baidu.com/v1/restserver/ting',
-            type: 'get',
-            dataType: 'jsonp',
-            data: {
-                format:'json',
-                calback:'',
-                from:'webapp_music',
-                method:'baidu.ting.search.catalogSug',
-                query:keyWord
-            },
-            success:function(res){
-                fn&&fn(res);
-            }
-        });
-    }
-
-    setHeight(690);
-    function setHeight(height){
-        var _this = setHeight;
-        _this.parent = $s('.qqMusicPlay');
-        _this.leftMenu = $s('.qqMleftMenu');
-        _this.leftScrollBox = $s('.leftScrollBox');
-        _this.content = $s('.qqMContent .scrollBox');
-
-        _this.parent.style.height = height+'px';
-        _this.leftMenu.style.height = height - 70 + 'px';
-        _this.content.style.height = height - 70 - 104 + 'px';
-        _this.leftScrollBox.style.height = height - 70 - 147 + 'px';
-    };
-
-var wrapper = $s('.scrollBox');
-let scroll = new BScroll(wrapper,{
-    scrollY:true,
-    mouseWheel: {
-        speed: 20,
-        invert: false,
-        easeTime: 300
-    },
-    scrollbar: {
-        fade: true,
-        interactive: false // 1.8.0 新增
-    }
-});
-
-var leftWrapper = $s('.leftScrollBox');
-let leftScroll = new BScroll(leftWrapper,{
-    scrollY:true,
-    mouseWheel: {
-        speed: 20,
-        invert: false,
-        easeTime: 300
-    },
-    scrollbar: {
-        fade: true,
-        interactive: false // 1.8.0 新增
-    }
-});
-
+    musicD.init();
 </script>
 
 </body>
