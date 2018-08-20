@@ -33,7 +33,12 @@ var bottomLine = {
         var min = d.getMinutes();
 
         _this.time.setAttribute('title',year+'年'+month+'月'+date+'日');
-        _this.time.innerHTML = hours + ':' + min;
+
+        function addZero(n){
+            return n < 10 ? '0' + n : n;
+        }
+
+        _this.time.innerHTML = addZero(hours) + ':' + addZero(min);
 
         _this.time.onclick = function(){
             document.querySelector('.bottomLine .dateList').classList.toggle('active');
@@ -45,7 +50,7 @@ var bottomLine = {
             var d = new Date();
             var hours = d.getHours();
             var min = d.getMinutes();
-            _this.time.innerHTML = hours + ':' + min;
+            _this.time.innerHTML = addZero(hours) + ':' + addZero(min);
         }
     }
 };
