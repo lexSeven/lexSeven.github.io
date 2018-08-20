@@ -3,7 +3,7 @@ var data = [
         title:"让我一次爱个够",
         singer:'庾澄庆',
         Album:'让我一次爱个够',
-        src:'http://dl.stream.qqmusic.qq.com/C400000LRRxB24iRl1.m4a?vkey=B9F74C8DB6286115B22E592CD966C4C0CF66589EB731F898262140D2BFE4501C38BEBFDD74FD2A532AF0812C1B49BC0C217C8527C9532DBE&guid=5590556817&uin=305346765&fromtag=66',
+        src:'http://fs.w.kugou.com/201808061938/df8039fc206a3df861c6b867003da2ff/G054/M08/01/0D/1oYBAFbfCBuAQaYSADQ1a0pfphY791.mp3',
         img:'https://y.gtimg.cn/music/photo_new/T002R300x300M000003wRtZs4PGAvu.jpg?max_age=2592000'
     },
     {
@@ -24,7 +24,7 @@ var data = [
         title:'Angel',
         singer:'张杰',
         Album:'我是歌手第二季 第9期',
-        src:'http://dl.stream.qqmusic.qq.com/C400003V59kT4M6bxa.m4a?vkey=3A8EE8A5729FCAA96554FF652340653D8F92AAEEADE501814DE77FD299EAA0D59E2464F62081616CBCEBBA9751C2312BB5ECD7833E8F1ECF&guid=5590556817&uin=305346765&fromtag=66',
+        src:'http://zhangmenshiting.qianqian.com/data2/music/c0c05e4a304bfc69a89e3730e3413fde/599516589/599516589.m4a?xcode=61c1702be3057091718197b4a0f16666',
         img:'https://y.gtimg.cn/music/photo_new/T002R300x300M000001UyUjq2QzMMF.jpg?max_age=2592000'
     },
     {

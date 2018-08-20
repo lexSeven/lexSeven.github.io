@@ -43,3 +43,33 @@ function dragAndDrop( obj ) {//拖拽
     })
 
 }
+
+
+function doMoveRequest(option){
+    /*{
+        obj:  运动的对象
+        attr: 要运动的属性
+        target: 运动的目标
+        duration: 运动的时间
+        fx: 运动的形式
+        fn: 回调函数（运动完了之后调用的函数）
+    }*/
+
+    var start = parseInt(css(option.obj,option.attr));
+    var distance = option.target - start;//运动的距离
+    var time = Date.now();
+
+    var fx = option.fx || 'linear';
+    function move(){
+        var newTime = Date.now() - time;
+        var value = Tween[fx](newTime,start,distance,option.duration);
+        css(option.obj,option.attr,value);
+        if(newTime > option.duration) {
+            css(option.obj,option.attr,option.target);
+            option.fn && option.fn();
+        }else{
+            requestAnimationFrame(move);
+        }
+    };
+    requestAnimationFrame(move);
+}

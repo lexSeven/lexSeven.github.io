@@ -3,12 +3,16 @@ var musicD = {
         var _this = musicD;
         _this.resBox = document.querySelector('.searchResaultList');
         _this.parent = document.querySelector('.qqMusicPlay');
+        _this.position = {};
         _this.bindFunc();//为整个播放器界面添加事件
         music.init(data);//初始化音乐播放器
         dragAndDrop( $s('.qqMusicPlay') );//为播放器添加拖拽事件(工具库里面的方法)
-        _this.setHeight(690);//初始化高度
-        _this.initScroll();//初始化滚动条（betterScroll库）
-
+        _this.initHeight(690);//初始化高度
+        _this.initScroll();//初始化滚动条（betterScroll库）;
+        bottomLine.addIcons({
+            obj:'qqMusic',
+            callback:_this.clickArea.maximize
+        })
     },
     bindFunc:function(){
         var _this = musicD;
@@ -84,7 +88,27 @@ var musicD = {
             };
         },
         minimize:function(){
-
+            var _this = musicD;
+            _this.position.top = _this.parent.getBoundingClientRect().top;
+            mTween({
+                el:_this.parent,
+                attrs:{
+                    width:0,
+                    height:0,
+                    top:document.documentElement.clientHeight
+                }
+            });
+        },
+        maximize:function(){
+            var _this = musicD;
+            mTween({
+                el:_this.parent,
+                attrs:{
+                    width:1010,
+                    height:690,
+                    top:_this.position.top
+                }
+            });
         }
     },
     initScroll:function(){
@@ -116,8 +140,8 @@ var musicD = {
             }
         });
     },
-    initHeight:function(){
-        var _this = 'setHeight';
+    initHeight:function(height){
+        var _this = {};
         _this.parent = $s('.qqMusicPlay');
         _this.leftMenu = $s('.qqMleftMenu');
         _this.leftScrollBox = $s('.leftScrollBox');

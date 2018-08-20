@@ -18,15 +18,15 @@ em {
   width: 1010px;
   height: 690px;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #ffffff /*url("../img/qqMusic/bg.jpg") no-repeat*/;
+  top: 200px;
+  left: 300px;
+  background: rgba(255, 255, 255, 0.3) url("../img/wallhaven.jpg") no-repeat fixed;
   background-size: cover;
   display: grid;
   grid-template-rows: 1fr 70px;
   grid-template-columns: 200px 1fr;
   color: #000;
+  overflow: hidden;
 }
 .qqMleftMenu {
   background: rgba(234, 234, 234, 0.7);
