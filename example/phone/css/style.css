@@ -1,0 +1,213 @@
+body{
+    margin:0;
+    overflow: hidden;
+}
+.box{
+    width:100vw;
+    height:100vh;
+    background: linear-gradient(to right top,#fff3f5,#ffcbd1);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.round{
+    width:500px;
+    height:500px;
+    border-radius: 500%;
+    background: linear-gradient(to right top,#fddadf,#f8a8b3);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.phone{
+    width:299px;
+    height: 610px;
+    background: url("../img/phone.png") no-repeat;
+    position: relative;
+    /*overflow: hidden;*/
+}
+.cup{
+    width:133px;
+    height:254px;
+    position: absolute;
+    top:152px;
+    left:80px;
+    background: url("../img/straw.png") no-repeat;
+}
+.cup img{
+    position: absolute;
+    top:0;
+    left: 0;
+}
+.cup .mark{
+    width:89px;/*89 95*/
+    height:11px;
+    background: url("../img/mark.png") no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top:192px;/*192 158*/
+    left:22px;/*22 19*/
+    transition: 0.5s;
+}
+.cup .mark .straw{
+    width:16px;
+    height: 8px;
+    background: url("../img/straws.png") no-repeat;
+    transform: translateX(37px);/*37 40*/
+    position: absolute;
+    transition: 0.8s;
+}
+.cup .weater{
+    width:82px;
+    border-width:54px 5px 0;
+    border-style:solid;
+    border-color: #f8a8b3 transparent;
+    border-radius: 0 0 60px 60px/0 0 20px 20px;
+    position: absolute;
+    bottom:8px;
+    left: 19px;
+}
+.cup .weaterYellow{
+    width:88px;
+    border-width:0 5px 0;
+    border-style:solid;
+    border-color: #f1ff13 transparent;
+    border-radius: 0 0 80px 80px/0 0 20px 20px;
+    position: absolute;
+    bottom:52px;
+    left: 18px;
+    transition: 0.5s;
+}
+.cup:hover .weaterYellow{
+    width:88px;
+    border-width:44px 5px 0;
+    border-style:solid;
+    border-color: yellow transparent;
+    border-radius: 0 0 80px 80px/0 0 20px 20px;
+    position: absolute;
+    bottom:52px;
+    left: 18px;
+}
+.cup:hover .mark{
+    width:95px;/*89 95*/
+    top:158px;/*192 158*/
+    left:19px;/*22 19*/
+}
+.cup:hover .mark .straw{
+    transition: 0.2s;
+    transform: translateX(40px);/*37 40*/
+}
+
+.roundBox{
+    width:266px;
+    height:188px;
+    position: absolute;
+    bottom:15px;
+    left: 15px;
+    overflow: hidden;
+}
+.roundList{
+    width: 484px;
+    height: 484px;
+    border:1px solid #bb8b23;
+    border-radius: 50%;
+    position: absolute;
+    top:59px;
+    left: 50%;
+    margin-left:-242px;
+    transition: 0.5s;
+    transform: rotate(54deg);
+}
+.item{
+    width:50px;
+    height:50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 0 rgba(255,156,112,0.1);
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin: auto;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.item.peach{
+    background: #fff url("../img/peach.png") no-repeat center;
+    transform: rotate(0deg) translateX(-240px);
+}
+.item.peach.active{
+    background: #fff url("../img/peach.png") no-repeat center;
+    transform: rotate(0deg) translateX(-240px) scale(1.2);
+    box-shadow: 0 0 20px 0 rgba(255,156,112,0.4);
+}
+.item.grape{
+    background: #fff url("../img/grape.png") no-repeat center;
+    transform: rotate(18deg) translateX(-240px);
+}
+.item.grape.active{
+    background: #fff url("../img/grape.png") no-repeat center;
+    transform: rotate(18deg) translateX(-240px) scale(1.2);
+    box-shadow: 0 0 20px 0 rgba(255,156,112,0.4);
+}
+.item.lemon{
+    background: #fff url("../img/lemon.png") no-repeat center;
+    transform: rotate(36deg) translateX(-240px);
+}
+.item.lemon.active{
+    background: #fff url("../img/lemon.png") no-repeat center;
+    transform: rotate(36deg) translateX(-240px) scale(1.2);
+    box-shadow: 0 0 20px 0 rgba(255,156,112,0.4);
+}
+.item.pineapple{
+    background: #fff url("../img/pineapple.png") no-repeat center;
+    transform: rotate(54deg) translateX(-240px);
+}
+.item.pineapple.active{
+    background: #fff url("../img/pineapple.png") no-repeat center;
+    transform: rotate(54deg) translateX(-240px) scale(1.2);
+    box-shadow: 0 0 20px 0 rgba(255,156,112,0.4);
+}
+.item.strawberry{
+    background: #fff url("../img/strawberry.png") no-repeat center;
+    transform: rotate(72deg) translateX(-240px);
+}
+.item.strawberry.active{
+    background: #fff url("../img/strawberry.png") no-repeat center;
+    transform: rotate(72deg) translateX(-240px) scale(1.2);
+    box-shadow: 0 0 20px 0 rgba(255,156,112,0.4);
+}
+.item.active .btn{
+    opacity:1;
+}
+.item .btn{
+    width:240%;
+    height:30px;
+    border-radius: 15px;
+    background: #ff656f;
+    line-height:30px;
+    text-align: center;
+    color: #fff;
+    opacity:0;
+    transition:opacity 0.5s 0.4s;
+    transform: rotate(-90deg) scale(0.5);
+    position: absolute;
+    top:10px;
+    left: -4px;
+    cursor: pointer;
+}
+.item .btn:hover{
+    background: #ff8d94;
+}
+.submit{
+    width:215px;
+    height:54px;
+    border-radius: 6px;
+    box-shadow: 0 0 20px 0 rgba(255,156,112,0.3);
+    background: #fff url("../img/btn.png") no-repeat;
+    position: absolute;
+    top:121px;
+    left:26px;
+}
+
