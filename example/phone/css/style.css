@@ -26,6 +26,17 @@ body{
     position: relative;
     /*overflow: hidden;*/
 }
+.phone.active .cup{
+    transform: scale(1.1);
+}
+.phone.active .roundList{
+    top:230px;
+}
+.phone.active .submit{
+    height:114px;
+    background: url("../img/share.png") no-repeat;
+    top:44px;
+}
 .cup{
     width:133px;
     height:254px;
@@ -33,6 +44,7 @@ body{
     top:152px;
     left:80px;
     background: url("../img/straw.png") no-repeat;
+    transition: 1s;
 }
 .cup img{
     position: absolute;
@@ -40,20 +52,20 @@ body{
     left: 0;
 }
 .cup .mark{
-    width:89px;/*89 95*/
+    width:89px;
     height:11px;
     background: url("../img/mark.png") no-repeat;
     background-size: 100%;
     position: absolute;
-    top:192px;/*192 158*/
-    left:22px;/*22 19*/
+    top:192px;
+    left:22px;
     transition: 0.5s;
 }
 .cup .mark .straw{
     width:16px;
     height: 8px;
     background: url("../img/straws.png") no-repeat;
-    transform: translateX(37px);/*37 40*/
+    transform: translateX(37px);
     position: absolute;
     transition: 0.8s;
 }
@@ -67,7 +79,7 @@ body{
     bottom:8px;
     left: 19px;
 }
-.cup .weaterYellow{
+.cup .weaterTwo{
     width:88px;
     border-width:0 5px 0;
     border-style:solid;
@@ -78,24 +90,36 @@ body{
     left: 18px;
     transition: 0.5s;
 }
-.cup:hover .weaterYellow{
-    width:88px;
+.cup .weaterTwo.active{
     border-width:44px 5px 0;
+}
+.cup .weaterThree{
+    width:96px;
+    border-width:0 5px 0;
     border-style:solid;
-    border-color: yellow transparent;
+    border-color: #3affff transparent;
     border-radius: 0 0 80px 80px/0 0 20px 20px;
     position: absolute;
-    bottom:52px;
-    left: 18px;
+    bottom:89px;
+    left: 14px;
+    transition: 0.5s;
 }
-.cup:hover .mark{
-    width:95px;/*89 95*/
-    top:158px;/*192 158*/
-    left:19px;/*22 19*/
+.cup .weaterThree.active{
+    border-width:80px 5px 0;
 }
-.cup:hover .mark .straw{
+
+.cup.active .mark{
+    width:95px;/*89 95 106*/
+    top:158px;/*192 158 84*/
+    left:19px;/*22 19 14*/
+}
+.cup.active .mark .straw{
     transition: 0.2s;
-    transform: translateX(40px);/*37 40*/
+    transform: translateX(40px);/*37 40 45*/
+}
+
+.cup.shake{
+    animation: shake 1s;
 }
 
 .roundBox{
@@ -200,6 +224,9 @@ body{
 .item .btn:hover{
     background: #ff8d94;
 }
+.item .btn.remove{
+    background: #ffd260;
+}
 .submit{
     width:215px;
     height:54px;
@@ -209,5 +236,33 @@ body{
     position: absolute;
     top:121px;
     left:26px;
+    transition: 1s;
+}
+
+@keyframes shake {
+    0%{
+        transform: rotate(10deg);
+    }
+    10%{
+        transform: rotate(-8deg);
+    }
+    20%{
+        transform: rotate(6deg);
+    }
+    30%{
+        transform: rotate(-4deg);
+    }
+    40%{
+        transform: rotate(3deg);
+    }
+    50%{
+        transform: rotate(-2deg);
+    }
+    60%{
+        transform: rotate(1deg);
+    }
+    70%{
+        transform: rotate(0deg);
+    }
 }
 

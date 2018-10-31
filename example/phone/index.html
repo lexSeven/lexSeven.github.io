@@ -12,7 +12,8 @@
         <div class="phone">
             <div class="cup">
                 <div class="weater"></div>
-                <div class="weaterYellow"></div>
+                <div class="weaterTwo"></div>
+                <div class="weaterThree"></div>
                 <div class="mark">
                     <span class="straw"></span>
                 </div>
@@ -20,11 +21,11 @@
             </div>
             <div class="roundBox">
                 <div class="roundList">
-                    <span class="item peach"><em class="btn">peach +</em></span>
-                    <span class="item grape"><em class="btn">grape +</em></span>
-                    <span class="item lemon active"><em class="btn">lemon +</em></span>
-                    <span class="item pineapple"><em class="btn">pineapple +</em></span>
-                    <span class="item strawberry"><em class="btn">strawberry +</em></span>
+                    <span class="item peach"><em class="btn" data-color="peach">peach +</em></span>
+                    <span class="item grape"><em class="btn" data-color="grape">grape +</em></span>
+                    <span class="item lemon active"><em class="btn" data-color="lemon">lemon +</em></span>
+                    <span class="item pineapple"><em class="btn" data-color="pineapple">pineapple +</em></span>
+                    <span class="item strawberry"><em class="btn" data-color="strawberry">strawberry +</em></span>
                 </div>
                 <div class="submit"></div>
             </div>
@@ -46,6 +47,73 @@
             round.style.transform = 'rotate('+ deg +'deg)';
         }
     }
+
+    var componentBtn = document.querySelectorAll('.roundList em');
+    var compNum = 0;
+
+    var color = {
+        'peach':'#f4bf84',
+        'grape':'#d95e8c',
+        'lemon':'#bae522',
+        'pineapple':'#ffef63',
+        'strawberry':'#ff9999'
+    };
+
+    var weaterF = document.querySelector('.weater'),
+        weaterS = document.querySelector('.weaterTwo'),
+        weaterT = document.querySelector('.weaterThree');
+    var mark = document.querySelector('.mark');
+    var straw = document.querySelector('.straw');
+
+    for(var i=0;i<componentBtn.length;i++){
+        componentBtn[i].off = 1;
+        componentBtn[i].index = [i];
+        componentBtn[i].onclick = function(){
+            if(this.off && compNum<=3){
+                this.off = 0;
+                this.classList.add('remove');
+                this.innerText = 'remove';
+                compNum++;
+                if(compNum == 2){
+                    weaterS.style.borderColor = color[this.dataset.color]+' transparent';
+                    weaterS.classList.add('active');
+                    mark.style.cssText = 'width:95px;top:158px;left:19px;';
+                    straw.style.transform= 'translateX(40px)';
+                }else if(compNum == 3){
+                    weaterT.style.borderColor = color[this.dataset.color]+' transparent';
+                    weaterT.classList.add('active');
+                    mark.style.cssText = 'width:106px;top:84px;left:14px;';
+                    straw.style.transform= 'translateX(45px)';
+                }else if(compNum == 1){
+                    weaterF.style.borderColor = color[this.dataset.color]+' transparent';
+                }
+            }else{
+                if(compNum==3)return false;
+                this.off = 1;
+                this.classList.remove('remove');
+                this.innerText = this.dataset.color + '+';
+                weaterF.style.borderColor = '#f8a8b3 transparent';
+                compNum--;
+            }
+        }
+    }
+
+    var cup = document.querySelector('.cup');
+    var submit = document.querySelector('.submit');
+    var phone = document.querySelector('.phone');
+    submit.onclick = function(){
+        if(compNum==3){
+            cup.classList.add('shake');
+            weaterF.style.borderColor = '#f8a8b3 transparent';
+            weaterS.style.borderColor = '#f8a8b3 transparent';
+            weaterT.style.borderColor = '#f8a8b3 transparent';
+            setTimeout(function(){
+                phone.classList.add('active');
+            },1000);
+        }
+    }
+
+
 </script>
 
 </body>
