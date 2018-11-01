@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var num = 1/window.devicePixelRatio;
+        document.write('<meta name="viewport" content="width=device-width, initial-scale='+ num +',maxmum-scale='+ num +',minmum-scale='+ num +',user-scalable=no">');
+    </script>
+    <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+
+<div class="box">
+    <div class="anna"></div>
+    <div class="cup">
+        <div class="weater"></div>
+        <div class="weaterTwo"></div>
+        <div class="weaterThree"></div>
+        <div class="mark">
+            <span class="straw"></span>
+        </div>
+        <img src="mobileImg/cup.png">
+    </div>
+    <div class="roundBox">
+        <div class="roundList">
+            <div class="menuBox">
+                <span class="item peach"><em class="btn" data-color="peach">peach +</em></span>
+            </div>
+            <div class="menuBox">
+                <span class="item grape"><em class="btn" data-color="grape">grape +</em></span>
+            </div>
+            <div class="menuBox">
+                <span class="item lemon active"><em class="btn" data-color="lemon">lemon +</em></span>
+            </div>
+            <div class="menuBox">
+                <span class="item pineapple"><em class="btn" data-color="pineapple">pineapple +</em></span>
+            </div>
+            <div class="menuBox">
+                <span class="item strawberry"><em class="btn" data-color="strawberry">strawberry +</em></span>
+            </div>
+        </div>
+        <div class="submit"></div>
+    </div>
+</div>
+
+<script>
+    var item = document.querySelectorAll('.item');
+    var round = document.querySelector('.roundList');
+    var now = 2;
+    for(var i=0;i<item.length;i++){
+        item[i].index = i;
+        item[i].onclick = function(){
+            item[now].classList.remove('active');
+            this.classList.add('active');
+            now = this.index;
+            var deg = -18*this.index;
+            round.style.transform = 'rotate('+ deg +'deg)';
+        }
+    }
+
+    var componentBtn = document.querySelectorAll('.roundList em');
+    var compNum = 0;
+
+    var color = {
+        'peach':'#f4bf84',
+        'grape':'#d95e8c',
+        'lemon':'#bae522',
+        'pineapple':'#ffef63',
+        'strawberry':'#ff9999'
+    };
+
+    var weaterF = document.querySelector('.weater'),
+        weaterS = document.querySelector('.weaterTwo'),
+        weaterT = document.querySelector('.weaterThree');
+    var mark = document.querySelector('.mark');
+    var straw = document.querySelector('.straw');
+
+    for(var i=0;i<componentBtn.length;i++){
+        componentBtn[i].off = 1;
+        componentBtn[i].index = [i];
+        componentBtn[i].onclick = function(){
+            if(this.off && compNum<=3){
+                this.off = 0;
+                this.classList.add('remove');
+                this.innerText = 'remove';
+                compNum++;
+                if(compNum == 2){
+                    weaterS.style.borderColor = color[this.dataset.color]+' transparent';
+                    weaterS.classList.add('active');
+                    mark.className = 'mark';
+                    mark.classList.add('two');
+                }else if(compNum == 3){
+                    weaterT.style.borderColor = color[this.dataset.color]+' transparent';
+                    weaterT.classList.add('active');
+                    mark.className = 'mark';
+                    mark.classList.add('three');
+                }else if(compNum == 1){
+                    weaterF.style.borderColor = color[this.dataset.color]+' transparent';
+                }
+            }else{
+                if(compNum==3)return false;
+                this.off = 1;
+                this.classList.remove('remove');
+                this.innerText = this.dataset.color + '+';
+                weaterF.style.borderColor = '#f8a8b3 transparent';
+                compNum--;
+            }
+        }
+    }
+
+    var cup = document.querySelector('.cup');
+    var submit = document.querySelector('.submit');
+    var phone = document.querySelector('.phone');
+    submit.onclick = function(){
+        if(compNum==3){
+            cup.classList.add('shake');
+            weaterF.style.borderColor = '#f8a8b3 transparent';
+            weaterS.style.borderColor = '#f8a8b3 transparent';
+            weaterT.style.borderColor = '#f8a8b3 transparent';
+            setTimeout(function(){
+                phone.classList.add('active');
+            },1000);
+        }
+    }
+
+</script>
+</body>
+</html>

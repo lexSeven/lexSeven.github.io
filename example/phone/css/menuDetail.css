@@ -1,0 +1,46 @@
+body{
+    margin:0;
+}
+.box{
+    width:100vw;
+    height:100vh;
+    background: linear-gradient(to right top,#fff3f5,#ffcbd1);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    perspective: 500px;
+}
+
+.phone{
+    width:299px;
+    height: 610px;
+    background: url("../img/phone.png") no-repeat;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 1s;
+}
+
+.roundBox{
+    width:266px;
+    height:188px;
+    position: absolute;
+    bottom:15px;
+    left: 15px;
+    /*overflow: hidden;*/
+    transition: 1s;
+}
+
+.roundList{
+    width: 484px;
+    height: 484px;
+    border:1px solid #bb8b23;
+    border-radius: 50%;
+    position: absolute;
+    top:59px;
+    left: 50%;
+    margin-left:-242px;
+    transition: 0.5s;
+    z-index: 1;
+    transform: rotate(-36deg);
+    transform-style: preserve-3d;
+}

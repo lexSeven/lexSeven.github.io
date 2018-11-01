@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+
+<button id="show">展示</button>
+<button id="show2">展示</button>
+
+<div class="box">
+    <div class="round">
+        <div class="phone">
+            <div class="cup">
+                <div class="weater"></div>
+                <div class="weaterTwo"></div>
+                <div class="weaterThree"></div>
+                <div class="mark">
+                    <span class="straw"></span>
+                </div>
+                <img src="img/cup.png">
+            </div>
+            <div class="roundBox">
+                <div class="roundList">
+                    <div class="menuBox">
+                        <span class="item peach"><em class="btn" data-color="peach">peach +</em></span>
+                    </div>
+                    <div class="menuBox">
+                        <span class="item grape"><em class="btn" data-color="grape">grape +</em></span>
+                    </div>
+                    <div class="menuBox">
+                        <span class="item lemon active"><em class="btn" data-color="lemon">lemon +</em></span>
+                    </div>
+                    <div class="menuBox">
+                        <span class="item pineapple"><em class="btn" data-color="pineapple">pineapple +</em></span>
+                    </div>
+                    <div class="menuBox">
+                        <span class="item strawberry"><em class="btn" data-color="strawberry">strawberry +</em></span>
+                    </div>
+                </div>
+                <div class="submit"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var item = document.querySelectorAll('.item');
+    var round = document.querySelector('.roundList');
+    var now = 2;
+    for(var i=0;i<item.length;i++){
+        item[i].index = i;
+        item[i].onclick = function(){
+            item[now].classList.remove('active');
+            this.classList.add('active');
+            now = this.index;
+            var deg =- 18*this.index;
+            round.style.transform = 'rotate('+ deg +'deg)';
+        }
+    }
+
+    var phone = document.querySelector('.phone');
+    var roundList = document.querySelector('.roundList');
+    show.onclick = function(){
+        phone.classList.toggle('active');
+    }
+
+    show2.onclick = function(){
+        roundList.classList.toggle('active');
+    }
+
+</script>
+
+</body>
+</html>

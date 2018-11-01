@@ -1,0 +1,259 @@
+html {
+  font-size: 5vw;
+}
+body {
+  margin: 0;
+}
+.box {
+  width: 100vw;
+  height: 100vh;
+  background: #fff4f5;
+  position: relative;
+}
+.box .anna {
+  width: 9.33333333rem;
+  height: 3.65079365rem;
+  background: url("../mobileImg/text1.png") no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 1rem;
+  left: 1.26984127rem;
+}
+.box .cup {
+  width: 10.06349206rem;
+  height: 18.6984127rem;
+  background: url("../mobileImg/straw.png") no-repeat;
+  background-size: 10.06349206rem 18.6984127rem;
+  position: absolute;
+  top: 15vh;
+  left: 4.66666667rem;
+}
+.box .cup.shake {
+  animation: shake 1s;
+}
+.box .cup img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.box .cup .mark {
+  width: 6.85714286rem;
+  /*216 226 262*/
+  height: 0.85714286rem;
+  background: url("../mobileImg/mark.png") no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 13.71428571rem;
+  /*432 369 199*/
+  left: 1.58730159rem;
+  /*50 44 29*/
+  transition: 0.5s;
+}
+.box .cup .mark.two {
+  width: 7.17460317rem;
+  /*216 226 262*/
+  top: 11.71428571rem;
+  /*432 369 199*/
+  left: 1.3968254rem;
+  /*50 44 29*/
+}
+.box .cup .mark.two .straw {
+  transform: translateX(3.23809524rem);
+  /*96 102 117*/
+}
+.box .cup .mark.three {
+  width: 8.31746032rem;
+  /*216 226 262*/
+  top: 6.31746032rem;
+  /*432 369 199*/
+  left: 0.92063492rem;
+  /*50 44 29*/
+}
+.box .cup .mark.three .straw {
+  transform: translateX(3.71428571rem);
+  /*96 102 117*/
+}
+.box .cup .mark .straw {
+  width: 0.92063492rem;
+  height: 0.41269841rem;
+  background: url("../mobileImg/straws.png") no-repeat;
+  background-size: 100%;
+  transform: translateX(3.04761905rem);
+  /*96 102 117*/
+  position: absolute;
+  transition: 0.8s;
+}
+.box .cup .weater {
+  width: 6.34920635rem;
+  border-width: 4.76190476rem 0.47619048rem 0;
+  border-style: solid;
+  border-color: #f8a8b3 transparent;
+  border-radius: 0 0 5.07936508rem 5.07936508rem / 0 0 1.9047619rem 1.9047619rem;
+  position: absolute;
+  bottom: 0.22222222rem;
+  left: 1.36507937rem;
+}
+.box .cup .weaterTwo {
+  width: 6.66666667rem;
+  border-width: 0 0.47619048rem 0;
+  border-style: solid;
+  border-color: #f1ff13 transparent;
+  border-radius: 0 0 5.07936508rem 5.07936508rem / 0 0 1.26984127rem 1.26984127rem;
+  position: absolute;
+  bottom: 4.12698413rem;
+  left: 1.26984127rem;
+  transition: 0.5s;
+}
+.box .cup .weaterTwo.active {
+  border-width: 2.85714286rem 0.47619048rem 0;
+}
+.box .cup .weaterThree {
+  width: 7.3015873rem;
+  border-width: 0 0.47619048rem 0;
+  border-style: solid;
+  border-color: #3affff transparent;
+  border-radius: 0 0 5.07936508rem 5.07936508rem / 0 0 1.26984127rem 1.26984127rem;
+  position: absolute;
+  bottom: 6.34920635rem;
+  left: 0.95238095rem;
+  transition: 0.5s;
+}
+.box .cup .weaterThree.active {
+  border-width: 6.03174603rem 0.47619048rem 0;
+}
+.box .roundBox {
+  width: 100vw;
+  height: 10.15873016rem;
+  position: absolute;
+  bottom: 0;
+}
+.box .roundBox .roundList {
+  width: 36.50793651rem;
+  height: 36.50793651rem;
+  border: 0.03174603rem solid #bb8b23;
+  border-radius: 50%;
+  position: absolute;
+  top: 1.87301587rem;
+  left: 50%;
+  margin-left: -18.25396825rem;
+  transition: 0.5s;
+  transform: rotate(-36deg);
+}
+.box .roundBox .menuBox {
+  width: 3.80952381rem;
+  height: 20.15873016rem;
+  position: absolute;
+  top: -1.9047619rem;
+  left: 50%;
+  margin-left: -1.9047619rem;
+  transform-origin: center bottom;
+}
+.box .roundBox .menuBox:nth-child(1) {
+  transform: rotate(0deg);
+}
+.box .roundBox .menuBox:nth-child(2) {
+  transform: rotate(18deg);
+}
+.box .roundBox .menuBox:nth-child(3) {
+  transform: rotate(36deg);
+}
+.box .roundBox .menuBox:nth-child(4) {
+  transform: rotate(54deg);
+}
+.box .roundBox .menuBox:nth-child(5) {
+  transform: rotate(72deg);
+}
+.box .roundBox .item {
+  width: 3.80952381rem;
+  height: 3.80952381rem;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0.31746032rem 0 rgba(255, 156, 112, 0.1);
+  cursor: pointer;
+  display: block;
+  transition: 0.5s;
+  -webkit-tap-highlight-color: transparent;
+}
+.box .roundBox .item.peach {
+  background: #fff url("../mobileImg/peach.png") no-repeat center;
+  background-size: 2.85714286rem;
+}
+.box .roundBox .item.grape {
+  background: #fff url("../mobileImg/grape.png") no-repeat center;
+  background-size: 2.85714286rem;
+}
+.box .roundBox .item.lemon {
+  background: #fff url("../mobileImg/lemon.png") no-repeat center;
+  background-size: 2.85714286rem;
+}
+.box .roundBox .item.pineapple {
+  background: #fff url("../mobileImg/pineapple.png") no-repeat center;
+  background-size: 2.85714286rem;
+}
+.box .roundBox .item.strawberry {
+  background: #fff url("../mobileImg/strawberry.png") no-repeat center;
+  background-size: 2.85714286rem;
+}
+.box .roundBox .item.active {
+  transform: scale(1.2);
+  box-shadow: 0 0 0.95238095rem 0 rgba(255, 156, 112, 0.4);
+}
+.box .roundBox .item.active .btn {
+  opacity: 1;
+}
+.box .roundBox .btn {
+  width: 100%;
+  height: 0.95238095rem;
+  border-radius: 0.47619048rem;
+  background: #ff656f;
+  line-height: 0.95238095rem;
+  font-size: 0.57142857rem;
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.5s 0.4s;
+  position: absolute;
+  bottom: -0.50793651rem;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.box .roundBox .submit {
+  width: 14rem;
+  height: 3.49206349rem;
+  border-radius: 0.31746032rem;
+  box-shadow: 0 0 0.63492063rem 0 rgba(255, 156, 112, 0.3);
+  background: #fff url("../mobileImg/btn.png") no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 5.42857143rem;
+  left: 2.85714286rem;
+  transition: 1s;
+}
+@keyframes shake {
+  0% {
+    transform: rotate(10deg);
+  }
+  10% {
+    transform: rotate(-8deg);
+  }
+  20% {
+    transform: rotate(6deg);
+  }
+  30% {
+    transform: rotate(-4deg);
+  }
+  40% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+  60% {
+    transform: rotate(1deg);
+  }
+  70% {
+    transform: rotate(0deg);
+  }
+}
