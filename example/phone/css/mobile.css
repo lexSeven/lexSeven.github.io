@@ -126,7 +126,7 @@ body {
   width: 100vw;
   height: 10.15873016rem;
   position: absolute;
-  bottom: 0;
+  bottom: 0; ovseflow:hidden;
 }
 .box .roundBox .roundList {
   width: 36.50793651rem;
