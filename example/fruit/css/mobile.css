@@ -44,8 +44,8 @@ body {
   background: url("../mobileImg/mark.png") no-repeat;
   background-size: 100%;
   position: absolute;
-  top: 13.71428571rem;
-  /*432 369 199*/
+  top: 13.68253968rem;
+  /*431 369 199*/
   left: 1.58730159rem;
   /*50 44 29*/
   transition: 0.5s;
@@ -124,9 +124,10 @@ body {
 }
 .box .roundBox {
   width: 100vw;
-  height: 10.15873016rem;
+  height: 10.79365079rem;
   position: absolute;
-  bottom: 0; ovseflow:hidden;
+  bottom: 0;
+  overflow: hidden;
 }
 .box .roundBox .roundList {
   width: 36.50793651rem;
@@ -134,7 +135,7 @@ body {
   border: 0.03174603rem solid #bb8b23;
   border-radius: 50%;
   position: absolute;
-  top: 1.87301587rem;
+  top: 2.6031746rem;
   left: 50%;
   margin-left: -18.25396825rem;
   transition: 0.5s;
@@ -227,7 +228,7 @@ body {
   background: #fff url("../mobileImg/btn.png") no-repeat;
   background-size: 100%;
   position: absolute;
-  top: 5.42857143rem;
+  top: 6.22222222rem;
   left: 2.85714286rem;
   transition: 1s;
 }
