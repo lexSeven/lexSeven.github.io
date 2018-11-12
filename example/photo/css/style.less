@@ -1,0 +1,129 @@
+@rem:30rem;
+html{
+  font-size:4vw;
+}
+body{
+  margin:0;
+  perspective: 500/@rem;
+  height:100vh;
+}
+
+.photo{
+  width: 100vw;
+  height:100vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: 0.5s;
+
+  img{
+    transition: 0.5s;
+  }
+
+  &.active img{
+    transform: scale(1.2);
+  }
+}
+
+
+.menu{
+  width:100vw;
+  height: 100/@rem;
+  background: rgba(243,238,216,1);
+  position: absolute;
+  bottom:0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: 0.5s;
+  //padding-top:30/@rem;
+
+  &.active{
+    height: 340/@rem;
+    background: rgba(243,238,216,0.9);
+  }
+  &.active .regulator{
+    height:250/@rem;
+  }
+
+  .nav{
+    width:100%;
+    height:80/@rem;
+    align-self: flex-start;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 20/@rem;
+
+    span{
+      width:80/@rem;
+      color: #39363d;
+      line-height:80/@rem;
+      i{
+        font-size:1.6em;
+      }
+    }
+  }
+
+  .regulator{
+    width:100%;
+    height:0/@rem;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+    overflow: hidden;
+
+    .line{
+      width:80%;
+      height:80/@rem;
+      position: relative;
+
+      .lineMain{
+        width: 100%;
+        height:1px;
+        background: #fff;
+        position: absolute;
+        top:50%;
+      }
+      .btn{
+        width:40/@rem;
+        height:40/@rem;
+        border-radius: 50%;
+        border:1px solid #0b2e13;
+        background: #fff;
+        position: absolute;
+        left:0;
+        top:50%;
+        transform: translateY(-50%);
+      }
+
+    }
+
+    .regMenu{
+      height: 80/@rem;
+      width:100%;
+      display: flex;
+      justify-content: space-around;
+      background:linear-gradient(rgba(57,54,61,0),rgba(57,54,61,0.2),rgba(57,54,61,0));
+      span{
+        width:140/@rem;
+        color: #39363d;
+        text-align: center;
+        line-height:50/@rem;
+        font-size:0.8em;
+        transition: 0.2s;
+
+        &.active{
+          color: #e15671;
+        }
+
+      }
+    }
+
+  }
+
+}

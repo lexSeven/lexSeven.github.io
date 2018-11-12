@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var num = 1/window.devicePixelRatio;
+        document.write('<meta name="viewport" content="width=device-width, initial-scale='+ num +',maxmum-scale='+ num +',minmum-scale='+ num +',user-scalable=no">');
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/photo.css">
+</head>
+<body>
+
+<div class="photo">
+    <img src="img/58.jpg">
+</div>
+<div class="menu">
+    <div class="regulator">
+        <div class="line">
+            <div class="lineMain"></div>
+            <div class="btn"></div>
+        </div>
+        <div class="regMenu">
+            <span data-option="brightness">
+                <i class="icon brightness"></i>
+                亮度
+            </span>
+            <span data-option="contrast">
+                <i class="icon saturation"></i>
+                对比度
+            </span>
+            <span data-option="grayscale">
+                <i class="icon temperature"></i>
+                灰度
+            </span>
+            <span data-option="hue-rotate">
+                <i class="icon brightness"></i>
+                色相
+            </span>
+            <span data-option="saturate">
+                <i class="icon saturation"></i>
+                饱和度
+            </span>
+        </div>
+    </div>
+    <div class="nav">
+        <span><i class="icon adjustment" id="adjustment"></i></span>
+        <span><i class="icon filter" id="filter"></i></span>
+    </div>
+</div>
+
+
+<script>
+
+    var photo = document.querySelector('.photo'),
+        imgfile = document.querySelector('.photo img');
+    var menu = document.querySelector('.menu'),
+        adjustment = menu.querySelector('#adjustment'),//调整
+        filter = menu.querySelector('#filter'),
+        more = menu.querySelector('.more');
+    var adjOption = document.querySelectorAll('.regMenu span');/*调整项*/
+
+    var adjBtn = document.querySelector('.line .btn');//调整按钮
+
+    var filterData = {
+        'brightness':{
+            'default':2,//默认值
+            'min':1,//最小值
+            'max':5,//最大值
+            'unit':'',//单位
+            'now':2,//当前值
+            'revise':1//修正值
+        },//亮度 -1+
+        'contrast':{
+            'default':2,
+            'min':1,
+            'max':5,
+            'unit':'',
+            'now':2,
+            'revise':1
+        },//对比度 -1+
+        'grayscale':{
+            'default':0,
+            'min':0,
+            'max':1,
+            'unit':'',
+            'now':0,
+            'revise':0
+        },//灰度 0-1
+        'hue-rotate':{
+            'default':0,
+            'min':0,
+            'max':360,
+            'unit':'deg',
+            'now':0,
+            'revise':0
+        },//色相 0-360deg
+        'invert':{
+            'default':0,
+            'min':0,
+            'max':1,
+            'unit':'',
+            'now':0,
+            'revise':0
+        },//反相 0-1
+        'saturate':{
+            'default':2,
+            'min':1,
+            'max':5,
+            'unit':'',
+            'now':2,
+            'revise':1
+        },//饱和度 -1+
+        'sepia':{
+            'default':0,
+            'min':0,
+            'max':1,
+            'unit':'',
+            'now':0,
+            'revise':0
+        },//褐色 0-1
+        'blur':{
+            'default':0,
+            'min':0,
+            'max':100,
+            'unit':'px',
+            'now':0,
+            'revise':0
+        }//模糊 0+px
+    };
+
+    window.onload = function(){//重置图片尺寸
+        var width = imgfile.getBoundingClientRect().width,
+            height = imgfile.getBoundingClientRect().height;
+        if(width>height){
+            imgfile.style.width = '100%';
+        }else{
+            imgfile.style.height = '100%';
+        }
+    };
+
+    var isOpen = false;
+    var defOption = 'brightness';
+    var defOptionNum = -1;
+
+    adjustment.onclick = function(){//显示调整按钮
+        if(isOpen){
+            menu.classList.remove('active');
+            photo.classList.remove('active');
+            this.classList.remove('close');
+            this.classList.add('adjustment');
+            filter.classList.remove('yes');
+            filter.classList.add('filter');
+            isOpen = false;
+        }else{
+            menu.classList.add('active');
+            photo.classList.add('active');
+            this.classList.add('close');
+            this.classList.remove('adjustment');
+            filter.classList.add('yes');
+            filter.classList.remove('filter');
+            isOpen = true;
+        }
+    };
+
+    changeAdj();//选择调整项
+    function changeAdj(){
+        for(var i=0;i<adjOption.length;i++){
+            adjOption[i].index = i;
+            adjOption[i].ontouchend = function(){
+                this.classList.add('active');
+                if(adjOption[defOptionNum]){
+                    adjOption[defOptionNum].classList.remove('active');
+                }
+                defOptionNum = this.index;
+                defOption = this.dataset.option;
+                var now = filterData[defOption].now;
+                var min = filterData[defOption].min;
+                var max = filterData[defOption].max;
+                var left = now/(max - min) * adjBtn.parentNode.offsetWidth;
+                adjBtn.style.left = left+'px';
+
+            }
+        }
+    }
+
+
+    adjBtn.ontouchstart = function(ev){//拖拽调整
+        drag({obj:adjBtn,ev:ev});
+    }
+    function drag(option){
+        var obj = option.obj,ev = option.ev;
+        obj.style.position = 'absolute';
+        var downX = ev.changedTouches[0].clientX;
+        var objleft = downX - obj.offsetLeft;
+
+        var max = obj.parentNode.offsetWidth - obj.offsetWidth,
+            min = 0;
+
+        obj.ontouchmove = document.ontouchmove = function( ev ){
+            var ev = ev || event;
+            var left = ev.changedTouches[0].clientX - objleft;
+            if(left<max && left >0){
+                obj.style.left = left + 'px';
+                filterData[defOption].now = (left/max)*filterData[defOption].max - filterData[defOption].revise;
+                setFilter(imgfile);
+            }
+        };
+
+        obj.ontouchend = document.ontouchend = function(){
+            obj.ontouchmove = document.ontouchmove = null;
+        }
+    }
+
+    setFilter(imgfile);
+    function setFilter(obj){
+        var str = '';
+        for(a in filterData){
+            str += a +'(' + (filterData[a]['now']-filterData[a]['revise'])+filterData[a]['unit']+') ';
+        }
+        obj.style.filter = str;
+    }
+
+
+    function filterAdj(option){
+        /*
+            {
+                obj:obj
+                filter:filterName
+                num:filterNum
+            }
+        */
+
+        var objFilter = null;
+        if(window.getComputedStyle(option.obj).filter != 'none'){
+            //先判断元素身上是否已经存在滤镜
+
+            objFilter = window.getComputedStyle(option.obj).filter.split(' ');
+            //如果有，则把所有的滤镜获取到，获取到的是一个字符串：sepia(0.3) blur(5px) grayscale(0.2)，要操作其中的一个，则需要先把这个字符串转换成数组 直接用空格拆分就可以了
+
+            var result = {};
+            objFilter.forEach(function(item){
+                var a = item.split('(');
+                a[1] = parseFloat(a[1].substring(0,a[1].length-1));
+                result[a[0]] = a[1];
+            });
+            //拆分开的数组仍然不是一个可以操作的对象 遍历数组，把数组中的每一项再拆分 sepia(0.3) 拆分成一个对象中的一对键值  这样的话操作对象中的属性就可以改变其中某一个的数值了
+
+            if(option.filter){
+                var str = '';
+                result[option.filter] = option.num;
+                for(a in result){  //这里遍历对象，再把修改后的对象拼成样式字符串：sepia(0.3) blur(10px) grayscale(0.2)
+
+                    switch (a){
+                        case 'blur':
+                            str += a+'('+ result[a] +'px) '
+                            break;
+                        case 'hue-rotate':
+                            str += a+'('+ result[a] +'deg) '
+                            break;
+                        default:
+                            str += a+'('+ result[a] +') '
+                    }
+                }
+                option.obj.style.filter = str; //然后重新设置元素的filter属性
+            }
+            return result;  //把获取到的结果返回出去，以便后期利用
+        }else{  //如果元素身上没有filter属性，则直接设置就好了  在这里只是做了简单的判断
+            switch (option.filter){
+                case 'blur':
+                    option.obj.style.filter = option.filter+'('+ option.num +'px) ';
+                    break;
+                case 'hue-rotate':
+                    option.obj.style.filter = option.filter+'('+ option.num +'deg) ';
+                    break;
+                default:
+                    option.obj.style.filter = option.filter+'('+ option.num +') ';
+            }
+        }
+    }
+
+
+
+</script>
+
+</body>
+</html>

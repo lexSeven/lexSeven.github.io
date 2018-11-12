@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'photo';
+    src: url('../fonts/photo.eot');
+    src: url('../fonts/photo.eot') format('embedded-opentype'),
+         url('../fonts/photo.woff2') format('woff2'),
+         url('../fonts/photo.woff') format('woff'),
+         url('../fonts/photo.ttf') format('truetype'),
+         url('../fonts/photo.svg#photo') format('svg');
+}
+
+.icon{
+    font-family:'photo';
+    display: inline-block;
+    vertical-align: top;
+    width:100%;
+    font-style: normal;
+    font-size:2em;
+    text-align: center;
+}
+
+.brightness:before{/*亮度*/
+    content: 'B';
+}
+.sharpening:before{/*锐化*/
+    content: 'C';
+}
+.saturation:before{/*对比度*/
+    content: 'D';
+}
+.temperature:before{/*色温*/
+    content: 'E';
+}
+.close:before{/*色温*/
+    content: 'F';
+}
+.yes:before { /*色温*/
+    content: 'G';
+}
+.adjustment:before{
+    content: 'H';
+}
+.filter:before{
+    content: 'I';
+}
