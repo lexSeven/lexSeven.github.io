@@ -4,7 +4,6 @@ html{
 }
 body{
   margin:0;
-  perspective: 500/@rem;
   height:100vh;
 }
 
@@ -18,12 +17,21 @@ body{
   transform-style: preserve-3d;
   transition: 0.5s;
 
+  .imgBox{
+    width: 100vw;
+    height:100vh;
+    transition: 0.5s;
+    text-align: center;
+    display: flex;
+    align-items: center;
+  }
+
   img{
     transition: 0.5s;
   }
 
-  &.active img{
-    transform: scale(1.2);
+  &.active .imgBox{
+    transform: scale(1.2) translate3d(0,0,.1px);
   }
 }
 
@@ -31,7 +39,7 @@ body{
 .menu{
   width:100vw;
   height: 100/@rem;
-  background: rgba(243,238,216,1);
+  background: rgba(216, 243, 239, 1);
   position: absolute;
   bottom:0;
   display: flex;
@@ -42,7 +50,7 @@ body{
 
   &.active{
     height: 340/@rem;
-    background: rgba(243,238,216,0.9);
+    background: rgba(216, 243, 239, 0.79);
   }
   &.active .regulator{
     height:250/@rem;
@@ -57,7 +65,12 @@ body{
     box-sizing: border-box;
     padding: 0 20/@rem;
 
+    input{
+      display: none;
+    }
+
     span{
+      display: inline-block;
       width:80/@rem;
       color: #39363d;
       line-height:80/@rem;
@@ -118,7 +131,6 @@ body{
         &.active{
           color: #e15671;
         }
-
       }
     }
 

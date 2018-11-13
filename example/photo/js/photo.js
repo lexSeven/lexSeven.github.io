@@ -75,24 +75,22 @@ var filterData = {
         'range':100
     }//模糊 0+px
 };
+document.addEventListener("touchstart",function(e){e.preventDefault()},{passive:true});
+window.onload =resizeImg;
 
-window.onload = function(){//重置图片尺寸
+function resizeImg(){//重置图片尺寸
     var width = imgfile.getBoundingClientRect().width,
         height = imgfile.getBoundingClientRect().height;
     if(width>height){
-        imgfile.style.width = '100%';
-    }else{
         imgfile.style.height = '100%';
+    }else{
+        imgfile.style.width = '100%';
     }
 };
 
 var isOpen = false;
 var defOption = 'brightness';
 var defOptionNum = -1;
-
-document.ontouchstart = function(ev){
-    ev.preventDefault();
-}
 
 adjustment.ontouchstart = function(){//显示调整按钮
     if(isOpen){
@@ -162,6 +160,31 @@ function setFilter(obj){
         str += a +'(' +filterData[a]['now']+filterData[a]['unit']+') ';
     }
     obj.style.filter = str;
+}
+
+uploadImg.onchange = function(){
+    var fileT = fileType( this.files[0].name );
+    if(fileT == '.jpeg' || fileT == '.jpg' || fileT == '.png' || fileT == '.gif'){
+
+        var file = this.files[0];
+        var reader = new FileReader();
+        var img = document.createElement("img");
+        reader.onload = function(){
+            img.src = this.result;
+            photo.querySelector('.imgBox').innerHTML = '';
+            photo.querySelector('.imgBox').appendChild(img);
+            imgfile = document.querySelector('.photo img');
+            resizeImg();
+        };
+        reader.readAsDataURL(file);
+    }else{
+        console.log('请选择图片文件');
+    }
+}
+
+function fileType(name){
+    var newname=/\.[^\.]+$/.exec(name);
+    return newname[0].toLocaleLowerCase();
 }
 
 

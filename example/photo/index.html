@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script>
-        var num = 1/window.devicePixelRatio;
-        document.write('<meta name="viewport" content="width=device-width, initial-scale='+ num +',maxmum-scale='+ num +',minmum-scale='+ num +',user-scalable=no">');
-    </script>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/photo.css">
 </head>
 <body>
 
 <div class="photo">
-    <img src="img/58.jpg">
+    <div class="imgBox"><img src="img/58.jpg"></div>
 </div>
 <div class="menu">
     <div class="regulator">
@@ -46,11 +43,15 @@
     </div>
     <div class="nav">
         <span><i class="icon adjustment" id="adjustment"></i></span>
-        <span><i class="icon filter" id="filter"></i></span>
+        <label>
+            <input type="file" id="uploadImg">
+            <span><i class="icon filter" id="filter"></i></span>
+        </label>
     </div>
 </div>
 
 <script src="js/photo.js"></script>
+
 
 </body>
 </html>

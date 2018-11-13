@@ -3,7 +3,6 @@ html {
 }
 body {
   margin: 0;
-  perspective: 16.66666667rem;
   height: 100vh;
 }
 .photo {
@@ -16,16 +15,24 @@ body {
   transform-style: preserve-3d;
   transition: 0.5s;
 }
+.photo .imgBox {
+  width: 100vw;
+  height: 100vh;
+  transition: 0.5s;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
 .photo img {
   transition: 0.5s;
 }
-.photo.active img {
-  transform: scale(1.2);
+.photo.active .imgBox {
+  transform: scale(1.2) translate3d(0, 0, 0.1px);
 }
 .menu {
   width: 100vw;
   height: 3.33333333rem;
-  background: #f3eed8;
+  background: #d8f3ef;
   position: absolute;
   bottom: 0;
   display: flex;
@@ -35,7 +42,7 @@ body {
 }
 .menu.active {
   height: 11.33333333rem;
-  background: rgba(243, 238, 216, 0.9);
+  background: rgba(216, 243, 239, 0.79);
 }
 .menu.active .regulator {
   height: 8.33333333rem;
@@ -49,7 +56,11 @@ body {
   box-sizing: border-box;
   padding: 0 0.66666667rem;
 }
+.menu .nav input {
+  display: none;
+}
 .menu .nav span {
+  display: inline-block;
   width: 2.66666667rem;
   color: #39363d;
   line-height: 2.66666667rem;
