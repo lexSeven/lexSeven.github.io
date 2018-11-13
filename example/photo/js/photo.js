@@ -96,18 +96,18 @@ adjustment.ontouchstart = function(){//显示调整按钮
     if(isOpen){
         menu.classList.remove('active');
         photo.classList.remove('active');
-        this.classList.remove('close');
-        this.classList.add('adjustment');
-        filter.classList.remove('yes');
-        filter.classList.add('filter');
+        // this.classList.remove('close');
+        // this.classList.add('adjustment');
+        // filter.classList.remove('yes');
+        // filter.classList.add('filter');
         isOpen = false;
     }else{
         menu.classList.add('active');
         photo.classList.add('active');
-        this.classList.add('close');
-        this.classList.remove('adjustment');
-        filter.classList.add('yes');
-        filter.classList.remove('filter');
+        // this.classList.add('close');
+        // this.classList.remove('adjustment');
+        // filter.classList.add('yes');
+        // filter.classList.remove('filter');
         isOpen = true;
     }
 };
