@@ -86,9 +86,8 @@ body {
   border: 1px solid #0b2e13;
   background: #fff;
   position: absolute;
-  left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(-0.66666667rem);
 }
 .menu .regulator .regMenu {
   height: 2.66666667rem;
@@ -103,7 +102,6 @@ body {
   text-align: center;
   line-height: 1.66666667rem;
   font-size: 0.8em;
-  transition: 0.2s;
 }
 .menu .regulator .regMenu span.active {
   color: #e15671;
