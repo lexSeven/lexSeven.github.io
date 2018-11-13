@@ -112,6 +112,14 @@ adjustment.ontouchstart = function(){//显示调整按钮
     }
 };
 
+imgfile.ontouchstart = function(){
+    if(isOpen){
+        menu.classList.remove('active');
+        photo.classList.remove('active');
+        isOpen = false;
+    }
+}
+
 changeAdj();//选择调整项
 function changeAdj(){
     var Proportion = 0;
