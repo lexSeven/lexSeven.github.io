@@ -10,7 +10,10 @@
 <body>
 
 <div class="photo">
-    <div class="imgBox"><img src="img/58.jpg"></div>
+    <div class="imgBox">
+        <img src="img/58.jpg">
+        <div class="filterColor"></div>
+    </div>
 </div>
 <div class="menu">
     <div class="regulator">
@@ -28,24 +31,34 @@
                 对比度
             </span>
             <span data-option="grayscale">
-                <i class="icon temperature"></i>
+                <i class="icon sharpening"></i>
                 灰度
             </span>
             <span data-option="hue-rotate">
-                <i class="icon brightness"></i>
+                <i class="icon temperature"></i>
                 色相
             </span>
             <span data-option="saturate">
-                <i class="icon saturation"></i>
+                <i class="icon image"></i>
                 饱和度
             </span>
         </div>
     </div>
+    <div class="filterMenu">
+        <span class="filterBlock transparent" data-color="transparent"></span>
+        <span class="filterBlock red" data-color="red"></span>
+        <span class="filterBlock yellow" data-color="yellow"></span>
+        <span class="filterBlock green" data-color="green"></span>
+        <span class="filterBlock blue" data-color="blue"></span>
+        <span class="filterBlock skyBlue" data-color="skyBlue"></span>
+        <span class="filterBlock violet" data-color="violet"></span>
+    </div>
     <div class="nav">
         <span><i class="icon adjustment" id="adjustment"></i></span>
+        <span><i class="icon filter" id="filter"></i></span>
         <label>
             <input type="file" id="uploadImg">
-            <span><i class="icon filter" id="filter"></i></span>
+            <span><i class="icon more" id="file"></i></span>
         </label>
     </div>
 </div>

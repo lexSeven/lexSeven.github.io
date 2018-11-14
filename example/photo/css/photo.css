@@ -42,3 +42,12 @@
 .filter:before{
     content: 'I';
 }
+.link:before{
+    content: 'J';
+}
+.more:before{
+    content: 'K';
+}
+.image:before{
+    content: 'L';
+}

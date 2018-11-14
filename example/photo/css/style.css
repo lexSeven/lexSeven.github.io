@@ -7,7 +7,7 @@ body {
 }
 .photo {
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -17,11 +17,35 @@ body {
 }
 .photo .imgBox {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   transition: 0.5s;
   text-align: center;
   display: flex;
   align-items: center;
+}
+.photo .imgBox .filterColor {
+  position: absolute;
+}
+.photo .imgBox .filterColor.transparent {
+  background: none;
+}
+.photo .imgBox .filterColor.red {
+  background: rgba(255, 54, 54, 0.3);
+}
+.photo .imgBox .filterColor.yellow {
+  background: rgba(255, 255, 54, 0.3);
+}
+.photo .imgBox .filterColor.green {
+  background: rgba(54, 255, 54, 0.3);
+}
+.photo .imgBox .filterColor.blue {
+  background: rgba(54, 54, 255, 0.3);
+}
+.photo .imgBox .filterColor.skyBlue {
+  background: rgba(54, 255, 255, 0.3);
+}
+.photo .imgBox .filterColor.violet {
+  background: rgba(255, 54, 255, 0.3);
 }
 .photo img {
   transition: 0.5s;
@@ -43,9 +67,6 @@ body {
 .menu.active {
   height: 11.33333333rem;
   background: rgba(216, 243, 239, 0.79);
-}
-.menu.active .regulator {
-  height: 8.33333333rem;
 }
 .menu .nav {
   width: 100%;
@@ -78,6 +99,9 @@ body {
   align-content: space-around;
   overflow: hidden;
 }
+.menu .regulator.active {
+  height: 8.33333333rem;
+}
 .menu .regulator .line {
   width: 80%;
   height: 2.66666667rem;
@@ -99,6 +123,9 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%) translateX(-0.66666667rem);
+  font-size: 0.6rem;
+  text-align: center;
+  line-height: 1.33333333rem;
 }
 .menu .regulator .regMenu {
   height: 2.66666667rem;
@@ -116,4 +143,54 @@ body {
 }
 .menu .regulator .regMenu span.active {
   color: #e15671;
+}
+.menu .filterMenu {
+  width: 100%;
+  height: 0rem;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: space-around;
+  overflow: hidden;
+}
+.menu .filterMenu.active {
+  height: 5rem;
+}
+.menu .filterMenu .filterBlock {
+  width: 2.66666667rem;
+  height: 4rem;
+  background: url("../img/girl.jpg") no-repeat;
+  background-size: cover;
+  border-radius: 0.33333333rem;
+  position: relative;
+  margin: 0 0.33333333rem;
+}
+.menu .filterMenu .filterBlock:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.menu .filterMenu .transparent:after {
+  background: none;
+}
+.menu .filterMenu .red:after {
+  background: rgba(255, 54, 54, 0.3);
+}
+.menu .filterMenu .yellow:after {
+  background: rgba(255, 255, 54, 0.3);
+}
+.menu .filterMenu .green:after {
+  background: rgba(54, 255, 54, 0.3);
+}
+.menu .filterMenu .blue:after {
+  background: rgba(54, 54, 255, 0.3);
+}
+.menu .filterMenu .skyBlue:after {
+  background: rgba(54, 255, 255, 0.3);
+}
+.menu .filterMenu .violet:after {
+  background: rgba(255, 54, 255, 0.3);
 }

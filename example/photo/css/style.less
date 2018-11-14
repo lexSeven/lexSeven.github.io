@@ -9,7 +9,7 @@ body{
 
 .photo{
   width: 100vw;
-  height:100vh;
+  height:90vh;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -19,11 +19,40 @@ body{
 
   .imgBox{
     width: 100vw;
-    height:100vh;
+    height:100%;
     transition: 0.5s;
     text-align: center;
     display: flex;
     align-items: center;
+
+    .filterColor{
+      position:absolute;
+
+      &.transparent{
+        background:none;
+      }
+
+      &.red{
+          background: rgba(255,54,54,0.3);
+      }
+      &.yellow{
+          background: rgba(255,255,54,0.3);
+      }
+      &.green{
+          background: rgba(54,255,54,0.3);
+      }
+      &.blue{
+          background: rgba(54,54,255,0.3);
+      }
+      &.skyBlue{
+          background: rgba(54,255,255,0.3);
+      }
+      &.violet{
+          background: rgba(255,54,255,0.3);
+      }
+
+    }
+
   }
 
   img{
@@ -51,9 +80,6 @@ body{
   &.active{
     height: 340/@rem;
     background: rgba(216, 243, 239, 0.79);
-  }
-  &.active .regulator{
-    height:250/@rem;
   }
 
   .nav{
@@ -90,6 +116,10 @@ body{
     align-content: space-around;
     overflow: hidden;
 
+    &.active{
+      height:250/@rem;
+    }
+
     .line{
       width:80%;
       height:80/@rem;
@@ -111,7 +141,10 @@ body{
         position: absolute;
         top:50%;
         transform: translateY(-50%) translateX(-20/@rem);
-      }
+        font-size:18/@rem;
+        text-align: center;
+        line-height: 40/@rem;
+       }
 
     }
 
@@ -134,6 +167,75 @@ body{
       }
     }
 
+  }
+
+  .filterMenu{
+    width:100%;
+    height:0/@rem;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+    overflow: hidden;
+
+    &.active{
+      height:150/@rem;
+    }
+
+    .filterBlock{
+      width:80/@rem;
+      height:120/@rem;
+      background:url("../img/girl.jpg") no-repeat;
+      background-size: cover;
+      border-radius: 10/@rem;
+      position: relative;
+      margin:0 10/@rem;
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .transparent{
+      &:after{
+        background: none;
+      }
+    }
+
+    .red{
+      &:after{
+        background: rgba(255,54,54,0.3);
+      }
+    }
+    .yellow{
+      &:after{
+        background: rgba(255,255,54,0.3);
+      }
+    }
+    .green{
+      &:after{
+        background: rgba(54,255,54,0.3);
+      }
+    }
+    .blue{
+      &:after{
+        background: rgba(54,54,255,0.3);
+      }
+    }
+    .skyBlue{
+      &:after{
+        background: rgba(54,255,255,0.3);
+      }
+    }
+    .violet{
+      &:after{
+        background: rgba(255,54,255,0.3);
+      }
+    }
   }
 
 }
