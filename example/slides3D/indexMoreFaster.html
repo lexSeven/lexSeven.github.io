@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin:0;
+        }
+        .box{
+            width:80vw;
+            height:60vh;
+            /*border:1px solid #0c5460;*/
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            margin:auto;
+            z-index:2;
+            perspective: 500px;
+        }
+        .imgBox{
+            width:100%;
+            height:100%;
+            position: absolute;
+            top:0;
+            left:0;
+            border-radius: 3px;
+            /*overflow: hidden;*/
+            transform-style: preserve-3d;
+        }
+        .imgBox img{
+            width:100%;
+            height:100%;
+            position: absolute;
+            /*transform: rotateY(45deg);*/
+        }
+        .imgBox .smBox{
+            width:100%;
+            height:100%;
+            position: absolute;
+            display: flex;
+            transform-style: preserve-3d;
+        }
+        .imgBox .smBox span{
+            flex: 1;
+            transition: 1s;
+            box-shadow: 3px 0 0 -1px rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .imgBox .smBox span em{
+            width:100%;
+            height:100%;
+            display: block;
+            transition: 1s;
+        }
+        .imgBox .smBox span em.active{
+            animation: scaleInOut 1s linear;
+        }
+
+        .imgBox .smBox span:last-child{
+            box-shadow: none;
+        }
+        .imgBox .smBox span.active{
+            animation: move 1s linear;
+        }
+        .btn{
+            width:80px;
+            height: 100px;
+            background:rgba(46,116,157,0.8);
+            position: absolute;
+            top:50%;
+            margin-top:-50px;
+        }
+        .next{
+            right:0;
+        }
+        .prev{
+            left:0;
+        }
+        @keyframes scaleInOut {
+            0%{
+                transform: scale(1);
+            }
+            30%{
+                transform: scale(1.1);
+            }
+            60%{
+                transform: scale(1);
+            }
+        }
+        @keyframes move {
+            0%{
+                transform-origin: left center;
+                transform: translate3D(0,0,0) rotateY(0deg);
+                filter:blur(0px) brightness(1);
+            }
+            15%{
+                transform-origin: center center;
+                transform: translate3D(0,0,12px) rotateY(6deg);
+            }
+            25%{
+                transform-origin: right center;
+                transform: translate3D(0,0,24px) rotateY(0deg);
+                filter:blur(2px) brightness(2);
+            }
+            35%{
+                transform: translate3D(0,0,12px) rotateY(-6deg);
+            }
+            50%{
+                transform-origin: center center;
+                transform: translate3D(0,0,-2px) rotateY(0deg);
+                filter:blur(0px) brightness(1);
+            }
+
+
+            60%{
+                transform-origin: left center;
+                transform: translate3D(0,0,0) rotateY(2deg);
+            }
+
+            86%{
+                transform-origin: center center;
+                transform: translate3D(0,0,3px) rotateY(0deg);
+                filter:blur(1px)  brightness(1.3);
+            }
+            98%{
+                transform-origin: right center;
+                transform: translate3D(0,0,0) rotateY(-1deg);
+            }
+
+
+            100%{
+                transform: translate3D(0,0,0) rotateY(0deg);
+                filter:blur(0x) brightness(1);
+            }
+        }
+
+        .hidden{
+            width:0;
+            height:0;
+            position: absolute;
+            top:0;
+            opacity: 0;
+            z-index:1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="imgBox">
+        <img src="img/01.jpg">
+        <div class="smBox"></div>
+    </div>
+    <div class="btn next"></div>
+    <div class="btn prev"></div>
+</div>
+<img class="hidden" src="img/01.jpg">
+<img class="hidden" src="img/02.jpg">
+<img class="hidden" src="img/03.jpg">
+<img class="hidden" src="img/04.jpg">
+<img class="hidden" src="img/05.jpg">
+
+<script>
+    var box = document.querySelector('.box');
+    var imgFile = document.querySelector('.imgBox img');
+    var smBox = document.querySelector('.imgBox .smBox');
+
+    var next = document.querySelector('.next');
+    var prev = document.querySelector('.prev');
+
+    var imgArr = ['img/01.jpg','img/02.jpg','img/03.jpg','img/04.jpg','img/05.jpg'];
+    var now = 0;
+    var maxWidth,boxtop,boxleft,blockNum,domLists,i,off,backList;
+
+
+    window.onresize = function(){
+        init();
+    }
+
+    init();
+    function init(){
+        maxWidth = box.offsetWidth;
+        boxtop = box.offsetTop + 'px';
+        boxleft = box.offsetLeft +'px';
+        blockNum =getNum(20,30)[0];
+        imgFile.src = imgArr[now];
+        domList = [];
+        backList = [];
+        i = 0;
+        off = true;
+    }
+
+    next.onclick = function(){
+        if(!off){return;}
+        off = false;
+        for(var i=0;i<blockNum;i++){
+            var span = document.createElement('span');
+            var em = document.createElement('em');
+            em.style.background = 'url('+ imgArr[now] +') no-repeat '+ boxleft +' '+ boxtop +' fixed';
+            em.style.backgroundSize = '80vw 60vh';
+            span.appendChild(em);
+            smBox.appendChild(span);
+            domList.push(span);
+            backList.push(em);
+        }
+        imgFile.style.opacity = 0;
+        addMove();
+    };
+
+    function addMove(){
+        if(i<blockNum){
+            domList[i].className = 'active';
+            backList[i].className = 'active';
+            setTimeout(function(){
+                addMove();
+                var after = now==imgArr.length-1?0:now+1;
+                backList[i].style.background = 'url('+ imgArr[after] +') no-repeat '+ boxleft +' '+ boxtop +' fixed';
+                backList[i].style.backgroundSize = '80vw 60vh';
+                i++;
+            },40);
+        }else{
+            setTimeout(function(){
+                now++;
+                if(now == imgArr.length){
+                    now = 0;
+                }
+                i=0;
+                init();
+                imgFile.style.opacity = 1;
+                smBox.innerHTML = '';
+            },1000);
+        }
+    }
+
+
+
+    function getNum(min,max,num){
+        var n = num || max-(min-1);
+        var newNum = Math.round(Math.random()*max);
+        var arr = [];
+        var json = {};
+        while(arr.length < n ){
+            newNum = Math.round(Math.random()*max);
+            if(newNum >= min  && !json[newNum]){
+                arr.push(newNum);
+                json[newNum] = 1;
+            }
+        }
+        return arr;
+    }
+</script>
+
+</body>
+</html>
