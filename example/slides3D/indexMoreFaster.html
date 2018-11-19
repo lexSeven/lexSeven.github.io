@@ -46,7 +46,7 @@
         .imgBox .smBox span{
             flex: 1;
             transition: 1s;
-            box-shadow: 3px 0 0 -1px rgba(0,0,0,0.7);
+            box-shadow: 2px 0 0 -1px rgba(0,0,0,0.7);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -66,8 +66,11 @@
         .imgBox .smBox span:last-child{
             box-shadow: none;
         }
-        .imgBox .smBox span.active{
-            animation: move 1s linear;
+        .imgBox .smBox span.leftActive{
+            animation: left 1s linear;
+        }
+        .imgBox .smBox span.rightActive{
+            animation: right 1s linear;
         }
         .btn{
             width:80px;
@@ -94,7 +97,7 @@
                 transform: scale(1);
             }
         }
-        @keyframes move {
+        @keyframes left {
             0%{
                 transform-origin: left center;
                 transform: translate3D(0,0,0) rotateY(0deg);
@@ -132,6 +135,53 @@
             98%{
                 transform-origin: right center;
                 transform: translate3D(0,0,0) rotateY(-1deg);
+            }
+
+
+            100%{
+                transform: translate3D(0,0,0) rotateY(0deg);
+                filter:blur(0x) brightness(1);
+            }
+        }
+
+        @keyframes right {
+            0%{
+                transform-origin: left center;
+                transform: translate3D(0,0,0) rotateY(0deg);
+                filter:blur(0px) brightness(1);
+            }
+            15%{
+                transform-origin: center center;
+                transform: translate3D(0,0,12px) rotateY(-6deg);
+            }
+            25%{
+                transform-origin: right center;
+                transform: translate3D(0,0,24px) rotateY(0deg);
+                filter:blur(2px) brightness(2);
+            }
+            35%{
+                transform: translate3D(0,0,12px) rotateY(6deg);
+            }
+            50%{
+                transform-origin: center center;
+                transform: translate3D(0,0,-2px) rotateY(0deg);
+                filter:blur(0px) brightness(1);
+            }
+
+
+            60%{
+                transform-origin: left center;
+                transform: translate3D(0,0,0) rotateY(-2deg);
+            }
+
+            86%{
+                transform-origin: center center;
+                transform: translate3D(0,0,3px) rotateY(0deg);
+                filter:blur(1px)  brightness(1.3);
+            }
+            98%{
+                transform-origin: right center;
+                transform: translate3D(0,0,0) rotateY(1deg);
             }
 
 
@@ -197,6 +247,23 @@
         off = true;
     }
 
+    prev.onclick = function(){
+        if(!off){return;}
+        off = false;
+        for(var i=0;i<blockNum;i++){
+            var span = document.createElement('span');
+            var em = document.createElement('em');
+            em.style.background = 'url('+ imgArr[now] +') no-repeat '+ boxleft +' '+ boxtop +' fixed';
+            em.style.backgroundSize = '80vw 60vh';
+            span.appendChild(em);
+            smBox.appendChild(span);
+            domList.push(span);
+            backList.push(em);
+        }
+        imgFile.style.opacity = 0;
+        addMoveLeftToRight();
+    }
+
     next.onclick = function(){
         if(!off){return;}
         off = false;
@@ -211,15 +278,15 @@
             backList.push(em);
         }
         imgFile.style.opacity = 0;
-        addMove();
+        addMoveRightToLeft();
     };
 
-    function addMove(){
+    function addMoveLeftToRight(){
         if(i<blockNum){
-            domList[i].className = 'active';
+            domList[i].className = 'leftActive';
             backList[i].className = 'active';
             setTimeout(function(){
-                addMove();
+                addMoveLeftToRight();
                 var after = now==imgArr.length-1?0:now+1;
                 backList[i].style.background = 'url('+ imgArr[after] +') no-repeat '+ boxleft +' '+ boxtop +' fixed';
                 backList[i].style.backgroundSize = '80vw 60vh';
@@ -230,6 +297,31 @@
                 now++;
                 if(now == imgArr.length){
                     now = 0;
+                }
+                i=0;
+                init();
+                imgFile.style.opacity = 1;
+                smBox.innerHTML = '';
+            },1000);
+        }
+    }
+
+    function addMoveRightToLeft(){
+        i++;
+        if(i<=blockNum){
+            domList[blockNum - i].className = 'rightActive';
+            backList[blockNum - i].className = 'active';
+            setTimeout(function(){
+                var after = now==0?imgArr.length-1:now-1;
+                backList[blockNum - i].style.background = 'url('+ imgArr[after] +') no-repeat '+ boxleft +' '+ boxtop +' fixed';
+                backList[blockNum - i].style.backgroundSize = '80vw 60vh';
+                addMoveRightToLeft();
+            },40);
+        }else{
+            setTimeout(function(){
+                now--;
+                if(now<0){
+                    now = imgArr.length-1;
                 }
                 i=0;
                 init();
