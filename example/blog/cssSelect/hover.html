@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width:200px;
+            height:40px;
+            background: #f1b0b7;
+            border-radius: 3px;
+            color: #fff;
+            text-align: center;
+            line-height:40px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            margin:10px;
+        }
+        .box .text{
+            position: relative;
+            z-index:2;
+            transition: 0.5s;
+        }
+        .box .round{
+            width:0;
+            height: 0;
+            border-radius: 50%;
+            transition: 1s;
+            position: absolute;
+            right:0;
+            bottom:0;
+        }
+        .box:hover .text{
+            color: #e15671;
+        }
+        .box:hover .round{
+            background: #bde8eb;
+            width:600px;
+            height:400px;
+            right:-300px;
+            bottom:-200px;
+        }
+
+        .box2{
+            width:200px;
+            height:40px;
+            background: #f1b0b7;
+            border-radius: 3px;
+            color: #fff;
+            text-align: center;
+            line-height:40px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            margin:10px;
+        }
+        .box2 .text{
+            position: relative;
+            z-index:2;
+            transition: 0.2s;
+        }
+        .box2 .round{
+            width:0;
+            height: 0;
+            border-radius: 50%;
+            transition: 0.5s;
+            position: absolute;
+            right:0;
+            bottom:0;
+        }
+        .box2:active .text{
+            color: #e15671;
+        }
+        .box2:active .round{
+            background: #bde8eb;
+            width:600px;
+            height:400px;
+            right:-300px;
+            bottom:-200px;
+        }
+
+        .select{
+            width:140px;
+            height:30px;
+            border:1px solid #1b6d85;
+            position: relative;
+            margin:10px 10px 200px;
+        }
+        .select:hover .list{
+            display: block;
+        }
+        .showBox{
+            height:100%;
+            line-height: 30px;
+        }
+        .showBox span{
+            float: left;
+            width:100%;
+            height: 100%;
+            background: #f1b0b7;
+            text-align: center;
+        }
+        .showBox em{
+            float: left;
+            width:24%;
+            height:100%;
+            background: #8dd5f4;
+            text-align: center;
+            color: #f00;
+        }
+        .showBox i{
+            font-size:20px;
+            color: transparent;
+            background: linear-gradient(red,yellow);
+            -webkit-background-clip:text;
+        }
+        .list{
+            margin:0;
+            padding: 0;
+            list-style: none;
+            position: absolute;
+            width:100%;
+            border:1px solid #1b6d85;
+            left: -1px;
+            display: none;
+        }
+        .list li{
+            font:14px/30px '微软雅黑';
+            text-indent: 14px;
+            border-bottom:1px solid #999;
+            cursor: pointer;
+        }
+        .list li .icon{
+            line-height:20px;
+        }
+        .list li svg{
+            width: 14px;
+        }
+        .list li:hover{
+            background: #ddd;
+        }
+        .list li:last-child{
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+基础hover应用
+<div class="box">
+    <span class="text">hover me</span>
+    <span class="round"></span>
+</div>
+
+复杂hover应用
+<div class="select">
+    <div class="showBox">
+        <span id="show">下拉菜单</span>
+    </div>
+    <ul class="list">
+        <li>
+            <i class="icon"><svg aria-hidden="true" data-prefix="fal" data-icon="cog" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-cog fa-w-16 fa-2x"><path fill="currentColor" d="M482.696 299.276l-32.61-18.827a195.168 195.168 0 0 0 0-48.899l32.61-18.827c9.576-5.528 14.195-16.902 11.046-27.501-11.214-37.749-31.175-71.728-57.535-99.595-7.634-8.07-19.817-9.836-29.437-4.282l-32.562 18.798a194.125 194.125 0 0 0-42.339-24.48V38.049c0-11.13-7.652-20.804-18.484-23.367-37.644-8.909-77.118-8.91-114.77 0-10.831 2.563-18.484 12.236-18.484 23.367v37.614a194.101 194.101 0 0 0-42.339 24.48L105.23 81.345c-9.621-5.554-21.804-3.788-29.437 4.282-26.36 27.867-46.321 61.847-57.535 99.595-3.149 10.599 1.47 21.972 11.046 27.501l32.61 18.827a195.168 195.168 0 0 0 0 48.899l-32.61 18.827c-9.576 5.528-14.195 16.902-11.046 27.501 11.214 37.748 31.175 71.728 57.535 99.595 7.634 8.07 19.817 9.836 29.437 4.283l32.562-18.798a194.08 194.08 0 0 0 42.339 24.479v37.614c0 11.13 7.652 20.804 18.484 23.367 37.645 8.909 77.118 8.91 114.77 0 10.831-2.563 18.484-12.236 18.484-23.367v-37.614a194.138 194.138 0 0 0 42.339-24.479l32.562 18.798c9.62 5.554 21.803 3.788 29.437-4.283 26.36-27.867 46.321-61.847 57.535-99.595 3.149-10.599-1.47-21.972-11.046-27.501zm-65.479 100.461l-46.309-26.74c-26.988 23.071-36.559 28.876-71.039 41.059v53.479a217.145 217.145 0 0 1-87.738 0v-53.479c-33.621-11.879-43.355-17.395-71.039-41.059l-46.309 26.74c-19.71-22.09-34.689-47.989-43.929-75.958l46.329-26.74c-6.535-35.417-6.538-46.644 0-82.079l-46.329-26.74c9.24-27.969 24.22-53.869 43.929-75.969l46.309 26.76c27.377-23.434 37.063-29.065 71.039-41.069V44.464a216.79 216.79 0 0 1 87.738 0v53.479c33.978 12.005 43.665 17.637 71.039 41.069l46.309-26.76c19.709 22.099 34.689 47.999 43.929 75.969l-46.329 26.74c6.536 35.426 6.538 46.644 0 82.079l46.329 26.74c-9.24 27.968-24.219 53.868-43.929 75.957zM256 160c-52.935 0-96 43.065-96 96s43.065 96 96 96 96-43.065 96-96-43.065-96-96-96zm0 160c-35.29 0-64-28.71-64-64s28.71-64 64-64 64 28.71 64 64-28.71 64-64 64z" class=""></path></svg></i> First</li>
+        <li><i class="icon">
+            <svg aria-hidden="true" data-prefix="fal" data-icon="headset" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-headset fa-w-16 fa-2x"><path fill="currentColor" d="M192 224c0-17.67-14.33-32-32-32h-32c-35.35 0-64 28.65-64 64v63.64c0 35.35 28.65 64 64 64h32c17.67 0 32-14.33 32-32V224zm-32 127.64h-32c-17.64 0-32-14.36-32-32V256c0-17.64 14.36-32 32-32h32v127.64zm224 32c35.35 0 64-28.65 64-64V256c0-35.35-28.65-64-64-64h-32c-17.67 0-32 14.33-32 32v127.64c0 17.67 14.33 32 32 32h32zM352 224h32c17.64 0 32 14.36 32 32v63.64c0 17.64-14.36 32-32 32h-32V224zM256 0C113.97 0 3.92 117.82.1 256L0 280c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8l.09-24C35.43 135.19 131.63 32 256 32c123.5 0 224 100.48 224 224v176c0 26.47-21.53 48-48 48h-82.94c1.79-5.03 2.94-10.36 2.94-16 0-26.51-21.49-48-48-48h-64c-26.51 0-48 21.49-48 48s21.49 48 48 48h192c44.12 0 80-35.89 80-80V256C512 114.85 397.16 0 256 0zm48 480h-64c-8.82 0-16-7.18-16-16s7.18-16 16-16h64c8.82 0 16 7.18 16 16s-7.18 16-16 16z" class=""></path></svg>
+        </i> Second</li>
+        <li><i class="icon"><svg aria-hidden="true" data-prefix="fal" data-icon="music" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-music fa-w-16 fa-2x"><path fill="currentColor" d="M512 32.01C512 13.74 497.68 0 481.45 0c-3.04 0-6.15.48-9.25 1.51l-290.78 96C168.71 101.71 160 114 160 128v244.76C142.99 359.99 120.7 352 96 352c-53.02 0-96 35.82-96 80s42.98 80 96 80 96-35.82 96-80V256l288-96v148.76C462.99 295.99 440.7 288 416 288c-53.02 0-96 35.82-96 80s42.98 80 96 80 96-35.82 96-80c0-.03-.01-.05-.01-.08L512 32.01zM96 480c-34.69 0-64-21.98-64-48s29.31-48 64-48 64 21.98 64 48-29.31 48-64 48zm384-353.73l-288 96V128h-.55v-.11L480 32.63v93.64zM416 416c-34.69 0-64-21.98-64-48s29.31-48 64-48 64 21.98 64 48-29.31 48-64 48z" class=""></path></svg></i> Third</li>
+        <li><i class="icon"><svg aria-hidden="true" data-prefix="fal" data-icon="microphone-alt-slash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-microphone-alt-slash fa-w-20 fa-2x"><path fill="currentColor" d="M480 256v-56c0-4.42-3.58-8-8-8h-16c-4.42 0-8 3.58-8 8v56c0 12.33-2.31 24.01-5.58 35.29l27.03 21.29C476.16 294.97 480 275.95 480 256zM256 96c0-35.29 28.71-64 64-64s64 28.71 64 64h-56c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h56v32h-56c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h56v32h-27.04l57.69 45.42C415.27 265 416 260.6 416 256V96c0-53.02-42.98-96-96-96s-96 42.98-96 96v23.3l32 25.2V96zm64 256c12.56 0 24.48-2.57 35.48-6.96l-32.22-25.37c-1.1.06-2.14.33-3.26.33-31.3 0-57.32-22.63-62.82-52.37L224 241.51V256c0 53.02 42.98 96 96 96zm88 128h-72v-65.01c27.2-2.72 52.1-12.72 73.59-27.34l-26.4-20.79c-21.04 12.04-45.61 18.6-71.91 16.85C243.3 379.18 192 319.61 192 251.49v-35.18l-28.5-22.45c-2 1.46-3.5 3.48-3.5 6.14v50.34c0 83.39 61.64 156.12 144 164.43V480h-72c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h176c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8zm229 5.25L23 1.75A7.995 7.995 0 0 0 11.76 3l-10 12.51a7.995 7.995 0 0 0 1.25 11.24l614 483.49a7.995 7.995 0 0 0 11.24-1.25l10-12.51c2.76-3.44 2.2-8.47-1.25-11.23z" class=""></path></svg></i> Fourth</li>
+    </ul>
+</div>
+
+
+基础active应用
+<div class="box2">
+    <span class="text">active me</span>
+    <span class="round"></span>
+</div>
+
+</body>
+</html>
