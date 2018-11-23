@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="icon"></div>
+    <div class="title">Shoes</div>
+</div>
+<div class="menuBox">
+    <div class="menu">
+        <span>Select</span>
+        <span>Brand</span>
+        <span>Consulting</span>
+        <span>New</span>
+        <span>Video</span>
+        <span>Discover</span>
+        <span>Sports</span>
+        <span>Travel</span>
+    </div>
+</div>
+
+<div class="scene">
+    <div class="cardList">
+        <div class="card"><img src="img/01.png"></div>
+        <div class="card"><img src="img/02.png"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+    </div>
+</div>
+
+<div class="priceBox">
+    <div class="left">
+        <span class="name">Nike Air Huarache</span>
+        <span class="price">￥ 529.00</span>
+    </div>
+    <div class="btn">payment</div>
+</div>
+
+<div class="filter">
+    <div class="screen">
+        <div class="icon"></div>
+        <div class="title">Screen</div>
+    </div>
+    <div class="priceBlock">
+        <div class="title">Price</div>
+        <div class="adjLine">
+            <div class="left">200</div>
+            <div class="line">
+                <div class="lineMain"><span></span></div>
+                <div class="dot"><span>300</span></div>
+            </div>
+            <div class="right">1000</div>
+        </div>
+    </div>
+    <div class="priceBlock">
+        <div class="title">Price</div>
+        <div class="adjLine">
+            <div class="left">200</div>
+            <div class="line">
+                <div class="lineMain"><span></span></div>
+                <div class="dot"><span>300</span></div>
+            </div>
+            <div class="right">1000</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var card = document.querySelectorAll('.card');
+    var positionArr = [];
+    var now = 0;
+    var off = true;
+    var openFilter = document.querySelector('.header .icon');
+    var closeFilter = document.querySelector('.filter .icon');
+    var filter = document.querySelector('.filter');
+
+    openFilter.ontouchend = function(){
+        filter.style.display = 'block';
+        setTimeout(function(){
+            filter.classList.toggle('active');
+        },100);
+
+    }
+    closeFilter.ontouchend = function(){
+        setTimeout(function(){
+            filter.style.display = 'none';
+        },300);
+        filter.classList.toggle('active');
+    }
+
+    createPosition();
+    function createPosition(){
+        for(var i = 0;i<card.length;i++){
+            var arr = [];
+            arr.push(i*10);
+            arr.push(i*40 + ((i-1)*10));
+            positionArr.push(arr);
+            card[i].style.transform = 'rotateY('+ i*10 +'deg) translateX('+ (i*40 + ((i-1)*10))/30 +'rem)';
+        }
+    }
+
+    document.ontouchmove = function(){
+        if(!off){return;}
+        off = false;
+        card[now].style = '';
+        card[now].style.transition='1s,opacity 0.1s 0.3s';
+        card[now].style.transformOrigin='-60/@rem bottom';
+        card[now].style.transform = 'rotateY(-20deg) translateX(-500px)';
+        positionArr.unshift(positionArr[positionArr.length-1]);
+        positionArr.pop();
+        setTimeout(function(){
+            Array.from(card).forEach(function(item,index){
+                if(index == now){item.style.opacity = 0; return;}
+                item.style.opacity = 1;
+                item.style.transition='1s,opacity 0.1s 0.8s';
+                item.style.transform = 'rotateY('+ positionArr[index][0] +'deg) translateX('+ positionArr[index][1]/30 +'rem)';
+            });
+            now++;
+            if(now == card.length)now = 0;
+        },100);
+        setTimeout(function(){
+            off = true;
+        },1000);
+    }
+
+    document.addEventListener("touchstart",function(e){e.preventDefault()},{passive:false});
+
+</script>
+
+
+</body>
+</html>

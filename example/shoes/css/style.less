@@ -1,0 +1,254 @@
+@rem:30rem;
+html{
+  font-size:4vw;
+}
+body{
+  margin:0;
+  color: #2d4344;
+}
+
+.header{
+  height:120/@rem;
+  display: flex;
+  .icon{
+    width:120/@rem;
+    height:120/@rem;
+    position: absolute;
+    left:0;
+    background: url("../img/filter.png") no-repeat;
+    background-size: 120/@rem 120/@rem;
+  }
+  .title{
+    flex: 1;
+    font-size:36/@rem;
+    text-align: center;
+    line-height:120/@rem;
+  }
+}
+.menuBox{
+  height:38/@rem;
+  width:100vw;
+  overflow: auto;
+  .menu{
+    float: left;
+    display: flex;
+    span{
+      flex: 1;
+      text-align: center;
+      font-size:18/@rem;
+      line-height:34/@rem;
+      padding:0 20/@rem;
+    }
+  }
+}
+
+.scene{
+  width:100vw;
+  height:900/@rem;
+  perspective: 500px;
+  position: relative;
+  perspective-origin: right center;
+}
+
+.cardList{
+  width:600/@rem;
+  height:800/@rem;
+  position: absolute;
+  top:50/@rem;
+  left:75/@rem;
+  transform: translate3d(0,0,0);
+  transform-style: preserve-3d;
+
+  .card.active{
+    transform: rotateY(-60deg) rotateX(-10deg) translateX(-500/@rem) !important;
+  }
+  .card{
+    width:526/@rem;
+    height:797/@rem;
+    border-radius:10/@rem;
+    background: #ae6dba;
+    position: absolute;
+    top:0;
+    left:0;
+    transform-origin: -60/@rem center;
+    transition: 0.5s,opacity 0.1s 0.9s;
+    transform: rotateY(0deg) translateX(-10/@rem);
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.4);
+    img{
+      width: 100%;
+      height:100%;
+    }
+  }
+  .card:nth-child(2){
+    background: #8d6ebc;
+  }
+  .card:nth-child(3){
+    background: #bcb26e;
+  }
+  .card:nth-child(4){
+    background: #db8064;
+  }
+  .card:nth-child(5){
+    background: #64d7db;
+  }
+
+}
+
+.priceBox{
+  height:136/@rem;
+  .left{
+    width:400/@rem;
+    display: inline-block;
+    height:136/@rem;
+    vertical-align: middle;
+    margin-left:65/@rem;
+
+    .name{
+      height:58/@rem;
+      font-size:30/@rem;
+      color: #2e2e2e;
+      line-height:58/@rem;
+      display: block;
+    }
+    .price{
+      height:78/@rem;
+      font-size:48/@rem;
+      color: #2e2e2e;
+      line-height:78/@rem;
+      display: block;
+    }
+
+  }
+  .btn{
+    width:200/@rem;
+    height:60/@rem;
+    border-radius: 30/@rem;
+    background: #5b8fed;
+    color: #fff;
+    font-size:30/@rem;
+    line-height: 60/@rem;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.filter{
+  width:1vw;
+  height:1vh;
+  background: #fff;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index:2;
+  overflow: hidden;
+  transition: 0.3s,borderRadius 0.2s 0.2s;
+  border-radius:0 0 100% 0;
+
+  &.active{
+    border-radius:0;
+    width:100vw;
+    height:100vh;
+  }
+
+  .screen{
+    width:100vw;
+    height:120/@rem;
+    display: flex;
+    .icon{
+      width:120/@rem;
+      height:120/@rem;
+      position: absolute;
+      left:0;
+      background: url("../img/close.png") no-repeat;
+      background-size: 120/@rem 120/@rem;
+    }
+    .title{
+      flex: 1;
+      font-size:36/@rem;
+      text-align: center;
+      line-height:120/@rem;
+    }
+  }
+
+  .priceBlock{
+    width:100vw;
+    box-sizing: border-box;
+    padding:0 38/@rem;
+    margin-bottom: 60/@rem;
+    .title{
+      height:64/@rem;
+      font-size:30/@rem;
+      font-weight: 100;
+      line-height:64/@rem;
+    }
+    .adjLine{
+      height:60/@rem;
+      display: flex;
+      font-size:24/@rem;
+      .left,.right{
+        width:50/@rem;
+        line-height:60/@rem;
+      }
+      .line{
+        flex: 1;
+        position: relative;
+        margin:0 20/@rem;
+
+        .lineMain{
+          width:100%;
+          height:4/@rem;
+          border-radius: 2/@rem;
+          background: #d1d1d1;
+          position: absolute;
+          top:50%;
+          margin-top:-2/@rem;
+          span{
+            display: block;
+            width:30%;
+            background: #5b8fed;
+            height:4/@rem;
+          }
+        }
+
+        .dot{
+          width:16/@rem;
+          height:16/@rem;
+          border-radius: 50%;
+          background: #5b8fed;
+          position: absolute;
+          top:50%;
+          left: 30%;
+          margin-top:-8/@rem;
+          span{
+            height:40/@rem;
+            border-radius: 10/@rem;
+            color: #fff;
+            line-height:40/@rem;
+            text-align: center;
+            position: absolute;
+            top:-60/@rem;
+            left:50%;
+            transform: translateX(-50%);
+            background: #5b8fed;
+            padding:0 10/@rem;
+            &:after{
+              content: '';
+              position: absolute;
+              width:0;
+              height:0;
+              bottom:-20/@rem;
+              left:50%;
+              transform:translateX(-50%);
+              border-width:10/@rem;
+              border-style:solid;
+              border-color: #5b8fed transparent transparent;
+            }
+          }
+        }
+
+      }
+    }
+  }
+
+}

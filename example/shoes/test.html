@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin:0;
+        }
+        .scene{
+            width:400px;
+            height:700px;
+            perspective: 500px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate3d(-50%,-50%,0);
+            overflow: hidden;
+        }
+        .box{
+            width:300px;
+            height:500px;
+            /*background: rgba(0,0,0,0.1);*/
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate3d(-50%,-50%,0);
+            transform-style: preserve-3d;
+            transition: 2s;
+        }
+        .box:hover{
+            /*transform: translate(-50%,-50%) rotateY(-10deg);*/
+        }
+
+        .card.active{
+            transform: rotateY(-60deg) rotateX(-10deg) translateX(-500px) !important;
+        }
+        .card{
+            width:300px;
+            height:500px;
+            border-radius: 20px;
+            background: #b06ebc;
+            position: absolute;
+            top:0;
+            left:0;
+            transform-origin: -60px center;
+            transition: 1s,opacity 0.1s 1s;
+            transform: rotateY(0deg) translateX(-10px);
+        }
+        .card:nth-child(2){
+            background: #8d6ebc;
+            transform: rotateY(10deg) translateX(60px);
+        }
+        .card:nth-child(3){
+            background: #bcb26e;
+            transform: rotateY(20deg) translateX(130px);
+        }
+        .card:nth-child(4){
+            background: #db8064;
+            transform: rotateY(30deg) translateX(180px);
+        }
+        .card:nth-child(5){
+            background: #64d7db;
+            transform: rotateY(40deg) translateX(260px);
+        }
+    </style>
+</head>
+<body>
+<div class="scene">
+    <div class="box">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+    </div>
+</div>
+
+<script>
+    var card = document.querySelectorAll('.card');
+    var positionArr = [];
+    var now = 0;
+
+    createPosition();
+    function createPosition(){
+        for(var i = 0;i<card.length;i++){
+            var arr = [];
+            arr.push(i*10);
+            arr.push(i*60 + ((i-1)*10));
+            positionArr.push(arr);
+        }
+        console.log(positionArr);
+    }
+
+    document.onclick = function(){
+        card[now].style = '';
+        card[now].style.transform = 'rotateY(-60deg) translateX(-400px)';
+        positionArr.unshift(positionArr[positionArr.length-1]);
+        positionArr.pop();
+        setTimeout(function(){
+            Array.from(card).forEach(function(item,index){
+                if(index == now){item.style.opacity = 0; return;}
+                item.style.opacity = 1;
+                item.style.transform = 'rotateY('+ positionArr[index][0] +'deg) translateX('+ positionArr[index][1] +'px)';
+            });
+            now++;
+            if(now == card.length)now = 0;
+        },200);
+
+    }
+
+</script>
+</body>
+</html>
