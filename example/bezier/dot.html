@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .dot{
+            width: 10px;
+            height:10px;
+            background: #000743;
+            background-clip: content-box;
+            padding:10px;
+            border:1px solid #000743;
+            position: absolute;
+            z-index: 2;
+        }
+        .dot:nth-child(1){
+            left: 146px;
+            top:402px;
+        }
+        .dot:nth-child(2){
+            left: 694px;
+            top: 216px;
+        }
+        .dot:nth-child(3){
+            left: 1116px;
+            top:334px;
+        }
+        .dot:nth-child(4){
+            left: 1116px;
+            top:760px;
+        }
+        .dot:nth-child(5){
+            left: 668px;
+            top:540px;
+        }
+        #c{
+            position: absolute;
+            top:0;
+            left:0;
+            z-index:1;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<canvas id="c"></canvas>
+
+<script src="js/domove.js"></script>
+<script src="js/bezier2.js"></script>
+<script>
+    var dot = document.querySelectorAll('.dot');
+    var position = {};
+    vertex = [];
+    var c = document.getElementById('c');
+    c.width = document.documentElement.clientWidth;
+    c.height = document.documentElement.clientHeight;
+    var C1 = c.getContext('2d');
+
+    Array.from(dot).forEach(function(item,index){
+        item.index = index;
+        var x = item.offsetLeft + item.offsetWidth/2;
+        var y = item.offsetTop + item.offsetHeight/2;
+        position[index] = [x,y];
+
+        item.onmousedown = function(ev){
+            var ev = ev || event;
+            var downMouseX = ev.clientX;
+            var downMouseY = ev.clientY;
+            var defaultLeft = item.getBoundingClientRect().left;
+            var defaultTop = item.getBoundingClientRect().top;
+
+            document.onmousemove = item.onmousemove = function(ev){
+                var ev = ev || event;
+                var changeX = downMouseX - ev.clientX;
+                var changeY = downMouseY - ev.clientY;
+                item.style.left = defaultLeft - changeX +'px';
+                item.style.top = defaultTop - changeY +'px';
+                position[index] = [
+                    (defaultLeft - changeX  + item.offsetWidth/2),
+                    (defaultTop - changeY + item.offsetHeight/2)
+                ];
+                move(position);
+                ev.preventDefault();
+            }
+
+            document.onmouseup = item.onmouseup = function(){
+                item.onmousemove = document.onmousemove = null;
+            }
+        }
+    });
+    move(position);
+
+
+    function move(position){
+        vertex = [];
+        for(var a in position){
+            vertex.push([position[a][0],position[a][1]]);
+        }
+
+        bezier.init({
+            point:vertex,
+            element:c,
+            canvas:C1,
+            isFull:true,
+            k:1.2
+        });
+    }
+</script>
+
+</body>
+</html>

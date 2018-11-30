@@ -1,0 +1,347 @@
+body{
+  color: #6b6578;
+  margin:0;
+  font-family: '微软雅黑';
+}
+
+.banner{
+  height:420px;
+  background: #000743;
+  text-align: center;
+  position: relative;
+  text-align: center;
+
+  &:before{
+    content: '';
+    width:100%;
+    height:100%;
+    position: absolute;
+    background: url("../img/banner_mask.png") repeat-x;
+    z-index:1;
+    left:0;
+  }
+  img{
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+  }
+  .dotBox{
+    display: inline-block;
+    padding:14px 10px;
+    border-radius: 18px;
+    background-color:rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 2;
+    transform: translateY(358px);
+    -webkit-mask:url('../img/dotMark.png') no-repeat;
+
+    .dot{
+      width:30px;
+      height:8px;
+      float: left;
+      margin:0 10px;
+      background-color: rgba(255,255,255,0.3);
+      border-radius: 4px;
+      cursor: pointer;
+      border:none;
+      padding:0;
+      outline:none;
+      font-size:0;
+      //box-shadow: inset 0 0 4px 0 rgba(0,0,0,0.9);
+      position: relative;
+    }
+
+    .dot:nth-child(1):focus ~ .active{
+      left:20px;
+    }
+    .dot:nth-child(2):focus ~ .active{
+      left:70px;
+    }
+    .dot:nth-child(3):focus ~ .active{
+      left:120px;
+    }
+    .dot:nth-child(4):focus ~ .active{
+      left:170px;
+    }
+
+    .active{
+      width:30px;
+      height:8px;
+      background-color: #e15671;
+      border-radius: 4px;
+      position: absolute;
+      left:20px;
+      transition: 0.5s;
+    }
+  }
+}
+
+.first{
+  height:764px;
+  background: url("../img/first_bg.jpg") no-repeat center;
+  background-size: 100% 100%;
+  position: relative;
+  &:before{
+    content: '';
+    display: block;
+    height:100%;
+    width:100%;
+    background: url("../img/dot_bg.png") repeat;
+    position: absolute;
+    top:0;
+  }
+
+  .bead_clear{
+    position: absolute;
+    z-index: 2;
+    background: url("../img/bead_clear.png") no-repeat;
+    background-size: 100% 100%;
+  }
+  .bead_vague{
+    position: absolute;
+    z-index: 2;
+    background: url("../img/bead_vague.png") no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .firstBead{
+    width:86px;
+    height:86px;
+    top:0;
+    left:50%;
+    transform: translateY(-23px) translateX(-696px);
+  }
+  .secondBead{
+    width:86px;
+    height:86px;
+    top:0;
+    left:50%;
+    transform: translateY(190px) translateX(730px);
+  }
+  .thirdBead{
+    width:80px;
+    height:80px;
+    top:0;
+    left:50%;
+    transform: translateY(380px) translateX(-800px);
+  }
+  .fourthBead{
+    width:36px;
+    height:25px;
+    top:0;
+    left:50%;
+    transform: translateY(170px) translateX(-645px);
+  }
+  .fifthBead{
+    width:41px;
+    height:29px;
+    top:0;
+    left:50%;
+    transform: translateY(168px) translateX(16px);
+  }
+  .sixthBead{
+    width:42px;
+    height:30px;
+    top:0;
+    left:50%;
+    transform: translateY(157px) translateX(653px);
+  }
+  .sevenBead{
+    width:50px;
+    height:35px;
+    top:0;
+    left:50%;
+    transform: translateY(444px) translateX(-422px);
+  }
+  .eightBead{
+    width:60px;
+    height:42px;
+    top:0;
+    left:50%;
+    transform: translateY(433px) translateX(396px);
+  }
+
+  .topPipe{
+    height: 50px;
+    background: url("../img/top_pipe.png") no-repeat center center;
+    background-size: 100% 100%;
+    margin-top:-1px;
+    position: relative;
+    .decorate{
+      width:20px;
+      height: 50px;
+      background: url("../img/decorate.png") no-repeat;
+      position: absolute;
+      left:50%;
+      transform: translateX(-50%);
+    }
+  }
+  .label{
+    width:1200px;
+    height: 96px;
+    margin:0 auto;
+    position: relative;
+    z-index:2;
+  }
+  .searchBar{
+    width:1200px;
+    height:98px;
+    margin:0 auto;
+    position: relative;
+    .guide{
+      width:608px;
+      height:65px;
+      display: flex;
+      justify-content: space-between;
+      .guideBox{
+        width:194px;
+        height:7px;
+        border-radius: 3px;
+        background: #928f9c;
+        margin-top:58px;
+        position: relative;
+      }
+      .guideBlock{
+        width:174px;
+        height:50px;
+        background: linear-gradient(#f8f8f9 80%,#d6d6dc);
+        position: absolute;
+        bottom:1px;
+        left:10px;
+        border-radius: 7px 7px 0 0;
+        box-shadow: 0 -4px 0 0 #e2e2e6;
+        line-height:0;
+        text-align: center;
+        cursor: pointer;
+
+        i{
+          width:30px;
+          height:40px;
+          display: inline-block;
+          vertical-align: middle;
+          background: url("../img/guide.png") no-repeat;
+          &.newuser{
+            background-position: -5px 0;
+          }
+          &.vip{
+            background-position: -5px -40px;
+          }
+          &.take{
+            background-position: -5px -80px;
+          }
+        }
+        span{
+          display: inline-block;
+          height: 50px;
+          line-height:50px;
+          font-size:18px;
+          vertical-align: middle;
+          padding-left:5px;
+        }
+
+        &.active{
+          height: 60px;
+          span{
+            height:60px;
+            line-height: 60px;
+          }
+        }
+      }
+    }
+    .searchBox{
+      width:516px;
+      height:70px;
+      background: url("../img/search_bg.png") no-repeat;
+      position: absolute;
+      right:-20px;
+      top:0;
+      input{
+        width:349px;
+        height:36px;
+        border:0;
+        background:none;
+        outline:none;
+        line-height:36px;
+        transform: translate(23px,14px);
+        padding:0 10px;
+        font-size:18px;
+        color: #000;
+        float: left;
+      }
+      .btn{
+        width:55px;
+        height:52px;
+        cursor: pointer;
+        float: left;
+        transform: translate(35px,6px);
+      }
+    }
+  }
+  .recommend{
+    width:1200px;
+    height:198px;
+    background: url("../img/recommend_bg.png") no-repeat;
+    margin:0 auto;
+    position: relative;
+    padding:20px;
+    .title{
+      height: 29px;
+      padding:15px 27px 0;
+      .left{
+        line-height:29px;
+        font-size:20px;
+        color: #6b6578;
+        text-shadow: -1px -1px 1px #ccc, 1px 1px 1px #fff;
+        float: left;
+      }
+      .right{
+        line-height:22px;
+        font-size:16px;
+        color: #6b6578;
+        float: right;
+      }
+    }
+    .cardLine{
+      width:1146px;
+      height:102px;
+      padding:13px 27px;
+      .card{
+        width:184px;
+        height:90px;
+        border-radius: 6px;
+        background: #ff9a2f url("../img/icon.png") no-repeat right;
+        box-shadow: 0 0 15px 0 rgba(0,0,0,0.4);
+        position: relative;
+        padding:12px 13px 0;
+        .cardTitle{
+          padding-bottom:13px;
+          font: 14px/24px '微软雅黑';
+          color: #fff;
+          height:48px;
+        }
+        .bottomLine{
+          height: 24px;
+          line-height:22px;
+          color: #fff;
+          font-size:12px;
+          .leftBtn{
+            border:1px solid rgba(0,0,0,0.2);
+            height:22px;
+            border-radius: 11px;
+            padding:0 12px;
+            float: left;
+            cursor: pointer;
+          }
+          .rightBtn{
+            height:22px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 11px;
+            padding:0 10px;
+            float: right;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

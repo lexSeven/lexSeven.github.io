@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin:0;
+        }
+        .box{
+            width:280px;
+            height: 280px;
+            border:1px solid #e15671;
+            position: absolute;
+            top:159px;
+            left:259px;
+            border-radius: 50%;
+        }
+        .dot{
+            border:1px solid #000000;
+            position: absolute;
+        }
+        .line{
+            background: green;
+            height:1px;
+            transform-origin: left center;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script src="js/bezier2.js"></script>
+<script>
+
+    var vertex = [
+        [134,273],
+        [620,172],
+        [900,371],
+        [640,660],
+        [308,662]
+    ];
+    var c = document.getElementById('c');
+    c.height = '800';
+    c.width = '1000';
+    var C1 = c.getContext('2d');
+    bezier.init({
+        point:vertex,
+        element:c,
+        canvas:C1
+    });
+
+
+
+</script>
+
+</body>
+</html>
