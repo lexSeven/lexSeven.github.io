@@ -186,7 +186,6 @@ var bezier = {
             _this.n = parseInt(_this.n);
             _this.C1.lineTo(_this.lastPosition[_this.n][0],_this.lastPosition[_this.n][1]);
             _this.C1.stroke();
-            if(_this.isFull){_this.C1.fill();}
             _this.n+=_this.speed;
             if(_this.n>=_this.lastPosition.length * (option.num/100)){
                 clearInterval(_this.timer2);
@@ -195,6 +194,7 @@ var bezier = {
                 clearInterval(_this.timer2);
                 _this.C1.lineTo(_this.lastPosition[0][0],_this.lastPosition[0][1]);
                 _this.C1.stroke();
+                if(_this.isFull){_this.C1.fill();}
                 _this.callBack && _this.callBack();
             }
         },_this.time/_this.lastPosition.length);

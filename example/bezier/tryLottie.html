@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <style>
+        body{
+            margin:0;
+        }
         #click_l {
             position: absolute;
             top: 0;
@@ -21,6 +25,10 @@
             height: 100%;
             cursor: pointer;
             background-color: rgba(255, 255, 255, 0);
+        }
+        #lottie{
+            width:100vw;
+            height:100vh;
         }
     </style>
 </head>
@@ -41,7 +49,7 @@
         prerender: false,
         autoplay: true,
         autoloadSegments: false,
-        path: 'js/fight.json'
+        path: 'js/data.json'
     };
 
     var anim;
@@ -85,8 +93,8 @@
 
     function startAnimation() {
         anim.playSegments([
-            [0, 65],
-            [65, 75]
+            [0, 115],
+            [0, 115]
         ], true);
     }
 </script>
