@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+}
+.header {
+  text-align: center;
+  height: 3.48rem;
+  background: url("../img/bg.gif") no-repeat;
+  line-height: 3.48rem;
+  background-size: 100%;
+}
+.header img {
+  width: 8.44rem;
+  height: 2.08rem;
+  vertical-align: middle;
+}
+.select {
+  width: 8rem;
+  height: 1.6rem;
+  font-size: 1.2rem;
+  display: block;
+  margin: 100px auto;
+}
+.wechart {
+  width: 26rem;
+  height: 4rem;
+  background: #85bb03;
+  margin: 0 auto;
+  margin-top: 4rem;
+  text-align: center;
+}
+.wechart i {
+  width: 3.48rem;
+  height: 2.44rem;
+  background: url("../img/icon.png") no-repeat 0 0;
+  background-size: 3.48rem 5.16rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.wechart span {
+  font: 1.92rem / 4rem '微软雅黑';
+  color: #fff;
+  letter-spacing: 0.52rem;
+  vertical-align: middle;
+  display: inline-block;
+}

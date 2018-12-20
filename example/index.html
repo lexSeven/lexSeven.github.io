@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var px = 1/window.devicePixelRatio;
+        document.write('<meta name="viewport" content="width=device-width,initial-scale='+ px +',user-scalable=no,minimum-scale='+ px +',maximum-scale='+ px +'">');
+        //这是还原像素比的
+
+        var html = document.documentElement;
+        var width = html.clientWidth;
+        html.style.fontSize=width/30+'px';
+    </script>
+    <link href="css/case.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="header">
+    <img src="img/logo.png">
+</div>
+
+<div class="wechart">
+    <i></i>
+    <span>微信</span>
+</div>
+
+<select class="select">
+    <option>北京</option>
+    <option>上海</option>
+    <option>广州</option>
+    <option>深圳</option>
+    <option>杭州</option>
+    <option>南京</option>
+    <option>长沙</option>
+    <option>邵阳</option>
+</select>
+
+<script>
+    window.onorientationchange = function(){
+        if(window.orientation==90||window.orientation==-90){
+            alert(1);
+        }
+    };
+</script>
+
+</body>
+</html>
