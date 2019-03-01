@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+    <style>
+        html,body{
+            height:100%;
+        }
+        body{
+            margin:0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective:1000px;
+        }
+        .box{
+            width:100px;
+            height: 100px;
+            background: rgba(12,84,96,0.2);
+            position: relative;
+            transform-style:preserve-3d;
+            transform: translateZ(600px);
+            /*transition: 2s;*/
+        }
+       /*.box:hover{
+            transform: rotateY(300deg)  rotateX(200deg);
+        }*/
+        .item{
+            width:100px;
+            height: 100px;
+            background: rgba(162,44,0,0.8);
+            font:40px/100px '微软雅黑';
+            color: #fff;
+            position: absolute;
+            top:0;
+            left:0;
+            text-align: center;
+            box-sizing: border-box;
+            border:1px solid #000;
+        }
+        .item1{
+            transform-origin: left center;
+            transform: translateZ(-50px) rotateY(270deg);
+        }
+
+        .item2{
+            transform-origin: right center;
+            transform: translateZ(-50px) rotateY(-270deg);
+        }
+        .item3{
+            transform-origin: center top;
+            transform: translateZ(50px) rotateX(-90deg);
+        }
+        .item4{
+            transform-origin: center bottom;
+            transform: translateZ(50px) rotateX(90deg);
+        }
+        .item5{
+            transform: translateZ(-50px) rotateY(180deg);
+        }
+        .item6{
+            transform: translateZ(50px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+    <div class="item item4">4</div>
+    <div class="item item5">5</div>
+    <div class="item item6">6</div>
+</div>
+
+<script>
+
+    document.ontouchstart = function(ev){
+        ev.preventDefault();
+    };
+
+    var dragBox = {
+        init:function(){
+            var _this = this;
+            _this.box = document.querySelector('.box');
+            _this.RotateX = 0;
+            _this.RotateY = 0;
+            _this.transZ = 600;
+            _this.bindEvent();
+        },
+        bindEvent:function(){
+            var _this = this;
+            _this.downX = 0;
+            _this.downY = 0;
+            _this.changeX = 0;
+            _this.changeY = 0;
+            document.ontouchstart = function(ev){
+                let touch = ev.changedTouches[0];
+                _this.downX = touch.clientX;
+                _this.downY = touch.clientY;
+                ev.preventDefault();
+            }
+            document.ontouchmove = function(ev){
+                let touch = ev.changedTouches[0];
+                _this.changeX = (touch.clientX - _this.downX)/2;
+                _this.changeY = (touch.clientY - _this.downY)/2;
+                if(_this.RotateX<-90 || _this.RotateX>90){
+                    _this.setRotate(_this.changeX,-_this.changeY);
+//                    console.log(1);
+                }else{
+                    _this.setRotate(_this.changeX,_this.changeY);
+//                    console.log(2,_this.changeX);
+                }
+            }
+            document.ontouchend = function(){
+                let num = _this.box.style.transform.match(/\d+/g);
+
+//                console.log(num.match(/rotateY\(.*?deg/));
+
+                _this.RotateX = Number(num[1]);
+                _this.RotateY = Number(num[2]);
+            }
+        },
+        elementTouch:function(option){
+            let _this = this;
+            let obj = option.obj;
+            obj.ontouchstart = function(ev){
+                let touch = ev.changedTouches[0];
+                _this.downX = touch.clientX;
+                _this.downY = touch.clientY;
+                ev.preventDefault();
+            }
+        },
+        setRotate:function(x,y){
+            let _this = this;
+            _this.box.style.transform = 'translateZ('+ _this.transZ +'px) rotateY('+ (_this.RotateX+x) +'deg)\
+            rotateX('+ -(_this.RotateY+y) +'deg)';
+        }
+    };
+    dragBox.init();
+</script>
+
+</body>
+</html>
