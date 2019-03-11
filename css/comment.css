@@ -42,7 +42,7 @@ img {
   align-content: flex-start;
   flex-direction: column;
 }
-.deskTop .ietm {
+.deskTop .item {
   width: 104px;
   height: 104px;
   background-image: url("../img/deskIcon.png");
@@ -52,13 +52,13 @@ img {
   cursor: pointer;
   border-radius: 5px;
 }
-.deskTop .ietm:hover {
+.deskTop .item:hover {
   background-color: rgba(17, 96, 141, 0.3);
 }
-.deskTop .ietm.focus {
+.deskTop .item.focus {
   background-color: rgba(17, 96, 141, 0.3);
 }
-.deskTop .ietm .name {
+.deskTop .item .name {
   width: 100%;
   height: 30px;
   line-height: 30px;
@@ -66,7 +66,7 @@ img {
   top: 75px;
   text-align: center;
   color: #fff;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 3px #000000;
 }
 .deskTop .myComputer {
   background-position: 0 0;
@@ -94,6 +94,9 @@ img {
 }
 .deskTop .qq {
   background-position: -104px -104px;
+}
+.deskTop .mine {
+  background-position: -208px -104px;
 }
 @keyframes blurIn {
   0% {
