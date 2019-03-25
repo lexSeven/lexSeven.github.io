@@ -111,14 +111,13 @@
             moveY = touch.clientY - downY;
             tempX = degX + moveX / keyNum;
 
-            var caseY = degY - moveY / keyNum;
-            if(caseY>90){
-                tempY = 90;
-            }else if(caseY<-90){
-                tempY = -90;
-            }else{
-                tempY = caseY;
+            var caseY = (degY - moveY / keyNum)/90;
+            if(caseY>1 && caseY < 3 || caseY>5 && caseY<7 || caseY>9 && caseY<11){
+                tempX = -tempX
+            }else if(caseY<-1 && caseY > -3 || caseY<-5 && caseY>-7 || caseY<-9 && caseY>-11 ){
+                tempX = -tempX
             }
+            tempY = degY - moveY / keyNum;
 
             cube.style.transform = "translateZ(60px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
         };
