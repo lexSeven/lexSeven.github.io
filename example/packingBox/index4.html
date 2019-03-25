@@ -44,6 +44,25 @@
             border: 2px solid #bfcf36;
             user-select: none;
             box-sizing: border-box;
+            font-size:0;
+        }
+        .front{
+            background: url("img/1.png") no-repeat;
+        }
+        .end{
+            background: url("img/2.png") no-repeat;
+        }
+        .left{
+            background: url("img/3.png") no-repeat;
+        }
+        .right{
+            background: url("img/4.png") no-repeat;
+        }
+        .top{
+            background: url("img/5.png") no-repeat;
+        }
+        .bottom{
+            background: url("img/6.png") no-repeat;
         }
     </style>
 </head>
@@ -51,12 +70,12 @@
 
 <div class="wraper">
     <div class="cube">
-        <div class="zSide front">Front</div>
-        <div class="zSide end">End</div>
-        <div class="xSide left">Left</div>
-        <div class="xSide right">Right</div>
-        <div class="ySide top">Top</div>
-        <div class="ySide bottom">Bottom</div>
+        <div class="front">Front</div>
+        <div class="end">End</div>
+        <div class="left">Left</div>
+        <div class="right">Right</div>
+        <div class="top">Top</div>
+        <div class="bottom">Bottom</div>
     </div>
 </div>
 
@@ -129,9 +148,9 @@
 
             var caseY = (degY - moveY / keyNum)/90;
             if(caseY>1 && caseY < 3 || caseY>5 && caseY<7 || caseY>9 && caseY<11){
-                tempX = -tempX
+                tempX = -tempX;
             }else if(caseY<-1 && caseY > -3 || caseY<-5 && caseY>-7 || caseY<-9 && caseY>-11 ){
-                tempX = -tempX
+                tempX = -tempX;
             }
             tempY = degY - moveY / keyNum;
 
@@ -143,7 +162,7 @@
         e = e || event;
         degX += moveX / keyNum;
         degY += - moveY / keyNum;
-        window.ontouchmove = null;
+        document.ontouchmove = null;
     };
 
     function css(target,styles){
