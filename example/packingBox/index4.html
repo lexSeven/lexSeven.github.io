@@ -144,14 +144,16 @@
             let touch = e.changedTouches[0];
             moveX = touch.clientX - downX;
             moveY = touch.clientY - downY;
-            tempX = degX + moveX / keyNum;
+
 
             var caseY = (degY - moveY / keyNum)/90;
             if(caseY>1 && caseY < 3 || caseY>5 && caseY<7 || caseY>9 && caseY<11){
-                tempX = -tempX;
+                moveX = -moveX;
             }else if(caseY<-1 && caseY > -3 || caseY<-5 && caseY>-7 || caseY<-9 && caseY>-11 ){
-                tempX = -tempX;
+                moveX = -moveX;
             }
+
+            tempX = degX + moveX / keyNum;
             tempY = degY - moveY / keyNum;
 
             cube.style.transform = "translateZ(60px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
