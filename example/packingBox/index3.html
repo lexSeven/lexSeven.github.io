@@ -10,14 +10,13 @@
             height: 100%;
             padding: 0;
             margin: 0;
-            /*将border和padding绘制在设置宽高之内*/
             box-sizing: border-box;
             overflow: hidden;
         }
         .wraper {
             width: 260px;
             height:100%;
-            margin:0px auto;
+            margin:0 auto;
             perspective: 1000px;
             display: flex;
             justify-content: center;
@@ -25,30 +24,49 @@
         }
         .cube {
             height:260px;
-            width: 100%;
+            width: 200px;
             position: relative;
             transform-style: preserve-3d;
             transform:translateZ(60px);
+            background:rgba(0,0,0,0.3);
         }
         .cube>div {
-            width: 100%;
-            height: 100%;
             position: absolute;
             top: 0;
             left: 0;
+            right:0;
+            bottom:0;
+            margin:auto;
             background-color: rgba(36, 143, 161, .8);
             text-align: center;
-            line-height: 260px;
             color: #fff;
             font-size: 48px;
             border: 2px solid #bfcf36;
             user-select: none;
+            box-sizing: border-box;
         }
+
+        .cube .zSide{
+            width:200px;
+            height:260px;
+            line-height:260px;
+        }
+        .cube .xSide{
+            width:100px;
+            height:260px;
+            line-height:260px;
+        }
+        .cube .ySide{
+            width:200px;
+            height:100px;
+            line-height:100px;
+        }
+
         .front {
-            transform: translateZ(130px);
+            transform: translateZ(50px);
         }
         .end {
-            transform: rotateY(180deg) translateZ(130px);
+            transform: rotateY(180deg) translateZ(50px);
         }
         .top {
             transform: rotateX(90deg) translateZ(130px);
@@ -57,10 +75,10 @@
             transform: rotateX(-90deg) translateZ(130px);
         }
         .left {
-            transform: rotateY(-90deg) translateZ(130px);
+            transform: rotateY(-90deg) translateZ(100px);
         }
         .right {
-            transform: rotateY(90deg) translateZ(130px);
+            transform: rotateY(90deg) translateZ(100px);
         }
     </style>
 </head>
@@ -68,12 +86,12 @@
 
 <div class="wraper">
     <div class="cube">
-        <div class="front">Front</div>
-        <div class="end">End</div>
-        <div class="left">Left</div>
-        <div class="right">Right</div>
-        <div class="top">Top</div>
-        <div class="bottom">Bottom</div>
+        <div class="zSide front">Front</div>
+        <div class="zSide end">End</div>
+        <div class="xSide left">Left</div>
+        <div class="xSide right">Right</div>
+        <div class="ySide top">Top</div>
+        <div class="ySide bottom">Bottom</div>
     </div>
 </div>
 
@@ -81,10 +99,6 @@
     var cube = document.querySelector(".cube"),
         downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
     let keyNum = 2;
-    let sides = cube.querySelectorAll('div');
-    document.ontouchstart = function(e){
-        e.preventDefault();
-    };
     document.ontouchstart = function (e) {
         e = e || event;
         let touch = e.changedTouches[0];
@@ -96,9 +110,19 @@
             moveX = touch.clientX - downX;
             moveY = touch.clientY - downY;
             tempX = degX + moveX / keyNum;
-            tempY = degY - moveY / keyNum;
+
+            var caseY = degY - moveY / keyNum;
+            if(caseY>90){
+                tempY = 90;
+            }else if(caseY<-90){
+                tempY = -90;
+            }else{
+                tempY = caseY;
+            }
+
             cube.style.transform = "translateZ(60px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
         };
+        e.preventDefault();
     };
     document.ontouchend = function (e) {
         e = e || event;
@@ -106,13 +130,6 @@
         degY += - moveY / keyNum;
         window.ontouchmove = null;
     };
-
-    Array.from(sides).forEach((item)=>{
-        item.ontouchstart = function(){
-            this.style.backgroundColor = 'rgba(70,194,215,0.9)';
-        }
-    })
-
 </script>
 
 </body>

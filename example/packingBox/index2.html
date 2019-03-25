@@ -10,14 +10,13 @@
             height: 100%;
             padding: 0;
             margin: 0;
-            /*将border和padding绘制在设置宽高之内*/
             box-sizing: border-box;
             overflow: hidden;
         }
         .wraper {
             width: 260px;
             height:100%;
-            margin:0px auto;
+            margin:0 auto;
             perspective: 1000px;
             display: flex;
             justify-content: center;
@@ -29,6 +28,7 @@
             position: relative;
             transform-style: preserve-3d;
             transform:translateZ(60px);
+            background:rgba(0,0,0,0.3);
         }
         .cube>div {
             width: 100%;
@@ -51,7 +51,7 @@
             transform: rotateY(180deg) translateZ(130px);
         }
         .top {
-            transform: rotateX(90deg) translateZ(130px);
+            transform: rotateX(90deg) translateZ(130px) ;
         }
         .bottom {
             transform: rotateX(-90deg) translateZ(130px);
@@ -81,10 +81,6 @@
     var cube = document.querySelector(".cube"),
         downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
     let keyNum = 2;
-    let sides = cube.querySelectorAll('div');
-    document.ontouchstart = function(e){
-        e.preventDefault();
-    };
     document.ontouchstart = function (e) {
         e = e || event;
         let touch = e.changedTouches[0];
@@ -96,9 +92,19 @@
             moveX = touch.clientX - downX;
             moveY = touch.clientY - downY;
             tempX = degX + moveX / keyNum;
-            tempY = degY - moveY / keyNum;
+
+            var caseY = degY - moveY / keyNum;
+            if(caseY>90){
+                tempY = 90;
+            }else if(caseY<-90){
+                tempY = -90;
+            }else{
+                tempY = caseY;
+            }
+
             cube.style.transform = "translateZ(60px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
         };
+        e.preventDefault();
     };
     document.ontouchend = function (e) {
         e = e || event;
@@ -106,13 +112,6 @@
         degY += - moveY / keyNum;
         window.ontouchmove = null;
     };
-
-    Array.from(sides).forEach((item)=>{
-        item.ontouchstart = function(){
-            this.style.backgroundColor = 'rgba(70,194,215,0.9)';
-        }
-    })
-
 </script>
 
 </body>
