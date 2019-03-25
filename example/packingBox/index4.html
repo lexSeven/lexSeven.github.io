@@ -165,6 +165,11 @@
         document.ontouchmove = null;
     };
 
+    function stopScrolling(event) {
+        event.preventDefault();
+    }
+    document.addEventListener('touchmove',stopScrolling,false);
+
     function css(target,styles){
 
         for (var k in styles){
