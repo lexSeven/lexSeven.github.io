@@ -40,11 +40,13 @@
             background-color: rgba(36, 143, 161, .8);
             text-align: center;
             color: #fff;
-            font-size: 48px;
+            /*font-size: 48px;*/
             border: 2px solid #bfcf36;
             user-select: none;
             box-sizing: border-box;
             font-size:0;
+            transition: 1s;
+            /*backface-visibility: hidden;*/
         }
         .front{
             background: url("img/1.png") no-repeat;
@@ -70,69 +72,95 @@
 
 <div class="wraper">
     <div class="cube">
-        <div class="front">Front</div>
-        <div class="end">End</div>
-        <div class="left">Left</div>
-        <div class="right">Right</div>
-        <div class="top">Top</div>
-        <div class="bottom">Bottom</div>
+        <div class="front"  data-name="boxFront">Front</div>
+        <div class="end"    data-name="boxEnd">End</div>
+        <div class="left"   data-name="boxLeft">Left</div>
+        <div class="right"  data-name="boxRight">Right</div>
+        <div class="top"    data-name="boxTop">Top</div>
+        <div class="bottom" data-name="boxBottom">Bottom</div>
     </div>
 </div>
 
 <script>
     var cube = document.querySelector(".cube"),
         downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
-    let keyNum = 2;
+    let keyNum = 3;
 
-    let boxFront = cube.querySelector('.front'),
-        boxEnd = cube.querySelector('.end'),
-        boxLeft = cube.querySelector('.left'),
-        boxRight = cube.querySelector('.right'),
-        boxTop = cube.querySelector('.top'),
-        boxBottom = cube.querySelector('.bottom');
+    let eleArr = {
+        boxFront : cube.querySelector('.front'),
+        boxEnd : cube.querySelector('.end'),
+        boxLeft : cube.querySelector('.left'),
+        boxRight : cube.querySelector('.right'),
+        boxTop : cube.querySelector('.top'),
+        boxBottom : cube.querySelector('.bottom')
+    };
 
-    let boxX = 300,boxY = 200,boxZ = 130;
+    let boxX = 300,boxY = 200,boxZ = 130, activeZ = 50;
+
+    let eleData = {
+        boxFront:{
+            width:boxX,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxZ/2,
+            rotateX:0,
+            rotateY:0
+        },
+        boxEnd:{
+            width:boxX,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxZ/2,
+            rotateX:0,
+            rotateY:180
+        },
+        boxLeft:{
+            width:boxZ,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxX/2,
+            rotateX:0,
+            rotateY:-90
+        },
+        boxRight:{
+            width:boxZ,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxX/2,
+            rotateX:0,
+            rotateY:90
+        },
+        boxTop:{
+            width:boxX,
+            height:boxZ,
+            lineHeight:boxZ,
+            translateZ:boxY/2,
+            rotateX:90,
+            rotateY:0
+        },
+        boxBottom:{
+            width:boxX,
+            height:boxZ,
+            lineHeight:boxZ,
+            translateZ:boxY/2,
+            rotateX:-90,
+            rotateY:0
+        }
+    }
 
     setBox();
     function setBox(){
-        css(boxFront,{
-            width:boxX + 'px',
-            height:boxY + 'px',
-            lineHeight:boxY + 'px',
-            transform:'translateZ('+ (boxZ/2) +'px)'
-        });
-        css(boxEnd,{
-            width:boxX + 'px',
-            height:boxY + 'px',
-            lineHeight:boxY + 'px',
-            transform:'rotateY(180deg) translateZ('+ (boxZ/2) +'px)'
-        });
-        css(boxLeft,{
-            width:boxZ + 'px',
-            height:boxY + 'px',
-            lineHeight:boxY + 'px',
-            transform:'rotateY(-90deg) translateZ('+ (boxX/2) +'px)'
-        });
-        css(boxRight,{
-            width:boxZ + 'px',
-            height:boxY + 'px',
-            lineHeight:boxY + 'px',
-            transform:'rotateY(90deg) translateZ('+ (boxX/2) +'px)'
-        });
-        css(boxTop,{
-            width:boxX + 'px',
-            height:boxZ + 'px',
-            lineHeight:boxZ + 'px',
-            transform:'rotateX(90deg) translateZ('+ (boxY/2) +'px)'
-        });
-        css(boxBottom,{
-            width:boxX + 'px',
-            height:boxZ + 'px',
-            lineHeight:boxZ + 'px',
-            transform:'rotateX(-90deg) translateZ('+ (boxY/2) +'px)'
-        })
+        for(var a in eleData){
+            css(eleArr[a],{
+                width:eleData[a].width + 'px',
+                height:eleData[a].height + 'px',
+                lineHeight:eleData[a].lineHeight + 'px',
+                transform:'rotateX('+ eleData[a].rotateX +'deg)\
+                rotateY('+ eleData[a].rotateY +'deg)\
+                translateZ('+ eleData[a].translateZ +'px)'
+            })
+        }
     }
-
 
     document.ontouchstart = function (e) {
         e = e || event;
@@ -155,31 +183,48 @@
 
             tempX = degX + moveX / keyNum;
             tempY = degY - moveY / keyNum;
-
             cube.style.transform = "translateZ(60px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
         };
         e.preventDefault();
     };
     document.ontouchend = function (e) {
         e = e || event;
-        degX += moveX / keyNum;
-        degY += - moveY / keyNum;
+        let touch = e.changedTouches[0];
+        let domName = e.target.dataset.name;
+        if(Math.abs(downX - touch.clientX)<10 && Math.abs(downY - touch.clientY)<10){
+            if(eleArr[domName]){
+                if(e.target.active){
+                    eleData[domName].translateZ -= activeZ;
+                    e.target.active = false;
+                }else{
+                    eleData[domName].translateZ += activeZ;
+                    e.target.active = true;
+                }
+                css(e.target,{
+                    width:eleData[domName].width + 'px',
+                    height:eleData[domName].height + 'px',
+                    lineHeight:eleData[domName].lineHeight + 'px',
+                    transform:'rotateX('+ eleData[domName].rotateX +'deg)\
+                    rotateY('+ eleData[domName].rotateY +'deg)\
+                    translateZ('+ eleData[domName].translateZ +'px)'
+                })
+            }
+        }else{
+            degX += moveX / keyNum;
+            degY += - moveY / keyNum;
+        }
         document.ontouchmove = null;
     };
 
     function stopScrolling(event) {
         event.preventDefault();
     }
-    document.addEventListener('touchmove',stopScrolling,false);
+//    document.addEventListener('touchmove',stopScrolling,false);
 
     function css(target,styles){
-
         for (var k in styles){
-
             target.style[k]=styles[k];
-
         }
-
     }
 </script>
 
