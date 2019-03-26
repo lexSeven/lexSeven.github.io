@@ -8,10 +8,10 @@
         body,
         html {
             height: 100%;
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
             overflow: hidden;
+        }
+        body{
+            margin:0;
         }
         .wraper {
             width:100%;
@@ -186,8 +186,8 @@
             moveX = touch.clientX - downX;
             moveY = touch.clientY - downY;
 
-            var caseY = ((degY - moveY / keyNum)/90)%4;
-            if(caseY >1 && caseY <3 || caseY <-1 && caseY >-3){
+            let caseY = ((degY - moveY / keyNum) / 90) % 4;
+            if(caseY > 1 && caseY < 3 || caseY < -1 && caseY > -3){
                 moveX = -moveX;
             }
 
@@ -234,7 +234,7 @@
     };
 
     function css(target,styles){
-        for (var k in styles){
+        for (let k in styles){
             target.style[k]=styles[k];
         }
     }
