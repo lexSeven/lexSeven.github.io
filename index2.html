@@ -50,6 +50,7 @@
 <script>
 
     var list = document.querySelector('.list');
+    var musicObject = null;
     searchBtn.onclick = function(){
         search(input.value,function(res){
             var str = '';
@@ -69,7 +70,6 @@
         var ev = ev || event;
         var target = ev.target || ev.srcElement;
         if(target.dataset.playmusic){
-            console.log(123);
             audiopay(target.dataset.hash);
         }
     }
@@ -106,10 +106,12 @@ function audiopay(songid) {/*酷狗播放音乐*/
                 time:res.data.timelength/1000,
                 songName:res.data.audio_name
             };
-            var musicObject = document.createElement('audio');
+            musicObject && musicObject.remove();
+            musicObject = document.createElement('audio');
             musicObject.src = obj.playSrc;
             document.body.appendChild(musicObject);
             musicObject.pause();
+            console.dir(musicObject);
             musicObject.play();
         }
     });
