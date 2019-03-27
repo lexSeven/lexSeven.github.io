@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <style>
+        html,
+        body {
+            height:100%;
+        }
+        body {
+            margin:0;
+        }
+        .swiper-container {
+            width:100vw;
+            height:100%;
+            overflow: hidden;
+            background: #eee;
+        }
+        .swiper-slide{
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="img/1.png">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/2.png">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/3.png">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/4.png">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/5.png">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/6.png">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/7.png">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/8.png">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/9.png">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/10.png">
+        </div>
+    </div>
+</div>
+
+<script src="js/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 30,
+        direction: 'vertical'
+    });
+</script>
+</body>
+</html>
