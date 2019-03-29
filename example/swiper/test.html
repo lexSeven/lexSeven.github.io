@@ -7,27 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
     ​
     <!-- 手动更改 -->
-    <title>新活动页模板</title>
+    <title>意大利梦幻仙履品牌</title>
     ​
     <!-- 公共样式不可删除 -->
     <link rel="stylesheet" href="//mstatic.secooimg.com/activity2018/all_min/css/activity2018.min.css">
 
     <style>
         html,
-        body{
+        body {
             height:100%;
         }
+        body {
+            margin:0;
+        }
         .swiper-container {
-            width:100%;
+            width:100vw;
             height:100%;
             overflow: hidden;
             background: #eee;
         }
         .swiper-slide{
+            height:100%;
             background: #fff;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .swiper-slide:last-child{
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
+        }
+        .swiper-slide:last-child .bindEvent{
+            height:30px;
+            margin-bottom: 4%;
+            display: none;
         }
     </style>
 
@@ -40,44 +54,21 @@
 <body uuid="page_app_${sectionid?c}" class="eventParent">
 ​
 <!-- 用作填写分享参数 -->
-<div id="share" data-title="" data-description="" data-url="" data-img-url=""></div>
-
-<#if chkfileExits("/data/secoo_web/secooHtml/module/${sectionid?c}/26996.shtml") >
-    <!--# include virtual="/module/${sectionid?c}/26996.shtml"-->
-</#if>
+<div id="share"
+     data-title="集万千宠爱于一身的RENE CAOVILLA"
+     data-description="红毯晚宴鞋之王，蕾哈娜、卡戴珊、Angelababy、娜扎都爱的意大利仙履品牌RENE CAOVILLA"
+     data-url="https://las.secoo.com/api/topic/topic_list_new?id=46794&pageid=topicNew/46794"
+     data-img-url="http://pic12.secooimg.com/res/common/lexseven/share.jpg">
+</div>
 
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img src="//pic12.secooimg.com/res/common/lexseven/1.png">
-        </div>
-        <div class="swiper-slide">
-            <img data-original="//pic12.secooimg.com/res/common/lexseven/2.png">
-        </div>
-        <div class="swiper-slide">
-            <img data-original="//pic12.secooimg.com/res/common/lexseven/3.png">
-        </div>
-        <div class="swiper-slide">
-            <img data-original="//pic12.secooimg.com/res/common/lexseven/4.png">
-        </div>
-        <div class="swiper-slide">
-            <img data-original="//pic12.secooimg.com/res/common/lexseven/5.png">
-        </div>
-        <div class="swiper-slide">
-            <img data-original="//pic12.secooimg.com/res/common/lexseven/6.png">
-        </div>
-        <div class="swiper-slide">
-            <img data-original="//pic12.secooimg.com/res/common/lexseven/7.png">
-        </div>
-        <div class="swiper-slide">
-            <img data-original="//pic12.secooimg.com/res/common/lexseven/8.png">
-        </div>
-        <div class="swiper-slide">
-            <img data-original="//pic12.secooimg.com/res/common/lexseven/9.png">
-        </div>
-        <div class="swiper-slide">
-            <img data-original="//pic12.secooimg.com/res/common/lexseven/10.png">
-        </div>
+        <#if chkfileExits("/data/secoo_web/secooHtml/module/${sectionid?c}/27070.shtml") >
+            <!--# include virtual="/module/${sectionid?c}/27070.shtml"-->
+        </#if>
+        <#if chkfileExits("/data/secoo_web/secooHtml/module/${sectionid?c}/27071.shtml") >
+            <!--# include virtual="/module/${sectionid?c}/27071.shtml"-->
+        </#if>
     </div>
 </div>
 
@@ -91,7 +82,7 @@
         baseRemVal: 10,
 
         //是否开启图片懒加载，默认为true
-        imgLazyLoad: true,
+        imgLazyLoad: false,
 
         //是否开启移动端调试工具，默认false
         openDebug: false,
@@ -109,7 +100,7 @@
         initLoad: true,
 
         //是否初始化头部导航栏，默认true，只在m站生效
-        initHead: true,
+        initHead: false,
 
     //zepto加载完成后的回调，与全局函数中同名函数的择一而用
     zeptoLoaded: function() {},
@@ -123,11 +114,31 @@
 
     //全部js加载完成后的回调，与页面配置中同名函数的择一而用
     function jsLoaded() {
+
+        //预先加载前两张图片
+        $('.swiper-slide').eq(0).css({
+            'backgroundImage':'url("'+ $('.swiper-slide').eq(0).data('original') +'")',
+            'backgroundSize':'contain'
+        });
+        $('.swiper-slide').eq(1).css({
+            'backgroundImage':'url("'+ $('.swiper-slide').eq(1).data('original') +'")',
+            'backgroundSize':'contain'
+        });
+        $('.bindEvent').show();
+
         var swiper = new Swiper('.swiper-container', {
             spaceBetween: 30,
-            direction: 'vertical'
+            direction: 'vertical',
+            on:{
+                slideNextTransitionStart: function(){
+                    var targetImg = this.slides.eq(this.activeIndex+1);
+                    targetImg.css({
+                        'backgroundImage':'url("'+ targetImg.data('original') +'")',
+                        'backgroundSize':'contain'
+                    });
+                },
+            }
         });
-        $('[data-original]').picLazyLoad();
     }
 </script>
 ​

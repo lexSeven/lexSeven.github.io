@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/1zdy_02.jpg"
+        style="background-image: url('//pic12.secooimg.com/res/common/lexSeven/1zdy_02.jpg')"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/2msc_02.jpg"
+        style="background-image: url('//pic12.secooimg.com/res/common/lexSeven/2msc_02.jpg')"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/3Bella-Hadid_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/4Helena-Bordon-&-Marina-Ruy_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/5glnz_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/6zyq_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/7zdy_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/8gxt_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/9Rihanna_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/10hsy_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/11Rihanna_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/12ty_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/13Gigi-Hadid_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/14ny_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/15Lais-Ribeiro_02.jpg"
+></div>
+<div
+        class="swiper-slide"
+        data-original="//pic12.secooimg.com/res/common/lexSeven/16Bella-Hadid_02.jpg"
+></div>
+
+
+<#assign random= "com.secoo.foms.utils.FreemarkerImgRandomFunction"?new()>
+    <#list picAndChinesePush as PictureType >
+        <div
+                class="local_inner activityHandle swiper-slide"
+                eventdata='{"type":"0","url":"${PictureType.pictureaddress?replace("http://m.secoo.com/appActivity/","")?replace(".shtml","")}","myTitle":"${PictureType.picturandchinese}"}'
+                data-original="//${PictureType.pictureurl?replace('pic1.secoo.com/', 'pic'+random(10,14)+'.secooimg.com/')}"
+        >
+            <div class="bindEvent" stopPropagation="true" eventdata='{"type":"url","url":"https://las.secoo.com/api/topic/topic_list_new?id=46794&pageid=topicNew/46794"}'>
+                <img src="//${PictureType.pictureurl1?replace('pic1.secoo.com/', 'pic'+random(10,14)+'.secooimg.com/')}"/>
+            </div>
+        </div>
+    </#list>
+
+</body>
+</html>

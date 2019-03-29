@@ -21,12 +21,9 @@
         .swiper-slide{
             height:100%;
             background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .swiper-slide img{
-            height:100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     </style>
 </head>
@@ -34,54 +31,72 @@
 
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img src="img/1zdy_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/2msc_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/3Bella-Hadid_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/4Helena-Bordon-&-Marina-Ruy_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/5glnz_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/6zyq_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/7zdy_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/8gxt_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/9Rihanna_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/10hsy_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/11Rihanna_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/12ty_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/13Gigi-Hadid_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/14ny_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/15Lais-Ribeiro_02.jpg">
-        </div>
-        <div class="swiper-slide">
-            <img src="img/16Bella-Hadid_02.jpg">
-        </div>
+        <div
+            class="swiper-slide"
+            data-original="img/1zdy_02.jpg"
+            style="background-image: url('img/1zdy_02.jpg')"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/2msc_02.jpg"
+            style="background-image: url('img/2msc_02.jpg')"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/3Bella-Hadid_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/4Helena-Bordon-&-Marina-Ruy_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/5glnz_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/6zyq_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/7zdy_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/8gxt_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/9Rihanna_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/10hsy_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/11Rihanna_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/12ty_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/13Gigi-Hadid_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/14ny_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/15Lais-Ribeiro_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/16Bella-Hadid_02.jpg"
+        ></div>
     </div>
 </div>
 
@@ -89,7 +104,16 @@
 <script>
     var swiper = new Swiper('.swiper-container', {
         spaceBetween: 30,
-        direction: 'vertical'
+        direction: 'vertical',
+        on:{
+            slideNextTransitionStart: function(){
+                var targetImg = this.slides.eq(this.activeIndex+1);
+                targetImg.css({
+                    'backgroundImage':'url("'+ targetImg.data('original') +'")',
+                    'backgroundSize':'contain'
+                });
+            },
+        }
     });
 </script>
 </body>
