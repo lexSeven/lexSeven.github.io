@@ -46,10 +46,8 @@
             box-sizing: border-box;
             font-size:0;
             transition: 1s;
+            transform-style: preserve-3d;
             /*backface-visibility: hidden;*/
-        }
-        .front{
-            background: url("img/1.png") no-repeat;
         }
         .end{
             background: url("img/2.png") no-repeat;
@@ -66,13 +64,38 @@
         .bottom{
             background: url("img/6.png") no-repeat;
         }
+
+        .backface{
+            width: 100%;
+            height: 100%;
+            background: #000;
+            transform: rotateY(180deg);
+            color: #fff;
+            font-size: 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /*backface-visibility: hidden;*/
+        }
+        .fontface{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform:translateZ(1px);
+            background: url("img/1.png") no-repeat;
+        }
     </style>
 </head>
 <body>
 
 <div class="wraper">
     <div class="cube">
-        <div class="front"  data-name="boxFront">Front</div>
+        <div class="front"  data-name="boxFront">
+            <div class="fontface"></div>
+            <div class="backface">Font</div>
+        </div>
         <div class="end"    data-name="boxEnd">End</div>
         <div class="left"   data-name="boxLeft">Left</div>
         <div class="right"  data-name="boxRight">Right</div>
@@ -84,7 +107,7 @@
 <script>
     let cube = document.querySelector(".cube"),
         downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
-    let boxX = 300,boxY = 200,boxZ = 130, activeZ = 50, keyNum = 3;
+    let boxX = 300,boxY = 100,boxZ = 230, activeZ = 50, keyNum = 3;
 
     /*
     * boxX  盒子X轴（盒子的长）
