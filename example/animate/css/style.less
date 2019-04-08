@@ -1,0 +1,133 @@
+html,body{
+  height: 100%;
+}
+body{
+  margin: 0;
+  background: url("../img/asidas.jpg") no-repeat fixed 0 0;
+  position: relative;
+}
+
+.mark{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+}
+
+.box1{
+  width: 600px;
+  height: 300px;
+  background: url("../img/asidas.jpg") no-repeat fixed 0 0;
+  border: 1px solid #0a3b98;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  //transform: translate(-50%,-50%);
+  margin: -150px 0 0 -300px;
+  animation: rightIn 1s;
+
+  .borderBox(@top,@right,@bottom,@left){
+    width: 20px;
+    height: 20px;
+    border-width: @arguments;
+    border-style: solid;
+    border-color: #00fff7;
+    position: absolute;
+  }
+
+  @borderWidth:4px;
+
+  .leftTop{
+    .borderBox(@borderWidth,0,0,@borderWidth);
+    top: 0;
+    left: 0;
+  }
+
+  .top{
+    .borderBox(@borderWidth,0,0,0);
+    top:0;
+    left:50%;
+    margin-left: -10px;
+  }
+
+  .rightTop{
+    .borderBox(@borderWidth,@borderWidth,0,0);
+    top: 0;
+    right: 0;
+  }
+
+  .right{
+    .borderBox(0,@borderWidth,0,0);
+    right:0;
+    top:50%;
+    margin-top: -10px;
+  }
+
+  .rightBottom{
+    .borderBox(0,@borderWidth,@borderWidth,0);
+    bottom: 0;
+    right: 0;
+  }
+
+  .bottom{
+    .borderBox(0,0,@borderWidth,0);
+    bottom:0;
+    left:50%;
+    margin-left: -10px;
+  }
+
+  .leftBottom{
+    .borderBox(0,0,@borderWidth,@borderWidth);
+    bottom: 0;
+    left: 0;
+  }
+
+  .left{
+    .borderBox(0,0,0,@borderWidth);
+    left:0;
+    top:50%;
+    margin-top: -10px;
+  }
+}
+
+.box2{
+  width: 500px;
+  height: 400px;
+  border: 1px dashed #9deeff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -200px 0 0 -250px;
+  animation: widthIn 1.2s 0.3s backwards;
+  opacity: 1;
+}
+
+@keyframes rightIn {
+  0%{
+    top: 100%;
+    left: 100%;
+  }
+  100%{
+    top: 50%;
+    left: 50%;
+  }
+}
+
+@keyframes widthIn {
+  0%{
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  20%{
+    opacity: 1;
+  }
+  100%{
+    width: 500px;
+    height: 400px;
+    opacity: 1;
+  }
+}
+
