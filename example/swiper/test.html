@@ -1,0 +1,148 @@
+<!--<#assign chkfileExits= "com.secoo.foms.utils.FreemarkerExtendChkFileFunction"?new()>-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    ​
+    <!-- 手动更改 -->
+    <title>意大利梦幻仙履品牌</title>
+    ​
+    <!-- 公共样式不可删除 -->
+    <link rel="stylesheet" href="//mstatic.secooimg.com/activity2018/all_min/css/activity2018.min.css">
+
+    <style>
+        html,
+        body {
+            height:100%;
+        }
+        body {
+            margin:0;
+        }
+        .swiper-container {
+            width:100vw;
+            height:100%;
+            overflow: hidden;
+            background: #eee;
+        }
+        .swiper-slide{
+            height:100%;
+            background: #fff;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .swiper-slide:last-child{
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        .swiper-slide:last-child .bindEvent{
+            height:30px;
+            margin-bottom: 4%;
+            display: none;
+        }
+    </style>
+
+
+    <!--添加听云监控-->
+    <script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>
+</head>
+​
+<!-- uuid为页面在erp中的id，仅在erp后台生成的链接中生效，做数据统计用 -->
+<body uuid="page_app_${sectionid?c}" class="eventParent">
+​
+<!-- 用作填写分享参数 -->
+<div id="share"
+     data-title="集万千宠爱于一身的RENE CAOVILLA"
+     data-description="红毯晚宴鞋之王，蕾哈娜、卡戴珊、Angelababy、娜扎都爱的意大利仙履品牌RENE CAOVILLA"
+     data-url="https://las.secoo.com/api/topic/topic_list_new?id=46794&pageid=topicNew/46794"
+     data-img-url="http://pic12.secooimg.com/res/common/lexseven/share.jpg">
+</div>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <#if chkfileExits("/data/secoo_web/secooHtml/module/${sectionid?c}/27070.shtml") >
+            <!--# include virtual="/module/${sectionid?c}/27070.shtml"-->
+        </#if>
+        <#if chkfileExits("/data/secoo_web/secooHtml/module/${sectionid?c}/27071.shtml") >
+            <!--# include virtual="/module/${sectionid?c}/27071.shtml"-->
+        </#if>
+    </div>
+</div>
+
+
+​<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+
+<!-- 页面配置参数 -->
+<script type="text/javascript">
+    var pageConfig = {
+        //设置页面rem，默认可不传，默认值为当前页面宽度的10分之一
+        baseRemVal: 10,
+
+        //是否开启图片懒加载，默认为true
+        imgLazyLoad: false,
+
+        //是否开启移动端调试工具，默认false
+        openDebug: false,
+
+        //是否加载神策数据统计sdk，默认为true
+        useSensors: true,
+
+        //是否在控制台输出神策埋点结果，便于测试埋点成功与否，默认为false
+        showSensorsLog: false,
+
+        //是否在控制台输出跳转所需参数（包含跳转数据、埋点数据），为了便于查看输出结果，设置此参数后页面会不能跳转，默认为false
+        showGoPageLog: false,
+
+        //是否初始化下载条，默认为true，该属性与当前页链接中包含fromShare=1参数同时存在时，该配置项拥有更高的优先级
+        initLoad: true,
+
+        //是否初始化头部导航栏，默认true，只在m站生效
+        initHead: false,
+
+    //zepto加载完成后的回调，与全局函数中同名函数的择一而用
+    zeptoLoaded: function() {},
+
+    //全部js加载完成后的回调，与全局函数中同名函数的择一而用
+    jsLoaded: function() {},
+    }
+
+    //zepto加载完成后的回调，与页面配置中同名函数的择一而用
+    function zeptoLoaded() {};
+
+    //全部js加载完成后的回调，与页面配置中同名函数的择一而用
+    function jsLoaded() {
+
+        //预先加载前两张图片
+        $('.swiper-slide').eq(0).css({
+            'backgroundImage':'url("'+ $('.swiper-slide').eq(0).data('original') +'")',
+            'backgroundSize':'contain'
+        });
+        $('.swiper-slide').eq(1).css({
+            'backgroundImage':'url("'+ $('.swiper-slide').eq(1).data('original') +'")',
+            'backgroundSize':'contain'
+        });
+        $('.bindEvent').show();
+
+        var swiper = new Swiper('.swiper-container', {
+            spaceBetween: 30,
+            direction: 'vertical',
+            on:{
+                slideNextTransitionStart: function(){
+                    var targetImg = this.slides.eq(this.activeIndex+1);
+                    targetImg.css({
+                        'backgroundImage':'url("'+ targetImg.data('original') +'")',
+                        'backgroundSize':'contain'
+                    });
+                },
+            }
+        });
+    }
+</script>
+​
+<!-- 主文件不可删除 -->
+<script type="text/javascript" src="//mstatic.secooimg.com/activity2018/all_min/js/activity2018.min.js"></script>
+</body>
+</html>

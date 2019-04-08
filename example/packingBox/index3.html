@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+    <style>
+        body,
+        html {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .wraper {
+            width: 260px;
+            height:100%;
+            margin:0 auto;
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cube {
+            height:260px;
+            width: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform:translateZ(60px);
+            background:rgba(0,0,0,0.3);
+        }
+        .cube>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right:0;
+            bottom:0;
+            margin:auto;
+            background-color: rgba(36, 143, 161, .8);
+            text-align: center;
+            color: #fff;
+            font-size: 48px;
+            border: 2px solid #bfcf36;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        .cube .zSide{
+            width:200px;
+            height:260px;
+            line-height:260px;
+        }
+        .cube .xSide{
+            width:100px;
+            height:260px;
+            line-height:260px;
+        }
+        .cube .ySide{
+            width:200px;
+            height:100px;
+            line-height:100px;
+        }
+
+        .front {
+            transform: translateZ(50px);
+        }
+        .end {
+            transform: rotateY(180deg) translateZ(50px);
+        }
+        .top {
+            transform: rotateX(90deg) translateZ(130px);
+        }
+        .bottom {
+            transform: rotateX(-90deg) translateZ(130px);
+        }
+        .left {
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        .right {
+            transform: rotateY(90deg) translateZ(100px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="wraper">
+    <div class="cube">
+        <div class="zSide front">Front</div>
+        <div class="zSide end">End</div>
+        <div class="xSide left">Left</div>
+        <div class="xSide right">Right</div>
+        <div class="ySide top">Top</div>
+        <div class="ySide bottom">Bottom</div>
+    </div>
+</div>
+
+<script>
+    var cube = document.querySelector(".cube"),
+        downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
+    let keyNum = 2;
+    document.ontouchstart = function (e) {
+        e = e || event;
+        let touch = e.changedTouches[0];
+        downX = touch.clientX;
+        downY = touch.clientY;
+        document.ontouchmove = function (e) {
+            e = e || event;
+            let touch = e.changedTouches[0];
+            moveX = touch.clientX - downX;
+            moveY = touch.clientY - downY;
+            tempX = degX + moveX / keyNum;
+
+            var caseY = (degY - moveY / keyNum)/90;
+            if(caseY>1 && caseY < 3 || caseY>5 && caseY<7 || caseY>9 && caseY<11){
+                tempX = -tempX
+            }else if(caseY<-1 && caseY > -3 || caseY<-5 && caseY>-7 || caseY<-9 && caseY>-11 ){
+                tempX = -tempX
+            }
+            tempY = degY - moveY / keyNum;
+
+            cube.style.transform = "translateZ(60px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
+        };
+        e.preventDefault();
+    };
+    document.ontouchend = function (e) {
+        e = e || event;
+        degX += moveX / keyNum;
+        degY += - moveY / keyNum;
+        window.ontouchmove = null;
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,618 @@
+dl,
+dd {
+  margin: 0;
+}
+.awaradMark {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  z-index: 101;
+  display: none;
+  opacity: 0;
+}
+.awardsBox {
+  width: 1040px;
+  height: 639px;
+  background: url("../img/bg.png") no-repeat;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+}
+.awardsBox .leftNum {
+  width: 441px;
+  height: 40px;
+  position: absolute;
+  bottom: 16px;
+  left: 49px;
+  font: 20px/40px '微软雅黑';
+  color: #fff;
+  text-align: center;
+}
+.awardsBox .leftNum .num {
+  font-style: normal;
+  color: #fff100;
+  padding: 0 5px;
+}
+.awardsBox.active {
+  display: block;
+  animation: awardsIn 0.5s forwards;
+}
+.awardsBox.out {
+  animation: awardsout 0.5s forwards;
+}
+.awardsBox .deskBox {
+  width: 441px;
+  height: 444px;
+  background: url("../img/disc_bg.png") no-repeat;
+  position: absolute;
+  left: 49px;
+  top: 147px;
+}
+.awardsBox .light {
+  width: 100%;
+  height: 100%;
+  background: url("../img/light.png") no-repeat;
+  animation: rotate 1s steps(2) infinite;
+  position: absolute;
+  left: -3px;
+  top: -3px;
+}
+.awardsBox .awards {
+  width: 100%;
+  height: 100%;
+  background: url("../img/disc_main.png") no-repeat;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.awardsBox .awards .lightWhite {
+  width: 348px;
+  height: 348px;
+  position: absolute;
+  top: 41px;
+  left: 50px;
+}
+.awardsBox .awards .lightWhite .item {
+  width: 100%;
+  height: 100%;
+  background: url("../img/light_white.png") no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.awardsBox .awards .lightWhite .item.active {
+  animation: light 1s;
+}
+.awardsBox .awards .lightWhite .item1 {
+  transform: rotate(135deg);
+}
+.awardsBox .awards .lightWhite .item2 {
+  transform: rotate(180deg);
+}
+.awardsBox .awards .lightWhite .item3 {
+  top: 0;
+  transform: rotate(225deg);
+}
+.awardsBox .awards .lightWhite .item4 {
+  top: 0;
+  transform: rotate(270deg);
+}
+.awardsBox .awards .lightWhite .item5 {
+  top: 0;
+  transform: rotate(315deg);
+}
+.awardsBox .awards .lightWhite .item6 {
+  top: -1px;
+  transform: rotate(0deg);
+}
+.awardsBox .awards .lightWhite .item7 {
+  top: -1px;
+  transform: rotate(45deg);
+}
+.awardsBox .awards .lightWhite .item8 {
+  top: -1px;
+  transform: rotate(90deg);
+}
+.awardsBox .diskBtn {
+  width: 117px;
+  height: 117px;
+  background: url("../img/disc_btnActive.png") no-repeat;
+  background: url("../img/disc_btn.png") no-repeat;
+  position: absolute;
+  left: 165px;
+  top: 156px;
+  transition: 0.5s;
+}
+.awardsBox .diskBtn:active {
+  background: url("../img/disc_btnActive.png") no-repeat;
+}
+.awardsBox .indecator {
+  width: 245px;
+  height: 245px;
+  background: url("../img/indicator.png") no-repeat;
+  position: absolute;
+  left: 101px;
+  top: 92px;
+  /*transition: 14s;*/
+  /*transition-timing-function: cubic-bezier(.12,-0.08,0,1.03);*/
+  transform: rotate(0deg);
+}
+.awardsBox .logo {
+  width: 147px;
+  height: 52px;
+  position: absolute;
+  top: 28px;
+  left: 32px;
+}
+.awardsBox .title {
+  width: 510px;
+  height: 90px;
+  position: absolute;
+  top: 57px;
+  left: 265px;
+  line-height: 31px;
+  font-size: 19px;
+  color: #fff;
+  text-align: center;
+  font-weight: 100;
+}
+.awardsBox .title img {
+  margin-bottom: -14px;
+}
+.awardsBox .userList {
+  height: 492px;
+  width: 436px;
+  position: absolute;
+  bottom: 0;
+  right: 48px;
+  text-align: center;
+}
+.awardsBox .userList .listTitle {
+  text-align: center;
+  height: 53px;
+  margin-bottom: 7px;
+  font: 100 33px/53px '微软雅黑';
+  color: #fff;
+  display: inline-block;
+  position: relative;
+}
+.awardsBox .userList .listTitle:before {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top: 6px;
+  left: -20px;
+  background: url("../img/textbefore.png") no-repeat;
+}
+.awardsBox .userList .listTitle:after {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  bottom: 0;
+  right: -20px;
+  background: url("../img/textafter.png") no-repeat;
+}
+.awardsBox .userList .listMain {
+  width: 372px;
+  height: 288px;
+  padding: 20px 30px;
+  border: 2px solid #ffb4d2;
+  border-radius: 15px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.7);
+  background: linear-gradient(to right bottom, #ff713f, #ff249d);
+}
+.awardsBox .userList .listMain .listheader {
+  height: 40px;
+  border-bottom: 1px dashed #ddd;
+  font: 15px/28px '微软雅黑';
+  color: #fff;
+  display: flex;
+  margin-bottom: 10px;
+}
+.awardsBox .userList .listMain .listheader .item {
+  flex: 1;
+  text-align: center;
+}
+.awardsBox .userList .listMain .list {
+  font: 15px/25px '微软雅黑';
+  color: #fff;
+  display: flex;
+}
+.awardsBox .userList .listMain .list .item {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.awardsBox .userList .listMain .list .num {
+  color: #fff100;
+  font-style: normal;
+}
+.awardsBox .userList .des {
+  padding-top: 11px;
+  font: 12px/21px '微软雅黑';
+  color: #fff;
+  text-align: left;
+}
+.awardsBox .closeBtn {
+  width: 17px;
+  height: 17px;
+  background: url("../img/close.png") no-repeat;
+  position: absolute;
+  right: 38px;
+  top: 28px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.awardsBox .closeBtn:hover {
+  transform: rotate(180deg);
+}
+.awaradPar {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  z-index: 102;
+  display: none;
+}
+.awardsCard {
+  width: 445px;
+  height: 560px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  transform-style: preserve-3d;
+  opacity: 0;
+  border-radius: 12px;
+  box-shadow: 10px 10px 50px 0 rgba(0,0,0,0.4);
+}
+.awardsCard.active {
+  animation: awardsIn 0.5s 0.5s forwards;
+}
+.awardsCard.focusout {
+  opacity: 1;
+  animation: cardRotateOut 1s forwards;
+}
+.awardsCard.focus {
+  opacity: 1;
+  animation: cardRotate 1s forwards;
+}
+.awardsCard.focus .awardsDetail {
+  opacity: 1;
+}
+.awardsCard.focus .awardsSuccess {
+  opacity: 0;
+}
+.awardsSuccess {
+  width: 445px;
+  height: 560px;
+  background: url("../img/bg_sm.png") no-repeat;
+  text-align: center;
+  position: relative;
+  opacity: 1;
+  transform: translateZ(1px);
+  z-index: 1;
+  transition: 0.9s;
+  backface-visibility: hidden;
+}
+.awardsSuccess .sTitle {
+  width: 262px;
+  height: 43px;
+  margin: 0 0 0 93px;
+  padding-top: 43px;
+}
+.awardsSuccess .sDes {
+  height: 18px;
+  font: 14px/18px '微软雅黑';
+  color: #fff;
+  text-align: center;
+  margin-top: -8px;
+}
+.awardsSuccess .sGala {
+  height: 88px;
+  font: bold 42px/88px '微软雅黑';
+  color: #fff;
+  text-align: center;
+}
+.awardsSuccess .gift {
+  margin-left: 154px;
+}
+.awardsSuccess .prize {
+  padding-top: 8px;
+  height: 40px;
+  font: 25px/40px '微软雅黑';
+  color: #fff209;
+  text-align: center;
+}
+.awardsSuccess .prize2 {
+  height: 34px;
+  font: 24px/34px '微软雅黑';
+  color: #fff;
+  text-align: center;
+  padding-bottom: 15px;
+}
+.awardsSuccess .checkBtn {
+  display: inline-block;
+  height: 39px;
+  padding: 0 88px;
+  border-radius: 20px;
+  margin: 0 auto;
+  cursor: pointer;
+  background: linear-gradient(to right, #00fff7, #00ff88);
+  font: 20px/39px '微软雅黑';
+  color: #3700a7;
+}
+.awardsSuccess .logo {
+  width: 88px;
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  margin-left: -44px;
+}
+.awardsSuccess .logo img {
+  width: 100%;
+}
+.awardsSuccess .close {
+  width: 42px;
+  height: 42px;
+  background: #00f1b6 url("../img/close_black.png") no-repeat center;
+  border-radius: 50%;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.awardsSuccess .close:hover {
+  transform: rotate(180deg);
+}
+.awardsDetail {
+  width: 445px;
+  height: 560px;
+  background: url("../img/bg_sm.png") no-repeat;
+  text-align: center;
+  position: absolute;
+  transition: 0.9s;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  backface-visibility: hidden;
+  transform: translateZ(-1px) rotateY(180deg);
+}
+.awardsDetail.active {
+  opacity: 1;
+  transform: translateZ(0px) rotateY(0deg);
+}
+.awardsDetail .sTitle {
+  width: 262px;
+  height: 43px;
+  margin: 0 0 0 93px;
+  padding-top: 43px;
+}
+.awardsDetail .sDes {
+  height: 18px;
+  font: 14px/18px '微软雅黑';
+  color: #fff;
+  text-align: center;
+  margin-top: -8px;
+}
+.awardsDetail .prize {
+  height: 34px;
+  font: 25px/34px '微软雅黑';
+  color: #fff;
+  padding-top: 26px;
+}
+.awardsDetail .prizeName {
+  height: 59px;
+  width: 350px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+  font: 31px/42px '微软雅黑';
+  color: #fff100;
+  margin: 0 auto;
+}
+.awardsDetail .prizeName span {
+  position: relative;
+}
+.awardsDetail .prizeName span:before {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top: 10px;
+  left: -20px;
+  background: url("../img/textbefore.png") no-repeat;
+}
+.awardsDetail .prizeName span:after {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top: 10px;
+  right: -20px;
+  background: url("../img/textafter.png") no-repeat;
+}
+.awardsDetail .prizeDes {
+  width: 350px;
+  margin: 0 auto;
+  display: flex;
+  font: 15px/21px '微软雅黑';
+  color: #fff;
+  padding: 20px 0;
+  text-align: left;
+  overflow: hidden;
+}
+.awardsDetail .prizeDes .prizeDesTitle {
+  width:80px;
+  font-weight:bold;
+  float: left;
+}
+.awardsDetail .prizeDes .prizeDesMain{
+  width: 270px;
+  float: left;
+}
+.awardsDetail .otherText {
+  width: 323px;
+  margin: 0 auto;
+  font: bold 15px/26px '微软雅黑';
+  text-align: left;
+  color: #fff;
+}
+.awardsDetail .awardsContact {
+  padding-top: 10px;
+  width: 323px;
+  margin: 0 auto;
+  font: bold 15px/21px '微软雅黑';
+  text-align: left;
+  color: #fff;
+}
+.awardsDetail .awardsContact .num {
+  font: 100 15px/18px '微软雅黑';
+}
+.awardsDetail .close {
+  width: 42px;
+  height: 42px;
+  background: #00f1b6 url("../img/close_black.png") no-repeat center;
+  border-radius: 50%;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.awardsDetail .close:hover {
+  transform: rotate(180deg);
+}
+.awardsDetail .logo {
+  width: 88px;
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  margin-left: -44px;
+}
+.awardsDetail .logo img {
+  width: 100%;
+}
+.awardsDetail .checkBtn {
+  display: inline-block;
+  height: 39px;
+  padding: 0 88px;
+  border-radius: 20px;
+  margin: 30px auto 0;
+  cursor: pointer;
+  background: linear-gradient(to right, #00fff7, #00ff88);
+  font: 20px/39px '微软雅黑';
+  color: #3700a7;
+}
+
+@media all and (max-width: 1370px) {
+  .awardsBox {
+    width: 927px;
+    height: 570px;
+    background-size: 100%;
+  }
+  .awardsBox .leftNum {
+    bottom: 2px;
+    left: 20px;
+  }
+  .awardsBox .deskBox {
+    left: 20px;
+    top: 104px;
+  }
+  .awardsBox .title {
+    top: 24px;
+    left: 242px;
+  }
+  .awardsBox .userList {
+    bottom: 8px;
+    right: 10px;
+    height: 445px;
+  }
+  .awardsBox .userList .listMain {
+    height: 276px;
+    padding: 6px 20px;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+}
+@keyframes move {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes awardsIn {
+  0% {
+    transform: translate(-50%, -60%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+@keyframes awardsout {
+  0%{
+    filter:blur(0px);
+    transform: translate(-50%,-50%);
+    opacity: 1;
+  }
+  100%{
+    filter:blur(3px);
+    transform: translate(-50%,-50%);
+    opacity: 0.7;
+  }
+}
+@keyframes cardRotate {
+  0% {
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(180deg);
+  }
+}
+@keyframes cardRotateOut {
+  0% {
+    transform: translate(-50%, -50%) rotateY(180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+}
+@keyframes light {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

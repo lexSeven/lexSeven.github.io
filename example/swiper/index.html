@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <style>
+        html,
+        body {
+            height:100%;
+        }
+        body {
+            margin:0;
+        }
+        .swiper-container {
+            width:100vw;
+            height:100%;
+            overflow: hidden;
+            background: #eee;
+        }
+        .swiper-slide{
+            height:100%;
+            background: #fff;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div
+            class="swiper-slide"
+            data-original="img/1zdy_02.jpg"
+            style="background-image: url('img/1zdy_02.jpg')"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/2msc_02.jpg"
+            style="background-image: url('img/2msc_02.jpg')"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/3Bella-Hadid_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/4Helena-Bordon-&-Marina-Ruy_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/5glnz_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/6zyq_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/7zdy_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/8gxt_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/9Rihanna_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/10hsy_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/11Rihanna_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/12ty_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/13Gigi-Hadid_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/14ny_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/15Lais-Ribeiro_02.jpg"
+        ></div>
+        <div
+            class="swiper-slide"
+            data-original="img/16Bella-Hadid_02.jpg"
+        ></div>
+    </div>
+</div>
+
+<script src="js/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 30,
+        direction: 'vertical',
+        on:{
+            slideNextTransitionStart: function(){
+                var targetImg = this.slides.eq(this.activeIndex+1);
+                targetImg.css({
+                    'backgroundImage':'url("'+ targetImg.data('original') +'")',
+                    'backgroundSize':'contain'
+                });
+            },
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>当前所在城市</title>
+</head>
+<body>
+<p>当前所在城市：</p>
+<div id="sina_ip_info"></div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=wM2u5ApuvBrqUjaPgfWmaTK1aXlP37Wf"></script>
+<script type="text/javascript">
+    var map = new BMap.Map("container");
+    var nowCity = new BMap.LocalCity();
+    nowCity.get(bdGetPosition);
+    function bdGetPosition(result) {
+        var cityName = result.name; //当前的城市名
+        sina_ip_info.innerText = result.name;
+        console.log(result);
+    }
+</script>
+</body>
+</html>

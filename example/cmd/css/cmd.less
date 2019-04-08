@@ -1,0 +1,64 @@
+html,body{
+  height:100%;
+}
+body{
+  margin: 0;
+  //cursor:url("../img/black.cur"),pointer;
+}
+
+.cmdBox{
+  width:60%;
+  height:60%;
+  background: #0c0c0c;
+  border:1px solid #1883d7;
+  margin:100px 0 0 100px;
+  font:200 14px/18px '宋体';
+  color: #cccccc;
+  overflow: hidden;
+  position: relative;
+
+  .topTitle{
+    height:30px;
+    font:200 12px/30px '宋体';
+    background: #fff;
+    color: #000;
+    position: relative;
+    z-index:2;
+
+    span{
+      float: left;
+    }
+
+    .item{
+      width:30px;
+      height:30px;
+      float: right;
+      background: url("../img/deskIconSm.png") no-repeat;
+
+      &:hover{
+        background-color: #ccc;
+        cursor: pointer;
+      }
+
+      &.logo{
+        background-position: right 0;
+        float: left;
+      }
+      &.close{
+        background-position: -60px 0;
+      }
+      &.max{
+        background-position: -30px 0;
+      }
+      &.min{
+        background-position: 0 0;
+      }
+    }
+  }
+
+  .main{
+    position: absolute;
+    bottom:0;
+  }
+
+}

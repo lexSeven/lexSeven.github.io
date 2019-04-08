@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -548,4 +549,128 @@ let leftScroll = new BScroll(leftWrapper,{
 </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+    <title>桌面</title>
+    <style>
+        .search{
+            display: flex;
+            justify-content: space-between;
+            font-size:50px;
+        }
+        .input{
+            width:80vw;
+            height:10vh;
+            border:1px solid #0a3b98;
+            float: left;
+            box-sizing: border-box;
+            font-size:20px;
+        }
+        .btn{
+            height:10vh;
+            width:20vw;
+            font-size:20px;
+        }
+        ul{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        li{
+            line-height:40px;
+        }
+        li:nth-child(2n-1){
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="search">
+    <input type="text" class="input" placeholder="搜索" id="input">
+    <button type="button" class="btn" id="searchBtn">搜索</button>
+</div>
+
+<ul class="list"></ul>
+<audio id="au" src="" autoplay="autoplay"></audio>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+
+    var list = document.querySelector('.list');
+    var musicObject = null;
+    searchBtn.onclick = function(){
+        search(input.value,function(res){
+            var str = '';
+            res.data.info.forEach(function(item){
+                str += '<li data-playmusic="javascript" data-hash="'+ item.hash +'" >\
+                    <span class="songName">'+ item.songname +'</span>\
+                    <span class="singer">'+ item.singername +'</span>\
+                    <span class="album">'+ item.album_name +'</span>\
+                    <span class="duration">03:00</span>\
+                </li>'
+            });
+            list.innerHTML = str;
+        })
+    }
+
+    list.onclick = function(ev){
+        var ev = ev || event;
+        var target = ev.target || ev.srcElement;
+        if(target.dataset.playmusic){
+            audiopay(target.dataset.hash);
+        }
+    }
+
+
+function search(keyWord,fn){/*酷狗搜索音乐*/
+    $.ajax({
+        url: 'http://mobilecdn.kugou.com/api/v3/search/song',
+        type: 'get',
+        dataType: 'jsonp',
+        data: {
+            format:'jsonp',
+            calback:'',
+            pagesize:20,
+            showtype:2,
+            page:1,
+            keyword:keyWord
+        },
+        success:function(res){
+            fn&&fn(res);
+        }
+    });
+}
+
+function audiopay(songid) {/*酷狗播放音乐*/
+    $.ajax({
+        url: 'http://www.kugou.com/yy/index.php?r=play/getdata&hash='+songid,
+        type: 'get',
+        dataType: 'jsonp',
+        success: function (res) {
+            var obj = {
+                playSrc:res.data.play_url,
+                img:res.data.img,
+                time:res.data.timelength/1000,
+                songName:res.data.audio_name
+            };
+            musicObject && musicObject.remove();
+            musicObject = document.createElement('audio');
+            musicObject.src = obj.playSrc;
+            document.body.appendChild(musicObject);
+            musicObject.pause();
+            console.dir(musicObject);
+            musicObject.play();
+        }
+    });
+}
+
+</script>
+
+</body>
+>>>>>>> 159b0588b669f26e5c1089668bb6a6f5377fc833
 </html>

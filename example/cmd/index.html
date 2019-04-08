@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/cmd.css">
+</head>
+<body>
+
+<div class="cmdBox">
+    <div class="topTitle">
+        <span class="item logo"></span>
+        <span>C:\Windows\System32\cmd.exe</span>
+        <span class="item close"></span>
+        <span class="item max"></span>
+        <span class="item min"></span>
+    </div>
+    <div class="main"></div>
+</div>
+
+<script src="js/data.js"></script>
+<script>
+    var win = document.querySelector('.cmdBox');
+    var box = document.querySelector('.main');
+    var n = 0;
+    pushCode(Math.random()*200);
+    function pushCode(num){
+        setTimeout(function(){
+            box.innerHTML += data[n] + '<br>';
+            n++;
+            if(n<119){
+                pushCode(Math.random()*200);
+            }else if(n>=119 && n<150){
+                pushCode(Math.random()*1000);
+            }else if(n>=150){
+                win.remove();
+                var res = window.confirm('确定想下载我的个人资料？');
+                document.onclick = fullScreen;
+            }
+        },num);
+    }
+
+
+    function fullScreen(){
+        var el = document.documentElement;
+        var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+        if(typeof rfs != "undefined" && rfs) {
+            rfs.call(el);
+        };
+        document.body.style.background = '#000';
+        document.body.style.cursor = 'url("img/black.cur"),pointer';
+        return;
+    }
+</script>
+
+</body>
+</html>

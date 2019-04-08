@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+    <style>
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+        body{
+            margin:0;
+        }
+        .wraper {
+            width:100%;
+            height:100%;
+            margin:0 auto;
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cube {
+            height:500px;
+            width: 500px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform:translateZ(60px);
+            /*background:rgba(0,0,0,0.3);*/
+        }
+        .cube>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right:0;
+            bottom:0;
+            margin:auto;
+            background-color: rgba(36, 143, 161, .8);
+            text-align: center;
+            color: #fff;
+            /*font-size: 48px;*/
+            border: 2px solid #bfcf36;
+            user-select: none;
+            box-sizing: border-box;
+            font-size:0;
+            transition: 1s;
+            /*backface-visibility: hidden;*/
+        }
+        .front{
+            background: url("img/1.png") no-repeat;
+        }
+        .end{
+            background: url("img/2.png") no-repeat;
+        }
+        .left{
+            background: url("img/3.png") no-repeat;
+        }
+        .right{
+            background: url("img/4.png") no-repeat;
+        }
+        .top{
+            background: url("img/5.png") no-repeat;
+        }
+        .bottom{
+            background: url("img/6.png") no-repeat;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wraper">
+    <div class="cube">
+        <div class="front"  data-name="boxFront">Front</div>
+        <div class="end"    data-name="boxEnd">End</div>
+        <div class="left"   data-name="boxLeft">Left</div>
+        <div class="right"  data-name="boxRight">Right</div>
+        <div class="top"    data-name="boxTop">Top</div>
+        <div class="bottom" data-name="boxBottom">Bottom</div>
+    </div>
+</div>
+
+<script>
+    let cube = document.querySelector(".cube"),
+        downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
+    let boxX = 300,boxY = 200,boxZ = 130, activeZ = 50, keyNum = 3;
+
+    /*
+    * boxX  盒子X轴（盒子的长）
+    * boxY  盒子Y轴（盒子的高）
+    * boxZ  盒子Z轴（盒子的宽）
+    * activeZ 当点击其中一个面的时候，那个面在Z轴方向的运动距离
+    * keyNum 当拖动盒子的时候，手指拖动距离和盒子转动距离的比例  越大盒子转动越慢
+    * */
+
+    let eleArr = {
+        boxFront : cube.querySelector('.front'),
+        boxEnd : cube.querySelector('.end'),
+        boxLeft : cube.querySelector('.left'),
+        boxRight : cube.querySelector('.right'),
+        boxTop : cube.querySelector('.top'),
+        boxBottom : cube.querySelector('.bottom')
+    };
+
+    /*
+    * 设定盒子中每一个面的宽，高，位置等信息，
+    * 用对象来记录，主要方便后期对单独的一个面进行修改，而不需要另外去获取数据
+    * */
+    let eleData = {
+        boxFront:{
+            width:boxX,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxZ/2,
+            rotateX:0,
+            rotateY:0
+        },
+        boxEnd:{
+            width:boxX,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxZ/2,
+            rotateX:0,
+            rotateY:180
+        },
+        boxLeft:{
+            width:boxZ,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxX/2,
+            rotateX:0,
+            rotateY:-90
+        },
+        boxRight:{
+            width:boxZ,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxX/2,
+            rotateX:0,
+            rotateY:90
+        },
+        boxTop:{
+            width:boxX,
+            height:boxZ,
+            lineHeight:boxZ,
+            translateZ:boxY/2,
+            rotateX:90,
+            rotateY:0
+        },
+        boxBottom:{
+            width:boxX,
+            height:boxZ,
+            lineHeight:boxZ,
+            translateZ:boxY/2,
+            rotateX:-90,
+            rotateY:0
+        }
+    }
+
+    /*
+    * 初始化盒子，把设定好的数据放到对应的元素身上去
+    * */
+    setBox();
+    function setBox(){
+        for(var a in eleData){
+            css(eleArr[a],{
+                width:eleData[a].width + 'px',
+                height:eleData[a].height + 'px',
+                lineHeight:eleData[a].lineHeight + 'px',
+                transform:'rotateX('+ eleData[a].rotateX +'deg)\
+                rotateY('+ eleData[a].rotateY +'deg)\
+                translateZ('+ eleData[a].translateZ +'px)'
+            })
+        }
+    }
+
+    document.ontouchstart = function (e) {
+        e = e || event;
+        let touch = e.changedTouches[0];
+        downX = touch.clientX;
+        downY = touch.clientY;
+        document.ontouchmove = function (e) {
+            e = e || event;
+            let touch = e.changedTouches[0];
+            moveX = touch.clientX - downX;
+            moveY = touch.clientY - downY;
+
+            let caseY = ((degY - moveY / keyNum) / 90) % 4;
+            if(caseY > 1 && caseY < 3 || caseY < -1 && caseY > -3){
+                moveX = -moveX;
+            }
+
+            /*if(caseY>1 && caseY < 3 || caseY>5 && caseY<7 || caseY>9 && caseY<11){
+                moveX = -moveX;
+            }else if(caseY<-1 && caseY > -3 || caseY<-5 && caseY>-7 || caseY<-9 && caseY>-11 ){
+                moveX = -moveX;
+            }*/
+
+            tempX = degX + moveX / keyNum;
+            tempY = degY - moveY / keyNum;
+            cube.style.transform = "translateZ(60px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
+        };
+        e.preventDefault();
+    };
+
+
+    document.ontouchend = function (e) {
+        e = e || event;
+        let touch = e.changedTouches[0];
+        let domName = e.target.dataset.name;
+        if(Math.abs(downX - touch.clientX)<10 && Math.abs(downY - touch.clientY)<10){
+            if(eleArr[domName]){
+                if(e.target.active){
+                    eleData[domName].translateZ -= activeZ;
+                    e.target.active = false;
+                }else{
+                    eleData[domName].translateZ += activeZ;
+                    e.target.active = true;
+                }
+                css(e.target,{
+                    transform:'rotateX('+ eleData[domName].rotateX +'deg)\
+                    rotateY('+ eleData[domName].rotateY +'deg)\
+                    translateZ('+ eleData[domName].translateZ +'px)'
+                })
+            }
+        }else{
+            degX += moveX / keyNum;
+            degY += - moveY / keyNum;
+            degX %= 360;
+            degY %= 360;
+        }
+        document.ontouchmove = null;
+    };
+
+    function css(target,styles){
+        for (let k in styles){
+            target.style[k]=styles[k];
+        }
+    }
+</script>
+
+</body>
+</html>

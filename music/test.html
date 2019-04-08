@@ -4,39 +4,86 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .box{
-            width:300px;
-            height:300px;
-            border:1px solid #1b6d85;
-            position: relative;
-            margin:100px;
-            overflow: hidden;
-        }
-        .box:hover .left,.box:hover .right{
-            transform: translateX(0) translateY(-50%);
-        }
-        .btn{
-            width:30px;
-            height:20px;
-            background: #e15671;
-            position: absolute;
-            top:50%;
-            transition: 0.5s;
-        }
-        .left{
-            left:0;
-            transform: translateX(-30px) translateY(-50%);
-        }
-        .right{
-            right:0;
-            transform: translateX(30px) translateY(-50%);
+        button{
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-<div class="box">
-    <div class="btn left"></div>
-    <div class="btn right"></div>
-</div>
+
+    <input type="number" id="numA">
+    <label>+</label>
+    <input type="number" id="numB">
+    <button id="clacBtn">=</button>
+    <span id="resDom"></span>
+
+    <script>
+
+       /* var arr = [2,4,6,2,6,8];
+        var s = {};
+        var newArr = [];
+        for(var i=0;i<arr.length;i++){
+            if(!s[arr[i]]){
+                s[arr[i]] = 'a';
+                newArr.push(arr[i]);
+            }
+        }
+        console.log(newArr);*/
+
+        clacBtn.onclick = Calculation;
+
+        function Calculation(){
+            var a = numA.value;
+            var b = numB.value;
+            var resault = aArr = bArr = [];
+            var maxNum = 0;
+            var i=0;
+
+            abd()
+            function abd(){
+                var num = 0;
+                aArr = a.split('').reverse();
+                bArr = b.split('').reverse();
+                maxNum = aArr.length>bArr.length?aArr.length:bArr.length;
+                loopCount({
+                    a:aArr[0],
+                    b:bArr[0]
+                });
+            }
+
+            function loopCount(option){
+                var a = option.a || 0;
+                var b = option.b || 0;
+                var c = option.c || 0;
+
+                a = Number(a);
+                b = Number(b);
+                c = Number(c);
+                if(i<maxNum){
+                    count(a,b,c);
+                }else{
+                    // console.log(resault.reverse().join(''));
+                    resDom.innerText = resault.reverse().join('');
+                }
+            }
+
+            function count(a,b,c){
+                var numc = 0;
+                if(a+b+c>9){
+                    var num = (a+b+c+'').split('').reverse();
+                    resault.push(num[0]);
+                    numc = num[1];
+                }else{
+                    resault.push(a+b+c);
+                }
+                i++;
+                loopCount({
+                    a:aArr[i],
+                    b:bArr[i],
+                    c:numc
+                });
+            }
+        }
+    </script>
 </body>
 </html>
