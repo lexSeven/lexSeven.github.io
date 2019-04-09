@@ -22,6 +22,7 @@ img {
 body {
   background: #F5F5F5;
 }
+/*店铺信息*/
 .shop-inf {
   height: 2rem;
   background: #fff;
@@ -107,6 +108,7 @@ body {
   display: inline-block;
   vertical-align: middle;
 }
+/*主要内容部分*/
 .content-box {
   background: #fff;
   margin-top: 0.26666667rem;
@@ -203,8 +205,25 @@ body {
   position: relative;
   padding-bottom: 0.26666667rem;
 }
-.content-box .content-main .img-box:nth-child(1) {
-  padding-bottom: 0.70666667rem;
+.content-box .content-main .img-box.double {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.13333333rem;
+}
+.content-box .content-main .img-box.triple {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'first second' 'first third';
+  grid-gap: 0.13333333rem;
+}
+.content-box .content-main .img-box.triple img:first-child {
+  grid-area: first;
+  height: 100%;
+}
+.content-box .content-main .img-box.quad {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.13333333rem;
 }
 .content-box .content-main .img-title {
   width: 7.70666667rem;
@@ -261,13 +280,41 @@ body {
   color: #1C1717;
   padding-left: 0.08rem;
 }
-.activtyApp_c {
+.content-box .content-main .buy-btn {
   height: 100%;
-  display: grid;
-  grid-template-rows: 1.8666667rem 1fr 1.306667rem;
+  font-size: 0;
+  float: right;
+  margin-right: 0.4rem;
 }
+.content-box .content-main .buy-btn:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.content-box .content-main .buy-btn span {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.37333333rem;
+  color: #1c1717;
+  padding-right: 0.05333333rem;
+}
+.content-box .content-main .buy-btn img {
+  width: 0.37333333rem;
+  height: 0.37333333rem;
+  vertical-align: middle;
+}
+/*外框，刷新，加载样式*/
 .wrapper {
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 1.866667rem;
+  margin-bottom: 1.3066667rem;
 }
 .wrapper .content {
   position: relative;

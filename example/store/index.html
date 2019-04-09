@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!--添加听云监控-->
-    <script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>
+    <!--<script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>-->
 </head>
 
 <!-- uuid为页面在erp中的id，仅在erp后台生成的链接中生效，做数据统计用 -->
@@ -24,35 +24,52 @@
                 <svg t="1554350179513" class="icon" style="" viewBox="0 0 1024 1024"><path d="M192 512a32 32 0 0 1 64 0 256 256 0 1 0 256-256 32 32 0 0 1 0-64c176.736 0 320 143.264 320 320s-143.264 320-320 320S192 688.736 192 512z" fill="#333333" p-id="3747"></path></svg>
             </div>
             <div id="root" class="swiper-slide">
-                <div class="content-box" v-for="item in data.list">
+                <div class="content-box" v-for="item in data.data.list">
                     <div class="user-inf">
-                        <div class="user-head"><img src="img/head.png"></div>
+                        <div class="user-head">
+                            <img :src="item.authorPic">
+                            <div class="user-type">
+                                <img src="img/head.png">
+                            </div>
+                        </div>
                         <div class="user-name-box">
                             <div class="user-name-position-box">
                                 <h3 class="user-name">{{item.authorName}}</h3>
-                                <p class="user-identification">品牌官方</p>
+                                <p class="user-identification">{{
+                                    item.storeType==1?'品牌官方旗舰店':
+                                    item.storeType==2?'寺库自营店':
+                                    item.storeType==3?'单品牌专营店':
+                                    item.storeType==4?'多品牌专卖店':''
+                                }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="content-main">
-                        <div class="img-box">
-                            <img src="img/asojdo.png">
-                            <div class="img-title">
-                                <span>2018秋冬系列秀场造型</span>
-                            </div>
-                        </div>
+                        <img-show
+                                :imgarr="item.imagesJson">
+                        </img-show>
                         <div class="function-btn">
-                            <div class="function-btn-item">
-                                <div class="icon"><img src="img/btn_06.jpg"></div>
-                                <div class="text">20</div>
-                            </div>
-                            <div class="function-btn-item">
+                            <thumb-click
+                                    :thumbitem="item"
+                                    :deviceid="deviceId"
+                                    :index="index"
+                                    :analysis="analysis"
+                                    :dealnum="dealNum">
+                            </thumb-click>
+                            <div class="function-btn-item" @click="commentHandler">
                                 <div class="icon"><img src="img/btn_03.jpg"></div>
-                                <div class="text">20</div>
+                                <div class="text">{{item.commentCount}}</div>
                             </div>
-                            <div class="function-btn-item">
-                                <div class="icon"><img src="img/btn_09.jpg"></div>
-                                <div class="text">20</div>
+                            <share-click
+                                    :sharedata="item.shareCount"
+                                    :deviceid="deviceId"
+                                    :index="index"
+                                    :analysis="analysis"
+                                    :dealnum="dealNum">
+                            </share-click>
+                            <div class="buy-btn">
+                                <span>购买</span>
+                                <img src="img/head.png">
                             </div>
                         </div>
                     </div>
@@ -66,12 +83,538 @@
 <!-- 用作填写分享参数 -->
 <div id="share" data-title="" data-description="" data-url="" data-img-url=""></div>
 
+<!-- 分享组件 -->
+<script type="text/x-template" id="shareclcik">
+    <div
+        class="function-btn-item"
+        @click.stop="shareOut">
+
+        <div class="icon"><img src="img/btn_09.jpg"></div>
+        <div class="text">{{showcount}}</div>
+    </div>
+</script>
+<!-- //点赞组件 -->
+<script type="text/x-template" id="thumbclcik">
+    <div
+        class="function-btn-item"
+        @click.stop="thumbsUp($event)">
+
+        <div class="icon"><img src="img/btn_06.jpg"></div>
+        <div class="text">{{showcount}}</div>
+    </div>
+</script>
+
+<!--图片组件-->
+<script type="text/x-template" id="imgbox">
+    <div :class="imgclass">
+        <img v-for="imgs in imgarr" :src="imgs">
+    </div>
+</script>
+
 <script src="js/doc.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/swiper.js"></script>
 
 <!-- 页面配置参数 -->
 <script type="text/javascript">
+
+    // 分享组件
+    Vue.component("share-click", {
+        template: "#shareclcik",
+        props:{
+            sharedata: {
+                type: Object
+            },
+            userid:{
+                type: Number
+            },
+            deviceid:{
+                type: String
+            },
+            pagelink:{
+                type: Function,
+                default: undefined,
+                require: false
+            },
+            analysis: {
+                type: Function,
+                default: undefined,
+                require: false
+            },
+            index:{
+                type: Number
+            },
+            dealnum: {
+                type: Function,
+                default: undefined,
+                require: false
+            }
+        },
+        data: function(){
+            return {
+                sharedata: this.sharedata,
+                showcount: 0,
+                shareUserid: this.userid,
+                shareDeviceId: this.deviceid,
+                title: '',
+                url: '',
+                imgUrl: '',
+                regemoRule : /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g,  // 表情匹配正则
+                indexs: this.index
+            }
+        },
+        watch:{
+            shareitem: function(){
+                this.sharedata = this.shareitem;
+                this.showcount =  this.dealNum(this.sharedata.shareCount);
+            },
+            userid: function(){
+                this.thumbUserid = this.userid;
+            },
+            deviceid: function(){
+                this.thumbDeviceId = this.deviceid;
+            },
+            index: function(){
+                this.indexs= this.index
+            }
+        },
+        methods:{
+            // dealNum: function(count){
+            //     return this.dealnum(count, '分享');
+            // },
+
+            dealNum: function(count, text){
+                var cellNum = Math.ceil(String(count / 10000).substr(String(count / 10000).indexOf('.')) * 10);
+                return count == 0 ? text : count < 10000 ? count : count == 10000 ? '1万' : cellNum >= 10 ? Math.floor(count / 10000) + 1 + '万' : cellNum == 0 ? Math.floor(count / 10000) + '万': Math.floor(count / 10000) + '.' + cellNum + '万';
+            },
+
+            shareOut: function(){
+                var that = this;
+                this.analysis($(event.currentTarget));
+                this.setShareConfig();
+                app.shareOption({
+                    title: this.title,
+                    des: this.title,
+                    url: this.url,
+                    imgUrl: this.imgUrl
+                }, function () {
+                    app.nativeShareAction(function (data) {
+                        if (data.errorCode == 0 && data.data.state === 'success') {
+                            that.sharedata.shareCount ++;
+                            that.showcount =  that.dealNum(that.sharedata.shareCount);
+                            that.recorderShare();
+                        }
+                    })
+                });
+            },
+            // 设置分享信息
+            setShareConfig: function(){
+                var sharePicItem = this.sharedata.commentVideo ? this.sharedata.commentVideoImg : this.sharedata.images[0];
+                sharepic = ~sharePicItem.indexOf('.gif') ||  ~sharePicItem.indexOf('.bmp') || ~sharePicItem.indexOf('.tiff') ? sharePicItem : (sharePicItem + '_!!200x200c3.jpg');
+                var linkParame = '&contentUUID=' + this.sharedata.uuid + '&is2URI=true'+ '&utm_source=faxian_fenxiang_' + this.sharedata.id + '_' +
+                    this.sharedata.contentType + '&channel=faxian_fenxiang_' + this.sharedata.id + '_' + this.sharedata.contentType;
+                this.url = this.pagelink(this.sharedata)  +'&source=found_fx' + linkParame;
+                this.imgUrl = sharepic;
+                this.title = this.desEmoji(this.sharedata.title).replace(/(<br>)/,function($1){return $1 =''}) + '…';
+            },
+            // 表情符号处理app闪退问题
+            desEmoji:function(text){
+                var that = this;
+                var emoji = text.match(that.regemoRule);
+                var placeT = text.replace(that.regemoRule, '`').substring(0, 13);
+                if(placeT.indexOf("`") >= 0){
+                    for(var i=0; i < placeT.length - 1; i++){
+                        placeT = placeT.replace(/`/, function(char){
+                            return char = emoji[i];
+                        })
+                    }
+                }
+                return placeT;
+            },
+            //记录分享状态
+            recorderShare: function(){
+                $.ajax({
+                    type: 'post',
+                    url: '//content.secoo.com/content-service/share/insertShare',
+                    data:JSON.stringify({
+                        contentId: this.sharedata.id,
+                        contentType: this.sharedata.contentType,
+                        contentUuid: this.sharedata.uuid,
+                        deviceId: this.shareDeviceId,
+                        source: '1',
+                        userId: this.shareUserid
+                    }),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: 'json',
+                    success:function(data){},
+                    error:function(){}
+                })
+            }
+        },
+        mounted: function(){
+            this.showcount =  this.dealNum(this.sharedata,'分享');
+        }
+    })
+
+    //点赞组件
+    Vue.component("thumb-click", {
+        template: "#thumbclcik",
+        props:{
+            thumbitem: {
+                type: Object
+            },
+            userid:{
+                type: Number
+            },
+            deviceid:{
+                type: String
+            },
+            index: {
+                type: Number
+            },
+            analysis:{
+                type: Function,
+                default: undefined,
+                required: false
+            },
+            dealnum: {
+                type: Function,
+                default: undefined,
+                require: false
+            },
+            logincallback: {
+                type: Function,
+                default: undefined,
+                require: false
+            }
+        },
+        data: function(){
+            return {
+                thumbdata: this.thumbitem,
+                thumbStatus: this.thumbitem.thumbsStatus,
+                showcount: 0,
+                thumbUserid: this.userid,
+                thumbDeviceId: this.deviceid,
+                indexs: this.index
+            }
+        },
+        watch:{
+            thumbitem: function(){
+                this.thumbdata = this.thumbitem;
+                this.thumbStatus = this.thumbitem.thumbsStatus;
+                this.showcount =  this.dealNum(this.thumbdata.thumbsCount);
+            },
+            userid: function(){
+                this.thumbUserid = this.userid;
+            },
+            deviceid: function(){
+                this.thumbDeviceId = this.deviceid;
+            },
+            indexs: function(){
+                this.indexs = this.index;
+            },
+        },
+        methods:{
+            thumbsUp: function(event){
+                var that = this;
+                var _this = $(event.currentTarget);
+                this.analysis(_this);
+
+                if (this.thumbStatus == true) {
+                    event.currentTarget.classList.add('agreeWrap');
+                    return app.toast("已点赞")
+                };
+                if (this.userid) {
+                    event.currentTarget.classList.add('agreeWrap');
+                    this.thumbdata.thumbsCount++;
+                    that.thumbStatus = true;
+                    this.showcount = this.dealNum(this.thumbdata.thumbsCount);
+                    this.recordThumb();
+                }else{
+                    that.reLogin(function(){
+                        that.logincallback(function(){
+                            _this.trigger('click');
+                        })
+                    })
+                }
+            },
+            // 小程序登录跳转， js库更改后删除
+            reLogin: function(callback) {
+                if(app.deviceType.miniProgram) {
+                    var curLocation = window.location.href.replace(/\&_wxupk[\s\S]*/, '');;
+                    wx.miniProgram.navigateTo({
+                        url: '/pages/account/loginAccount/loginAccount?_wxurl='+ encodeURIComponent(curLocation)
+                    })
+                } else {
+                    app.login(function () {
+                        callback && callback();
+                    });
+                }
+            },
+            // dealNum: function(count){
+            //     return this.dealnum(count, '赞');
+            // },
+            dealNum: function(count, text){
+                var cellNum = Math.ceil(String(count / 10000).substr(String(count / 10000).indexOf('.')) * 10);
+                return count == 0 ? text : count < 10000 ? count : count == 10000 ? '1万' : cellNum >= 10 ? Math.floor(count / 10000) + 1 + '万' : cellNum == 0 ? Math.floor(count / 10000) + '万': Math.floor(count / 10000) + '.' + cellNum + '万';
+            },
+            recordThumb: function(){
+                $.ajax({
+                    type: 'post',
+                    url: '//content.secoo.com/content-service/api/thumbs/addOrDel',
+                    data:{
+                        authorId: this.thumbdata.authorId,
+                        contentUuid: this.thumbdata.uuid,
+                        deviceId: this.thumbDeviceId,
+                        flag: 1,
+                        userId: this.thumbUserid,
+                        version: 'H5'
+                    },
+                    dataType: 'json',
+                    success:function(data){},
+                    error:function(){
+                        app.toast("网络好像有点问题，请稍后再赞")
+                    }
+                })
+            },
+        },
+        mounted: function(){
+            this.showcount =  this.dealNum(this.thumbdata.thumbsCount,'赞');
+            this.$refs.thumbAnimte.addEventListener("webkitAnimationEnd", function () {
+                this.parentNode.classList.remove('agreeWrap');
+            })
+        }
+    })
+
+    //图片组件
+    Vue.component("img-show", {
+        template: "#imgbox",
+        props:{
+            imgarr: {
+                type: Object
+            }
+        },
+        data: function(){
+            return {
+                imgdata: this.imgarr,
+                imgclass:'img-box'
+            }
+        },
+        created:function(){
+            this.addClass()
+        },
+        methods:{
+            addClass:function(){
+                switch (this.imgarr.length) {
+                    case 2:
+                        this.imgclass = 'img-box double';
+                        break;
+                    case 3:
+                        this.imgclass = 'img-box triple';
+                        break;
+                    case 4:
+                        this.imgclass = 'img-box quad';
+                        break;
+                }
+                if(this.imgarr.length >= 5){
+                    this.imgclass = 'img-box fivefold';
+                }
+            }
+        }
+    })
+
+    // vue实例配置
+    var findOption = {
+        el:'#app',
+        data:{
+            userid: '',     // 内容池id
+            currentDate: '', // 服务器时间
+            deviceId: '', // 设备id
+            deviceType: '', // 获取设备类型
+            upk:'',    // upk
+            agreePaly: false,  //同意用网络播放视频
+            swiperdata: {},        // 大轮播图储存的数据
+            swiperStaus: false,     // 控制大轮播图显示隐藏
+            sensorsStatus: true,   // 添加神策的判断条件
+            webpStatus: false,  // 是否支持webp
+            androidVdata:'',     // 记录视频数据
+            contentContainer: '',  // 整体内容swiper实例
+            notApp: null,      // 判断是否不在app内， 隐藏分享
+        },
+        methods:{
+            // 请求数据公用方法
+            dataQuerry: function(parame, callback, errorCallback){
+                $.ajax({
+                    type: parame.type || 'get',
+                    url: parame.url,
+                    data: parame.data || {},
+                    dataType: parame.dataType || 'json',
+                    success:function(data){
+                        if(data){
+                            callback && callback(data);
+                        }
+                    },
+                    error:function(){
+                        errorCallback && errorCallback();
+                        app.toast('网络异常,请重试');
+                    }
+                })
+            },
+            // 获取数据
+            dataAnalysis:function(parame, callback, errorCallback){
+                var that = this;
+                this.dataQuerry({
+                    url: '//content.secoo.com/content-service/api/content/feed/queryFeeds',
+                    data:{
+                        currentPage: parame.page,
+                        currentPageSize: 15,
+                        currentTime: "" + that.currentDate + "",
+                        deviceId: that.deviceId,
+                        userId: that.userid,
+                        sunburnUuid: that.sunburnUuid,
+                        tabId: that.tabArray[that.tabIndex].id
+                    }
+                }, function(data){
+                    callback && callback(data, parame);
+                }, function(){
+                    errorCallback && errorCallback();
+                })
+            },
+            //获取设备ID
+            getdeviceId: function(callback){
+                var that = this;
+                if (app.newVersion) {
+                    jsBridge.callHandler('JsCallNativeMethod', {
+                        "action": "getAppInfo",
+                        "needResult": true
+                    }, function (result) {
+                        that.deviceId = result.data.deviceId;
+                        callback && callback();
+                    });
+                } else {
+                    if (that.deviceType == 'ios') {
+                        Comm.content.bridge.callHandler('WVJS_acqureDeviceInfomation', {}, function (response) {
+                            that.deviceId = response.idfa;
+                            callback && callback();
+                        });
+                    } else if (that.deviceType == 'android') {
+                        that.deviceId = JsBridge.jsGetDataFromNativeByKey('imei');
+                        callback && callback();
+                    } else {
+                        that.deviceId = '111111111111111111111';
+                        callback && callback();
+                    }
+                }
+            },
+            // 点击播放视频
+            playVideo: function(event, itemData,index){
+                var that = this;
+                var _this = event.currentTarget;
+                var sibVideo = _this.previousElementSibling;
+                that.analysis($(event.currentTarget));
+                if(that.agreePaly || !app.newVersion){
+                    that.videoAction(_this, sibVideo, itemData, index);
+                    return;
+                }
+                jsBridge.callHandler('JsCallNativeMethod', {
+                    "action":"getNetworkInfo",
+                    "needResult":true
+                }, function (response) {
+                    if (response.data.networkType == 0) {
+                        app.toast('无网络请稍后播放');
+                    }else if(response.data.networkType == 1){
+                        that.videoAction(_this, sibVideo, itemData, index);
+                    }else{
+                        that.commPrompt({title: '正在使用蜂窝网络，播放将产生流量费用'}, function(){
+                            that.videoAction(_this, sibVideo, itemData, index);
+                            that.agreePaly = true;
+                            that.playStatus();
+                        })
+                    }
+                });
+
+            },
+            // 视频播放公用结果
+            videoAction(cover, video, itemData,index){
+                var that = this;
+                // if (that.deviceType == 'ios') {
+                //     cover.parentNode.classList.add('transparent');
+                //     video.play();
+                // }else{
+                that.videoStatus = true;
+                that.androidVdata = itemData;
+                that.androidVdata.index = index;
+                this.$refs.androidVideo.setAttribute('poster', itemData.commentVideoImg);
+                this.$refs.androidVideo.setAttribute('src', itemData.commentVideo);
+                this.$refs.androidVideo.play();
+                // }
+            },
+            // 公共弹窗
+            commPrompt: function(parame, callback){
+                var that = this;
+                if(app.newVersion){
+                    jsBridge.registerHandler('sureCallback', function(arg) {
+                        callback && callback();
+                    })
+                    jsBridge.callHandler('JsCallNativeMethod', {
+                        'action': 'updateUI',
+                        'data': {
+                            "viewId": "dialog",
+                            "message": parame.title,
+                            "visibility":"visible",
+                            "cancelable": true,     //用来表示对话框是否可以取消
+                            "cancelOnTouchOutside": true,   //用来表示点击对话框外部是否可以取消
+                            "buttons": [
+                                {
+                                    'text': '取消',
+                                },
+                                {
+                                    'text': '确定',//已注册好的事件
+                                    'jsHandle': 'sureCallback'
+                                }
+                            ]
+                        }
+                    });
+                }else{
+                    if (that.deviceType == 'ios') {
+                        Comm.content.bridge.registerHandler("sureCallback", function(data) {
+                            if (data.index == 1) {
+                                callback && callback();
+                            }
+                        });
+                        Comm.content.bridge.callHandler('WVJS_showAlertControllerWithInfo', {
+                            tag: "62",
+                            type: "1",
+                            message: parame.title,
+                            otherButtonTitles: [
+                                "取消",
+                                "确定",
+                            ],
+                            actionHandler: "sureCallback"
+                        }, function() {});
+                    }else if (that.deviceType == 'android'){
+                        JsBridge.alert("", parame.title, {
+                            text: "取消",
+                            click: function() {
+
+                            }
+                        }, {
+                            text: "确定",
+                            click: function() {
+                                callback && callback();
+                            }
+                        });
+                    }
+                }
+            },
+            // 分享/点赞/评论数量显示处理
+            dealNum: function(count, text){
+                var cellNum = Math.ceil(String(count / 10000).substr(String(count / 10000).indexOf('.')) * 10);
+                return count == 0 ? text : count < 10000 ? count : count == 10000 ? '1万' : cellNum >= 10 ? Math.floor(count / 10000) + 1 + '万' : cellNum == 0 ? Math.floor(count / 10000) + '万': Math.floor(count / 10000) + '.' + cellNum + '万';
+            },
+        }
+    }
+
     var pageConfig = {
 
        loadJsArr: '//pic16.secooimg.com/imagesNew/featuresPic/gxd_vuePro/shopComm.js',
@@ -104,19 +647,7 @@
 
     //zepto加载完成后的回调，与页面配置中同名函数的择一而用
     function zeptoLoaded() {
-
-        var vm = new Vue({
-            el:'#root',
-            data:data,
-            method:{},
-            mounted:function(){
-                pulldownComponent.swiper.update();
-            },
-            updated:function(){
-                pulldownComponent.swiper.update();
-            }
-        });
-
+        console.log(123);
         var pulldownComponent = {
             init: function () {
                 var _this = this;
@@ -157,7 +688,7 @@
                                     "identityLable": "测试内容5ed5",
                                     "imagesJson": [
                                         "https://pic12.secooimg.com/res/contentERP/10/53/1WvJm4f5172d26d19c4019b93e01b5fac020e0.jpg",
-                                        "https://pic12.secooimg.com/res/contentERP/98/48/1WvGkEb037027f973041698ac3808ed1f80d78.png"
+                                        "https://hbimg.huabanimg.com/c135efdc58b336ffab0075639b067470118dc1c044d94-WXcvH1_/fw/480"
                                     ],
                                     "optionTime": 1536139328211,
                                     "optionType": 0,
@@ -173,7 +704,7 @@
                                     "title": "3333",
                                     "uuid": "2e9adeadbd9046219f46878886a3dac4"
                                 }
-                                vm.data.list.push(data);
+                                vm.data.data.list.push(data);
                             }
                         }
                     }
@@ -216,7 +747,7 @@
                             "identityLable": "测试内容5ed5",
                             "imagesJson": [
                                 "https://pic12.secooimg.com/res/contentERP/10/53/1WvJm4f5172d26d19c4019b93e01b5fac020e0.jpg",
-                                "https://pic12.secooimg.com/res/contentERP/98/48/1WvGkEb037027f973041698ac3808ed1f80d78.png"
+                                "https://hbimg.huabanimg.com/c135efdc58b336ffab0075639b067470118dc1c044d94-WXcvH1_/fw/480"
                             ],
                             "optionTime": 1536139328211,
                             "optionType": 0,
@@ -233,8 +764,7 @@
                             "uuid": "2e9adeadbd9046219f46878886a3dac4"
                         }
 
-                        vm.data.list.push(data);
-                        console.log(vm.data.list);
+                        vm.data.data.list.push(data);
                         _this.refreshDom.querySelector('svg').classList.remove('active');
                         _this.refreshEnd = true;
                         _this.swiper.allowTouchMove = true;
@@ -243,8 +773,47 @@
                 }
             }
         };
-        pulldownComponent.init();
 
+        var vm = new Vue({
+            el:'#root',
+            data(){
+                return {
+                    data:data,
+                    className:'img-box'
+                }
+            },
+            created:function(){
+                this.addClass();
+            },
+            mounted:function(){
+                pulldownComponent.init();
+            },
+            updated:function(){
+                pulldownComponent.swiper.update();
+            },
+            methods:{
+                addClass:function(){
+
+                },
+                thumbsHandler:function(){
+                    console.log('点赞了');
+                    app.statistics({
+                        "s.paid":2412,
+                        "s.ot":2,
+                        "s.opid":2418,
+                        "s.lpaid":'来源页面',
+                        "s.flt":'楼层类型：',
+                        "s.fli":'楼层位置：可以填写数据顺序',
+                    })
+                },
+                commentHandler:function(){
+                    console.log('评论');
+                },
+                shareHandler:function(){
+                    console.log('分享');
+                }
+            }
+        });
         document.addEventListener('touchmove', function (ev) {
             ev.preventDefault();
         });
@@ -252,6 +821,76 @@
 
     //全部js加载完成后的回调，与页面配置中同名函数的择一而用
     function jsLoaded() {}
+
+    function getData(){
+        var entry = {
+            getDeviceInfo: function (callback) {
+                var that = entry;
+                that.deviceInfo = {};
+                // 获取设备终端
+                // if(app.deviceType.android) that.deviceInfo.type=1;
+                // if(app.deviceType.ios) that.deviceInfo.type=2;
+
+                // 获取app设备参数
+                if(app.deviceType.inApp) {
+                    if(app.newVersion) {
+                        jsBridge.callHandler('JsCallNativeMethod', {
+                            'action': 'getAppInfo',
+                            'needResult': true
+                        }, function(result) {
+                            result.data.deviceId && (that.deviceInfo.deviceId = result.data.deviceId);
+                            callback && callback();
+                        })
+                    } else if(that.deviceType=='android') {
+                        !!app.cookie('imei') && (that.deviceInfo.deviceId = app.cookie('imei'));
+                        callback && callback();
+                    } else {
+                        that.deviceInfo.deviceId = that.createUuid();
+                        callback && callback();
+                    }
+                } else {
+                    that.deviceInfo.deviceId = that.createUuid();
+                    callback && callback();
+                }
+            },
+            createUuid: function () {
+                if(app.cookie('deviceId')) {
+                    return app.cookie('deviceId');
+                } else {
+                    var d = new Date().getTime();
+                    if (window.performance && typeof window.performance.now === "function") {
+                        d += performance.now(); //use high-precision timer if available
+                    }
+                    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                        var r = (d + Math.random() * 16) % 16 | 0;
+                        d = Math.floor(d / 16);
+                        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                    });
+                    app.cookie('deviceId', uuid);
+                    return uuid;
+                }
+            }
+        }
+
+
+        var data = {
+            capge:'1',
+            diviceId:'',//怎么拿设备号  app.getUpk(callback)//回调里面能拿到UPK 如果UPK为空，则未登录
+            pageSize:'15',
+            storeId:'',//店铺ID获取  app.getQueryString(storeId)?
+            upk:''//怎么获取
+        }
+        $.ajax({
+            url:'https://content.secoo.com/content-service/api/store/getContent',
+            data:data,
+            success:function(data){
+                console.log('请求成功');
+            },
+            error:function(rep){
+                console.log(rep.msg);
+            }
+        })
+    }
 </script>
 ​
 <!-- 主文件不可删除 -->

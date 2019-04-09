@@ -27,6 +27,7 @@ body{
     background: #F5F5F5;
 }
 
+/*店铺信息*/
 .shop-inf {
     height:150/@rem;
     background: #fff;
@@ -124,6 +125,7 @@ body{
     }
 }
 
+/*主要内容部分*/
 .content-box{
     background: #fff;
     margin-top: 20/@rem;
@@ -236,8 +238,34 @@ body{
             padding-top:25/@rem;
             position: relative;
             padding-bottom:20/@rem;
-            &:nth-child(1){
-                padding-bottom:53/@rem;
+            //&:nth-child(1){
+            //    padding-bottom:53/@rem;
+            //}
+
+            &.double{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 10/@rem;
+            }
+
+            &.triple{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas:
+                        'first second'
+                         'first third';
+                grid-gap: 10/@rem;
+
+                img:first-child{
+                    grid-area: first;
+                    height: 100%;
+                }
+            }
+
+            &.quad{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 10/@rem;
             }
         }
 
@@ -303,18 +331,48 @@ body{
                 padding-left:6/@rem;
             }
         }
+
+        .buy-btn{
+            height: 100%;
+            font-size: 0;
+            float: right;
+            margin-right: 30/@rem;
+
+            &:before{
+                content: '';
+                width:0;
+                height:100%;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            span{
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 28/@rem;
+                color: #1c1717;
+                padding-right: 4/@rem;
+            }
+
+            img{
+                width: 28/@rem;
+                height: 28/@rem;
+                vertical-align: middle;
+            }
+        }
     }
 }
 
-.activtyApp_c{
-    height:100%;
-    display: grid;
-    grid-template-rows: 1.8666667rem 1fr 1.306667rem;
-}
+/*外框，刷新，加载样式*/
 .wrapper{
-    //width:100%;
-    //height:100%;
     overflow: hidden;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 1.866667rem;
+    margin-bottom: 1.3066667rem;
     .content{
         position: relative;
     }
