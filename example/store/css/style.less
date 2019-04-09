@@ -193,6 +193,7 @@ body{
     .content-main{
         padding-top:28/@rem;
         padding-left:90/@rem;
+        text-align: right;
 
         .text-box{
             padding-right:30/@rem;
@@ -235,37 +236,67 @@ body{
         }
 
         .img-box{
-            padding-top:25/@rem;
-            position: relative;
-            padding-bottom:20/@rem;
-            //&:nth-child(1){
-            //    padding-bottom:53/@rem;
-            //}
+            width: 638/@rem;
+            padding: 25/@rem 0 20/@rem 0;
+            display: inline-block;
+
+            .imgItem{
+                width: 100%;
+                line-height: 0;
+                font-size: 0;
+                border: 1px solid #eee;
+                float: left;
+                margin-right: 10/@rem;
+                margin-bottom: 10/@rem;
+                overflow: hidden;
+                text-align: center;
+
+                &:before{
+                    content: '';
+                    height: 100%;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+
+                img{
+                    width: 100%;
+                    vertical-align: middle;
+                }
+
+            }
 
             &.double{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-gap: 10/@rem;
+                .imgItem{
+                    width: 299/@rem;
+                    height: 299/@rem;
+                }
             }
 
             &.triple{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-areas:
-                        'first second'
-                         'first third';
-                grid-gap: 10/@rem;
-
-                img:first-child{
-                    grid-area: first;
-                    height: 100%;
+                .imgItem {
+                    width: 299/@rem;
+                    height: 299/@rem;
+                    &:first-child {
+                        height: 608/@rem;
+                        &:before{
+                            display: none;
+                        }
+                        img{
+                            width: auto;
+                            max-width: none;
+                            height: 100%;
+                            position: relative;
+                            left: -50%;
+                        }
+                    }
                 }
             }
 
             &.quad{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-gap: 10/@rem;
+                .imgItem{
+                    width: 299/@rem;
+                    height: 299/@rem;
+                }
             }
         }
 
@@ -298,6 +329,7 @@ body{
         .function-btn{
             height:77/@rem;
             padding-top:31/@rem;
+            text-align: left;
         }
 
         .function-btn-item{

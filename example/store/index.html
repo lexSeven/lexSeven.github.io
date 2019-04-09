@@ -88,7 +88,6 @@
     <div
         class="function-btn-item"
         @click.stop="shareOut">
-
         <div class="icon"><img src="img/btn_09.jpg"></div>
         <div class="text">{{showcount}}</div>
     </div>
@@ -107,7 +106,9 @@
 <!--图片组件-->
 <script type="text/x-template" id="imgbox">
     <div :class="imgclass">
-        <img v-for="imgs in imgarr" :src="imgs">
+        <div class="imgItem" v-for="imgs in imgarr">
+            <img :src="imgs">
+        </div>
     </div>
 </script>
 
@@ -397,7 +398,7 @@
         data: function(){
             return {
                 imgdata: this.imgarr,
-                imgclass:'img-box'
+                imgclass:'img-box single'
             }
         },
         created:function(){

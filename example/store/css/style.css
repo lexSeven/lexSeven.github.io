@@ -166,6 +166,7 @@ body {
 .content-box .content-main {
   padding-top: 0.37333333rem;
   padding-left: 1.2rem;
+  text-align: right;
 }
 .content-box .content-main .text-box {
   padding-right: 0.4rem;
@@ -201,29 +202,55 @@ body {
   height: auto;
 }
 .content-box .content-main .img-box {
-  padding-top: 0.33333333rem;
-  position: relative;
-  padding-bottom: 0.26666667rem;
+  width: 8.50666667rem;
+  padding: 0.33333333rem 0 0.26666667rem 0;
+  display: inline-block;
 }
-.content-box .content-main .img-box.double {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0.13333333rem;
+.content-box .content-main .img-box .imgItem {
+  width: 100%;
+  line-height: 0;
+  font-size: 0;
+  border: 1px solid #eee;
+  float: left;
+  margin-right: 0.13333333rem;
+  margin-bottom: 0.13333333rem;
+  overflow: hidden;
+  text-align: center;
 }
-.content-box .content-main .img-box.triple {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 'first second' 'first third';
-  grid-gap: 0.13333333rem;
-}
-.content-box .content-main .img-box.triple img:first-child {
-  grid-area: first;
+.content-box .content-main .img-box .imgItem:before {
+  content: '';
   height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
-.content-box .content-main .img-box.quad {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0.13333333rem;
+.content-box .content-main .img-box .imgItem img {
+  width: 100%;
+  vertical-align: middle;
+}
+.content-box .content-main .img-box.double .imgItem {
+  width: 3.98666667rem;
+  height: 3.98666667rem;
+}
+.content-box .content-main .img-box.triple .imgItem {
+  width: 3.98666667rem;
+  height: 3.98666667rem;
+}
+.content-box .content-main .img-box.triple .imgItem:first-child {
+  height: 8.10666667rem;
+}
+.content-box .content-main .img-box.triple .imgItem:first-child:before {
+  display: none;
+}
+.content-box .content-main .img-box.triple .imgItem:first-child img {
+  width: auto;
+  max-width: none;
+  height: 100%;
+  position: relative;
+  left: -50%;
+}
+.content-box .content-main .img-box.quad .imgItem {
+  width: 3.98666667rem;
+  height: 3.98666667rem;
 }
 .content-box .content-main .img-title {
   width: 7.70666667rem;
@@ -251,6 +278,7 @@ body {
 .content-box .content-main .function-btn {
   height: 1.02666667rem;
   padding-top: 0.41333333rem;
+  text-align: left;
 }
 .content-box .content-main .function-btn-item {
   width: 1.73333333rem;

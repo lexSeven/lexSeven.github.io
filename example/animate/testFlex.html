@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 420px;
+            height: 410px;
+            border: 1px solid #0b2e13;
+        }
+        .item{
+            width: 200px;
+            height: 200px;
+            background: #999;
+            text-align: center;
+            line-height: 200px;
+            font-size: 30px;
+            color: #fff;
+            float: left;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .item:first-child{
+            height: 410px;
+        }
+        /*.item:nth-child(2){*/
+            /*align-self: flex-end;*/
+        /*}*/
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="item">first</div>
+    <div class="item">second</div>
+    <div class="item">third</div>
+</div>
+
+</body>
+</html>
