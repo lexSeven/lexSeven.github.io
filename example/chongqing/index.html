@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="logoBox">
+        <img src="img/logo.png">
+    </div>
+    <ul class="navigation">
+        <li class="item active">首页</li>
+        <li class="item">人才展厅</li>
+        <li class="item">人才服务大厅</li>
+        <li class="item">基层干部管理系统</li>
+        <li class="item">联系我们</li>
+    </ul>
+</div>
+
+<div class="next"></div>
+
+<div class="rightMenu">
+    <div class="item tel"></div>
+    <div class="item OA"></div>
+    <div class="item backTop"></div>
+</div>
+
+<div class="content swiper-container">
+    <div class="swiper-wrapper">
+        <div class="item1 swiper-slide">
+            <div class="contentBox">
+                <div class="borderBox1"></div>
+                <div class="borderBox2"></div>
+                <div class="title"><img src="img/item1Title.png"></div>
+                <div class="text">
+                    主要引入人工智能、新能源、新材料、物联网、<br>
+                    环保科技、生物医药等高新技术产业项目，为<br>
+                    入驻人才、项目搭建研发平台、中试生产、经<br>
+                    营场地、办公共享等设施，
+                </div>
+            </div>
+        </div>
+        <div class="item2 swiper-slide"></div>
+        <div class="item3 swiper-slide"></div>
+        <div class="item4 swiper-slide"></div>
+    </div>
+
+</div>
+<script src="js/TweenMax.min.js"></script>
+<script src="js/swiper.js"></script>
+<script>
+    var page = new Swiper('.content',{
+        direction: 'vertical',
+        spaceBetween: 20,
+        keyboard : true,
+        mousewheel: true,
+        on:{
+            setTranslate: function(){
+                this.$wrapperEl.transition('');
+                TweenMax.to(this.$wrapperEl, 1.5, {y:this.translate, ease:Power4.easeOut})
+
+            }
+        }
+    });
+</script>
+</body>
+</html>
