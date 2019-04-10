@@ -6,25 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
     <title>店鋪</title>
     <!-- 公共样式不可删除 -->
-    <link rel="stylesheet" href="//mstatic.secooimg.com/activity2018/all_min/css/activity2018.min.css">
+    <!--<link rel="stylesheet" href="//mstatic.secooimg.com/activity2018/all_min/css/activity2018.min.css">-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/Swiper/4.5.0/css/swiper.min.css">
     <link rel="stylesheet" href="css/style.css">
-
     <!--添加听云监控-->
     <!--<script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>-->
+
+
 </head>
 
 <!-- uuid为页面在erp中的id，仅在erp后台生成的链接中生效，做数据统计用 -->
 <body uuid="page_app_${sectionid?c}" class="eventParent">
 <div class="activtyApp_c">
     <!--页面主内容-->
-    <div class="wrapper swiper-container">
-
+    <div class="wrapper swiper-container" id="root">
         <div class="content swiper-wrapper">
             <div class="refresh">
                 <svg t="1554350179513" class="icon" style="" viewBox="0 0 1024 1024"><path d="M192 512a32 32 0 0 1 64 0 256 256 0 1 0 256-256 32 32 0 0 1 0-64c176.736 0 320 143.264 320 320s-143.264 320-320 320S192 688.736 192 512z" fill="#333333" p-id="3747"></path></svg>
             </div>
-            <div id="root" class="swiper-slide">
-                <div class="content-box" v-for="item in data.data.list">
+            <div class="swiper-slide">
+                <div class="content-box" v-for="(item,index) in data.data.list">
                     <div class="user-inf">
                         <div class="user-head">
                             <img :src="item.authorPic">
@@ -35,50 +36,108 @@
                         <div class="user-name-box">
                             <div class="user-name-position-box">
                                 <h3 class="user-name">{{item.authorName}}</h3>
-                                <p class="user-identification">{{
+                                <!--<p class="user-identification">{{
                                     item.storeType==1?'品牌官方旗舰店':
                                     item.storeType==2?'寺库自营店':
                                     item.storeType==3?'单品牌专营店':
                                     item.storeType==4?'多品牌专卖店':''
-                                }}</p>
+                                }}</p>-->
                             </div>
                         </div>
                     </div>
                     <div class="content-main">
-                        <img-show
-                                :imgarr="item.imagesJson">
-                        </img-show>
-                        <div class="function-btn">
+                        <div class="text-box">
+                            <!--v-html="replaceBr(item.title)"-->
+                            <div class="flex-box textStatus" >{{item.title}}</div>
+                            <div
+                                class="text-show-btn"
+                                @click="swithAction($event)"
+                                :data-analysis="JSON.stringify({
+                                    's.opid':2414,
+                                    's.ot':2,
+                                    's.fli':index,
+                                    's.id':item.id,
+                                    's.acid':item.authorId})"
+                            >全文</div>
+                        </div>
+                        <div class="img-box" :class="picClass(item.imagesJson)">
+                            <div class="imgItem"
+                                 v-for="(imgs,imgkey) in item.imagesJson"
+                                 @click="showHd($event,item.imagesJson,imgkey,index)"
+                                 :data-analysis="JSON.stringify({
+                                    's.opid':2415,
+                                    's.ot':2,
+                                    's.fli':index,
+                                    's.id':item.id,
+                                    's.acid':item.authorId,
+                                    's.row':imgkey})"
+                            >
+                                <img :src="imgs" :class="{'loadedImg': imageLoadstatus}">
+                            </div>
+                        </div>
+                        <div class="function-btn" >
                             <thumb-click
                                     :thumbitem="item"
-                                    :deviceid="deviceId"
                                     :index="index"
+                                    :userid="userid"
+                                    :deviceid="deviceId"
                                     :analysis="analysis"
                                     :dealnum="dealNum">
                             </thumb-click>
-                            <div class="function-btn-item" @click="commentHandler">
-                                <div class="icon"><img src="img/btn_03.jpg"></div>
+                            <div
+                                    class="function-btn-item"
+                                    @click="goCommentPage($event, item, index)"
+                                    :data-analysis="JSON.stringify({
+                                        's.opid':2419,
+                                        's.ot':2,
+                                        's.fli':index,
+                                        's.id':item.id,
+                                        's.acid':item.authorId})"
+                            >
+                                <div class="icon iconfont icon-comment"></div>
                                 <div class="text">{{item.commentCount}}</div>
                             </div>
                             <share-click
-                                    :sharedata="item.shareCount"
-                                    :deviceid="deviceId"
+                                    :shareitem="item"
                                     :index="index"
+                                    :userid="userid"
+                                    :deviceid="deviceId"
                                     :analysis="analysis"
                                     :dealnum="dealNum">
                             </share-click>
-                            <div class="buy-btn">
+                            <!--<div class="buy-btn">
                                 <span>购买</span>
-                                <img src="img/head.png">
-                            </div>
+                                <i class="icon"></i>
+                            </div>-->
                         </div>
                     </div>
                 </div>
                 <div class="loading">正在加载...</div>
             </div>
         </div>
+
+        <!--显示大图-->
+        <div class="swiper-container Hd-pic" v-if="swiperStaus" v-cloak @touchmove="swipertouchMove($event)">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="(item, imgkey) in swiperdata.images" :class="{'filter': !imageLoadstatus}"
+                     :data-analysis="JSON.stringify({
+                        's.opid':2415,
+                        's.ot':3,
+                        's.fli':swiperdata.index,
+                        's.id':item.id,
+                        's.acid':item.authorId,
+                        's.od':storeId,
+                        's.row':imgkey})"
+                >
+                    <div class="swiper-zoom-container"><img :class="{'loadedImg': imageLoadstatus}" :src="item"></div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
     </div>
 </div>
+
+
 
 <!-- 用作填写分享参数 -->
 <div id="share" data-title="" data-description="" data-url="" data-img-url=""></div>
@@ -87,8 +146,15 @@
 <script type="text/x-template" id="shareclcik">
     <div
         class="function-btn-item"
-        @click.stop="shareOut">
-        <div class="icon"><img src="img/btn_09.jpg"></div>
+        @click.stop="shareOut"
+        :data-analysis="JSON.stringify({
+            's.opid':2420,
+            's.ot':2,
+            's.fli':indexs,
+            's.id':sharedata.id,
+            's.acid':sharedata.authorId})"
+    >
+        <div class="icon iconfont icon-fenxiang11"></div>
         <div class="text">{{showcount}}</div>
     </div>
 </script>
@@ -96,26 +162,24 @@
 <script type="text/x-template" id="thumbclcik">
     <div
         class="function-btn-item"
-        @click.stop="thumbsUp($event)">
-
-        <div class="icon"><img src="img/btn_06.jpg"></div>
+        @click.stop="thumbsUp($event)"
+        :data-analysis="JSON.stringify({
+            's.opid':2418,
+            's.ot':2,
+            's.fli':indexs,
+            's.id':thumbdata.id,
+            's.acid':thumbdata.authorId})"
+    >
+        <div class="icon iconfont icon-24gl-thumbsUp2"></div>
         <div class="text">{{showcount}}</div>
     </div>
 </script>
 
-<!--图片组件-->
-<script type="text/x-template" id="imgbox">
-    <div :class="imgclass">
-        <div class="imgItem" v-for="imgs in imgarr">
-            <img :src="imgs">
-        </div>
-    </div>
-</script>
-
+<!--<script src="//mstatic.secooimg.com/activity2018/js/comm/swiper-4.4.2.min.js"></script>-->
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdn.bootcss.com/Swiper/4.5.0/js/swiper.min.js"></script>
+<script src="js/vue.js" type="text/javascript"></script>
 <script src="js/doc.js"></script>
-<script src="js/vue.js"></script>
-<script src="js/swiper.js"></script>
-
 <!-- 页面配置参数 -->
 <script type="text/javascript">
 
@@ -123,7 +187,7 @@
     Vue.component("share-click", {
         template: "#shareclcik",
         props:{
-            sharedata: {
+            shareitem: {
                 type: Object
             },
             userid:{
@@ -153,7 +217,7 @@
         },
         data: function(){
             return {
-                sharedata: this.sharedata,
+                sharedata: this.shareitem,
                 showcount: 0,
                 shareUserid: this.userid,
                 shareDeviceId: this.deviceid,
@@ -180,18 +244,15 @@
             }
         },
         methods:{
-            // dealNum: function(count){
-            //     return this.dealnum(count, '分享');
-            // },
-
-            dealNum: function(count, text){
-                var cellNum = Math.ceil(String(count / 10000).substr(String(count / 10000).indexOf('.')) * 10);
-                return count == 0 ? text : count < 10000 ? count : count == 10000 ? '1万' : cellNum >= 10 ? Math.floor(count / 10000) + 1 + '万' : cellNum == 0 ? Math.floor(count / 10000) + '万': Math.floor(count / 10000) + '.' + cellNum + '万';
+            dealNum: function(count){
+                return this.dealnum(count, '分享');
             },
-
             shareOut: function(){
                 var that = this;
-                this.analysis($(event.currentTarget));
+                this.analysis({
+                    dom:$(event.currentTarget),
+                    type:'share'
+                });
                 this.setShareConfig();
                 app.shareOption({
                     title: this.title,
@@ -202,7 +263,7 @@
                     app.nativeShareAction(function (data) {
                         if (data.errorCode == 0 && data.data.state === 'success') {
                             that.sharedata.shareCount ++;
-                            that.showcount =  that.dealNum(that.sharedata.shareCount);
+                            that.showcount =  that.sharedata.shareCount;
                             that.recorderShare();
                         }
                     })
@@ -253,7 +314,7 @@
             }
         },
         mounted: function(){
-            this.showcount =  this.dealNum(this.sharedata,'分享');
+            this.showcount =  this.dealNum(this.sharedata.shareCount,'分享');
         }
     })
 
@@ -319,14 +380,16 @@
             thumbsUp: function(event){
                 var that = this;
                 var _this = $(event.currentTarget);
-                this.analysis(_this);
-
+                this.analysis({
+                    dom:_this,
+                    type:'thumbsUp'
+                });
                 if (this.thumbStatus == true) {
-                    event.currentTarget.classList.add('agreeWrap');
+                    event.currentTarget.classList.add('active');
                     return app.toast("已点赞")
                 };
                 if (this.userid) {
-                    event.currentTarget.classList.add('agreeWrap');
+                    event.currentTarget.classList.add('active');
                     this.thumbdata.thumbsCount++;
                     that.thumbStatus = true;
                     this.showcount = this.dealNum(this.thumbdata.thumbsCount);
@@ -352,12 +415,8 @@
                     });
                 }
             },
-            // dealNum: function(count){
-            //     return this.dealnum(count, '赞');
-            // },
-            dealNum: function(count, text){
-                var cellNum = Math.ceil(String(count / 10000).substr(String(count / 10000).indexOf('.')) * 10);
-                return count == 0 ? text : count < 10000 ? count : count == 10000 ? '1万' : cellNum >= 10 ? Math.floor(count / 10000) + 1 + '万' : cellNum == 0 ? Math.floor(count / 10000) + '万': Math.floor(count / 10000) + '.' + cellNum + '万';
+            dealNum: function(count){
+                return this.dealnum(count, '赞');
             },
             recordThumb: function(){
                 $.ajax({
@@ -381,66 +440,107 @@
         },
         mounted: function(){
             this.showcount =  this.dealNum(this.thumbdata.thumbsCount,'赞');
-            this.$refs.thumbAnimte.addEventListener("webkitAnimationEnd", function () {
-                this.parentNode.classList.remove('agreeWrap');
-            })
         }
     })
 
-    //图片组件
-    Vue.component("img-show", {
-        template: "#imgbox",
-        props:{
-            imgarr: {
-                type: Object
+
+    //滚动相关
+    var pulldownComponent = {
+        init: function () {
+            var _this = this;
+            _this.refreshEnd = false;//是否加载完成
+            _this.times = 0;//加载次数
+            _this.oriSpeed = 100;//滚动速度
+            _this.resistanceRatio = 0.67;//边界下拉时阻力
+            _this.refreshDom = document.querySelector('.refresh');
+            _this.openScroll();//页面滚动，下拉刷新
+            _this.destance = 40;//下拉刷新的距离
+        },
+        openScroll: function () {
+            var _this = this;
+            _this.swiper = new Swiper('.swiper-container', {
+                speed: _this.oriSpeed,
+                slidesPerView: 'auto',
+                freeMode: true,
+                direction: 'vertical',
+                setWrapperSize: true,
+                resistanceRatio: _this.resistanceRatio,
+                on: {
+                    touchStart: _this.touchStartEvent,
+                    touchMove: _this.touchMoveEvent,
+                    touchEnd: _this.touchEndEvent,
+                    momentumBounce:function(){
+                        if(this.translate <= -_this.destance){
+                            vm.data.data.list.push(newData);
+                        }
+                    }
+                }
+            });
+        },
+        touchStartEvent:function(){
+            var _this = pulldownComponent;
+            if (_this.refreshEnd) {
+                _this.refreshDom.classList.remove('active');
+                _this.refreshEnd = false;
             }
         },
-        data: function(){
-            return {
-                imgdata: this.imgarr,
-                imgclass:'img-box single'
+        touchMoveEvent:function(){
+            var _this = pulldownComponent;
+            if (_this.swiper.translate > _this.destance) {
+                _this.swiper.allowTouchMove = false;
+                _this.refreshDom.classList.add('active');
             }
         },
-        created:function(){
-            this.addClass()
-        },
-        methods:{
-            addClass:function(){
-                switch (this.imgarr.length) {
-                    case 2:
-                        this.imgclass = 'img-box double';
-                        break;
-                    case 3:
-                        this.imgclass = 'img-box triple';
-                        break;
-                    case 4:
-                        this.imgclass = 'img-box quad';
-                        break;
-                }
-                if(this.imgarr.length >= 5){
-                    this.imgclass = 'img-box fivefold';
-                }
+        touchEndEvent:function(){
+            var _this = pulldownComponent;
+            if (_this.swiper.translate >= _this.destance) {
+                _this.swiper.setTransition(this.params.speed);
+                _this.swiper.setTranslate(_this.destance);
+                _this.swiper.touchEventsData.isTouched = false;//跳过touchEnd事件后面的跳转(4.0.5)
+                _this.refreshDom.querySelector('svg').classList.add('active');
+                _this.swiper.allowTouchMove = false;
+                setTimeout(function () {//模仿AJAX
+                    vm.data.data.list.push(newData);
+                    _this.refreshDom.classList.remove('active');
+                    _this.refreshDom.querySelector('svg').classList.remove('active');
+                    _this.refreshEnd = true;
+                    _this.swiper.allowTouchMove = true;
+                    _this.swiper.setTranslate(0);
+                }, 1000)
             }
         }
-    })
+    };
 
     // vue实例配置
     var findOption = {
-        el:'#app',
+        el:'#root',
         data:{
-            userid: '',     // 内容池id
+            userid: 12837128,     // 内容池id
             currentDate: '', // 服务器时间
-            deviceId: '', // 设备id
-            deviceType: '', // 获取设备类型
-            upk:'',    // upk
+            deviceId: '238792ur920i1', // 设备id
+            deviceType: '1', // 获取设备类型
+            upk:'234934u9fh02i39e8y293',    // upk
             agreePaly: false,  //同意用网络播放视频
             swiperdata: {},        // 大轮播图储存的数据
             swiperStaus: false,     // 控制大轮播图显示隐藏
+            imageLoadstatus: false,
             sensorsStatus: true,   // 添加神策的判断条件
             webpStatus: false,  // 是否支持webp
             androidVdata:'',     // 记录视频数据
             contentContainer: '',  // 整体内容swiper实例
             notApp: null,      // 判断是否不在app内， 隐藏分享
+            storeId:'23872398',
+            data:data,
+        },
+        created:function(){
+
+        },
+        mounted:function(){
+            pulldownComponent.init();
+            this.textandBtn();
+        },
+        updated:function(){
+            pulldownComponent.swiper.update();
         },
         methods:{
             // 请求数据公用方法
@@ -613,12 +713,160 @@
                 var cellNum = Math.ceil(String(count / 10000).substr(String(count / 10000).indexOf('.')) * 10);
                 return count == 0 ? text : count < 10000 ? count : count == 10000 ? '1万' : cellNum >= 10 ? Math.floor(count / 10000) + 1 + '万' : cellNum == 0 ? Math.floor(count / 10000) + '万': Math.floor(count / 10000) + '.' + cellNum + '万';
             },
+            //埋点
+            analysis: function(option){
+                var that = this;
+                var dom = option.dom;
+                var type = option.type || 'contentExposure';//标识埋点类型
+                /*
+                    type类型：
+                    点击图片 clickImg
+                    滑动图片 slideImg
+                    点赞    thumbsUp
+                    评论    comment
+                    分享    share
+                    内容曝光 contentDisplay
+                    晒单全文 textShow
+                    商品曝光 goodsDisplay
+                    商品点击 clickGoods
+                    视频曝光 videoDisplay
+                    视频播放 videoStart
+                    视频结束 videoEnd
+                */
+                var pointData = dom.data('analysis');
+
+                pointData['s.paid'] = 2412;//统一s.paid
+                pointData['s.od'] = this.storeId;//统一店铺ID
+
+                if(type === 'slideImg'){
+                    pointData['s.ot'] = 3;
+                }
+
+                console.log(pointData,type);
+                // app.statistics(pointData);
+            },
+            commentHandler:function(){
+
+            },
+            // 图片样式类名
+            picClass: function(imgArr){
+                if (imgArr === null) return;
+                var className =
+                    imgArr.length == 1? "single" :
+                    imgArr.length == 2? "double" :
+                    imgArr.length == 3? "triple" :
+                    imgArr.length == 4? "quad" :
+                    imgArr.length == 5? "fivefold" :
+                    imgArr.length >= 6? "more" : '';
+                return className;
+            },
+            swipertouchMove: function(event){
+                event.preventDefault();
+            },
+            // 判断webp是否支持
+            webpSupport: function(){
+                return document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0;
+            },
+            // 显示高清大图
+            showHd: function(event, data, index, indexs){
+                var that = this;
+                var imgBg = [];
+                this.swiperdata.images = data;
+                this.swiperdata.indexs = index;
+                this.swiperdata.index = indexs;
+                this.swiperStaus = true;
+                this.analysis({
+                    dom:$(event.currentTarget),
+                    type:'clickImg'
+                });
+                this.$nextTick(function(){
+                    document.querySelector('.Hd-pic').style.height=
+                    document.querySelector('.wrapper').offsetHeight+'px';
+                    that.mySwiper = new Swiper('.Hd-pic', {
+                        freeMode: false,
+                        initialSlide: index,
+                        preventClicks : false,
+                        pagination: {
+                            el: '.swiper-pagination',
+                            type: 'fraction',
+                            preventClicks : false,
+                            renderFraction: function (currentClass, totalClass) {
+                                return '<div class="swiper-pagination-inner"><span class="' + currentClass + '"></span>' +
+                                    ' <span>| </span> ' +
+                                    '<span class="' + totalClass + '"></span></div>';
+                            },
+                        },
+                        spaceBetween: 20,
+                        touchMoveStopPropagation: false,
+                        zoom:true,
+                        observer:true,
+                        updateOnImagesReady:true,
+                        on: {
+                            slideChange: function(){
+                                var dom = $(this.slides[this.realIndex]);
+                                that.analysis({
+                                    dom:dom,
+                                    type:'slideImg'
+                                });
+                            },
+                            click: function(){
+                                that.swiperStaus = false;
+                                that.imageLoadstatus = false;
+                            },
+                            imagesReady: function(){
+                                that.imageLoadstatus = true;
+                            },
+                        },
+                    })
+                })
+            },
+            // 跳转评论页面 TODO:discover.js?
+            goCommentPage: function(e, parame, index){
+                var type = "晒单";
+                this.analysis({
+                    dom:$(e.currentTarget),
+                    type:'comment'
+                });
+                discover.goPage('https://m.secoo.com/appActivity/nativePage_commentPage.shtml?pageid=2275&contentUuid='+ parame.uuid + '&contentId=' + parame.id +
+                    '&contentType=' + parame.contentType + '&userId=' + parame.authorId, this.upk)
+            },
+            // 处理br显示
+            replaceBr: function(txt) {
+                return txt.replaceAll("\r|\n", "</br>");
+            },
+            // 晒单文字和全文按钮的显示
+            textandBtn: function() {
+                var that = this;
+                var textDom = this.$el.querySelectorAll('.textStatus');
+                [].forEach.call(textDom, function(item, i){
+                    if (item.offsetHeight > parseFloat(window.getComputedStyle(item).lineHeight) * 4) {
+                        item.classList.remove('textStatus');
+                        item.parentNode.classList.add('active');
+                    }else{
+                        item.nextElementSibling.style.display = 'none';
+                    }
+                })
+            },
+            // 全文切换
+            swithAction: function(event) {
+                var target = event.currentTarget;
+                target.parentNode.classList.toggle('active');
+                this.analysis({
+                    dom:$(target),
+                    type:'textShow'
+                })
+                target.innerText = target.innerText == '全文' ? '收起' : '全文';
+            },
         }
     }
 
+    var vm = null;
+
     var pageConfig = {
 
-       loadJsArr: '//pic16.secooimg.com/imagesNew/featuresPic/gxd_vuePro/shopComm.js',
+       loadJsArr: [
+           '//pic16.secooimg.com/imagesNew/featuresPic/gxd_vuePro/shopComm.js'
+       ],
         // loadJsArr: 'js/shopComm.js',
 
         //设置页面rem，默认可不传，默认值为当前页面宽度的10分之一
@@ -647,177 +895,13 @@
     }
 
     //zepto加载完成后的回调，与页面配置中同名函数的择一而用
+    zeptoLoaded()
     function zeptoLoaded() {
-        console.log(123);
-        var pulldownComponent = {
-            init: function () {
-                var _this = this;
-                _this.refreshEnd = false;//是否加载完成
-                _this.times = 0;//加载次数
-                _this.oriSpeed = 100;//滚动速度
-                _this.resistanceRatio = 0.67;//边界下拉时阻力
-                _this.refreshDom = document.querySelector('.refresh');
-                _this.openScroll();//页面滚动，下拉刷新
-                _this.destance = 30;//下拉刷新的距离
-            },
-            openScroll: function () {
-                var _this = this;
-                _this.swiper = new Swiper('.swiper-container', {
-                    speed: _this.oriSpeed,
-                    slidesPerView: 'auto',
-                    freeMode: true,
-                    direction: 'vertical',
-                    setWrapperSize: true,
-                    resistanceRatio: _this.resistanceRatio,
-                    on: {
-                        touchStart: _this.touchStartEvent,
-                        touchMove: _this.touchMoveEvent,
-                        touchEnd: _this.touchEndEvent,
-                        momentumBounce:function(){
-                            if(this.translate <= -_this.destance){
-                                console.log('上拉加载');
-                                var data = {
-                                    "authorId": 43,
-                                    "authorName": "GUCCI/古驰3",
-                                    "authorPic": "作者头像",
-                                    "authorType": 2,
-                                    "commentCount": 17127,
-                                    "commentVideo": "测试内容j85s",
-                                    "commentVideoImg": "测试内容554d",
-                                    "contentType": 1,
-                                    "id": 53562,
-                                    "identityLable": "测试内容5ed5",
-                                    "imagesJson": [
-                                        "https://pic12.secooimg.com/res/contentERP/10/53/1WvJm4f5172d26d19c4019b93e01b5fac020e0.jpg",
-                                        "https://hbimg.huabanimg.com/c135efdc58b336ffab0075639b067470118dc1c044d94-WXcvH1_/fw/480"
-                                    ],
-                                    "optionTime": 1536139328211,
-                                    "optionType": 0,
-                                    "priorityDisplay": 0,
-                                    "relationBrand": "3",
-                                    "relationSign": "3",
-                                    "relationSku": "3",
-                                    "shareCount": 0,
-                                    "sourceType": 1,
-                                    "storeType": 1,
-                                    "thumbsCount": 0,
-                                    "thumbsStatus": false,
-                                    "title": "3333",
-                                    "uuid": "2e9adeadbd9046219f46878886a3dac4"
-                                }
-                                vm.data.data.list.push(data);
-                            }
-                        }
-                    }
-                });
-            },
-            touchStartEvent:function(){
-                var _this = pulldownComponent;
-                if (_this.refreshEnd) {
-                    _this.refreshDom.classList.remove('active');
-                    _this.refreshEnd = false;
-                }
-            },
-            touchMoveEvent:function(){
-                var _this = pulldownComponent;
-                if (_this.swiper.translate > _this.destance) {
-                    _this.swiper.allowTouchMove = false;
-                    _this.refreshDom.classList.add('active');
-                }
-            },
-            touchEndEvent:function(){
-                var _this = pulldownComponent;
-                if (_this.swiper.translate >= _this.destance) {
-                    _this.swiper.setTransition(this.params.speed);
-                    _this.swiper.setTranslate(_this.destance);
-                    _this.swiper.touchEventsData.isTouched = false;//跳过touchEnd事件后面的跳转(4.0.5)
-                    _this.refreshDom.querySelector('svg').classList.add('active');
-                    _this.swiper.allowTouchMove = false;
-                    setTimeout(function () {//模仿AJAX
-
-                        var data = {
-                            "authorId": 43,
-                            "authorName": "GUCCI/古驰3",
-                            "authorPic": "作者头像",
-                            "authorType": 2,
-                            "commentCount": 17127,
-                            "commentVideo": "测试内容j85s",
-                            "commentVideoImg": "测试内容554d",
-                            "contentType": 1,
-                            "id": 53562,
-                            "identityLable": "测试内容5ed5",
-                            "imagesJson": [
-                                "https://pic12.secooimg.com/res/contentERP/10/53/1WvJm4f5172d26d19c4019b93e01b5fac020e0.jpg",
-                                "https://hbimg.huabanimg.com/c135efdc58b336ffab0075639b067470118dc1c044d94-WXcvH1_/fw/480"
-                            ],
-                            "optionTime": 1536139328211,
-                            "optionType": 0,
-                            "priorityDisplay": 0,
-                            "relationBrand": "3",
-                            "relationSign": "3",
-                            "relationSku": "3",
-                            "shareCount": 0,
-                            "sourceType": 1,
-                            "storeType": 1,
-                            "thumbsCount": 0,
-                            "thumbsStatus": false,
-                            "title": "3333",
-                            "uuid": "2e9adeadbd9046219f46878886a3dac4"
-                        }
-
-                        vm.data.data.list.push(data);
-                        _this.refreshDom.querySelector('svg').classList.remove('active');
-                        _this.refreshEnd = true;
-                        _this.swiper.allowTouchMove = true;
-                        _this.swiper.setTranslate(0);
-                    }, 1000)
-                }
-            }
-        };
-
-        var vm = new Vue({
-            el:'#root',
-            data(){
-                return {
-                    data:data,
-                    className:'img-box'
-                }
-            },
-            created:function(){
-                this.addClass();
-            },
-            mounted:function(){
-                pulldownComponent.init();
-            },
-            updated:function(){
-                pulldownComponent.swiper.update();
-            },
-            methods:{
-                addClass:function(){
-
-                },
-                thumbsHandler:function(){
-                    console.log('点赞了');
-                    app.statistics({
-                        "s.paid":2412,
-                        "s.ot":2,
-                        "s.opid":2418,
-                        "s.lpaid":'来源页面',
-                        "s.flt":'楼层类型：',
-                        "s.fli":'楼层位置：可以填写数据顺序',
-                    })
-                },
-                commentHandler:function(){
-                    console.log('评论');
-                },
-                shareHandler:function(){
-                    console.log('分享');
-                }
-            }
-        });
-        document.addEventListener('touchmove', function (ev) {
-            ev.preventDefault();
-        });
+        vm = new Vue(findOption);
+        document.addEventListener('touchmove', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        }, { passive: false })
     };
 
     //全部js加载完成后的回调，与页面配置中同名函数的择一而用
@@ -895,6 +979,6 @@
 </script>
 ​
 <!-- 主文件不可删除 -->
-<script type="text/javascript" src="//mstatic.secooimg.com/activity2018/all_min/js/activity2018.min.js"></script>
+<!--<script type="text/javascript" src="//mstatic.secooimg.com/activity2018/all_min/js/activity2018.min.js"></script>-->
 </body>
 </html>
