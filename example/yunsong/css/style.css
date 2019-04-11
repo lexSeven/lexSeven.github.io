@@ -1,0 +1,49 @@
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+.wrap {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.center {
+  font-size: 0;
+  line-height: 0;
+}
+.center:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+}
+.center img {
+  display: inline-block;
+  vertical-align: middle;
+}
+.header {
+  height: 100px;
+  background: #fff;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+.header .logo {
+  width: 166px;
+  height: 46px;
+  padding: 27px 0;
+  margin-left: -46px;
+}
+.header .location {
+  margin-left: 27px;
+}
+.bigImgBox {
+  height: 800px;
+  background: #f9f9f9;
+}
+/*# sourceMappingURL=style.css.map */

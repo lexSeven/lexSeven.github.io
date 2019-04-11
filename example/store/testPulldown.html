@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color:#000;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .swiper-container {
+            width: 100%;
+            height:100%;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            height:100px;
+            line-height:100px;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .refresh{
+            position:absolute;
+            line-height:50px;
+            bottom:100%;
+            text-align:center;
+            width:100%;
+        }
+        .refresh:before{
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            width:0;
+            height:100%;
+        }
+        .refresh svg{
+            display: inline-block;
+            vertical-align: middle;
+            width:30px;
+        }
+        .refresh svg.active{
+            animation: load 0.8s infinite linear;
+        }
+        .refresh.active{
+            background: #ddd;
+        }
+        .loadmore{
+            position:absolute;
+            line-height:20px;
+            top:100%;
+            text-align:center;
+            width:100%;
+        }
+        @keyframes load {
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(1000deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="refresh">
+            <svg t="1554350179513" class="icon" style="" viewBox="0 0 1024 1024"><path d="M192 512a32 32 0 0 1 64 0 256 256 0 1 0 256-256 32 32 0 0 1 0-64c176.736 0 320 143.264 320 320s-143.264 320-320 320S192 688.736 192 512z" fill="#333333" p-id="3747"></path></svg>
+        </div>
+        <div class="swiper-slide">New Slide1</div>
+        <div class="swiper-slide">New Slide2</div>
+        <div class="swiper-slide">New Slide3</div>
+        <div class="swiper-slide">New Slide4</div>
+        <div class="swiper-slide">New Slide5</div>
+        <div class="swiper-slide">New Slide6</div>
+        <div class="swiper-slide">New Slide7</div>
+        <div class="swiper-slide">New Slide8</div>
+        <div class="swiper-slide">New Slide9</div>
+        <div class="swiper-slide">New Slide10</div>
+        <div class="swiper-slide">New Slide11</div>
+        <div class="swiper-slide">New Slide12</div>
+        <div class="swiper-slide">New Slide13</div>
+        <div class="swiper-slide">New Slide14</div>
+        <div class="swiper-slide">New Slide15</div>
+        <div class="swiper-slide">New Slide16</div>
+        <div class="swiper-slide">New Slide17</div>
+        <div class="swiper-slide">New Slide18</div>
+        <div class="swiper-slide">New Slide19</div>
+        <div class="swiper-slide">New Slide20</div>
+    </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="js/swiper.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    document.body.ontouchstart = function(ev){
+        ev.preventDefault();
+    }
+
+    refreshEnd= false;
+    times=0;//加载次数
+    oriSpeed=100
+    var swiper = new Swiper('.swiper-container',{
+        speed: oriSpeed,
+        slidesPerView: 'auto',
+        freeMode: true,
+        direction: 'vertical',
+        setWrapperSize: true,
+        resistanceRatio:0.65,
+        on:{
+            //下拉释放刷新
+            touchEnd: function(){
+                swiper=this
+                refreshText=swiper.$el.find('.refresh')
+                if(this.translate>=40){
+                    swiper.setTransition(this.params.speed);
+                    swiper.setTranslate(40);
+                    swiper.touchEventsData.isTouched=false;//跳过touchEnd事件后面的跳转(4.0.5)
+                    refreshText.find('svg').addClass('active');
+                    swiper.allowTouchMove=false;
+                    setTimeout(function(){//模仿AJAX
+                        swiper.removeAllSlides();
+                        for(i=0;i<20;i++){
+                            swiper.appendSlide('<div class="swiper-slide">New Slide'+(i+1)+'</div>');
+                            refreshText.find('svg').removeClass('active');
+                            refreshEnd=true;
+                            swiper.allowTouchMove=true;
+                        }
+                    },1000)
+                }
+            },
+            touchMove: function(event){
+                if(swiper.translate>40){
+                    swiper.allowTouchMove=false;
+                    this.$el.find('.refresh').addClass('active');
+                }
+            },
+            touchStart: function(){
+                if(refreshEnd==true){
+                    this.$el.find('.refresh').removeClass('active');
+                    refreshEnd=false;
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
