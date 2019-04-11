@@ -108,6 +108,8 @@
     let cube = document.querySelector(".cube"),
         downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
     let boxX = 300,boxY = 100,boxZ = 230, activeZ = 50, keyNum = 3;
+    let initDegX = -30;
+    let initDegY = 0;
 
     /*
     * boxX  盒子X轴（盒子的长）
@@ -186,6 +188,11 @@
     * */
     setBox();
     function setBox(){
+
+        cube.style.transform = "translateZ(60px) rotatex(" + initDegX + "deg) rotatey(" + initDegY + "deg)";
+        degX = initDegY;
+        degY = initDegX;
+
         for(var a in eleData){
             css(eleArr[a],{
                 width:eleData[a].width + 'px',
