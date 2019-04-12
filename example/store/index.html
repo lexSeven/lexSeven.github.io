@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="css/style.css">
     <!--添加听云监控-->
     <!--<script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>-->
-
-
 </head>
 
 <!-- uuid为页面在erp中的id，仅在erp后台生成的链接中生效，做数据统计用 -->
@@ -25,6 +23,7 @@
                 <svg t="1554350179513" class="icon" style="" viewBox="0 0 1024 1024"><path d="M192 512a32 32 0 0 1 64 0 256 256 0 1 0 256-256 32 32 0 0 1 0-64c176.736 0 320 143.264 320 320s-143.264 320-320 320S192 688.736 192 512z" fill="#333333" p-id="3747"></path></svg>
             </div>
             <div
+                v-cloak
                 class="content-box swiper-slide"
                 v-for="(item,index) in data.data.list"
                 :data-video="item.commentVideo==''?'false':'true'"
@@ -40,12 +39,12 @@
                     <div class="user-head">
                         <img :data-src="tailoShowPic(item.authorPic, 'head')">
                         <div class="user-type">
-                            <img src="img/head.png">
+                            <img :src="item.identityLable">
                         </div>
                     </div>
                     <div class="user-name-box">
                         <div class="user-name-position-box">
-                            <h3 class="user-name">{{item.authorName}}</h3>
+                            <h3 class="user-name" v-cloak>{{item.authorName}}</h3>
                             <!--<p class="user-identification">{{
                                 item.storeType==1?'品牌官方旗舰店':
                                 item.storeType==2?'寺库自营店':
@@ -58,7 +57,7 @@
                 <div class="content-main">
                     <div class="text-box">
                         <!--v-html="replaceBr(item.title)"-->
-                        <div class="flex-box textStatus" >{{item.title}}</div>
+                        <div class="flex-box textStatus" v-cloak>{{item.title}}</div>
                         <div
                             class="text-show-btn"
                             @click="swithAction($event)"
@@ -124,7 +123,7 @@
                                     's.acid':item.authorId})"
                         >
                             <div class="icon iconLex iconComment"></div>
-                            <div class="text">{{item.commentCount}}</div>
+                            <div class="text" v-cloak>{{item.commentCount}}</div>
                         </div>
                         <share-click
                                 v-if="!notApp"
@@ -143,7 +142,10 @@
                     </div>
                 </div>
             </div>
-            <div class="loading">正在加载...</div>
+            <div class="loading">
+                <svg t="1554350179513" class="icon" style="" viewBox="0 0 1024 1024"><path d="M192 512a32 32 0 0 1 64 0 256 256 0 1 0 256-256 32 32 0 0 1 0-64c176.736 0 320 143.264 320 320s-143.264 320-320 320S192 688.736 192 512z" fill="#333333" p-id="3747"></path></svg>
+                <span>正在加载...</span>
+            </div>
         </div>
 
         <!--显示大图-->
@@ -208,7 +210,7 @@
             's.acid':sharedata.authorId})"
     >
         <div class="icon iconLex iconShare"></div>
-        <div class="text">{{showcount}}</div>
+        <div class="text" v-cloak>{{showcount}}</div>
     </div>
 </script>
 <!-- //点赞组件 -->
@@ -224,7 +226,7 @@
             's.acid':thumbdata.authorId})"
     >
         <div class="icon iconLex iconThumb"></div>
-        <div class="text">{{showcount}}</div>
+        <div class="text" v-cloak>{{showcount}}</div>
     </div>
 </script>
 
@@ -439,10 +441,14 @@
                 });
                 if (this.thumbStatus == true) {
                     event.currentTarget.classList.add('active');
+                    event.currentTarget.querySelector('.iconLex').classList.add('iconThumbed');
+                    event.currentTarget.querySelector('.iconLex').classList.remove('iconThumb');
                     return app.toast("已点赞")
                 };
                 if (this.userid) {
                     event.currentTarget.classList.add('active');
+                    event.currentTarget.querySelector('.iconLex').classList.add('iconThumbed');
+                    event.currentTarget.querySelector('.iconLex').classList.remove('iconThumb');
                     this.thumbdata.thumbsCount++;
                     that.thumbStatus = true;
                     this.showcount = this.dealNum(this.thumbdata.thumbsCount);
@@ -503,10 +509,10 @@
             _this.refreshEnd = false;//是否加载完成
             _this.times = 0;//加载次数
             _this.oriSpeed = 50;//滚动速度
-            _this.resistanceRatio = 0.67;//边界下拉时阻力
+            _this.resistanceRatio = 0.9;//边界下拉时阻力
             _this.refreshDom = document.querySelector('.refresh');
             _this.openScroll();//页面滚动，下拉刷新
-            _this.destance = 40;//下拉刷新的距离
+            _this.destance = 30;//下拉刷新的距离
         },
         openScroll: function () {
             var _this = this;
@@ -534,8 +540,7 @@
                     },
                     slideChangeTransitionEnd:function(){
                         if((this.activeIndex+1) >= this.slides.length/3*2){
-                            console.log('加载');
-                            vm.data.data.list.push.apply(vm.data.data.list,newData);
+//                            vm.data.data.list.push.apply(vm.data.data.list,newData);
                         }
                         var visibleSlides = this.el.querySelectorAll('.swiper-slide-visible:not(.loaded)');
                         for(var i=0;i<visibleSlides.length;i++){
@@ -570,7 +575,7 @@
             var _this = pulldownComponent;
             if (_this.swiper.translate >= _this.destance) {
                 _this.swiper.setTransition(this.params.speed);
-                _this.swiper.setTranslate(_this.destance);
+//                _this.swiper.setTranslate(_this.destance);
                 _this.swiper.touchEventsData.isTouched = false;//跳过touchEnd事件后面的跳转(4.0.5)
                 _this.refreshDom.querySelector('svg').classList.add('active');
                 _this.swiper.allowTouchMove = false;
@@ -1145,7 +1150,6 @@
 
     //全部js加载完成后的回调，与页面配置中同名函数的择一而用
     function jsLoaded() {
-
         vm = new Vue(findOption);
         document.addEventListener('touchmove', function(e){
             e.preventDefault();
