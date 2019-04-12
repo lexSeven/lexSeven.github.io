@@ -67,7 +67,7 @@ body {
   top: 0;
   left: 0;
   transform-origin: -2rem center;
-  transition: 0.5s,opacity 0.1s 0.9s;
+  transition: 0.5s, opacity 0.1s 0.9s;
   transform: rotateY(0deg) translateX(-0.33333333rem);
   box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.4);
 }
@@ -132,7 +132,7 @@ body {
   left: 0;
   z-index: 2;
   overflow: hidden;
-  transition: 0.3s,borderRadius 0.2s 0.2s;
+  transition: 0.3s, borderRadius 0.2s 0.2s;
   border-radius: 0 0 100% 0;
 }
 .filter.active {

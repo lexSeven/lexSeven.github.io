@@ -4,97 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
-    <style>
-        body,
-        html {
-            height: 100%;
-            overflow: hidden;
-        }
-        body{
-            margin:0;
-            background: #ddd;
-        }
-        .wraper {
-            width:100%;
-            height:100%;
-            margin:0 auto;
-            perspective: 1000px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .cube {
-            height:500px;
-            width: 500px;
-            position: relative;
-            transform-style: preserve-3d;
-            transform:translateZ(60px);
-            /*background:rgba(0,0,0,0.3);*/
-        }
-        .cube>div {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right:0;
-            bottom:0;
-            margin:auto;
-            background-color:#fff;
-            text-align: center;
-            color: #fff;
-            /*font-size: 48px;*/
-            border: 2px solid #ededed;
-            user-select: none;
-            box-sizing: border-box;
-            font-size:0;
-            transition: 1s;
-            transform-style: preserve-3d;
-            /*backface-visibility: hidden;*/
-        }
-        .end{
-            /*background: url("img/2.png") no-repeat;*/
-            background: linear-gradient(rgba(255, 174, 0, 1) 40%,rgba(0, 0, 0, 0.3) 42%,#fff 42%);
-        }
-        .left{
-            /*background: url("img/3.png") no-repeat;*/
-            background: linear-gradient(rgba(255, 174, 0, 1) 40%,rgba(0, 0, 0, 0.3) 42%,#fff 42%);
-        }
-        .right{
-            /*background: url("img/4.png") no-repeat;*/
-            background: linear-gradient(rgba(255, 174, 0, 1) 40%,rgba(0, 0, 0, 0.3) 42%,#fff 42%);
-        }
-        .top{
-            /*background: url("img/5.png") no-repeat;*/
-            opacity: 0;
-        }
-        .bottom{
-            /*background: url("img/6.png") no-repeat;*/
-            background: #fff;
-        }
-
-        .backface{
-            width: 100%;
-            height: 100%;
-
-            /*transform: rotateY(180deg) scale(0.99);*/
-            color: #fff;
-            font-size: 50px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: linear-gradient(rgba(255, 174, 0, 1) 40%,#ccc 42%,#fff 42%);
-            /*backface-visibility: hidden;*/
-        }
-        .fontface{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transform:translateZ(-1px);
-            background: rgba(255, 174, 0, 1);
-            /*box-shadow: 0 0 2px 0 rgba(0,0,0,0.1);*/
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -104,11 +14,26 @@
             <div class="fontface"></div>
             <div class="backface"></div>
         </div>
-        <div class="end"    data-name="boxEnd">End</div>
-        <div class="left"   data-name="boxLeft">Left</div>
-        <div class="right"  data-name="boxRight">Right</div>
-        <div class="top"    data-name="boxTop">Top</div>
-        <div class="bottom" data-name="boxBottom">Bottom</div>
+        <div class="end"    data-name="boxEnd">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+        <div class="left"   data-name="boxLeft">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+        <div class="right"  data-name="boxRight">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+        <div class="top"    data-name="boxTop">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+        <div class="bottom" data-name="boxBottom">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
     </div>
 </div>
 
