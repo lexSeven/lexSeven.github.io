@@ -6,107 +6,30 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        body{
-            margin: 0;
-        }
-        button{
-            padding:0;
-            border:0;
-            outline: none;
-        }
-        div.main{
-            width:1200px;
-            margin: 0 auto;
-        }
-        header.head{
-            width:1200px;
-            height:99px;
-            background:#e4e4e4;
-            margin:0 auto;
-        }
-        .banner{
-            height:398px;
-            background:url("./img/banner.jpg") no-repeat center center;
-            background-size:cover;
-        }
-        .joinUs{
-            width:1200px;
-            height:673px;
-            background:#fff;
-            margin:0 auto;
-            transform: translateY(-14%);
-        }
-        .title{
-            text-align: center;
-            height:96px;
-            font-size:20px;
-            line-height: 160px;
-            font-family: "宋体";
-        }
-        .title span{
-            color:#999;
-            font-size: 16px;
-        }
-        .message{
-            width:1200px;
-            height:575px;
-            text-align: center;
-        }
-        .box{
-            width:1095px;
-            height:399px;
-            margin:0 auto;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        .job{
-            width:317px;
-            height:85px;
-            text-align: center;
-            margin:24px 17px;
-            background: #eeeeee;
-            font:16px/85px "宋体";
-            color:#000;
-        }
-        /*.job:hover{*/
-            /*background:#2a8eff;*/
-            /*color:#fff;*/
-        /*}*/
-        .right{
-            width:655px;
-            height:84px;
-            border:1px solid #eee;
-            background:url("./img/right.jpg") no-repeat center center;
-            margin-top:25px;
-        }
-        .box .job:hover span{
-            animation: myfirst 1s;
-            -moz-animation: myfirst 1s;
-            -webkit-animation: myfirst 1s;
-        }
-        .box .job span{
-            display: inline-block;
-            width:100%;
-            height:0;
-            background:#2a8eff;
-        }
-        @keyframes myfirst {
-            0%{height: 0;}
-            20% {height: 17px;}
-            40%{height: 34px;}
-            60%{height: 51px;}
-            80%{height: 68px;}
-            100% {height: 85px;}
-        }
-    </style>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/joinus.css">
 </head>
 <body>
 
-<div class="main">
-    <header class="head"></header>
-</div>
+<header class="header">
+    <div class="wrap">
+        <h1 class="logo"><img src="img/logo.png"></h1>
+        <div class="location"><span>&nbsp;</span>北京</div>
+        <ul class="menuBox">
+            <li><a href="index.html" class="item">首页</a></li>
+            <li><a href="#" class="item">企业介绍</a></li>
+            <li><a href="about.html" class="item">关于我们</a></li>
+            <li><a href="#" class="item active">企业版</a></li>
+            <li><a href="#" class="item">商户版</a></li>
+            <li><a href="cooperation.html" class="item">招商加盟</a></li>
+            <li><a href="joinUs.html" class="item">加入我们</a></li>
+        </ul>
+        <div class="rightBtn">
+            <a href="#" class="btn checked">登陆</a>
+            <a href="#" class="btn">注册</a>
+        </div>
+    </div>
+</header>
 
 <div class="banner"></div>
 
