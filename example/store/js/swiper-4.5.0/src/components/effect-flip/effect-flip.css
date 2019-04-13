@@ -1,0 +1,23 @@
+.swiper-container-flip {
+  overflow: visible;
+}
+.swiper-container-flip .swiper-slide {
+  pointer-events: none;
+  backface-visibility: hidden;
+  z-index: 1;
+}
+.swiper-container-flip .swiper-slide .swiper-slide {
+  pointer-events: none;
+}
+.swiper-container-flip .swiper-slide-active,
+.swiper-container-flip .swiper-slide-active .swiper-slide-active {
+  pointer-events: auto;
+}
+.swiper-container-flip .swiper-slide-shadow-top,
+.swiper-container-flip .swiper-slide-shadow-bottom,
+.swiper-container-flip .swiper-slide-shadow-left,
+.swiper-container-flip .swiper-slide-shadow-right {
+  z-index: 0;
+  backface-visibility: hidden;
+}
+/*# sourceMappingURL=effect-flip.css.map */
