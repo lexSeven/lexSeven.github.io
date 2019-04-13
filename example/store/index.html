@@ -1211,16 +1211,15 @@
             }
         }
 
-
         var data = {
             capge:'1',
             diviceId:'',//怎么拿设备号  app.getUpk(callback)//回调里面能拿到UPK 如果UPK为空，则未登录
             pageSize:'15',
-            storeId:'',//店铺ID获取  app.getQueryString(storeId)?
+            storeId:'23',//店铺ID获取  app.getQueryString(storeId)?
             upk:''//怎么获取
         }
         $.ajax({
-            url:'https://content.secoo.com/content-service/api/store/getContent',
+            url:'https://content.secoo.com/content-service/api/store/getContent?capge=1&pageSize=15&storeId=23',
             data:data,
             success:function(data){
                 console.log('请求成功');
