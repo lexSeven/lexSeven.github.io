@@ -1,0 +1,5 @@
+.swiper-container-coverflow .swiper-wrapper {
+  /* Windows 8 IE 10 fix */
+  -ms-perspective: 1200px;
+}
+/*# sourceMappingURL=effect-coverflow.css.map */
