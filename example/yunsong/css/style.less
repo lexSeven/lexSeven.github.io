@@ -9,11 +9,20 @@ h6{
   margin: 0;
 }
 
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
 .wrap{
   width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .center{
@@ -41,9 +50,51 @@ h6{
     height: 46px;
     padding: 27px 0;
     margin-left: -46px;
+    float: left;
   }
   .location{
+    float: left;
     margin-left: 27px;
+    width: 93px;
+    height: 46px;
+    padding:27px 0;
+    display: flex;
+    justify-content: space-between;
+    font:300 18px/46px '微软雅黑';
+    color: #999;
+  }
+  .menuBox{
+    float: left;
+    margin-left: 120px;
+    display: flex;
+    .item{
+      display: inline-block;
+      padding: 27px 18px;
+      font: 14px/46px '微软雅黑';
+      color: #666;
+      box-sizing: border-box;
+      &.active{
+        border-top: 2px solid #2a8eff;
+      }
+    }
+  }
+  .rightBtn{
+    float: right;
+    margin-right: -20px;
+    padding-top: 35px;
+
+    .btn{
+      padding: 0 20px;
+      height: 30px;
+      border-radius: 15px;
+      font:200 14px/30px '微软雅黑';
+      cursor: pointer;
+      display: inline-block;
+      &.checked{
+        background: #666;
+        color: #fff;
+      }
+    }
 
   }
 }
@@ -51,4 +102,149 @@ h6{
 .bigImgBox{
   height: 800px;
   background: #f9f9f9;
+
+  .item{
+    width: 100%;
+    height: 100%;
+    background:url("../img/image_02.png") no-repeat center;
+    background-size: cover;
+  }
 }
+
+.serverContent{
+  height: 598px;
+  background: #fff;
+
+  .title{
+    height: 50px;
+    padding-top:59px;
+    border-bottom: 1px solid #eeeeee;
+    text-align: center;
+  }
+
+  .content{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 58px;
+
+    .item{
+      width: 310px;
+      height: 360px;
+      text-align: center;
+
+      &:hover{
+        background: #2f2f31;
+
+        .icon.security{
+          background-position: 0 0;
+        }
+        .icon.order{
+          background-position: -80px 0;
+        }
+        .icon.faster{
+          background-position: -160px 0;
+        }
+
+        .itemTitle{
+          background: #2f2f31;
+        }
+
+      }
+
+      .icon{
+        width: 80px;
+        height: 60px;
+        margin: 49px 0 18px 0;
+        display: inline-block;
+        background: url("../img/service.png") no-repeat;
+
+        &.security{
+          background-position: 0 -60px;
+        }
+
+        &.order{
+          background-position: -80px -60px;
+        }
+        &.faster{
+          background-position: -160px -60px;
+        }
+
+
+      }
+
+      .itemTitle{
+        font: 200 18px/58px '微软雅黑';
+        color: #fff;
+        position: relative;
+
+        &:before{
+          content: '';
+          position: absolute;
+          width: 60px;
+          height: 1px;
+          background: #666;
+          left: 50%;
+          bottom: 0;
+          margin-left: -30px;
+        }
+      }
+
+      .itemText{
+        padding-top: 16px;
+        font: 14px/24px '微软雅黑';
+        color: #b9b9b9;
+      }
+
+      .itemBtn{
+        width: 30px;
+        height: 30px;
+        border: 1px solid #d6d6d6;
+        box-sizing: border-box;
+        border-radius: 50%;
+        margin-top: 45px;
+        display: inline-block;
+        position: relative;
+
+        &:before{
+          content: '';
+          width: 60%;
+          height: 2px;
+          background: #d6d6d6;
+          position: absolute;
+          left: 20%;
+          top: 50%;
+          margin-top: -1px;
+        }
+
+        &:after{
+          content: '';
+          width: 0;
+          height: 0;
+          border-width: 4px 0 4px 5px;
+          border-style: solid;
+          border-color: transparent transparent transparent #d6d6d6;
+        }
+
+      }
+    }
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
