@@ -1,0 +1,84 @@
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+strong,
+em {
+  font-style: normal;
+}
+.wrap {
+  width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  height: 100px;
+  background: #fff;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+.header .logo {
+  width: 166px;
+  height: 46px;
+  padding: 27px 0;
+  margin-left: -46px;
+  float: left;
+}
+.header .location {
+  float: left;
+  margin-left: 27px;
+  width: 93px;
+  height: 46px;
+  padding: 27px 0;
+  display: flex;
+  justify-content: space-between;
+  font: 300 18px/46px '微软雅黑';
+  color: #999;
+}
+.header .menuBox {
+  float: left;
+  margin-left: 120px;
+  display: flex;
+}
+.header .menuBox .item {
+  display: inline-block;
+  padding: 27px 18px;
+  font: 14px/46px '微软雅黑';
+  color: #666;
+  box-sizing: border-box;
+}
+.header .menuBox .item.active {
+  border-top: 2px solid #2a8eff;
+}
+.header .rightBtn {
+  float: right;
+  margin-right: -20px;
+  padding-top: 35px;
+}
+.header .rightBtn .btn {
+  padding: 0 20px;
+  height: 30px;
+  border-radius: 15px;
+  font: 200 14px/30px '微软雅黑';
+  cursor: pointer;
+  display: inline-block;
+}
+.header .rightBtn .btn.checked {
+  background: #666;
+  color: #fff;
+}
+/*# sourceMappingURL=common.css.map */
