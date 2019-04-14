@@ -1,0 +1,65 @@
+body {
+  background: #f9f9f9;
+}
+.content {
+  width: 1200px;
+  min-height: 600px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 54px 60px 100px;
+  box-sizing: border-box;
+}
+.content .listTitle {
+  height: 85px;
+  display: flex;
+  justify-content: space-between;
+}
+.content .listTitle .item {
+  width: 200px;
+  height: 85px;
+  background: #eeeeee;
+  text-align: center;
+  font: 18px/85px '微软雅黑';
+  color: #333333;
+  cursor: pointer;
+}
+.content .listTitle .item span {
+  display: block;
+}
+.content .listTitle .item span:hover {
+  background: #2a8eff;
+  color: #fff;
+}
+.content .listTitle .item input {
+  display: none;
+}
+.content .listTitle .item input:checked ~ span {
+  background: #2a8eff;
+  color: #fff;
+}
+.content .questionList {
+  padding-top: 18px;
+}
+.content .questionList .item {
+  height: 129px;
+  border-bottom: 1px dashed #eeeeee;
+  font-size: 0;
+  line-height: 0;
+}
+.content .questionList .item:before {
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.content .questionList .item .textBox {
+  display: inline-block;
+  vertical-align: middle;
+  font: 18px/40px '微软雅黑';
+  color: #999999;
+}
+.content .questionList .item .textBox em {
+  font-style: normal;
+  color: #2a8eff;
+}
+/*# sourceMappingURL=question.css.map */

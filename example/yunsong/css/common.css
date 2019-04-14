@@ -51,10 +51,15 @@ em {
   width: 93px;
   height: 46px;
   padding: 27px 0;
-  display: flex;
-  justify-content: space-between;
   font: 300 18px/46px '微软雅黑';
   color: #999;
+}
+.header .location .icon {
+  display: inline-block;
+  width: 20px;
+  height: 100%;
+  background: url("../img/icon.png") no-repeat center left;
+  margin-right: 10px;
 }
 .header .menuBox {
   float: left;
