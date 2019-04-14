@@ -11,7 +11,7 @@
 <header class="header">
     <div class="wrap">
         <h1 class="logo"><img src="img/logo.png"></h1>
-        <div class="location"><span class="icon">&nbsp;</span>北京</div>
+        <div class="location"><span class="icon">&nbsp;</span><span class="cityName">北京</span></div>
         <ul class="menuBox">
             <li><a href="index.html" class="item active">首页</a></li>
             <!--<li><a href="#" class="item">企业介绍</a></li>-->
@@ -216,5 +216,18 @@
 
 <div class="copyRight">© 2018&nbsp;&nbsp;YUNESONG     北京云e送网络科技有限公司版权所有&nbsp;&nbsp;&nbsp;&nbsp;京ICP备18031030号</div>
 
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SBtz5uqX7lNXXukQ07IK8xukp6G91UEm"></script>
+<script type="text/javascript">
+    var cityNameDom = document.querySelector('.cityName');
+    var map = new BMap.Map("container");
+    var nowCity = new BMap.LocalCity();
+    nowCity.get(bdGetPosition);
+    function bdGetPosition(result) {
+        var cityName = result.name; //当前的城市名
+        cityNameDom.innerText = cityName;
+        console.log(cityName);
+    }
+</script>
 </body>
 </html>

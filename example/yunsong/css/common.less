@@ -71,7 +71,7 @@ body{
             width: 20px;
             height: 100%;
             background: url("../img/icon.png") no-repeat center left;
-            margin-right: 10px;
+            margin-right: 5px;
         }
 
     }
@@ -88,6 +88,7 @@ body{
             &.active{
                 border-top: 2px solid #2a8eff;
                 line-height: 42px;
+                color: #2a8eff;
             }
         }
 
@@ -99,6 +100,10 @@ body{
             color: #666;
             padding:0 12px;
             position: relative;
+
+            &.active{
+                color: #2a8eff;
+            }
 
             &.active:before{
                 content: '';
@@ -136,6 +141,7 @@ body{
                 padding: 0 12px;
                 background: #fff;
                 margin-left: -12px;
+                color: #666;
 
                 a{
                     width: 100%;

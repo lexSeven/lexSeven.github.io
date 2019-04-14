@@ -320,7 +320,9 @@ ul {
   padding: 60px 108px 34px;
   background: rgba(255, 255, 255, 0.3);
   position: absolute;
+  left: 50%;
   top: 213px;
+  margin-left: -708px;
 }
 .item4 .contenBox .info {
   width: 600px;
