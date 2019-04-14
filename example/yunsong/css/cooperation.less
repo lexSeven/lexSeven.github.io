@@ -7,8 +7,235 @@
         object-fit: cover;
     }
 }
-.wrap{
-    .main{
+.cooprtation{
+    height: 342px;
+    .wrap {
+        position: relative;
+        top: -97px;
+        background: #fff;
+        padding:62px 0 35px;
+        .process{
+            display: flex;
+            justify-content: space-between;
+            padding:0 130px 0 122px;
+            .item{
+                min-width: 100px;
+                display: flex;
+                padding:44px 0 ;
+                flex-direction: column;
+                align-items: center;
+                .pic{
+                    width:74px;
+                    height:74px;
+                }
+                .text{
+                    padding-top:7px;
+                    font:18px/28px '微软雅黑';
+                    color: #333;
+                }
+                .english{
+                    color: #999;
+                    padding-bottom: 26px;
+                }
+                .icon_box{
+                    position: relative;
+                    .icon{
+                        height:30px;
+                        width:30px;
+                    }
+                    &:before{
+                        display: inline-block;
+                        content: '';
+                        width: 245px;
+                        height:0;
+                        border: 1px dashed #eee;
+                        position: absolute;
+                        bottom: 50%;
+                        left:30px;
+                    }
+
+                }
+                &:last-child{
+                    .icon_box:before{
+                        display: none;
+                    }
+                }
+            }
+        }
+
+    }
+    }
+
+.title_after {
+    font: 700 18px/33px '微软雅黑';
+    color: #2f91ff;
+    text-align: center;
+    .en{
+        color: #999;
+        font-size:24px;
+        line-height: 26px;
+        span{
+            color: #333;
+        }
+        &:before{
+            display: inline-block;
+            content: '';
+            height:0;
+            width: 38%;
+            border-top:1px solid #eee;
+            margin-right:16px;
+            margin-bottom: 11px;
+        }
+        &:after{
+            display: inline-block;
+            content: '';
+            height:0;
+            width: 38%;
+            border-top:1px solid #eee;
+            margin-left:16px;
+            margin-bottom: 11px;
+        }
+    }
+}
+
+.requires{
+    background: url("../img/cop_bg.png") no-repeat;
+    height:431px;
+    padding:65px 0 70px;
+    width: 100%;
+    .wrap{
+        .title{
+            font:700 18px/30px '微软雅黑';
+            color: #2f91ff;
+            text-align: center;
+            .en{
+                color: #999;
+                font-size:24px;
+                position: relative;
+                em{
+                    color: #fff;
+                }
+                &:before{
+                    display: inline-block;
+                    content: '';
+                    height:0;
+                    width: 38%;
+                    border-top:1px solid #eee;
+                    margin-right:16px;
+                    margin-bottom: 6px;
+                }
+                &:after{
+                    display: inline-block;
+                    content: '';
+                    height:0;
+                    width: 38%;
+                    border-top:1px solid #eee;
+                    margin-left:16px;
+                    margin-bottom: 6px;
+                }
+            }
+        }
+        .list{
+            display: flex;
+            justify-content: space-between;
+            padding:51px 0 70px;
+            .item{
+                height:320px;
+                width:350px;
+                .pic{
+                    height:240px;
+                    width: 100%;
+                }
+                .text{
+                    height:52px;
+                    padding:15px 0 13px;
+                    background: #2a8eff;
+                    font:18px/28px '微软雅黑';
+                    color: #fff;
+                    text-align: center;
+                    position: relative;
+                    .tip{
+                        font-size:14px;
+                    }
+                    &:after{
+                        display: inline-block;
+                        content: '';
+                        height:50px;
+                        width:6px;
+                        background: #fff;
+                        position: absolute;
+                        bottom: 0;
+                        right:20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.join{
+    padding:64px 0 68px;
+    background: url("../img/jion_bg.png") no-repeat;
+    .wrap{
+        .list{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            .item{
+                width: 350px;
+                height:60px;
+                margin-top:50px;
+                background: #fff;
+                box-shadow: 2px 2px 3px 1px #bab9b9;
+                padding:45px 0;
+                text-align: center;
+                font:30px/40px '微软雅黑';
+                color: #333;
+                transition: .3s;
+                position: relative;
+                a{
+                    display: inline-block;
+                    width: 100%;
+                    padding:10px 0;
+                }
+                &:hover{
+                    background: #2a8eff;
+                    color: #fff;
+                }
+                .icon{
+                    display: inline-block;
+                    height:120px;
+                    width: 120px;
+                    position: absolute;
+                    bottom: 0;
+                    right:0;
+                }
+                .icon1{
+                    background: url("../img/join_icon.png") 0 0 no-repeat;
+                }
+                .icon2{
+                    background: url("../img/join_icon.png") -120px 0 no-repeat;
+                }
+                .icon3{
+                    background: url("../img/join_icon.png") -240px 0 no-repeat;
+                }
+                .icon4{
+                    background: url("../img/join_icon.png") 0 -120px no-repeat;
+                }
+                .icon5{
+                    background: url("../img/join_icon.png") -120px -120px no-repeat;
+                }
+                .icon6{
+                    background: url("../img/join_icon.png") -240px -120px no-repeat;
+                }
+
+            }
+
+        }
 
     }
 }
+
+
+
