@@ -1,38 +1,3 @@
-body,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6{
-  margin: 0;
-}
-
-ul{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-a{
-  text-decoration: none;
-  color: inherit;
-}
-
-.clear:after{
-  content: '';
-  font-size: 0;
-  line-height: 0;
-  display: block;
-  clear: both;
-}
-
-.wrap{
-  width: 1200px;
-  margin: 0 auto;
-}
-
 .center{
   font-size: 0;
   line-height: 0;
@@ -469,6 +434,51 @@ a{
 
 .download{
   height: 464px;
+  padding-top: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #f9f9f9;
+
+  .imgBox{
+    float: left;
+    width: 412px;
+    text-align: right;
+  }
+
+  .codeImg{
+    width: 166px;
+    float: left;
+    padding-top: 130px;
+    text-align: center;
+
+    span{
+      padding-top: 16px;
+      font: 18px/25px '微软雅黑';
+      color: #000;
+      display: inline-block;
+      width: 100%;
+    }
+
+    em{
+      font: 18px/22px '微软雅黑';
+      color: #999999;
+    }
+  }
+
+  .text{
+    width: 264px;
+    float: left;
+    padding: 130px 0 0 96px;
+
+
+    span{
+      display: inline-block;
+      padding-top: 19px;
+      font: 18px/22px '微软雅黑';
+      color: #666666;
+    }
+
+  }
 }
 
 
