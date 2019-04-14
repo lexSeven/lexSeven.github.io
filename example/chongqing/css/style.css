@@ -314,6 +314,38 @@ ul {
   background-size: cover;
   position: relative;
 }
+.item4 .contenBox {
+  height: 360px;
+  width: 1200px;
+  padding: 60px 108px 34px;
+  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  top: 213px;
+}
+.item4 .contenBox .info {
+  width: 600px;
+  height: 100%;
+  float: left;
+}
+.item4 .contenBox .info .item {
+  display: flex;
+  margin-bottom: 27px;
+}
+.item4 .contenBox .info .item .text {
+  margin: 0 20px;
+  padding-top: 19px;
+  font: 18px/28px '微软雅黑';
+  color: #333;
+}
+.item4 .contenBox .info .item .text .num {
+  color: #fd2a2a;
+  font: 700 30px/35px '微软雅黑';
+}
+.item4 .contenBox .map {
+  width: 600px;
+  height: 100%;
+  float: right;
+}
 .itemTitle {
   height: 76px;
   text-align: center;
