@@ -70,34 +70,14 @@ header.head {
   margin-top: 25px;
 }
 .box .job:hover span {
-  animation: myfirst 1s;
-  -moz-animation: myfirst 1s;
-  -webkit-animation: myfirst 1s;
+  color: #fff;
+  height: 100%;
 }
 .box .job span {
   display: inline-block;
   width: 100%;
   height: 0;
   background: #2a8eff;
-}
-@keyframes myfirst {
-  0% {
-    height: 0;
-  }
-  20% {
-    height: 17px;
-  }
-  40% {
-    height: 34px;
-  }
-  60% {
-    height: 51px;
-  }
-  80% {
-    height: 68px;
-  }
-  100% {
-    height: 85px;
-  }
+  transition: 0.3s;
 }
 /*# sourceMappingURL=joinus.css.map */
