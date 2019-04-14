@@ -24,6 +24,9 @@ em {
 img {
   vert-align: top;
 }
+body {
+  min-width: 1300px;
+}
 .clear:after {
   content: '';
   font-size: 0;
@@ -79,6 +82,56 @@ img {
 .header .menuBox .item.active {
   border-top: 2px solid #2a8eff;
   line-height: 42px;
+}
+.header .menuBox .dropDown {
+  margin-top: 24px;
+  height: 50px;
+  font: 14px/50px '微软雅黑';
+  text-align: center;
+  color: #666;
+  padding: 0 12px;
+  position: relative;
+}
+.header .menuBox .dropDown.active:before {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #2a8eff;
+  position: absolute;
+  top: -24px;
+  left: 0;
+}
+.header .menuBox .dropDown a {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.header .menuBox .dropDown img {
+  display: inline-block;
+  vertical-align: middle;
+}
+.header .menuBox .dropDown:hover {
+  background: #f9f9f9;
+}
+.header .menuBox .dropDown:hover .downMenu {
+  display: block;
+}
+.header .menuBox .dropDown .downMenu {
+  display: none;
+  width: 100%;
+  padding: 0 12px;
+  background: #fff;
+  margin-left: -12px;
+}
+.header .menuBox .dropDown .downMenu a {
+  width: 100%;
+  padding: 0 12px;
+  display: block;
+  margin-left: -12px;
+}
+.header .menuBox .dropDown .downMenu a:hover {
+  color: #2a8eff;
+  background: #eeeeee;
 }
 .header .rightBtn {
   float: right;

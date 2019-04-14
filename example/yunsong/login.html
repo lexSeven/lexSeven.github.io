@@ -13,12 +13,21 @@
         <div class="location"><span class="icon">&nbsp;</span>北京</div>
         <ul class="menuBox">
             <li><a href="index.html" class="item">首页</a></li>
-            <li><a href="#" class="item">企业介绍</a></li>
-            <li><a href="about.html" class="item">关于我们</a></li>
-            <li><a href="enterprise.html" class="item">企业版</a></li>
-            <li><a href="merchant.html" class="item">商户版</a></li>
+            <!--<li><a href="#" class="item">企业介绍</a></li>-->
             <li><a href="cooperation.html" class="item">招商加盟</a></li>
             <li><a href="joinUs.html" class="item">加入我们</a></li>
+            <li><a href="enterprise.html" class="item">企业版</a></li>
+            <li><a href="merchant.html" class="item">商户版</a></li>
+            <li>
+                <div class="dropDown">
+                    <a href="about.html">关于我们</a>
+                    <img src="img/arrow.png">
+                    <div class="downMenu">
+                        <a href="question.html">常见问题</a>
+                        <a href="#">媒体报道</a>
+                    </div>
+                </div>
+            </li>
         </ul>
         <div class="rightBtn">
             <a href="login.html" class="btn checked">登陆</a>
@@ -32,8 +41,14 @@
         <div class="loginImg">&nbsp;</div>
         <div class="loginBox">
             <div class="tabLine">
-                <span class="btn active">手机验证登录</span>
-                <span class="btn">账号密码登录</span>
+                <label>
+                    <input type="radio" name="login" checked>
+                    <span class="btn active">手机验证登录</span>
+                </label>
+                <label>
+                    <input type="radio" name="login">
+                    <span class="btn">账号密码登录</span>
+                </label>
             </div>
             <div class="inputBox">
                 <div class="input">
@@ -84,6 +99,125 @@
     </div>
 </div>
 <div class="copyRight">© 2018&nbsp;&nbsp;YUNESONG     北京云e送网络科技有限公司版权所有&nbsp;&nbsp;&nbsp;&nbsp;京ICP备18031030号</div>
+
+
+<script src="js/zepto.min.js"></script>
+<script>
+
+    var phoneBox = document.querySelector('.inputBox .input input');
+    var codeBox = document.querySelector('.verification .input input');
+    var getVerificationBtn = document.querySelector('.verification .button');
+    var loginBtn = document.querySelector('.inputBox .loginBtn');
+    var protocolBtn = document.querySelector('.protocol input');
+    var codeTimer = null;
+    var validity = 60;
+    var isloading = false;
+
+    getVerificationBtn.onclick = function(){//获取验证码
+
+        if(isloading){
+            return;
+        }
+        if($.trim(phoneBox.value) == ''){
+            alert('请输入手机号！');
+            return;
+        }
+
+        var data = {
+            mobile:phoneBox.value
+        };
+
+        $.ajax({
+            type:'POST',
+            url:'http://api.1yunsong.com/user/login/get_code',
+            data:data,
+            success:function(res){
+                if(res.ret){
+                    isloading = true;
+                    codeTimer = setInterval(function(){
+                        getVerificationBtn.classList.add('disable');
+                        getVerificationBtn.innerText = validity-- + 's';
+                        if(validity<0){
+                            getVerificationBtn.classList.remove('disable');
+                            getVerificationBtn.innerText = '获取验证码';
+                            clearInterval(codeTimer);
+                            isloading = false;
+                        }
+                    },1000);
+                }else{
+                    alert(res.forUser);
+                }
+            }
+        });
+    }
+
+    loginBtn.onclick = function(){//点击登录按钮
+        if($.trim(phoneBox.value) == ''){
+            alert('请输入手机号！');
+            return;
+        }
+        if($.trim(codeBox.value) == ''){
+            alert('请输入验证码！');
+            return;
+        }
+
+        if(!protocolBtn.checked){
+            alert('请同意用户协议！');
+            return;
+        }
+
+        var data = {
+            mobile:phoneBox.value,
+            code:codeBox.value,
+            loginType:1,
+            invitecode:''
+        };
+
+        register(data);//先走登录
+
+    }
+
+    function register(data){
+        $.ajax({
+            type:'POST',
+            url:'http://api.1yunsong.com/user/login/register',
+            data:data,
+            success:function(res){
+                if(res.ret){//注册成功直接自动走登录
+                    login(data);
+                }else if(!res.ret && res.forUser == '此手机号码已注册'){//判断用户已存在自动走登录
+                    login(data);
+                }else{
+                    alert(res.forUser);
+                }
+            },
+            error:function(){
+                alert('出错了，请稍后再试！');
+            }
+        });
+    }
+
+    function login(data){//登录
+        $.ajax({
+            type:'POST',
+            url:'http://api.1yunsong.com/user/login',
+            data:data,
+            success:function(res){
+                if(res.ret){
+                    console.log('success');
+                    // window.location.href = 'index.html';//跳转页面  上线后替换成绝对地址
+                }else{
+                    alert(res.forUser);
+                }
+            },
+            error:function(){
+                alert('出错了，请稍后再试！');
+            }
+        });
+    }
+
+
+</script>
 
 </body>
 </html>

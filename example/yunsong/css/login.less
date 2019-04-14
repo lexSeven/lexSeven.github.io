@@ -24,6 +24,15 @@ body{
       height: 80px;
       font-size: 0;
 
+      input{
+        display: none;
+      }
+
+      input:checked ~ .btn{
+        color: #2a8eff;
+        background: #fff;
+      }
+
       .btn{
         width: 50%;
         height: 100%;
@@ -32,12 +41,6 @@ body{
         color: #000;
         background: #f9f9f9;
         text-align: center;
-        
-        &.active{
-          color: #2a8eff;
-          background: #fff;
-        }
-
       }
 
     }
@@ -98,7 +101,7 @@ body{
           color: #fff;
           cursor: pointer;
 
-          .desable{
+          &.disable{
             color: #999;
             background: #f9f9f9;
           }

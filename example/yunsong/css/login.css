@@ -22,6 +22,13 @@ body {
   height: 80px;
   font-size: 0;
 }
+.content .loginBox .tabLine input {
+  display: none;
+}
+.content .loginBox .tabLine input:checked ~ .btn {
+  color: #2a8eff;
+  background: #fff;
+}
 .content .loginBox .tabLine .btn {
   width: 50%;
   height: 100%;
@@ -30,10 +37,6 @@ body {
   color: #000;
   background: #f9f9f9;
   text-align: center;
-}
-.content .loginBox .tabLine .btn.active {
-  color: #2a8eff;
-  background: #fff;
 }
 .content .loginBox .inputBox {
   padding: 1px 50px;
@@ -87,7 +90,7 @@ body {
   color: #fff;
   cursor: pointer;
 }
-.content .loginBox .inputBox .verification .button .desable {
+.content .loginBox .inputBox .verification .button.disable {
   color: #999;
   background: #f9f9f9;
 }
