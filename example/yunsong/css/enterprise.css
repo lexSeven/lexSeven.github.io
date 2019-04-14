@@ -1,0 +1,9 @@
+body {
+  background: #f9f9f9;
+}
+.content {
+  min-height: 600px;
+  background: url("../img/building.png") no-repeat center;
+  background-size: 700px;
+}
+/*# sourceMappingURL=enterprise.css.map */
