@@ -39,6 +39,10 @@ body {
 }
 .content .questionList {
   padding-top: 18px;
+  display: none;
+}
+.content .questionList.active {
+  display: block;
 }
 .content .questionList .item {
   height: 129px;

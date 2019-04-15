@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="header"></div>
+<div class="box"></div>
+
+<script>
+    countSize();
+    window.onresize = countSize;
+    function countSize(){
+        if(window.innerHeight >= 800){
+            document.documentElement.style.fontSize = '100px';
+        }
+        if(window.innerHeight < 800){
+            document.documentElement.style.fontSize = '80px';
+        }
+    }
+</script>
+
+</body>
+</html>

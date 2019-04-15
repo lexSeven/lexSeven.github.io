@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
 
@@ -11,12 +12,12 @@
     <div class="logoBox">
         <img src="img/logo.png">
     </div>
-    <ul class="navigation">
-        <li class="item active">首页</li>
-        <li class="item">人才展厅</li>
-        <li class="item">人才服务大厅</li>
-        <li class="item">基层干部管理系统</li>
-        <li class="item">联系我们</li>
+    <ul class="navigation swiper-pagination">
+        <li class="item swiper-pagination-bullet">首页</li>
+        <li class="item swiper-pagination-bullet">人才展厅</li>
+        <li class="item swiper-pagination-bullet">人才服务大厅</li>
+        <li class="item swiper-pagination-bullet">基层干部管理系统</li>
+        <li class="item swiper-pagination-bullet">联系我们</li>
     </ul>
 </div>
 
@@ -157,6 +158,9 @@
         spaceBetween: 20,
         keyboard : true,
         mousewheel: true,
+        pagination: {
+            el: '.swiper-pagination',
+        },
         // on:{
         //     setTranslate: function(){
         //         this.$wrapperEl.transition('');
