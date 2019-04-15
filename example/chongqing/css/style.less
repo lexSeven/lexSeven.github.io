@@ -1,4 +1,6 @@
-
+body{
+  min-width: 1200px;
+}
 
 .contentImgCenter{
   line-height: 0;
@@ -26,11 +28,15 @@
   width: 100%;
 
   .logoBox{
-    width: 378px;
+    width: 308px;
     height: 100%;
     padding-left: 40px;
     float: left;
     .contentImgCenter;
+
+    img{
+      width: 100%;
+    }
   }
 
   .navigation{
@@ -187,6 +193,7 @@
         border-radius: 50%;
         background-image: url("../img/rencai.png");
         background-repeat: no-repeat;
+        transition: 0.5s;
 
         &.survey{
           background-position: 0 0;
@@ -322,6 +329,9 @@
       width: 600px;
       height:100%;
       float: left;
+
+      transform: scale(0.8);
+
       .item{
         display: flex;
         margin-bottom: 27px;
@@ -400,6 +410,128 @@
 
     &:before{
       left: 0;
+    }
+  }
+}
+
+@media all and (max-width: 1300px) {
+  .header{
+
+    .navigation{
+      float: right;
+      padding-right: 20px;
+      .item{
+        padding: 0 10px;
+      }
+    }
+  }
+  .item2{
+    .contentBox{
+      width: 1000px;
+      margin: -95px 0 0 -500px;
+
+      .item{
+        width: 143px;
+        text-align: center;
+        transition: 0.5s;
+
+        .icon{
+          width: 143px;
+          height: 143px;
+          transform: scale(0.8);
+
+          &.survey{
+            background-position: -26px -26px;
+          }
+
+          &.personnel{
+            background-position: -219px -26px;
+          }
+
+          &.harvest{
+            background-position: -412px -26px;
+          }
+
+          &.platform{
+            background-position: -605px -26px;
+          }
+        }
+
+        .itemText{
+          display: inline-block;
+          padding-top: 15px;
+          height: 41px;
+          font:bold 20px/41px '微软雅黑';
+        }
+
+        &:hover{
+          transform: translateY(-40px);
+
+          .icon{
+            border: none;
+            background-image: url("../img/rencai.png");
+            background-repeat: no-repeat;
+            background-color: #fd2a2a;
+
+            &.survey{
+              background-position: -26px -219px;
+            }
+
+            &.personnel{
+              background-position: -219px -219px;
+            }
+
+            &.harvest{
+              background-position: -412px -219px;
+            }
+
+            &.platform{
+              background-position: -605px -219px;
+            }
+
+          }
+        }
+
+      }
+    }
+  }
+
+  .item4{
+    .contenBox{
+      width: 1000px;
+      padding:60px 50px 34px;
+      margin-left: -550px;
+
+
+      .info{
+        width: 500px;
+        height:100%;
+        float: left;
+
+        transform: scale(0.8);
+
+        .item{
+          display: flex;
+          margin-bottom: 27px;
+          .pic{}
+          .text{
+            margin:0 20px;
+            padding-top:19px;
+            font:18px/28px '微软雅黑';
+            color: #333;
+            .num{
+              color: #fd2a2a;
+              font:700 30px/35px '微软雅黑';
+            }
+          }
+        }
+      }
+      .map{
+        width:500px;
+        height:100%;
+        float: right;
+      }
+
     }
   }
 

@@ -1,3 +1,6 @@
+body {
+  min-width: 1200px;
+}
 .contentImgCenter {
   line-height: 0;
   text-align: center;
@@ -23,7 +26,7 @@
   width: 100%;
 }
 .header .logoBox {
-  width: 378px;
+  width: 308px;
   height: 100%;
   padding-left: 40px;
   float: left;
@@ -41,6 +44,9 @@
 .header .logoBox img {
   display: inline-block;
   vertical-align: middle;
+}
+.header .logoBox img {
+  width: 100%;
 }
 .header .navigation {
   float: right;
@@ -198,6 +204,7 @@
   border-radius: 50%;
   background-image: url("../img/rencai.png");
   background-repeat: no-repeat;
+  transition: 0.5s;
 }
 .item2 .contentBox .item .icon.survey {
   background-position: 0 0;
@@ -305,6 +312,7 @@
   width: 600px;
   height: 100%;
   float: left;
+  transform: scale(0.8);
 }
 .item4 .contenBox .info .item {
   display: flex;
@@ -394,5 +402,97 @@
 }
 .itemTitle .rightLine:before {
   left: 0;
+}
+@media all and (max-width: 1300px) {
+  .header .navigation {
+    float: right;
+    padding-right: 20px;
+  }
+  .header .navigation .item {
+    padding: 0 10px;
+  }
+  .item2 .contentBox {
+    width: 1000px;
+    margin: -95px 0 0 -500px;
+  }
+  .item2 .contentBox .item {
+    width: 143px;
+    text-align: center;
+    transition: 0.5s;
+  }
+  .item2 .contentBox .item .icon {
+    width: 143px;
+    height: 143px;
+    transform: scale(0.8);
+  }
+  .item2 .contentBox .item .icon.survey {
+    background-position: -26px -26px;
+  }
+  .item2 .contentBox .item .icon.personnel {
+    background-position: -219px -26px;
+  }
+  .item2 .contentBox .item .icon.harvest {
+    background-position: -412px -26px;
+  }
+  .item2 .contentBox .item .icon.platform {
+    background-position: -605px -26px;
+  }
+  .item2 .contentBox .item .itemText {
+    display: inline-block;
+    padding-top: 15px;
+    height: 41px;
+    font: bold 20px/41px '微软雅黑';
+  }
+  .item2 .contentBox .item:hover {
+    transform: translateY(-40px);
+  }
+  .item2 .contentBox .item:hover .icon {
+    border: none;
+    background-image: url("../img/rencai.png");
+    background-repeat: no-repeat;
+    background-color: #fd2a2a;
+  }
+  .item2 .contentBox .item:hover .icon.survey {
+    background-position: -26px -219px;
+  }
+  .item2 .contentBox .item:hover .icon.personnel {
+    background-position: -219px -219px;
+  }
+  .item2 .contentBox .item:hover .icon.harvest {
+    background-position: -412px -219px;
+  }
+  .item2 .contentBox .item:hover .icon.platform {
+    background-position: -605px -219px;
+  }
+  .item4 .contenBox {
+    width: 1000px;
+    padding: 60px 50px 34px;
+    margin-left: -550px;
+  }
+  .item4 .contenBox .info {
+    width: 500px;
+    height: 100%;
+    float: left;
+    transform: scale(0.8);
+  }
+  .item4 .contenBox .info .item {
+    display: flex;
+    margin-bottom: 27px;
+  }
+  .item4 .contenBox .info .item .text {
+    margin: 0 20px;
+    padding-top: 19px;
+    font: 18px/28px '微软雅黑';
+    color: #333;
+  }
+  .item4 .contenBox .info .item .text .num {
+    color: #fd2a2a;
+    font: 700 30px/35px '微软雅黑';
+  }
+  .item4 .contenBox .map {
+    width: 500px;
+    height: 100%;
+    float: right;
+  }
 }
 /*# sourceMappingURL=style.css.map */
