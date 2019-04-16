@@ -161,6 +161,7 @@
 
     var menuItem = document.querySelectorAll('.navigation .item');
 
+    var nowPage = 0;
     var page = new Swiper('.content',{
         direction: 'vertical',
         spaceBetween: 20,
@@ -177,6 +178,7 @@
                 menuItem[this.previousIndex].classList.remove('active');
                 menuItem[menuItem.length-1].classList.remove('active');
 
+                nowPage = this.activeIndex;
                 if(this.activeIndex == 3){
                     menuItem[this.activeIndex+1].classList.add('active');
                     menuItem[this.previousIndex+1].classList.remove('active');
@@ -207,6 +209,14 @@
         }
         menu[4].onclick = function(){
             page.slideTo(3);
+        }
+    }
+
+    next();
+    function next(){
+        var nextBtn = document.querySelector('.next');
+        nextBtn.onclick = function(){
+            page.slideTo(nowPage+1);
         }
     }
 
