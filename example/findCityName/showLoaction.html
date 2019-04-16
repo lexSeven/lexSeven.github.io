@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #allmap{
+            width: 500px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="allmap"></div>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=wM2u5ApuvBrqUjaPgfWmaTK1aXlP37Wf"></script>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(116.331398,39.897445);
+    map.centerAndZoom(point,12);
+    // 创建地址解析器实例
+    var myGeo = new BMap.Geocoder();
+    // 将地址解析结果显示在地图上,并调整地图视野
+    myGeo.getPoint("北京市昌平区顺沙路19号院", function(point){
+        if (point) {
+            map.centerAndZoom(point, 16);
+            map.addOverlay(new BMap.Marker(point));
+        }else{
+            alert("您选择地址没有解析到结果!");
+        }
+    }, "北京市");
+</script>
+
+</body>
+</html>

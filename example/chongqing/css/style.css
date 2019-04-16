@@ -379,8 +379,8 @@ body {
   transition: 0.5s 0.7s cubic-bezier(0, 0.77, 0.57, 1.39);
 }
 .item2.swiper-slide-active .item:hover {
-  transition: 0.5s 0s;
-  transform: translateY(-60px);
+  transition: 0.7s 0s;
+  transform: translateY(-40px);
   color: #fd2a2a;
 }
 .item2.swiper-slide-active .item:hover .round {
@@ -487,6 +487,9 @@ body {
   left: 50%;
   top: 213px;
   margin-left: -708px;
+  transition: 1s;
+  opacity: 0;
+  transform: translateY(100px) scale(0.7);
 }
 .item4 .contenBox .info {
   width: 600px;
@@ -512,6 +515,12 @@ body {
   width: 600px;
   height: 100%;
   float: right;
+  border: 5px solid #fff;
+  box-sizing: border-box;
+}
+.item4.swiper-slide-active .contenBox {
+  opacity: 1;
+  transform: translateY(0px) scale(1);
 }
 .itemTitle {
   height: 76px;
@@ -607,7 +616,7 @@ body {
     transform: scale(0.8);
   }
   .item2 .contentBox .item:hover {
-    transform: translateY(-40px);
+    transform: translateY(-30px);
   }
   .item2 .contentBox .item:hover .round {
     transform: rotate(0deg) scale(0.8);

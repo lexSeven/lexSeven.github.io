@@ -120,7 +120,7 @@
                 <ul class="info">
                     <li class="item tel">
                         <div class="pic">
-                            <img src="img/item4-tel.png" alt="" class="icon">
+                            <img src="img/tel.png" class="icon">
                         </div>
                         <div class="text">
                             <p class="title">电话:</p>
@@ -129,7 +129,7 @@
                     </li>
                     <li class="item tel">
                         <div class="pic">
-                            <img src="img/item4-where.png" alt="" class="icon">
+                            <img src="img/location.png" class="icon">
                         </div>
                         <div class="text">
                             <p class="title">地址：</p>
@@ -138,7 +138,7 @@
                     </li>
                     <li class="item tel">
                         <div class="pic">
-                            <img src="img/item4-email.png" alt="" class="icon">
+                            <img src="img/email.png" class="icon">
                         </div>
                         <div class="text">
                             <p class="title">邮箱：</p>
@@ -146,16 +146,17 @@
                         </div>
                     </li>
                 </ul>
-                <div class="map">
-                    <img src="img/item4-map.png" alt="">
+                <div class="map" id="allmap">
                 </div>
             </div>
         </div>
     </div>
 
 </div>
+
 <script src="js/TweenMax.min.js"></script>
 <script src="js/swiper.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=wM2u5ApuvBrqUjaPgfWmaTK1aXlP37Wf"></script>
 <script>
 
     var menuItem = document.querySelectorAll('.navigation .item');
@@ -174,9 +175,57 @@
             slideChangeTransitionStart:function(){
                 menuItem[this.activeIndex].classList.add('active');
                 menuItem[this.previousIndex].classList.remove('active');
+                menuItem[menuItem.length-1].classList.remove('active');
+
+                if(this.activeIndex == 3){
+                    menuItem[this.activeIndex+1].classList.add('active');
+                    menuItem[this.previousIndex+1].classList.remove('active');
+                }
             },
         }
     });
+
+    backtop();
+    function backtop(){
+        var backBtn = document.querySelector('.rightMenu .backTop');
+        backBtn.onclick = function(){
+            page.slideTo(0);
+        }
+    }
+
+    menu();
+    function menu(){
+        var menu = document.querySelectorAll('.navigation .item');
+        menu[0].onclick = function(){
+            page.slideTo(0);
+        }
+        menu[1].onclick = function(){
+            page.slideTo(1);
+        }
+        menu[2].onclick = function(){
+            page.slideTo(2);
+        }
+        menu[4].onclick = function(){
+            page.slideTo(3);
+        }
+    }
+
+
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(116.331398,39.897445);
+    map.centerAndZoom(point,12);
+    // 创建地址解析器实例
+    var myGeo = new BMap.Geocoder();
+    // 将地址解析结果显示在地图上,并调整地图视野
+    myGeo.getPoint("北京市昌平区顺沙路19号院", function(point){
+        if (point) {
+            map.centerAndZoom(point, 16);
+            map.addOverlay(new BMap.Marker(point));
+        }else{
+            alert("您选择地址没有解析到结果!");
+        }
+    }, "北京市");
 </script>
 </body>
 </html>

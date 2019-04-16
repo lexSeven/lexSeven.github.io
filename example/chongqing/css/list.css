@@ -223,9 +223,6 @@ body {
   text-align: left;
   padding: 0 50px;
 }
-.content .contentMain .listBox .listItem.new .title {
-  color: #fd2a2a;
-}
 .content .contentMain .listBox .listItem.new .title:after {
   content: '';
   display: inline-block;

@@ -378,8 +378,8 @@ body{
       }
 
       &:hover{
-        transition: 0.5s 0s;
-        transform: translateY(-60px);
+        transition: 0.7s 0s;
+        transform: translateY(-40px);
         color:#fd2a2a;
 
 
@@ -513,6 +513,9 @@ body{
     left: 50%;
     top:213px;
     margin-left: -708px;
+    transition: 1s;
+    opacity: 0;
+    transform: translateY(100px) scale(0.7);
 
     .info{
       width: 600px;
@@ -541,8 +544,18 @@ body{
       width:600px;
       height:100%;
       float: right;
+      border:5px solid #fff;
+      box-sizing: border-box;
     }
   }
+
+  &.swiper-slide-active{
+    .contenBox{
+      opacity: 1;
+      transform: translateY(0px) scale(1);
+    }
+  }
+
 }
 
 .itemTitle{
@@ -633,7 +646,7 @@ body{
         }
 
         &:hover{
-          transform: translateY(-40px);
+          transform: translateY(-30px);
 
           .round{
             transform: rotate(0deg) scale(0.8);
