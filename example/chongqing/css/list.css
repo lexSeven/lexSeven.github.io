@@ -37,6 +37,13 @@ body {
   color: #666666;
   position: relative;
   float: left;
+  cursor: pointer;
+}
+.topMenu .menu .item a {
+  display: block;
+}
+.topMenu .menu .item:hover {
+  background: #e1e1e1;
 }
 .topMenu .menu .item.active:before {
   content: '';
@@ -59,6 +66,7 @@ body {
   line-height: 0;
   float: right;
   cursor: pointer;
+  display: none;
 }
 .topMenu .sinout:before {
   content: '';
@@ -134,6 +142,14 @@ body {
 .content .leftMenu .titleItem.active .arrow {
   background: url("../img/list_31.png") no-repeat;
 }
+.content .leftMenu .subMenu {
+  height: 0;
+  overflow: hidden;
+  transition: 1s;
+}
+.content .leftMenu .subMenu.active {
+  height: auto;
+}
 .content .leftMenu .item {
   height: 60px;
   border-bottom: 1px solid #d6d6d6;
@@ -200,9 +216,10 @@ body {
 .content .contentMain .listBox {
   margin: 0 30px;
   border: 1px solid #eee;
+  padding: 20px 0;
 }
 .content .contentMain .listBox .listItem {
-  height: 85px;
+  height: 65px;
   text-align: left;
   padding: 0 50px;
 }
@@ -216,7 +233,7 @@ body {
   height: 23px;
   background: url("../img/list_21.png") no-repeat;
   position: relative;
-  top: -10px;
+  top: -4px;
   left: 10px;
 }
 .content .contentMain .listBox .listItem:hover {
@@ -230,12 +247,12 @@ body {
 }
 .content .contentMain .listBox .listItem .title {
   width: 50%;
-  height: 84px;
+  height: 64px;
   border-bottom: 1px solid #ededed;
   padding-left: 20px;
   position: relative;
   float: left;
-  font: 18px/84px '微软雅黑';
+  font: 18px/64px '微软雅黑';
   color: #333333;
 }
 .content .contentMain .listBox .listItem .title:before {
@@ -252,7 +269,7 @@ body {
   float: right;
   background: url("../img/list_24.png") no-repeat left center;
   padding-left: 30px;
-  font: 18px/85px '微软雅黑';
+  font: 18px/65px '微软雅黑';
   color: #999999;
 }
 .content .contentMain .listBottom {

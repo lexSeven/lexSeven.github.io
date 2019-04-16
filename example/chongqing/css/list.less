@@ -40,6 +40,15 @@ body{
       color: #666666;
       position: relative;
       float: left;
+      cursor: pointer;
+
+      a{
+        display: block;
+      }
+
+      &:hover{
+        background: #e1e1e1;
+      }
 
       &.active{
         &:before{
@@ -56,6 +65,8 @@ body{
         }
       }
     }
+
+
   }
 
   .sinout{
@@ -67,6 +78,7 @@ body{
     line-height: 0;
     float: right;
     cursor: pointer;
+    display: none;
 
     &:before{
       content: '';
@@ -142,6 +154,17 @@ body{
       }
 
     }
+
+    .subMenu{
+      height: 0;
+      overflow: hidden;
+      transition: 1s;
+
+      &.active{
+        height: auto;
+      }
+
+    }
     .item{
       height: 60px;
       border-bottom: 1px solid #d6d6d6;
@@ -193,10 +216,11 @@ body{
     .listBox{
       margin:0 30px;
       border: 1px solid #eee;
+      padding: 20px 0;
 
 
       .listItem{
-        height: 85px;
+        height: 65px;
         text-align: left;
         padding: 0 50px;
 
@@ -210,7 +234,7 @@ body{
               height: 23px;
               background: url("../img/list_21.png") no-repeat;
               position: relative;
-              top: -10px;
+              top: -4px;
               left:10px;
             }
           }
@@ -232,12 +256,12 @@ body{
 
         .title{
           width: 50%;
-          height: 84px;
+          height: 64px;
           border-bottom: 1px solid #ededed;
           padding-left: 20px;
           position: relative;
           float: left;
-          font: 18px/84px '微软雅黑';
+          font: 18px/64px '微软雅黑';
           color: #333333;
 
           &:before{
@@ -256,7 +280,7 @@ body{
           float: right;
           background: url("../img/list_24.png") no-repeat left center;
           padding-left: 30px;
-          font: 18px/85px '微软雅黑';
+          font: 18px/65px '微软雅黑';
           color: #999999;
         }
 
