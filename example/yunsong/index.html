@@ -217,16 +217,17 @@
 <div class="copyRight">© 2018&nbsp;&nbsp;YUNESONG     北京云e送网络科技有限公司版权所有&nbsp;&nbsp;&nbsp;&nbsp;京ICP备18031030号</div>
 
 
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SBtz5uqX7lNXXukQ07IK8xukp6G91UEm"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SBtz5uqX7lNXXukQ07IK8xukp6G91UEm"></script>//这是引入百度地图ak
 <script type="text/javascript">
-    var cityNameDom = document.querySelector('.cityName');
+    var cityNameDom = document.querySelector('.cityName');//获取元素
+
     var map = new BMap.Map("container");
-    var nowCity = new BMap.LocalCity();
-    nowCity.get(bdGetPosition);
+    var nowCity = new BMap.LocalCity();//调
+    nowCity.get(bdGetPosition);//查询城市名称
+
     function bdGetPosition(result) {
-        var cityName = result.name; //当前的城市名
-        cityNameDom.innerText = cityName;
-        console.log(cityName);
+        var cityName = result.name; //得到当前的城市名
+        cityNameDom.innerText = cityName;//把城市名称放到元素里
     }
 </script>
 </body>

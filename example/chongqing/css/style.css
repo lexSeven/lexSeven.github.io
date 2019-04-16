@@ -62,7 +62,7 @@ body {
 }
 .header .navigation .item.active {
   border-top: 5px solid #f00;
-  line-height: 90px;
+  line-height: 60px;
 }
 .next {
   width: 36px;

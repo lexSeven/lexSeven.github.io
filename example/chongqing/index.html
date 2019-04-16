@@ -12,12 +12,12 @@
     <div class="logoBox">
         <img src="img/logo.png">
     </div>
-    <ul class="navigation swiper-pagination">
-        <li class="item swiper-pagination-bullet">首页</li>
-        <li class="item swiper-pagination-bullet">人才展厅</li>
-        <li class="item swiper-pagination-bullet">人才服务大厅</li>
-        <li class="item swiper-pagination-bullet">基层干部管理系统</li>
-        <li class="item swiper-pagination-bullet">联系我们</li>
+    <ul class="navigation">
+        <li class="item active">首页</li>
+        <li class="item">人才展厅</li>
+        <li class="item">人才服务大厅</li>
+        <li class="item">基层干部管理系统</li>
+        <li class="item">联系我们</li>
     </ul>
 </div>
 
@@ -153,17 +153,25 @@
 <script src="js/TweenMax.min.js"></script>
 <script src="js/swiper.js"></script>
 <script>
+
+    var menuItem = document.querySelectorAll('.navigation .item');
+
     var page = new Swiper('.content',{
         direction: 'vertical',
         spaceBetween: 20,
         keyboard : true,
         mousewheel: true,
-        // on:{
-        //     setTranslate: function(){
-        //         this.$wrapperEl.transition('');
-        //         TweenMax.to(this.$wrapperEl, 1.5, {y:this.translate, ease:Power4.easeOut})
-        //     }
-        // }
+        on:{
+            /*setTranslate: function(){
+                this.$wrapperEl.transition('');
+                TweenMax.to(this.$wrapperEl, 1.5, {y:this.translate, ease:Power4.easeOut})
+            }*/
+
+            slideChangeTransitionStart:function(){
+                menuItem[this.activeIndex].classList.add('active');
+                menuItem[this.previousIndex].classList.remove('active');
+            },
+        }
     });
 </script>
 </body>
