@@ -45,6 +45,10 @@ body {
 .topMenu .menu .item:hover {
   background: #e1e1e1;
 }
+.topMenu .menu .item.active {
+  background: #e9e9e9;
+  color: #fd2a2a;
+}
 .topMenu .menu .item.active:before {
   content: '';
   width: 0;
@@ -156,6 +160,7 @@ body {
   line-height: 0;
   font-size: 0;
   cursor: pointer;
+  color: #666;
 }
 .content .leftMenu .item:before {
   content: '';
@@ -170,7 +175,6 @@ body {
 }
 .content .leftMenu .item span {
   font: 16px/20px '微软雅黑';
-  color: #666;
   padding-left: 78px;
   display: inline-block;
   vertical-align: middle;
@@ -182,6 +186,7 @@ body {
 .content .leftMenu .item.active {
   width: 301px;
   background: #f9f9f9;
+  color: #fd2a2a;
 }
 .content .contentMain {
   flex: 1;
