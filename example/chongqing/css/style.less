@@ -58,6 +58,11 @@ body{
 }
 
 .next{
+
+  &.first{
+    background: url("../img/mouse2.png") no-repeat;
+  }
+
   width: 36px;
   height: 51px;
   background: url("../img/mouse.png") no-repeat;
@@ -110,7 +115,7 @@ body{
 .item1{
   width: 100vw;
   height: 100vh;
-  background: url("../img/bg_01.jpg") no-repeat center;
+  background: url("../img/bg_05.jpg") no-repeat center;
   background-size: cover;
   position: relative;
 
@@ -141,7 +146,7 @@ body{
       height: 25px;
       border-width: @arguments;
       border-style: solid;
-      border-color: #fff;
+      border-color: rgba(255,255,255,0.8);
       position: absolute;
     }
 
@@ -161,19 +166,18 @@ body{
     }
 
     .title{
-      width: 503px;
-      height: 97px;
-      border-top: 1px solid #fff;
-      border-bottom: 1px solid #fff;
-      display: inline-block;
+      height: 87px;
       margin-top: 70px;
-      .contentImgCenter;
+      font:64px/80px '微软雅黑';
+      padding-left: 43px;
+      text-align: left;
+      color: #fd2a2a;
     }
 
     .text{
       padding-top: 15px;
-      font: 200 18px/2 '微软雅黑';
-      color:#333333;
+      font:64px/80px '微软雅黑';
+      color:#fff;
     }
   }
 
@@ -378,7 +382,7 @@ body{
       }
 
       &:hover{
-        transition: 1.2s 0s;
+        transition: 1.5s 0s;
         transform: translateY(-40px);
         color:#fd2a2a;
 
@@ -475,12 +479,29 @@ body{
       .icon{
         width: 65px;
         height: 65px;
-        background: url("../img/img_01.png") no-repeat center;
         display: inline-block;
         margin-top: 25px;
       }
 
+      .icon_01{
+        .icon;
+        background: url("../img/img_01.png") no-repeat center;
+      }
+      .icon_02{
+        .icon;
+        background: url("../img/img_02.png") no-repeat center;
+      }
+      .icon_03{
+        .icon;
+        background: url("../img/img_03.png") no-repeat center;
+      }
+      .icon_04{
+        .icon;
+        background: url("../img/img_04.png") no-repeat center;
+      }
+
       .menuText{
+        width: 100%;
         display: inline-block;
         font: 24px/64px '微软雅黑';
       }

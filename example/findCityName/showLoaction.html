@@ -21,16 +21,31 @@
     var point = new BMap.Point(116.331398,39.897445);
     map.centerAndZoom(point,12);
     // 创建地址解析器实例
+
+    map.addControl(new BMap.MapTypeControl({
+        mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));
+    map.setCurrentCity("重庆");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);
+    map.disableDragging();     //禁止拖拽
+    setTimeout(function(){
+        map.enableDragging();   //两秒后开启拖拽
+        //map.enableInertialDragging();   //两秒后开启惯性拖拽
+    }, 2000);
+
     var myGeo = new BMap.Geocoder();
     // 将地址解析结果显示在地图上,并调整地图视野
-    myGeo.getPoint("北京市昌平区顺沙路19号院", function(point){
+
+    myGeo.getPoint("重庆市江北区华新村40号", function(point){
         if (point) {
             map.centerAndZoom(point, 16);
             map.addOverlay(new BMap.Marker(point));
         }else{
             alert("您选择地址没有解析到结果!");
         }
-    }, "北京市");
+    }, "重庆市");
 </script>
 
 </body>

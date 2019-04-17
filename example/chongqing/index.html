@@ -21,7 +21,7 @@
     </ul>
 </div>
 
-<div class="next"></div>
+<div class="next first"></div>
 
 <div class="rightMenu">
     <div class="item tel"></div>
@@ -35,12 +35,10 @@
             <div class="contentBox">
                 <div class="borderBox1"></div>
                 <div class="borderBox2"></div>
-                <div class="title"><img src="img/item1Title.png"></div>
+                <div class="title">习近平：</div>
                 <div class="text">
-                    主要引入人工智能、新能源、新材料、物联网、<br>
-                    环保科技、生物医药等高新技术产业项目，为<br>
-                    入驻人才、项目搭建研发平台、中试生产、经<br>
-                    营场地、办公共享等设施，
+                    加快推动媒体融合发展<br>
+                    构建全媒体传播格局
                 </div>
             </div>
         </div>
@@ -85,26 +83,26 @@
             <div class="menuBox">
                 <div class="subItem">
                     <div class="subMenuBox">
-                        <i class="icon">&nbsp;</i>
+                        <i class="icon_01">&nbsp;</i>
                         <span class="menuText">人才项目服务</span>
                     </div>
                 </div>
                 <div class="subItem">
                     <div class="subMenuBox">
-                        <i class="icon">&nbsp;</i>
-                        <span class="menuText">人才项目服务</span>
+                        <i class="icon_02">&nbsp;</i>
+                        <span class="menuText">人才诉求服务</span>
                     </div>
                 </div>
                 <div class="subItem">
                     <div class="subMenuBox">
-                        <i class="icon">&nbsp;</i>
-                        <span class="menuText">人才项目服务</span>
+                        <i class="icon_03">&nbsp;</i>
+                        <span class="menuText">企业人才需求服务</span>
                     </div>
                 </div>
                 <div class="subItem">
                     <div class="subMenuBox">
-                        <i class="icon">&nbsp;</i>
-                        <span class="menuText">人才项目服务</span>
+                        <i class="icon_04">&nbsp;</i>
+                        <span class="menuText">政策申报项目</span>
                     </div>
                 </div>
             </div>
@@ -160,6 +158,7 @@
 <script>
 
     var menuItem = document.querySelectorAll('.navigation .item');
+    var nextBtn = document.querySelector('.next');
 
     var nowPage = 0;
     var page = new Swiper('.content',{
@@ -174,6 +173,13 @@
             }*/
 
             slideChangeTransitionStart:function(){
+
+                if(this.activeIndex == 0){
+                    nextBtn.classList.add('first');
+                }else{
+                    nextBtn.classList.remove('first');
+                }
+
                 menuItem[this.activeIndex].classList.add('active');
                 menuItem[this.previousIndex].classList.remove('active');
                 menuItem[menuItem.length-1].classList.remove('active');
@@ -214,28 +220,51 @@
 
     next();
     function next(){
-        var nextBtn = document.querySelector('.next');
         nextBtn.onclick = function(){
             page.slideTo(nowPage+1);
         }
     }
 
 
+    allmap.addEventListener('click',stopEvent);
+    allmap.addEventListener('mousemove',stopEvent);
+    allmap.addEventListener('mousedown',stopEvent);
+    allmap.addEventListener('mouseup',stopEvent);
+
+    if(document.addEventListener){
+        allmap.addEventListener('DOMMouseScroll',stopEvent,false);
+    }
+    allmap.onmousewheel=stopEvent;//IE/Opera/Chrome
+
+    function stopEvent(ev){
+        ev.preventDefault();
+    }
+
     // 百度地图API功能
     var map = new BMap.Map("allmap");
     var point = new BMap.Point(116.331398,39.897445);
     map.centerAndZoom(point,12);
     // 创建地址解析器实例
+
+    map.addControl(new BMap.MapTypeControl({
+        mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));
+    map.setCurrentCity("重庆");          // 设置地图显示的城市 此项是必须设置的
+    map.disableDragging();     //禁止拖拽
+
     var myGeo = new BMap.Geocoder();
     // 将地址解析结果显示在地图上,并调整地图视野
-    myGeo.getPoint("北京市昌平区顺沙路19号院", function(point){
+
+    myGeo.getPoint("重庆市江北区华新村40号", function(point){
         if (point) {
             map.centerAndZoom(point, 16);
             map.addOverlay(new BMap.Marker(point));
         }else{
             alert("您选择地址没有解析到结果!");
         }
-    }, "北京市");
+    }, "重庆市");
 </script>
 </body>
 </html>
