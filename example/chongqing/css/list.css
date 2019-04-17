@@ -215,9 +215,6 @@ body {
   display: inline-block;
   vertical-align: middle;
 }
-.content .contentMain .localtion span em {
-  color: #fd2a2a;
-}
 .content .contentMain .listBox {
   margin: 0 30px;
   border: 1px solid #eee;
