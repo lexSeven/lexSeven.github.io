@@ -298,24 +298,30 @@ body {
   background: #ffffff;
   font: 18px/36px '微软雅黑';
   color: #666666;
+  text-align: center;
 }
 .content .contentMain .detailBox .title {
   font: 30px/40px '微软雅黑';
   color: #333333;
   text-align: center;
-  padding: 10px 0;
+  padding: 10px 0 30px;
+  margin-bottom: 40px;
+  display: inline-block;
+  border-bottom: 1px solid #999;
 }
 .content .contentMain .detailBox .des {
-  height: 56px;
+  padding-top: 20px;
+  height: 46px;
   font: 16px/30px '微软雅黑';
   color: #999999;
-  text-align: center;
+  text-align: right;
 }
 .content .contentMain .detailBox .des span {
   padding: 0 30px;
 }
 .content .contentMain .detailBox p {
   text-indent: 2em;
+  text-align: left;
 }
 .content .contentMain .detailBottom {
   margin: 0 30px;
