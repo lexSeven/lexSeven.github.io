@@ -129,6 +129,8 @@ body{
     opacity: 0;
     transform: translate(-50%,-50%);
     transition: 0.5s;
+    box-sizing: border-box;
+    border: 1px dashed rgba(255,255,255,0.2);
   }
 
   .contentBox{
@@ -192,14 +194,14 @@ body{
       top: 50%;
     }
     .borderBox1{
-      left: 10px;
-      top: 10px;
+      left: 25px;
+      top: 25px;
       opacity: 1;
     }
     .borderBox2{
       opacity: 1;
-      right: 10px;
-      bottom: 10px;
+      right: 25px;
+      bottom: 25px;
     }
   }
 }
@@ -270,7 +272,7 @@ body{
         border-radius: 50%;
         background-image: url("../img/rencai.png");
         background-repeat: no-repeat;
-        transition: 0.5s;
+        transition: 1s;
 
         &.survey{
           background-position: 0 0;
@@ -382,7 +384,7 @@ body{
       }
 
       &:hover{
-        transition: 1.5s 0s;
+        transition: 2s 0s;
         transform: translateY(-40px);
         color:#fd2a2a;
 
