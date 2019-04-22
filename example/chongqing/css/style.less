@@ -80,6 +80,12 @@ body{
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
+  display: none;
+
+  &.active{
+    display: block;
+  }
+
   .item{
     width: 53px;
     height: 50px;
@@ -229,6 +235,11 @@ body{
       text-align: center;
       position: relative;
       opacity: 0;
+
+      a{
+        display: block;
+        height: 100%;
+      }
 
       &:nth-child(1){
         top: 400px;

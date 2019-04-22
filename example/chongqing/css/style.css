@@ -84,6 +84,10 @@ body {
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
+  display: none;
+}
+.rightMenu.active {
+  display: block;
 }
 .rightMenu .item {
   width: 53px;
@@ -221,6 +225,10 @@ body {
   text-align: center;
   position: relative;
   opacity: 0;
+}
+.item2 .contentBox .item a {
+  display: block;
+  height: 100%;
 }
 .item2 .contentBox .item:nth-child(1) {
   top: 400px;

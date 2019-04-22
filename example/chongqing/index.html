@@ -51,24 +51,32 @@
             </div>
             <div class="contentBox">
                 <div class="item">
-                    <i class="round"></i>
-                    <i class="icon survey">&nbsp;</i>
-                    <span class="itemText">江北区情</span>
+                    <a href="list.html">
+                        <i class="round"></i>
+                        <i class="icon survey">&nbsp;</i>
+                        <span class="itemText">江北区情</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <i class="round"></i>
-                    <i class="icon personnel">&nbsp;</i>
-                    <span class="itemText">人才政策</span>
+                    <a href="list.html">
+                        <i class="round"></i>
+                        <i class="icon personnel">&nbsp;</i>
+                        <span class="itemText">人才政策</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <i class="round"></i>
-                    <i class="icon harvest">&nbsp;</i>
-                    <span class="itemText">人才成果</span>
+                    <a href="list.html" target="_blank">
+                        <i class="round"></i>
+                        <i class="icon harvest">&nbsp;</i>
+                        <span class="itemText">人才成果</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <i class="round"></i>
-                    <i class="icon platform">&nbsp;</i>
-                    <span class="itemText">人才平台</span>
+                    <a href="list.html">
+                        <i class="round"></i>
+                        <i class="icon platform">&nbsp;</i>
+                        <span class="itemText">人才平台</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -157,115 +165,127 @@
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=wM2u5ApuvBrqUjaPgfWmaTK1aXlP37Wf"></script>
 <script>
 
-    var menuItem = document.querySelectorAll('.navigation .item');
-    var nextBtn = document.querySelector('.next');
+    window.onload = function(){
+        var menuItem = document.querySelectorAll('.navigation .item');
+        var nextBtn = document.querySelector('.next');
+        var rightMenu = document.querySelector('.rightMenu');
 
-    var nowPage = 0;
-    var page = new Swiper('.content',{
-        direction: 'vertical',
-        spaceBetween: 20,
-        keyboard : true,
-        mousewheel: true,
-        on:{
-            /*setTranslate: function(){
-                this.$wrapperEl.transition('');
-                TweenMax.to(this.$wrapperEl, 1.5, {y:this.translate, ease:Power4.easeOut})
-            }*/
+        var nowPage = 0;
+        var page = new Swiper('.content',{
+            direction: 'vertical',
+            spaceBetween: 20,
+            keyboard : true,
+            mousewheel: true,
+            on:{
+                /*setTranslate: function(){
+                    this.$wrapperEl.transition('');
+                    TweenMax.to(this.$wrapperEl, 1.5, {y:this.translate, ease:Power4.easeOut})
+                }*/
 
-            slideChangeTransitionStart:function(){
+                slideChangeTransitionStart:function(){
 
-                if(this.activeIndex == 0){
-                    nextBtn.classList.add('first');
-                }else{
-                    nextBtn.classList.remove('first');
-                }
+                    if(this.activeIndex > 0){
+                        rightMenu.classList.add('active');
+                    }else{
+                        rightMenu.classList.remove('active');
+                    }
 
-                menuItem[this.activeIndex].classList.add('active');
-                menuItem[this.previousIndex].classList.remove('active');
-                menuItem[menuItem.length-1].classList.remove('active');
+                    if(this.activeIndex == 0){
+                        nextBtn.classList.add('first');
+                    }else{
+                        nextBtn.classList.remove('first');
+                    }
 
-                nowPage = this.activeIndex;
-                if(this.activeIndex == 3){
-                    menuItem[this.activeIndex].classList.remove('active');
-                    menuItem[this.activeIndex+1].classList.add('active');
-                    menuItem[this.previousIndex+1].classList.remove('active');
-                }
-            },
+                    nextBtn.style.display = 'block';
+                    menuItem[this.activeIndex].classList.add('active');
+                    menuItem[this.previousIndex].classList.remove('active');
+                    menuItem[menuItem.length-1].classList.remove('active');
+
+                    nowPage = this.activeIndex;
+                    if(this.activeIndex == 3){
+                        menuItem[this.activeIndex].classList.remove('active');
+                        menuItem[this.activeIndex+1].classList.add('active');
+                        menuItem[this.previousIndex+1].classList.remove('active');
+                        nextBtn.style.display = 'none';
+                    }
+                },
+            }
+        });
+
+        backtop();
+        function backtop(){
+            var backBtn = document.querySelector('.rightMenu .backTop');
+            backBtn.onclick = function(){
+                page.slideTo(0);
+            }
         }
-    });
 
-    backtop();
-    function backtop(){
-        var backBtn = document.querySelector('.rightMenu .backTop');
-        backBtn.onclick = function(){
-            page.slideTo(0);
+        menu();
+        function menu(){
+            var menu = document.querySelectorAll('.navigation .item');
+            menu[0].onclick = function(){
+                page.slideTo(0);
+            }
+            menu[1].onclick = function(){
+                page.slideTo(1);
+            }
+            menu[2].onclick = function(){
+                page.slideTo(2);
+            }
+            menu[4].onclick = function(){
+                page.slideTo(3);
+            }
         }
+
+        next();
+        function next(){
+            nextBtn.onclick = function(){
+                page.slideTo(nowPage+1);
+            }
+        }
+
+
+        allmap.addEventListener('click',stopEvent);
+        allmap.addEventListener('mousemove',stopEvent);
+        allmap.addEventListener('mousedown',stopEvent);
+        allmap.addEventListener('mouseup',stopEvent);
+
+        if(document.addEventListener){
+            allmap.addEventListener('DOMMouseScroll',stopEvent,false);
+        }
+        allmap.onmousewheel=stopEvent;//IE/Opera/Chrome
+
+        function stopEvent(ev){
+            ev.preventDefault();
+        }
+
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(116.331398,39.897445);
+        map.centerAndZoom(point,12);
+        // 创建地址解析器实例
+
+        map.addControl(new BMap.MapTypeControl({
+            mapTypes:[
+                BMAP_NORMAL_MAP,
+                BMAP_HYBRID_MAP
+            ]}));
+        map.setCurrentCity("重庆");          // 设置地图显示的城市 此项是必须设置的
+        map.disableDragging();     //禁止拖拽
+
+        var myGeo = new BMap.Geocoder();
+        // 将地址解析结果显示在地图上,并调整地图视野
+
+        myGeo.getPoint("重庆市江北区华新村40号", function(point){
+            if (point) {
+                map.centerAndZoom(point, 16);
+                map.addOverlay(new BMap.Marker(point));
+            }else{
+                alert("您选择地址没有解析到结果!");
+            }
+        }, "重庆市");
     }
 
-    menu();
-    function menu(){
-        var menu = document.querySelectorAll('.navigation .item');
-        menu[0].onclick = function(){
-            page.slideTo(0);
-        }
-        menu[1].onclick = function(){
-            page.slideTo(1);
-        }
-        menu[2].onclick = function(){
-            page.slideTo(2);
-        }
-        menu[4].onclick = function(){
-            page.slideTo(3);
-        }
-    }
-
-    next();
-    function next(){
-        nextBtn.onclick = function(){
-            page.slideTo(nowPage+1);
-        }
-    }
-
-
-    allmap.addEventListener('click',stopEvent);
-    allmap.addEventListener('mousemove',stopEvent);
-    allmap.addEventListener('mousedown',stopEvent);
-    allmap.addEventListener('mouseup',stopEvent);
-
-    if(document.addEventListener){
-        allmap.addEventListener('DOMMouseScroll',stopEvent,false);
-    }
-    allmap.onmousewheel=stopEvent;//IE/Opera/Chrome
-
-    function stopEvent(ev){
-        ev.preventDefault();
-    }
-
-    // 百度地图API功能
-    var map = new BMap.Map("allmap");
-    var point = new BMap.Point(116.331398,39.897445);
-    map.centerAndZoom(point,12);
-    // 创建地址解析器实例
-
-    map.addControl(new BMap.MapTypeControl({
-        mapTypes:[
-            BMAP_NORMAL_MAP,
-            BMAP_HYBRID_MAP
-        ]}));
-    map.setCurrentCity("重庆");          // 设置地图显示的城市 此项是必须设置的
-    map.disableDragging();     //禁止拖拽
-
-    var myGeo = new BMap.Geocoder();
-    // 将地址解析结果显示在地图上,并调整地图视野
-
-    myGeo.getPoint("重庆市江北区华新村40号", function(point){
-        if (point) {
-            map.centerAndZoom(point, 16);
-            map.addOverlay(new BMap.Marker(point));
-        }else{
-            alert("您选择地址没有解析到结果!");
-        }
-    }, "重庆市");
 </script>
 </body>
 </html>
