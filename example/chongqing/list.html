@@ -56,6 +56,20 @@
             </div>
             <div class="item active">
                 <span>人才政策</span>
+                <div class="thirdMenu active">
+                    <div class="item">
+                        <span>江北区情</span>
+                    </div>
+                    <div class="item">
+                        <span>人才政策</span>
+                    </div>
+                    <div class="item">
+                        <span>人才成果</span>
+                    </div>
+                    <div class="item">
+                        <span>人才平台</span>
+                    </div>
+                </div>
             </div>
             <div class="item">
                 <span>人才成果</span>
@@ -177,7 +191,10 @@
     function tab(){
         var titleDom = document.querySelectorAll('.titleItem');
         var submenu = document.querySelectorAll('.subMenu');
-        var now = titleDom[1];
+        var now = document.querySelector('.titleItem.active');
+
+        var thirdItem = document.querySelectorAll('.subMenu.active .item');
+        var nowSubmenu = document.querySelector('.subMenu.active .item.active');
 
         for(var i=0;i<titleDom.length;i++){
             titleDom[i].index = i;
@@ -189,9 +206,27 @@
 
                 this.classList.add('active');
                 submenu[this.index].classList.add('active');
-
+                thirdItem = document.querySelector('.subMenu.active .item');
                 now = this;
+                third();
+            }
+        }
 
+        third();
+        function third(){
+            for(var i=0;i<thirdItem.length;i++){
+                thirdItem[i].index = i;
+                thirdItem[i].onclick = function (){
+                    var thirdMenu = this.querySelector('thirdMenu');
+
+                    if(nowSubmenu){
+                        nowSubmenu.classList.remove('active');
+                        nowSubmenu.querySelector('thirdMenu') && nowSubmenu.querySelector('thirdMenu').classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    thirdMenu && thirdMenu.add('active');
+                    nowSubmenu = this;
+                }
             }
         }
 

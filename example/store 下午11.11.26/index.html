@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="css/style.css">
     <!--添加听云监控-->
     <!--<script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>-->
+
+
 </head>
 
 <!-- uuid为页面在erp中的id，仅在erp后台生成的链接中生效，做数据统计用 -->
 <body uuid="page_app_${sectionid?c}" class="eventParent">
-
 <div class="activtyApp_c">
     <!--页面主内容-->
     <div class="wrapper swiper-container" id="root">
@@ -23,165 +24,95 @@
             <div class="refresh">
                 <svg t="1554350179513" class="icon" style="" viewBox="0 0 1024 1024"><path d="M192 512a32 32 0 0 1 64 0 256 256 0 1 0 256-256 32 32 0 0 1 0-64c176.736 0 320 143.264 320 320s-143.264 320-320 320S192 688.736 192 512z" fill="#333333" p-id="3747"></path></svg>
             </div>
-            <div
-                v-cloak
-                class="content-box swiper-slide"
-                v-for="(item,index) in data.data"
-                :data-video="item.commentVideo?'true':'false'"
-                :data-goods="item.contentGoods?'true':'false'"
-                :data-firstid="item.contentGoods?item.contentGoods[0].productId:0"
-                :data-analysis="JSON.stringify({
-                    's.opid':2413,
-                    's.ot':4,
-                    's.fli':index,
-                    's.id':item.id,
-                    's.acid':item.authorId})"
-            >
-                <div class="user-inf">
-                    <div class="user-head">
-                        <img :src="item.authorPic">
-                        <div class="user-type">
-                            <img :src="item.identityLable">
+            <div class="swiper-slide">
+                <div class="content-box" v-for="(item,index) in data.data.list">
+                    <div class="user-inf">
+                        <div class="user-head">
+                            <img :src="item.authorPic">
+                            <div class="user-type">
+                                <img src="img/head.png">
+                            </div>
+                        </div>
+                        <div class="user-name-box">
+                            <div class="user-name-position-box">
+                                <h3 class="user-name">{{item.authorName}}</h3>
+                                <!--<p class="user-identification">{{
+                                    item.storeType==1?'品牌官方旗舰店':
+                                    item.storeType==2?'寺库自营店':
+                                    item.storeType==3?'单品牌专营店':
+                                    item.storeType==4?'多品牌专卖店':''
+                                }}</p>-->
+                            </div>
                         </div>
                     </div>
-                    <div class="user-name-box">
-                        <div class="user-name-position-box">
-                            <h3 class="user-name" v-cloak>{{item.authorName}}</h3>
-                            <!--<p class="user-identification">{{
-                                item.storeType==1?'品牌官方旗舰店':
-                                item.storeType==2?'寺库自营店':
-                                item.storeType==3?'单品牌专营店':
-                                item.storeType==4?'多品牌专卖店':''
-                            }}</p>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="content-main">
-                    <div class="text-box"><!--文字描述-->
-                        <!--v-html="replaceBr(item.title)"-->
-                        <div class="flex-box textStatus" v-cloak>{{item.title}}</div>
-                        <div
-                            class="text-show-btn"
-                            @click="swithAction($event)"
-                            :data-analysis="JSON.stringify({
-                                's.opid':2414,
-                                's.ot':2,
-                                's.fli':index,
-                                's.id':item.id,
-                                's.acid':item.authorId})"
-                        >全文</div>
-                    </div>
-                    <div class="img-box" v-if="!item.commentVideo" :class="picClass(item.images)"><!--图片-->
-                        <div class="imgItem"
-                             v-for="(imgs,imgkey) in item.images"
-                             @click="showHd($event,item.images,imgkey,index)"
-                             :data-analysis="JSON.stringify({
-                                's.opid':2415,
-                                's.ot':2,
-                                's.fli':index,
-                                's.id':item.id,
-                                's.acid':item.authorId,
-                                's.row':imgkey})"
-                        >
-                            <img :data-src="tailoShowPic(imgs, imgkey, item.images.length)">
-                        </div>
-                    </div>
-                    <div class="img-box video" v-else  data-video="true"><!--或者视频-->
-                        <video width="101%" height="101%" controls preload="none">
-                            <source :src="item.commentVideo"  type="video/mp4">
-                            <source :src="item.commentVideo"  type="video/ogg">
-                        </video>
-                        <div class="imgItem"
-                             @click="playVideo($event, item, index)"
-                             :data-videosource="item.commentVideo"
-                             :data-analysis="JSON.stringify({
-                                's.opid':2423,
-                                's.ot':4,
-                                's.fli':index,
-                                's.id':item.id,
-                                's.acid':item.authorId})"
-                        >
-                            <img :data-src="tailoShowPic(item.commentVideoImg)">
-                            <img class="center" src="//pic12.secooimg.com/res/common/foundPage/playBtn.png">
-                        </div>
-                    </div>
-
-                    <!--多商品-->
-                    <div class="moreGoods-module exposureItem" v-if="item.contentGoods">
-                        <ul class="moreGoods-warp">
-                            <li
-                                    v-for="(good, j) in item.contentGoods"
-                                    class="moreGoods_item eventChild"
-                                    @touchmove="scrollLimit($event)"
-                                    @touchend="goodShow($event)"
-                                    @click="toBuy($event,good.productId)"
-                                    :class="{'more': item.contentGoods.length > 1}"
-                                    :addFrom="'app_dpnr_{' + item.contentType + '}_{' + item.id + '}'"
-                                    :data-analysis="JSON.stringify({
-                                        's.opid':2421,
-                                        's.ot':4,
-                                        's.fli':index,
-                                        's.sid':good.productId,
-                                        's.oc':j,
-                                        's.id':item.id,
-                                        's.acid':item.authorId})"
-                            >
-                                <div class="moreGoods_pic">
-                                    <img :src="good.imgUrl" alt="">
-                                </div>
-                                <div class="moreGoods_detail"
-                                     :class="{'more': item.contentGoods.length > 1}">
-                                    <p class="title" v-text="good.showBrand"></p>
-                                    <p class="detail" v-text="good.productName"></p>
-                                    <p class="price" v-text="fmt(good.refPrice)"></p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!--点赞分享评论-->
-                    <div class="function-btn" >
-                        <thumb-click
-                                :thumbitem="item"
-                                :index="index"
-                                :userid="userid"
-                                :deviceid="deviceId"
-                                :analysis="analysis"
-                                :dealnum="dealNum">
-                        </thumb-click>
-                        <div
-                                class="function-btn-item"
-                                @click="goCommentPage($event, item, index)"
+                    <div class="content-main">
+                        <div class="text-box">
+                            <!--v-html="replaceBr(item.title)"-->
+                            <div class="flex-box textStatus" >{{item.title}}</div>
+                            <div
+                                class="text-show-btn"
+                                @click="swithAction($event)"
                                 :data-analysis="JSON.stringify({
-                                    's.opid':2419,
+                                    's.opid':2414,
                                     's.ot':2,
                                     's.fli':index,
                                     's.id':item.id,
                                     's.acid':item.authorId})"
-                        >
-                            <div class="icon iconLex iconComment"></div>
-                            <div class="text" v-cloak v-text="dealNum(item.commentCount, '评论')"></div>
+                            >全文</div>
                         </div>
-                        <share-click
-                                v-if="!notApp"
-                                :shareitem="item"
-                                :pagelink="pagelink"
-                                :index="index"
-                                :userid="userid"
-                                :deviceid="deviceId"
-                                :analysis="analysis"
-                                :dealnum="dealNum">
-                        </share-click>
-                        <!--<div class="buy-btn">
-                            <span>购买</span>
-                            <i class="icon"></i>
-                        </div>-->
+                        <div class="img-box" :class="picClass(item.imagesJson)">
+                            <div class="imgItem"
+                                 v-for="(imgs,imgkey) in item.imagesJson"
+                                 @click="showHd($event,item.imagesJson,imgkey,index)"
+                                 :data-analysis="JSON.stringify({
+                                    's.opid':2415,
+                                    's.ot':2,
+                                    's.fli':index,
+                                    's.id':item.id,
+                                    's.acid':item.authorId,
+                                    's.row':imgkey})"
+                            >
+                                <img :src="imgs" :class="{'loadedImg': imageLoadstatus}">
+                            </div>
+                        </div>
+                        <div class="function-btn" >
+                            <thumb-click
+                                    :thumbitem="item"
+                                    :index="index"
+                                    :userid="userid"
+                                    :deviceid="deviceId"
+                                    :analysis="analysis"
+                                    :dealnum="dealNum">
+                            </thumb-click>
+                            <div
+                                    class="function-btn-item"
+                                    @click="goCommentPage($event, item, index)"
+                                    :data-analysis="JSON.stringify({
+                                        's.opid':2419,
+                                        's.ot':2,
+                                        's.fli':index,
+                                        's.id':item.id,
+                                        's.acid':item.authorId})"
+                            >
+                                <div class="icon iconfont icon-comment"></div>
+                                <div class="text">{{item.commentCount}}</div>
+                            </div>
+                            <share-click
+                                    :shareitem="item"
+                                    :index="index"
+                                    :userid="userid"
+                                    :deviceid="deviceId"
+                                    :analysis="analysis"
+                                    :dealnum="dealNum">
+                            </share-click>
+                            <!--<div class="buy-btn">
+                                <span>购买</span>
+                                <i class="icon"></i>
+                            </div>-->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="loading">
-                <svg t="1554350179513" class="icon" style="" viewBox="0 0 1024 1024"><path d="M192 512a32 32 0 0 1 64 0 256 256 0 1 0 256-256 32 32 0 0 1 0-64c176.736 0 320 143.264 320 320s-143.264 320-320 320S192 688.736 192 512z" fill="#333333" p-id="3747"></path></svg>
-                <span>正在加载...</span>
+                <div class="loading">正在加载...</div>
             </div>
         </div>
 
@@ -203,31 +134,10 @@
             </div>
             <div class="swiper-pagination"></div>
         </div>
-
-        <div class="videoMsk" :class="{'active': videoStatus}">
-            <div class="closeBtn" @click.stop="closeVideo"></div>
-            <div class="videoW">
-                <video
-                    ref="androidVideo"
-                    width="100%"
-                    height="100%"
-                    controls
-                    preload="auto"
-                    :poster="androidVdata.commentVideoImg"
-                    playsinline="playsinline"
-                    :src="androidVdata.commentVideo"
-                    :data-analysis="JSON.stringify({
-                        's.flt':androidVdata.contentType,
-                        's.fli':androidVdata.index,
-                        's.id':androidVdata.id,
-                        's.acid':androidVdata.authorId})"
-                >
-                </video>
-            </div>
-        </div>
-
     </div>
 </div>
+
+
 
 <!-- 用作填写分享参数 -->
 <div id="share" data-title="" data-description="" data-url="" data-img-url=""></div>
@@ -244,8 +154,8 @@
             's.id':sharedata.id,
             's.acid':sharedata.authorId})"
     >
-        <div class="icon iconLex iconShare"></div>
-        <div class="text" v-cloak>{{showcount}}</div>
+        <div class="icon iconfont icon-fenxiang11"></div>
+        <div class="text">{{showcount}}</div>
     </div>
 </script>
 <!-- //点赞组件 -->
@@ -260,16 +170,16 @@
             's.id':thumbdata.id,
             's.acid':thumbdata.authorId})"
     >
-        <div class="icon iconLex iconThumb"></div>
-        <div class="text" v-cloak>{{showcount}}</div>
+        <div class="icon iconfont icon-24gl-thumbsUp2"></div>
+        <div class="text">{{showcount}}</div>
     </div>
 </script>
 
 <!--<script src="//mstatic.secooimg.com/activity2018/js/comm/swiper-4.4.2.min.js"></script>-->
 <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
 <script src="https://cdn.bootcss.com/Swiper/4.5.0/js/swiper.min.js"></script>
-<script src="js/vue.js" type="text/javascript"></script>
-<!--<script src="js/doc.js"></script>-->
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js" type="text/javascript"></script>
+<script src="js/doc.js"></script>
 <!-- 页面配置参数 -->
 <script type="text/javascript">
 
@@ -476,14 +386,10 @@
                 });
                 if (this.thumbStatus == true) {
                     event.currentTarget.classList.add('active');
-                    event.currentTarget.querySelector('.iconLex').classList.add('iconThumbed');
-                    event.currentTarget.querySelector('.iconLex').classList.remove('iconThumb');
                     return app.toast("已点赞")
                 };
                 if (this.userid) {
                     event.currentTarget.classList.add('active');
-                    event.currentTarget.querySelector('.iconLex').classList.add('iconThumbed');
-                    event.currentTarget.querySelector('.iconLex').classList.remove('iconThumb');
                     this.thumbdata.thumbsCount++;
                     that.thumbStatus = true;
                     this.showcount = this.dealNum(this.thumbdata.thumbsCount);
@@ -537,17 +443,18 @@
         }
     })
 
-    //滚动相关(上拉加载，下拉刷新)
+
+    //滚动相关
     var pulldownComponent = {
         init: function () {
             var _this = this;
             _this.refreshEnd = false;//是否加载完成
             _this.times = 0;//加载次数
-            _this.oriSpeed = 50;//滚动速度
-            _this.resistanceRatio = 0.9;//边界下拉时阻力
+            _this.oriSpeed = 100;//滚动速度
+            _this.resistanceRatio = 0.67;//边界下拉时阻力
             _this.refreshDom = document.querySelector('.refresh');
             _this.openScroll();//页面滚动，下拉刷新
-            _this.destance = 30;//下拉刷新的距离
+            _this.destance = 40;//下拉刷新的距离
         },
         openScroll: function () {
             var _this = this;
@@ -558,44 +465,14 @@
                 direction: 'vertical',
                 setWrapperSize: true,
                 resistanceRatio: _this.resistanceRatio,
-                params:{
-                    speed:200
-                },
-                watchSlidesProgress : true,
-                watchSlidesVisibility : true,
                 on: {
                     touchStart: _this.touchStartEvent,
                     touchMove: _this.touchMoveEvent,
                     touchEnd: _this.touchEndEvent,
-                    slideChangeTransitionStart:function(){
-                        var visibleSlides = this.el.querySelectorAll('.swiper-slide-visible:not(.loaded)');
-                        for(var i=0;i<visibleSlides.length;i++){
-                            vm.loadImg(visibleSlides[i]);
+                    momentumBounce:function(){
+                        if(this.translate <= -_this.destance){
+                            vm.data.data.list.push(newData);
                         }
-                    },
-                    slideChangeTransitionEnd:function(){//上拉加载更多
-                        if((this.activeIndex+1) >= this.slides.length/3*2){
-//                            vm.data.data.list.push.apply(vm.data.data.list,newData);
-                            vm.dataAnalysis({
-                                callback:function(data){
-                                    vm.data.data.push.apply(vm.data.data,data.data);
-                                },
-                                errorCallback:function(){
-                                    app.toast('网络异常，请稍后再试！');
-                                }
-                            });
-                        }
-                        var visibleSlides = this.el.querySelectorAll('.swiper-slide-visible:not(.loaded)');
-                        for(var i=0;i<visibleSlides.length;i++){
-                            vm.loadImg(visibleSlides[i]);
-                        }
-                    },
-                    slideChange:function(){
-                        var dom = $(this.slides[this.realIndex]);
-                        vm.analysis({
-                            dom:dom,
-                            type:'contentDisplay'
-                        });
                     }
                 }
             });
@@ -614,34 +491,23 @@
                 _this.refreshDom.classList.add('active');
             }
         },
-        touchEndEvent:function(){//下拉刷新
+        touchEndEvent:function(){
             var _this = pulldownComponent;
             if (_this.swiper.translate >= _this.destance) {
                 _this.swiper.setTransition(this.params.speed);
+                _this.swiper.setTranslate(_this.destance);
                 _this.swiper.touchEventsData.isTouched = false;//跳过touchEnd事件后面的跳转(4.0.5)
                 _this.refreshDom.querySelector('svg').classList.add('active');
                 _this.swiper.allowTouchMove = false;
-
-                vm.cpage = 1;
-                vm.dataAnalysis({
-                    callback:function(data){
-                        vm.data = data;
-                        _this.loadBack();
-                    },
-                    errorCallback:function(){
-                        app.toast('网络异常，请稍后再试！');
-                        _this.loadBack();
-                    }
-                });
+                setTimeout(function () {//模仿AJAX
+                    vm.data.data.list.push(newData);
+                    _this.refreshDom.classList.remove('active');
+                    _this.refreshDom.querySelector('svg').classList.remove('active');
+                    _this.refreshEnd = true;
+                    _this.swiper.allowTouchMove = true;
+                    _this.swiper.setTranslate(0);
+                }, 1000)
             }
-        },
-        loadBack:function () {
-            var _this = pulldownComponent;
-            _this.refreshDom.classList.remove('active');
-            _this.refreshDom.querySelector('svg').classList.remove('active');
-            _this.refreshEnd = true;
-            _this.swiper.allowTouchMove = true;
-            _this.swiper.setTranslate(0);
         }
     };
 
@@ -649,11 +515,11 @@
     var findOption = {
         el:'#root',
         data:{
-            userid: 218728347,     // 内容池id
+            userid: 12837128,     // 内容池id
             currentDate: '', // 服务器时间
-            deviceId: '', // 设备id
-            deviceType: '', // 获取设备类型
-            upk:'',    // upk
+            deviceId: '238792ur920i1', // 设备id
+            deviceType: '1', // 获取设备类型
+            upk:'234934u9fh02i39e8y293',    // upk
             agreePaly: false,  //同意用网络播放视频
             swiperdata: {},        // 大轮播图储存的数据
             swiperStaus: false,     // 控制大轮播图显示隐藏
@@ -663,153 +529,20 @@
             androidVdata:'',     // 记录视频数据
             contentContainer: '',  // 整体内容swiper实例
             notApp: null,      // 判断是否不在app内， 隐藏分享
-            storeId:362,
-            videoStatus:false,//视频状态
-            videoStopTime:0,
-            cpage:1,
-            data:'',
-            pageSize: 15
+            storeId:'23872398',
+            data:data,
         },
         created:function(){
-            var that = this;
-            app.newVersion && jsBridge.callHandler('JsCallNativeMethod', {    // 禁止app下拉刷新
-                "action":"disableRefresh"
-            });
-            that.deviceType = app.getDeviceType();
-            app.newVersion && jsBridge.callHandler('JsCallNativeMethod', {
-                "action":"disableRefresh"
-            });
-            that.currentDate = new Date("<!--#echo var='DATE_LOCAL' -->").getTime();
-            that.currentDate = new Date().getTime();
 
-            app.getSeverTime(function(time){
-                that.currentDate = time;
-            })
-
-            that.getStoreId();//获取店铺ID
-
-            // 判断是否支持webp
-            that.webpStatus = this.webpSupport();
-            // app方法 网页不可见时执行， 关闭视频
-            window.onStop = function(){
-                if(!that.videoStatus) {return}
-                if (that.deviceId == 'android') {
-                    app.matchVersion({android: '6.1.10'}, function(){
-                        that.$refs.androidVideo.pause();
-                    })
-                }
-            }
-            // app方法 当页面恢复时 关闭视频
-            window.onResume  = function(){
-                if(!that.videoStatus) {return}
-                if (that.deviceId == 'android') {
-                    app.matchVersion({android: '6.1.10'}, function(){
-                        that.$refs.androidVideo.pause();
-                    })
-                }
-            }
-            //读取app视频是否播放过的状态
-            that.readPlayStatus();
-            // 判断是不是app外， 是隐藏分享按钮
-            that.notApp = app.deviceType.wap || app.deviceType.miniProgram;
-            //第一次进来 加载数据
-            that.getdeviceId(function(){
-                app.getUpk(function (upk) {
-                    that.upk = upk;
-                    that.getUseid();
-                    that.dataAnalysis({
-                        callback:function(data){
-                            that.data = data;
-                        },
-                        errorCallback:function(){
-                            app.toast('网络异常，请稍后再试！');
-                        }
-                    })
-                })
-            });
         },
         mounted:function(){
             pulldownComponent.init();
             this.textandBtn();
-            var that = this;
-
-
-            //监听视频事件， 发送相应埋点信息
-            that.$refs.androidVideo.onpause = function(){
-                that.analysis({
-                    dom:$(this),
-                    type:'videoPause',
-                    data:this.currentTime - that.videoStopTime
-                });
-                that.videoStopTime = this.currentTime;
-            }
-            that.$refs.androidVideo.onplay = function(){
-                console.log(123);
-                that.analysis({
-                    dom:$(this),
-                    type:'videoStart'
-                });
-            }
-            that.$refs.androidVideo.onended = function(){
-                that.analysis({
-                    dom:$(this),
-                    type:'videoEnd',
-                    data:this.duration - that.videoStopTime
-                });
-            }
-
-            that.loadImg($('.content-box')[0]);
-            that.loadImg($('.content-box')[1]);
-
         },
         updated:function(){
-            this.loadImg($('.content-box')[0]);
-            this.loadImg($('.content-box')[1]);
-            this.textandBtn();
             pulldownComponent.swiper.update();
         },
         methods:{
-            //跳转到商品页面
-            toBuy(ev,productId) {
-                this.analysis({
-                    dom:$(ev.currentTarget),
-                    type:'goodsClick',
-                });
-                app.goPage({
-                    type: 'product',
-                    url: productId
-                });
-            },
-            // 价格格式转换1,000;
-            fmt: function (price) {
-                var pricegroup = String(price).split(".");
-                var integer = '￥' + pricegroup[0].toString().replace(/(\d)(?=(\d{3})+$)/gi, "$1,");
-                var decimal = pricegroup[1] ? pricegroup[1] : " ";
-                integer = pricegroup[1] ? integer + '.' + decimal : integer;
-                return integer;
-            },
-            // 滚动限制
-            scrollLimit: function (event) {
-                event.stopPropagation();
-
-            },
-            goodShow:function (ev) {
-                var obj = ev.currentTarget;
-                if(obj.offsetLeft < obj.offsetWidth/2 && obj.offsetLeft > -obj.offsetWidth/2){
-                    this.analysis({
-                        dom:$(obj),
-                        type:'goodsDisplay',
-                    });
-                }
-            },
-            getStoreId:function(){
-                var storeid = app.getQueryString('storeId');
-                if(storeid){
-                    this.storeId = storeid;
-                }else{
-                    app.toast('未获取到storeId');
-                }
-            },
             // 请求数据公用方法
             dataQuerry: function(parame, callback, errorCallback){
                 $.ajax({
@@ -829,121 +562,49 @@
                 })
             },
             // 获取数据
-            dataAnalysis:function(option){
+            dataAnalysis:function(parame, callback, errorCallback){
                 var that = this;
                 this.dataQuerry({
-                    url: '//content.secoo.com/content-service/api/store/getContent',
+                    url: '//content.secoo.com/content-service/api/content/feed/queryFeeds',
                     data:{
-                        cpage: that.cpage,
+                        currentPage: parame.page,
+                        currentPageSize: 15,
+                        currentTime: "" + that.currentDate + "",
                         deviceId: that.deviceId,
-                        pageSize: that.pageSize,
-                        storeId: that.storeId,
-                        time: "" + that.currentDate + "",
-                        upk: that.upk,
+                        userId: that.userid,
+                        sunburnUuid: that.sunburnUuid,
+                        tabId: that.tabArray[that.tabIndex].id
                     }
                 }, function(data){
-                    if(data.data == null || data.data.length < that.pageSize){
-                        document.querySelector('.content .loading').innerHTML = '没有更多数据了！'
-                    }
-                    option.callback && option.callback(data);
+                    callback && callback(data, parame);
                 }, function(){
-                    option.errorCallback && option.errorCallback();
+                    errorCallback && errorCallback();
                 })
-                that.cpage++;
             },
             //获取设备ID
             getdeviceId: function(callback){
                 var that = this;
-                if(app.deviceType.inApp) {
-                    if(app.newVersion) {
-                        jsBridge.callHandler('JsCallNativeMethod', {
-                            'action': 'getAppInfo',
-                            'needResult': true
-                        }, function(result) {
-                            result.data.deviceId && (that.deviceId = result.data.deviceId);
+                if (app.newVersion) {
+                    jsBridge.callHandler('JsCallNativeMethod', {
+                        "action": "getAppInfo",
+                        "needResult": true
+                    }, function (result) {
+                        that.deviceId = result.data.deviceId;
+                        callback && callback();
+                    });
+                } else {
+                    if (that.deviceType == 'ios') {
+                        Comm.content.bridge.callHandler('WVJS_acqureDeviceInfomation', {}, function (response) {
+                            that.deviceId = response.idfa;
                             callback && callback();
-                        })
-                    } else if(that.deviceType=='android') {
-                        !!app.cookie('imei') && (that.deviceId = app.cookie('imei'));
+                        });
+                    } else if (that.deviceType == 'android') {
+                        that.deviceId = JsBridge.jsGetDataFromNativeByKey('imei');
                         callback && callback();
                     } else {
-                        that.deviceId = that.createUuid();
+                        that.deviceId = '111111111111111111111';
                         callback && callback();
                     }
-                } else {
-                    that.deviceId = that.createUuid();
-                    callback && callback();
-                }
-            },
-            createUuid: function () {
-                if(app.cookie('deviceId')) {
-                    return app.cookie('deviceId');
-                } else {
-                    var d = new Date().getTime();
-                    if (window.performance && typeof window.performance.now === "function") {
-                        d += performance.now(); //use high-precision timer if available
-                    }
-                    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                        var r = (d + Math.random() * 16) % 16 | 0;
-                        d = Math.floor(d / 16);
-                        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-                    });
-                    app.cookie('deviceId', uuid);
-                    return uuid;
-                }
-            },
-            // 获取userid得方法
-            getUseid: function (callback) {
-                var that = this;
-                this.dataQuerry({
-                    url: '//content.secoo.com/content-service/api/user/checkUserById',
-                    data: {
-                        upk: that.upk
-                    }
-                }, function (data) {
-                    if (data.code == 10000) {
-                        that.userid = data.data.id;
-                    }
-                    callback && callback();
-                }, function () {
-                    callback && callback(); //接口异常 无所谓 可以用设备id去获取内容
-                    return;
-                })
-            },
-            // 记录视频允许在非wifi下播放
-            playStatus: function(){
-                var that = this;
-                sessionStorage.setItem('played', true);
-                app.matchVersion({ios: '6.0.18', android: '6.1.9'}, function(){
-                    jsBridge.callHandler('JsCallNativeMethod', {
-                        "action": "setMemoryItem",
-                        "data" : {
-                            "key": "played",
-                            "value":"true"
-                        }
-                    });
-                })
-            },
-            //读取视频播放记录的状态
-            readPlayStatus: function(){
-                var that = this;
-                if (that.deviceType == 'wap') {
-                    that.agreePaly = sessionStorage.getItem('played');
-                } else {
-                    app.matchVersion({ios: '6.0.18', android: '6.1.9'}, function(){
-                        return jsBridge.callHandler('JsCallNativeMethod', {
-                            "action": "getMemoryItem",
-                            "data" : {
-                                "key": "played",
-                            }
-                        }, function(result){
-                            if (result.errorCode == 0) {
-                                that.agreePaly = result.data.value;
-                            }
-                        });
-                    }, function(){
-                        that.agreePaly = sessionStorage.getItem('played');
-                    })
                 }
             },
             // 点击播放视频
@@ -951,6 +612,7 @@
                 var that = this;
                 var _this = event.currentTarget;
                 var sibVideo = _this.previousElementSibling;
+                that.analysis($(event.currentTarget));
                 if(that.agreePaly || !app.newVersion){
                     that.videoAction(_this, sibVideo, itemData, index);
                     return;
@@ -987,15 +649,6 @@
                 this.$refs.androidVideo.setAttribute('src', itemData.commentVideo);
                 this.$refs.androidVideo.play();
                 // }
-            },
-            // 安卓关闭视频
-            closeVideo: function(){
-                var that = this;
-                that.videoStatus = false;
-                var _this = this.$refs.androidVideo;
-                _this.pause();
-                that.videoStopTime = 0;
-
             },
             // 公共弹窗
             commPrompt: function(parame, callback){
@@ -1060,21 +713,11 @@
                 var cellNum = Math.ceil(String(count / 10000).substr(String(count / 10000).indexOf('.')) * 10);
                 return count == 0 ? text : count < 10000 ? count : count == 10000 ? '1万' : cellNum >= 10 ? Math.floor(count / 10000) + 1 + '万' : cellNum == 0 ? Math.floor(count / 10000) + '万': Math.floor(count / 10000) + '.' + cellNum + '万';
             },
-            // 分享链接和跳转链接
-            pagelink: function(parame){
-                var that = this;
-                var whichTab = '&tabsource=1';
-                return  parame.contentType == 1 ?
-                    'https://m.secoo.com/appActivity/0830_sharePage.shtml?pageid=2295' + whichTab:
-                    parame.contentType == 3 ? 'https://m.secoo.com/appActivity/0830_specialPage_test.shtml?pageid=2046' + whichTab :
-                        parame.linkUrl + '&share=nativeShare';
-            },
             //埋点
             analysis: function(option){
                 var that = this;
                 var dom = option.dom;
                 var type = option.type || 'contentExposure';//标识埋点类型
-                var data = option.data || '';
                 /*
                     type类型：
                     点击图片 clickImg
@@ -1088,60 +731,22 @@
                     商品点击 clickGoods
                     视频曝光 videoDisplay
                     视频播放 videoStart
-                    视频暂停/退出 videoPause
                     视频结束 videoEnd
-                    商品曝光 goodsDisplay
-                    商品点击 goodsClick
                 */
                 var pointData = dom.data('analysis');
+
                 pointData['s.paid'] = 2412;//统一s.paid
                 pointData['s.od'] = this.storeId;//统一店铺ID
-                pointData['s.flt'] = 1;//统一楼层类型
 
-                switch (type) {
-                    case 'videoStart':
-                        pointData['s.opid'] = 2424;
-                        break;
-                    case 'videoPause':
-                        pointData['s.opid'] = 2425+'_'+data;
-                        break;
-                    case 'videoEnd':
-                        pointData['s.opid'] = 2425+'_'+data;
-                        break;
+                if(type === 'slideImg'){
+                    pointData['s.ot'] = 3;
                 }
 
                 console.log(pointData,type);
-                app.statistics(pointData);
-                if(dom.data('video')){
-                    var expointData = {
-                        's.paid':2412,
-                        's.ot':4,
-                        's.opid':2423,
-                        's.fli':pointData['s.fli'],
-                        's.id':pointData['s.id'],
-                        's.acid':pointData['s.acid'],
-                        's.od':pointData['s.od'],
-                        's.flt':pointData['s.flt']
-                    }
-                    app.statistics(expointData);
-                    console.log(expointData,'videoDisplay');
-                }
-                if(dom.data('goods')){
-                    var expointData = {
-                        's.paid':2412,
-                        's.ot':4,
-                        's.opid':2421,
-                        's.fli':pointData['s.fli'],
-                        's.id':pointData['s.id'],
-                        's.acid':pointData['s.acid'],
-                        's.od':pointData['s.od'],
-                        's.flt':pointData['s.flt'],
-                        's.sid':dom.data('firstid'),
-                        's.co':0
-                    }
-                    app.statistics(expointData);
-                    console.log(expointData,'goodsDisplay');
-                }
+                // app.statistics(pointData);
+            },
+            commentHandler:function(){
+
             },
             // 图片样式类名
             picClass: function(imgArr){
@@ -1162,34 +767,6 @@
             webpSupport: function(){
                 return document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0;
             },
-            // 裁剪图片尺寸
-            tailoShowPic: function(data,index,len){
-                var format = data.substr(data.lastIndexOf('.'));
-                if(format == '.gif' || format == '.bmp' || format == '.tiff') return data;
-                var extensionName = this.webpStatus ? '.webp' : format;
-                if(typeof index != 'number'){
-                    var size = index == 'head' ? '_!!80x80c3_80' : index == 'water' ? '_!!638x420c3_80' :
-                        index == 'author' ? '_!!120x120c3_80' : index == 'brand' ? '_!!0x0' :'_!!638x420c3_80';
-                    return data + size + extensionName;
-                }
-                switch (len) {
-                    case 1:
-                        return data + '_!!638x638c3_80' + extensionName;
-                        break;
-                    case 2:
-                    case 4:
-                        return data + '_!!300x300c3_80' + extensionName;
-                        break;
-                    case 3:
-                        return index == 0 ? data + '_!!500x500c3_80' + extensionName : data + '_!!200x200c3_80' + extensionName;
-                        break;
-                    case 5:
-                        return index <= 1 ? data + '_!!300x300c3_80' + extensionName : data + '_!!200x200c3_80' + extensionName;
-                        break;
-                    default:
-                        return data + '_!!200x200c3_80' + extensionName;
-                }
-            },
             // 显示高清大图
             showHd: function(event, data, index, indexs){
                 var that = this;
@@ -1205,7 +782,6 @@
                 this.$nextTick(function(){
                     document.querySelector('.Hd-pic').style.height=
                     document.querySelector('.wrapper').offsetHeight+'px';
-                    document.querySelector('.Hd-pic').style.opacity='1';
                     that.mySwiper = new Swiper('.Hd-pic', {
                         freeMode: false,
                         initialSlide: index,
@@ -1281,15 +857,6 @@
                 })
                 target.innerText = target.innerText == '全文' ? '收起' : '全文';
             },
-            //加载图片
-            loadImg:function(obj){
-                obj.classList.add('loaded');
-                var img = obj.querySelectorAll('[data-src]:not(.loaded)');
-                for(var i=0;i<img.length;i++){
-                    img[i].src = img[i].dataset.src;
-                    img[i].classList.add('loaded');
-                }
-            },
         }
     }
 
@@ -1298,8 +865,7 @@
     var pageConfig = {
 
        loadJsArr: [
-           // '//pic16.secooimg.com/imagesNew/featuresPic/gxd_vuePro/shopComm.js',
-           // '//mstatic.secooimg.com/activity2018/discover/discover.js'
+           '//pic16.secooimg.com/imagesNew/featuresPic/gxd_vuePro/shopComm.js'
        ],
         // loadJsArr: 'js/shopComm.js',
 
@@ -1329,25 +895,90 @@
     }
 
     //zepto加载完成后的回调，与页面配置中同名函数的择一而用
-    function zeptoLoaded(){};
-
-    //全部js加载完成后的回调，与页面配置中同名函数的择一而用
-    function jsLoaded() {
+    zeptoLoaded()
+    function zeptoLoaded() {
         vm = new Vue(findOption);
         document.addEventListener('touchmove', function(e){
             e.preventDefault();
             e.stopPropagation();
         }, { passive: false })
+    };
 
-        var shopComment = document.createElement('script');
-        shopComment.src = '//pic16.secooimg.com/imagesNew/featuresPic/gxd_vuePro/shopComm.js';
-        document.body.appendChild(shopComment);
+    //全部js加载完成后的回调，与页面配置中同名函数的择一而用
+    function jsLoaded() {}
+
+    function getData(){
+        var entry = {
+            getDeviceInfo: function (callback) {
+                var that = entry;
+                that.deviceInfo = {};
+                // 获取设备终端
+                // if(app.deviceType.android) that.deviceInfo.type=1;
+                // if(app.deviceType.ios) that.deviceInfo.type=2;
+
+                // 获取app设备参数
+                if(app.deviceType.inApp) {
+                    if(app.newVersion) {
+                        jsBridge.callHandler('JsCallNativeMethod', {
+                            'action': 'getAppInfo',
+                            'needResult': true
+                        }, function(result) {
+                            result.data.deviceId && (that.deviceInfo.deviceId = result.data.deviceId);
+                            callback && callback();
+                        })
+                    } else if(that.deviceType=='android') {
+                        !!app.cookie('imei') && (that.deviceInfo.deviceId = app.cookie('imei'));
+                        callback && callback();
+                    } else {
+                        that.deviceInfo.deviceId = that.createUuid();
+                        callback && callback();
+                    }
+                } else {
+                    that.deviceInfo.deviceId = that.createUuid();
+                    callback && callback();
+                }
+            },
+            createUuid: function () {
+                if(app.cookie('deviceId')) {
+                    return app.cookie('deviceId');
+                } else {
+                    var d = new Date().getTime();
+                    if (window.performance && typeof window.performance.now === "function") {
+                        d += performance.now(); //use high-precision timer if available
+                    }
+                    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                        var r = (d + Math.random() * 16) % 16 | 0;
+                        d = Math.floor(d / 16);
+                        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                    });
+                    app.cookie('deviceId', uuid);
+                    return uuid;
+                }
+            }
+        }
+
+
+        var data = {
+            capge:'1',
+            diviceId:'',//怎么拿设备号  app.getUpk(callback)//回调里面能拿到UPK 如果UPK为空，则未登录
+            pageSize:'15',
+            storeId:'',//店铺ID获取  app.getQueryString(storeId)?
+            upk:''//怎么获取
+        }
+        $.ajax({
+            url:'https://content.secoo.com/content-service/api/store/getContent',
+            data:data,
+            success:function(data){
+                console.log('请求成功');
+            },
+            error:function(rep){
+                console.log(rep.msg);
+            }
+        })
     }
 </script>
 ​
 <!-- 主文件不可删除 -->
-<script type="text/javascript" src="//mstatic.secooimg.com/activity2018/all_min/js/activity2018.min.js"></script>
-
-
+<!--<script type="text/javascript" src="//mstatic.secooimg.com/activity2018/all_min/js/activity2018.min.js"></script>-->
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    console.log(pySegSort(["我","不","懂","爱","啊","按","已","呀","选","县"]));
+    function pySegSort(arr,empty) {
+        if(!String.prototype.localeCompare)
+            return null;
+        var letters = "*abcdefghjklmnopqrstwxyz".split('');
+        var zh = "阿八嚓哒妸发旮哈讥咔垃痳拏噢妑七呥扨它穵夕丫帀".split('');
+        var segs = [];
+        var curr;
+
+        letters.forEach(function(item,i){
+            curr = {letter: item, data:[]};
+
+            arr.forEach(function(val){
+                var item = new String(val);
+                if((!zh[i-1] || zh[i-1].localeCompare(item,"zh") <= 0) && item.localeCompare(zh[i],"zh") == -1){
+                    curr.data.push(item);
+                }
+            })
+
+
+            if(empty || curr.data.length) {
+                segs.push(curr);
+                curr.data.sort(function(a,b){
+                    return a.localeCompare(b,"zh");
+                });
+            }
+        })
+
+        return segs;
+     }
+</script>
+
+</body>
+</html>

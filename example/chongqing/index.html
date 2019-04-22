@@ -35,10 +35,10 @@
             <div class="contentBox">
                 <div class="borderBox1"></div>
                 <div class="borderBox2"></div>
-                <div class="title">习近平：</div>
+                <div class="title">江北智能党建</div>
                 <div class="text">
-                    加快推动媒体融合发展<br>
-                    构建全媒体传播格局
+                    党群新家园 宣传新媒体<br>
+                    服务零距离
                 </div>
             </div>
         </div>
@@ -186,6 +186,7 @@
 
                 nowPage = this.activeIndex;
                 if(this.activeIndex == 3){
+                    menuItem[this.activeIndex].classList.remove('active');
                     menuItem[this.activeIndex+1].classList.add('active');
                     menuItem[this.previousIndex+1].classList.remove('active');
                 }

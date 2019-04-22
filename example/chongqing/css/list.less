@@ -168,15 +168,39 @@ body{
       }
 
     }
+
+    .thirdMenu{
+      height: 0;
+      overflow: hidden;
+      transition: 1s;
+      background: #f9f9f9;
+
+      &.active{
+        height: auto;
+      }
+
+      .item{
+        height: 40px;
+        border-top: 1px solid #eee;
+        border-bottom:none;
+        span{
+          font-size: 14px;
+          padding-left: 100px;
+          line-height: 40px;
+        }
+      }
+    }
+
     .item{
       height: 60px;
       border-bottom: 1px solid #d6d6d6;
       .contentImgCenter;
       cursor: pointer;
       color: #666;
+      overflow: hidden;
 
       span{
-        font: 16px/20px '微软雅黑';
+        font: 16px/60px '微软雅黑';
         padding-left: 78px;
         display: inline-block;
         vertical-align: middle;
@@ -188,6 +212,7 @@ body{
       }
 
       &.active{
+        height: auto;
         width: 301px;
         background: #f9f9f9;
         color: #fd2a2a;
