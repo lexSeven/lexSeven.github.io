@@ -159,6 +159,58 @@
     "extParam": 1,
     "msg": "请求成功"
 }*/
+var newd = {
+    "data": [
+        {
+            "authorId": 43,
+            "authorName": "GUCCI/古驰123",
+            "authorPic": "http://pic12.secooimg.com/res/common/99/53/1ZWy2G/store_15.png",
+            "authorType": 2,
+            "commentCount": 438,
+            "commentVideo": "",
+            "commentVideoImg": "测试内容554d",
+            "contentGoods":[
+                {
+                    "imgUrl": "http://pic12.secooimg.com/res/common/49/52/1ZWy16/store_04.png",
+                    "productId": 40746,
+                    "productName": "商品名称",
+                    "refPrice": 11755,
+                    "showBrand": "测试内容nsr3"
+                },
+                {
+                    "imgUrl": "测试内容05rp",
+                    "productId": 40746,
+                    "productName": "测试内容13xs",
+                    "refPrice": 11755,
+                    "showBrand": "测试内容nsr3"
+                }
+            ],
+            "contentType": 1,
+            "id": "晒单ID",
+            "identityLable": "测试内容5ed5",
+            "images": [
+                "http://pic12.secooimg.com/res/common/10/50/1ZWy0S/store_01.png",
+                "http://pic12.secooimg.com/res/common/97/53/1ZWy0W/store_02.png",
+                "http://pic12.secooimg.com/res/common/54/48/1ZWy14/store_03.png",
+                "http://pic12.secooimg.com/res/common/49/52/1ZWy16/store_04.png",
+                "http://pic12.secooimg.com/res/common/53/55/1ZWy1a/store_05.png"
+            ],
+            "optionTime": 1536139328211,
+            "optionType": 0,
+            "priorityDisplay": 0,
+            "relationBrand": "3",
+            "relationSign": "3",
+            "relationSku": "3",
+            "shareCount": 234,
+            "sourceType": 1,
+            "storeType": 2,
+            "thumbsCount": 46238,
+            "thumbsStatus": false,
+            "title": "该页面中间的内容流展示部分（顶部店招和底部TAB为公共部分，无需处理）。内容类型包含后台创建的图文和短视频，对应于发现频道的晒单类型（功能以发现频道最新的功能为准，例如即将上线的关联多商品等",
+            "uuid": "2e9adeadbd9046219f46878886a3dac4"
+        },
+    ]
+}
 
 var data = {
     "code": 10000,
@@ -190,7 +242,7 @@ var data = {
             "contentType": 1,
             "id": "晒单ID",
             "identityLable": "测试内容5ed5",
-            "imagesJson": [
+            "images": [
                 "http://pic12.secooimg.com/res/common/10/50/1ZWy0S/store_01.png",
                 "http://pic12.secooimg.com/res/common/97/53/1ZWy0W/store_02.png",
                 "http://pic12.secooimg.com/res/common/54/48/1ZWy14/store_03.png",

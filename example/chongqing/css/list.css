@@ -267,7 +267,7 @@ body {
   border: none;
 }
 .content .contentMain .listBox .listItem .title {
-  width: 50%;
+  width: 60%;
   height: 64px;
   border-bottom: 1px solid #ededed;
   padding-left: 20px;
@@ -275,6 +275,9 @@ body {
   float: left;
   font: 18px/64px '微软雅黑';
   color: #333333;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
 }
 .content .contentMain .listBox .listItem .title:before {
   content: '';

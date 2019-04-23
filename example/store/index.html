@@ -40,8 +40,8 @@
                 <div class="user-inf">
                     <div class="user-head">
                         <img :src="item.authorPic">
-                        <div class="user-type">
-                            <img :src="item.identityLable">
+                        <div class="user-type" v-if="authTypeImg(item)">
+                            <img :src="authTypeImg(item)">
                         </div>
                     </div>
                     <div class="user-name-box">
@@ -179,7 +179,7 @@
                     </div>
                 </div>
             </div>
-            <div class="loading">
+            <div class="loading swiper-slide">
                 <svg t="1554350179513" class="icon" style="" viewBox="0 0 1024 1024"><path d="M192 512a32 32 0 0 1 64 0 256 256 0 1 0 256-256 32 32 0 0 1 0-64c176.736 0 320 143.264 320 320s-143.264 320-320 320S192 688.736 192 512z" fill="#333333" p-id="3747"></path></svg>
                 <span>正在加载...</span>
             </div>
@@ -269,7 +269,7 @@
 <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
 <script src="https://cdn.bootcss.com/Swiper/4.5.0/js/swiper.min.js"></script>
 <script src="js/vue.js" type="text/javascript"></script>
-<!--<script src="js/doc.js"></script>-->
+<script src="js/doc.js"></script>
 <!-- 页面配置参数 -->
 <script type="text/javascript">
 
@@ -663,11 +663,11 @@
             androidVdata:'',     // 记录视频数据
             contentContainer: '',  // 整体内容swiper实例
             notApp: null,      // 判断是否不在app内， 隐藏分享
-            storeId:362,
+            storeId:'',
             videoStatus:false,//视频状态
             videoStopTime:0,
             cpage:1,
-            data:'',
+            data:newd,
             pageSize: 15
         },
         created:function(){
@@ -713,7 +713,7 @@
             // 判断是不是app外， 是隐藏分享按钮
             that.notApp = app.deviceType.wap || app.deviceType.miniProgram;
             //第一次进来 加载数据
-            that.getdeviceId(function(){
+            /*that.getdeviceId(function(){
                 app.getUpk(function (upk) {
                     that.upk = upk;
                     that.getUseid();
@@ -726,7 +726,7 @@
                         }
                     })
                 })
-            });
+            });*/
         },
         mounted:function(){
             pulldownComponent.init();
@@ -758,17 +758,37 @@
                 });
             }
 
-            that.loadImg($('.content-box')[0]);
-            that.loadImg($('.content-box')[1]);
+            that.loadImg($('.content-box').eq(0).get(0));
+            that.loadImg($('.content-box').eq(1).get(0));
 
         },
         updated:function(){
-            this.loadImg($('.content-box')[0]);
-            this.loadImg($('.content-box')[1]);
+            if($('.content-box').eq(0).get(0)){
+                this.loadImg($('.content-box').eq(0).get(0));
+            }
+            if($('.content-box').eq(1).get(0)){
+                this.loadImg($('.content-box').eq(1).get(0));
+            }
             this.textandBtn();
             pulldownComponent.swiper.update();
         },
         methods:{
+            // 判断作者类型
+            authTypeImg: function (item) {
+                var src = false;
+                if (item.authorType === 3) {
+                    if(item.storeModel == 1){
+                        src = '//pic12.secooimg.com/res/common/foundPage/shop2.png'; // 品牌官方旗舰店
+                    } else if (item.storeModel == 2) {
+                        src = '//pic12.secooimg.com/res/common/foundPage/shop2.png'; // 寺库自营店
+                    } else if (item.storeModel == 3) {
+                        src = '//pic12.secooimg.com/res/common/foundPage/shop2.png'; // 单品牌专营店
+                    } else if (item.storeModel == 4) {
+                        src = '//pic12.secooimg.com/res/common/foundPage/shop2.png'; // 多品牌专卖店
+                    }
+                }
+                return src
+            },
             //跳转到商品页面
             toBuy(ev,productId) {
                 this.analysis({
