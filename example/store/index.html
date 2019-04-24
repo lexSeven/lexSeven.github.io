@@ -713,7 +713,7 @@
             // 判断是不是app外， 是隐藏分享按钮
             that.notApp = app.deviceType.wap || app.deviceType.miniProgram;
             //第一次进来 加载数据
-            /*that.getdeviceId(function(){
+            that.getdeviceId(function(){
                 app.getUpk(function (upk) {
                     that.upk = upk;
                     that.getUseid();
@@ -726,7 +726,7 @@
                         }
                     })
                 })
-            });*/
+            });
         },
         mounted:function(){
             pulldownComponent.init();
