@@ -247,10 +247,20 @@ body {
   position: absolute;
   left: -30px;
   bottom: -20px;
-  display: flex;
   opacity: 0;
-  justify-content: space-evenly;
   transition: 0.5s 1s;
+}
+.item5 .contentBox .textBox img:nth-child(1) {
+  position: absolute;
+  left: 71px;
+}
+.item5 .contentBox .textBox img:nth-child(2) {
+  position: absolute;
+  left: 385px;
+}
+.item5 .contentBox .textBox img:nth-child(3) {
+  position: absolute;
+  left: 688px;
 }
 .item5.swiper-slide-active .contentBox {
   margin: -200px 0 0 -490px;
@@ -282,15 +292,16 @@ body {
   top: 50%;
   left: 50%;
   margin: -95px 0 0 -600px;
-  display: flex;
-  justify-content: space-evenly;
+  text-align: center;
 }
 .item2 .contentBox .item {
   height: 300px;
   width: 150px;
+  display: inline-block;
   text-align: center;
   position: relative;
   opacity: 0;
+  margin: 0 20px;
 }
 .item2 .contentBox .item a {
   display: block;

@@ -260,10 +260,22 @@ body{
       position: absolute;
       left: -30px;
       bottom: -20px;
-      display: flex;
       opacity: 0;
-      justify-content: space-evenly;
       transition: 0.5s 1s;
+
+      img:nth-child(1){
+        position: absolute;
+        left: 71px;
+      }
+      img:nth-child(2){
+        position: absolute;
+        left: 385px;
+      }
+      img:nth-child(3){
+        position: absolute;
+        left: 688px;
+      }
+
     }
   }
 
@@ -306,15 +318,16 @@ body{
     top: 50%;
     left: 50%;
     margin: -95px 0 0 -600px;
-    display: flex;
-    justify-content: space-evenly;
+    text-align: center;
 
     .item{
       height: 300px;
       width: 150px;
+      display: inline-block;
       text-align: center;
       position: relative;
       opacity: 0;
+      margin: 0 20px;
 
       a{
         display: block;
