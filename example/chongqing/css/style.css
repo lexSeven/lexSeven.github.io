@@ -48,7 +48,7 @@ body {
 .header .logoBox span {
   display: inline-block;
   vertical-align: middle;
-  font: 40px/70px '微软雅黑';
+  font: 36px/70px '微软雅黑';
   color: #000;
 }
 .header .navigation {
