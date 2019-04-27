@@ -19,14 +19,14 @@ body {
 }
 .header {
   height: 70px;
-  background: rgba(0, 0, 0, 0.2);
+  background: #f7f7f7;
   position: fixed;
   top: 0;
   z-index: 9;
   width: 100%;
 }
 .header .logoBox {
-  width: 308px;
+  width: 408px;
   height: 100%;
   padding-left: 40px;
   float: left;
@@ -45,8 +45,11 @@ body {
   display: inline-block;
   vertical-align: middle;
 }
-.header .logoBox img {
-  width: 100%;
+.header .logoBox span {
+  display: inline-block;
+  vertical-align: middle;
+  font: 40px/70px '微软雅黑';
+  color: #000;
 }
 .header .navigation {
   float: right;
@@ -55,7 +58,7 @@ body {
 .header .navigation .item {
   padding: 0 20px;
   font: 18px/70px '微软雅黑';
-  color: #fff;
+  color: #333;
   cursor: pointer;
   float: left;
   box-sizing: border-box;
@@ -241,6 +244,10 @@ body {
   margin-left: -260px;
   opacity: 0;
   transition: 0.5s 0.3s;
+  font: 60px/106px '微软雅黑';
+  color: #fff;
+  text-align: center;
+  background: url("../img/firstTitle.png");
 }
 .item5 .contentBox .textBox {
   width: 100%;
