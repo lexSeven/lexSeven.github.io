@@ -250,17 +250,43 @@ body {
   opacity: 0;
   transition: 0.5s 1s;
 }
-.item5 .contentBox .textBox img:nth-child(1) {
+.item5 .contentBox .textBox .text {
+  padding: 0 5px;
+  height: 40px;
+  font: 36px/40px '微软雅黑';
+  color: #4c4c4c;
+  background: #fff;
+  text-align: center;
+}
+.item5 .contentBox .textBox .text:nth-child(1) {
   position: absolute;
   left: 71px;
 }
-.item5 .contentBox .textBox img:nth-child(2) {
+.item5 .contentBox .textBox .text:nth-child(2) {
   position: absolute;
   left: 385px;
 }
-.item5 .contentBox .textBox img:nth-child(3) {
+.item5 .contentBox .textBox .text:nth-child(3) {
   position: absolute;
   left: 688px;
+}
+.item5 .contentBox .leftBirds {
+  width: 135px;
+  height: 90px;
+  position: absolute;
+  left: -250px;
+  top: 100%;
+  opacity: 0;
+  transition: opacity 1s 2s, left 3s 2s;
+}
+.item5 .contentBox .rightBirds {
+  width: 135px;
+  height: 90px;
+  position: absolute;
+  right: -285px;
+  top: -70px;
+  opacity: 0;
+  transition: opacity 1s 3s, right 3s 3s;
 }
 .item5.swiper-slide-active .contentBox {
   margin: -200px 0 0 -490px;
@@ -277,6 +303,14 @@ body {
 .item5.swiper-slide-active .contentBox .textBox {
   opacity: 1;
   left: 0;
+}
+.item5.swiper-slide-active .contentBox .leftBirds {
+  opacity: 1;
+  left: -215px;
+}
+.item5.swiper-slide-active .contentBox .rightBirds {
+  opacity: 1;
+  right: -245px;
 }
 .item2 {
   width: 100vw;

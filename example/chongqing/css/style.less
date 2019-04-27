@@ -263,19 +263,47 @@ body{
       opacity: 0;
       transition: 0.5s 1s;
 
-      img:nth-child(1){
+      .text{
+        padding: 0 5px;
+        height: 40px;
+        font: 36px/40px '微软雅黑';
+        color: #4c4c4c;
+        background: #fff;
+        text-align: center;
+      }
+
+      .text:nth-child(1){
         position: absolute;
         left: 71px;
       }
-      img:nth-child(2){
+      .text:nth-child(2){
         position: absolute;
         left: 385px;
       }
-      img:nth-child(3){
+      .text:nth-child(3){
         position: absolute;
         left: 688px;
       }
 
+    }
+
+    .leftBirds{
+      width: 135px;
+      height: 90px;
+      position: absolute;
+      left: -250px;
+      top: 100%;
+      opacity: 0;
+      transition: opacity 1s 2s, left 3s 2s;
+    }
+    .rightBirds{
+      width: 135px;
+      height: 90px;
+      position: absolute;
+      right: -285px;
+      top: -70px;
+      opacity: 0;
+      transition: opacity 1s 3s, right 3s 3s;
     }
   }
 
@@ -297,6 +325,16 @@ body{
       .textBox{
         opacity: 1;
         left: 0;
+      }
+
+      .leftBirds{
+        opacity: 1;
+        left: -215px;
+      }
+
+      .rightBirds{
+        opacity: 1;
+        right: -245px;
       }
 
     }
