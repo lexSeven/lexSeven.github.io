@@ -43,6 +43,7 @@
     let boxX = 300,boxY = 100,boxZ = 230, activeZ = 50, keyNum = 3;
     let initDegX = -30;
     let initDegY = 0;
+    let translateZ = -300;
 
     /*
     * boxX  盒子X轴（盒子的长）
@@ -122,7 +123,7 @@
     setBox();
     function setBox(){
 
-        cube.style.transform = "translateZ(60px) rotatex(" + initDegX + "deg) rotatey(" + initDegY + "deg)";
+        cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + initDegX + "deg) rotatey(" + initDegY + "deg)";
         degX = initDegY;
         degY = initDegX;
 
@@ -162,7 +163,7 @@
 
             tempX = degX + moveX / keyNum;
             tempY = degY - moveY / keyNum;
-            cube.style.transform = "translateZ(60px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
+            cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
         };
         e.preventDefault();
     };
