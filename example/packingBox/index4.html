@@ -34,6 +34,11 @@
             <div class="fontface"></div>
             <div class="backface"></div>
         </div>
+
+        <div class="outfont"></div>
+        <div class="outtop"></div>
+        <div class="outend"></div>
+        <div class="outbottom"></div>
     </div>
 </div>
 
@@ -43,7 +48,7 @@
     let boxX = 300,boxY = 100,boxZ = 230, activeZ = 50, keyNum = 3;
     let initDegX = -30;
     let initDegY = 0;
-    let translateZ = -300;
+    let translateZ = -100;
 
     /*
     * boxX  盒子X轴（盒子的长）
@@ -59,7 +64,11 @@
         boxLeft : cube.querySelector('.left'),
         boxRight : cube.querySelector('.right'),
         boxTop : cube.querySelector('.top'),
-        boxBottom : cube.querySelector('.bottom')
+        boxBottom : cube.querySelector('.bottom'),
+        outfont: cube.querySelector('.outfont'),
+        outtop: cube.querySelector('.outtop'),
+        outend: cube.querySelector('.outend'),
+        outbottom: cube.querySelector('.outbottom'),
     };
 
     /*
@@ -112,6 +121,38 @@
             height:boxZ,
             lineHeight:boxZ,
             translateZ:boxY/2,
+            rotateX:-90,
+            rotateY:0
+        },
+        outfont:{
+            width:boxX+2,
+            height:boxY+2,
+            lineHeight:boxY,
+            translateZ:(boxZ/2+1),
+            rotateX:0,
+            rotateY:0
+        },
+        outtop:{
+            width:boxX+2,
+            height:boxZ+3,
+            lineHeight:boxZ,
+            translateZ:(boxY/2+1),
+            rotateX:90,
+            rotateY:0
+        },
+        outend:{
+            width:boxX+2,
+            height:boxY+2,
+            lineHeight:boxY,
+            translateZ:(boxZ/2+1),
+            rotateX:0,
+            rotateY:180
+        },
+        outbottom:{
+            width:boxX+2,
+            height:boxZ+2,
+            lineHeight:boxZ,
+            translateZ:(boxY/2+1),
             rotateX:-90,
             rotateY:0
         }
@@ -201,6 +242,23 @@
         for (let k in styles){
             target.style[k]=styles[k];
         }
+    }
+
+    setTimeout(removeCover,1000)
+    function removeCover(){
+        let leftDes = '500px'
+        css(eleArr.outfont,{
+            left: leftDes
+        })
+        css(eleArr.outtop,{
+            left: leftDes
+        })
+        css(eleArr.outend,{
+            left: leftDes
+        })
+        css(eleArr.outbottom,{
+            left: leftDes
+        })
     }
 </script>
 

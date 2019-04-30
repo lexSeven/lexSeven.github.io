@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <img id="img" src="img/cancle.png">
+    <canvas id="canvas"></canvas>
+</div>
+
+
+<script>
+    var c = document.querySelector('#canvas');
+    var cWidth = c.parentNode.offsetWidth;
+    var cHeight = c.parentNode.offsetHeight;
+    c.width = cWidth
+    c.height = cHeight
+    var C1 = c.getContext('2d');
+
+    C1.drawImage(img,0,0)
+    console.log(C1.getImageData(0,0,cWidth,cHeight))
+
+</script>
+
+</body>
+</html>

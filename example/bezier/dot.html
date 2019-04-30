@@ -19,16 +19,16 @@
             top:402px;
         }
         .dot:nth-child(2){
-            left: 694px;
-            top: 216px;
+            left: 446px;
+            top: 402px;
         }
         .dot:nth-child(3){
-            left: 1116px;
-            top:334px;
+            left: 446px;
+            top:702px;
         }
         .dot:nth-child(4){
-            left: 1116px;
-            top:760px;
+            left: 146px;
+            top:702px;
         }
         .dot:nth-child(5){
             left: 668px;
@@ -39,13 +39,14 @@
             top:0;
             left:0;
             z-index:1;
+            transform: scale(0.5);
+            transform-origin: left top;
         }
     </style>
 </head>
 <body>
 
 
-<div class="dot"></div>
 <div class="dot"></div>
 <div class="dot"></div>
 <div class="dot"></div>
@@ -59,8 +60,8 @@
     var position = {};
     vertex = [];
     var c = document.getElementById('c');
-    c.width = document.documentElement.clientWidth;
-    c.height = document.documentElement.clientHeight;
+    c.width = document.documentElement.clientWidth*2;
+    c.height = document.documentElement.clientHeight*2;
     var C1 = c.getContext('2d');
 
     Array.from(dot).forEach(function(item,index){
@@ -95,13 +96,32 @@
             }
         }
     });
+
+    // console.log(position)
+
+    var point = {
+        0:[0,4],
+        1:[4,0],
+        3:[21,17],
+        4:[0,38],
+        5:[42,4],
+        6:[25,21],
+        7:[42,38],
+        8:[38,42],
+        9:[21,25],
+        10:[42,4],
+        11:[0,38],
+        12:[17,21]
+    }
+    // move(point);
     move(position);
 
 
     function move(position){
         vertex = [];
         for(var a in position){
-            vertex.push([position[a][0],position[a][1]]);
+            // vertex.push([(position[a][0]+10)*20,(position[a][1]+10)*20]);
+            vertex.push([(position[a][0]*2),(position[a][1]*2)]);
         }
 
         bezier.init({
@@ -109,7 +129,9 @@
             element:c,
             canvas:C1,
             isFull:true,
-            k:1.2
+            k:1.1,
+            // drawFunction:true,
+            speed:1
         });
     }
 </script>
