@@ -22,7 +22,6 @@ body {
   position: relative;
   transform-style: preserve-3d;
   transform: translateZ(-300px);
-  /*background:rgba(0,0,0,0.3);*/
 }
 .cube > div {
   position: absolute;
@@ -101,21 +100,21 @@ body {
 .cube .outfont {
   background: url("../img/6.png") no-repeat;
   background-size: cover;
-  transition: left 2s;
+  transition: left 2s, opacity 0.5s;
 }
 .cube .outtop {
   background: url("../img/2.png") no-repeat;
   background-size: cover;
-  transition: left 2s;
+  transition: left 2s, opacity 0.5s;
 }
 .cube .outend {
   background: url("../img/5.png") no-repeat;
   background-size: cover;
-  transition: left 2s;
+  transition: left 2s, opacity 0.5s;
 }
 .cube .outbottom {
   background: url("../img/1.png") no-repeat;
   background-size: cover;
-  transition: left 2s;
+  transition: left 2s, opacity 0.5s;
 }
 /*# sourceMappingURL=style.css.map */

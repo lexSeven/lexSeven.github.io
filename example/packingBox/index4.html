@@ -49,7 +49,7 @@
         boxY = 100,
         boxZ = 230,
         activeZ = 50,
-        keyNum = 5;
+        keyNum = 3;
     /*
     * boxX  盒子X轴（盒子的长）
     * boxY  盒子Y轴（盒子的高）
@@ -60,7 +60,7 @@
 
     let initDegX = -30;    // 初始化时盒子的X轴偏移量
     let initDegY = 0;      // 初始化时盒子的Y轴偏移量
-    let translateZ = -100;  // 盒子的Z轴偏移量，值越大，盒子越大
+    let translateZ = 600;  // 盒子的Z轴偏移量，值越大，盒子越大
 
     let eleArr = {
         boxFront : cube.querySelector('.front'),
@@ -189,14 +189,21 @@
         let touch = e.changedTouches[0];
         downX = touch.clientX;
         downY = touch.clientY;
+        let isBack = false
+
+        let caseY = (degY / 90) % 4;
+        if(caseY > 1 && caseY < 3 || caseY < -1 && caseY > -3){
+            isBack = true;
+        }
+
         document.ontouchmove = function (e) {
             e = e || event;
             let touch = e.changedTouches[0];
             moveX = touch.clientX - downX;
             moveY = touch.clientY - downY;
 
-            let caseY = ((degY - moveY / keyNum) / 90) % 4;
-            if(caseY > 1 && caseY < 3 || caseY < -1 && caseY > -3){
+            // let caseY = ((degY - moveY / keyNum) / 90) % 4;
+            if(isBack){
                 moveX = -moveX;
             }
 
@@ -263,6 +270,22 @@
         })
         css(eleArr.outbottom,{
             left: leftDes
+        })
+    }
+    setTimeout(removeCover2,1000)
+    function removeCover2(){
+        let leftDes = '500px'
+        css(eleArr.outfont,{
+            opacity: 0
+        })
+        css(eleArr.outtop,{
+            opacity: 0
+        })
+        css(eleArr.outend,{
+            opacity: 0
+        })
+        css(eleArr.outbottom,{
+            opacity: 0
         })
     }
 </script>
