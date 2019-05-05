@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+
+    <!-- 手动更改 -->
+    <title>定制礼盒</title>
+
+    <!-- 公共样式不可删除 -->
+    <link rel="stylesheet" href="//mstatic.secooimg.com/activity2018/all_min/css/activity2018.min.css">
+    <!-- 如页面rem设置为页面宽度的20分之一，应再引入以下css -->
+    <link rel="stylesheet" href="//mstatic.secooimg.com/activity2018/all_min/css/compatible.min.css">
+
+    <style type="text/css">
+        html,
+        body,
+        div,
+        span,
+        h1,
+        h2,
+        h3,
+        i,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font: inherit;
+            vertical-align: baseline;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #F9F9F9;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .column {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        .row {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .choose-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 77.52%;
+            background: #FFFFFF;
+            -webkit-transform: translateY(100%);
+            -ms-transform: translateY(100%);
+            transform: translateY(100%);
+            -webkit-transition: all 0.2s ease-out;
+            -o-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+            z-index: 100;
+        }
+        .active{
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        /* 关闭 */
+        .close-wrapper {
+            height: 10.44%;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .close-img-wrapper {
+            width: 0.667rem;
+            height: 0.667rem;
+            margin: 0.4rem 0.4rem 0 auto;
+
+        }
+
+        .close-tip {
+            font-family: PingFangSC-Medium;
+            font-size: 0.453rem;
+            color: #1A191E;
+            letter-spacing: 0;
+            text-align: left;
+            margin: 0.4rem auto 0 0.4rem;
+            height: 0.64rem;
+        }
+
+        .close-img {
+            height: 0.373rem;
+            width: 0.373rem;
+        }
+
+        /* 底部按钮 */
+        .bar-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8.704%;
+            width: 100%;
+            background: #FFFFFF;
+            -webkit-box-shadow: 0 0 0.04rem 0.067rem rgba(238, 238, 238, 0.50);
+            box-shadow: 0 0 0.04rem 0.067rem rgba(238, 238, 238, 0.50);
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .price-tip {
+            font-family: PingFangSC-Medium;
+            font-size: 0.32rem;
+            color: #1C1717;
+            letter-spacing: 0;
+            height: 66%;
+            margin-top: 0.2rem;
+            font-weight: bold;
+        }
+
+        .price-old {
+            font-family: PingFangSC-Medium;
+            font-size: 0.32rem;
+            color: #CCCCCC;
+            letter-spacing: 0;
+            text-decoration: line-through;
+            height: 66%;
+            margin-top: 0.2rem;
+        }
+
+        .price-new {
+            font-family: Futura-Medium;
+            font-size: 0.48rem;
+            color: #000B0B;
+            letter-spacing: 0;
+            height: 92%;
+            margin-right: 0.133rem;
+            font-weight: bold;
+            margin-top: 1%;
+        }
+
+        .tip {
+            font-family: PingFangSC-Medium;
+            font-size: 0.267rem;
+            color: #F8A120;
+            letter-spacing: 0;
+            height: 44.44%;
+            margin-left: 0.4rem;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .price-wrapper {
+            height: 55.55%;
+            margin-left: 0.4rem;
+            -webkit-box-align: baseline;
+            -ms-flex-align: baseline;
+            align-items: baseline;
+        }
+
+        .settle {
+            width: 3.467rem;
+            height: 100%;
+            text-align: center;
+            background: #1C1717;
+            font-family: PingFangSC-Medium;
+            font-size: 0.4rem;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        /*  商品选择 */
+        .list-container {
+            margin: 0 0.76rem 0 0.76rem;
+            max-height: 70.11%;
+            overflow-y: scroll;
+        }
+        .list-tip{
+            font-family: PingFangSC-Light;
+            font-size: 0.293rem;
+            color: #B8B8B8;
+            letter-spacing: 0;
+            margin-left: 0.4rem;
+            height: 10.251%;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .list-wrapper{
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .item-wrapper {
+            width: 3.893rem;
+        }
+
+        .item-img {
+            width: 3.893rem;
+            height: 3.893rem;
+            background: #f0f0f0;
+            margin-bottom: 0.267rem;
+        }
+
+        .item-check {
+            width: 0.36rem;
+            height: 0.36rem;
+            margin-right: 0.213rem;
+        }
+
+        .item-tip {
+            font-family: PingFangSC-Light;
+            font-size: 0.347rem;
+            color: #1C1717;
+            letter-spacing: 0;
+            max-width: 3.067rem;
+            margin-bottom: 0.267rem;
+        }
+    </style>
+
+    <!--添加听云监控-->
+    <script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>
+</head>
+
+<!-- uuid为页面在erp中的id，仅在erp后台生成的链接中生效，做数据统计用 -->
+<body uuid="page_app_${sectionid?c}" class="eventParent">
+
+<!-- 用作填写分享参数 -->
+<div id="share" data-title="" data-description="" data-url="" data-img-url=""></div>
+<section>
+    <div id="open">打开</div>
+    <div class="choose-container column">
+        <!-- start 关闭 -->
+        <div class="close-wrapper row">
+            <span class="close-tip block">选择尺寸</span>
+            <div class="close-img-wrapper">
+                <img class="close-img" src="">
+            </div>
+        </div>
+        <!-- end 关闭 -->
+        <!-- start 商品选择列表 -->
+        <div class="list-container">
+            <div class="list-wrapper">
+
+            </div>
+        </div>
+        <div class="list-tip row">*以下图片仅为尺寸大小示例，价格不包含商品</div>
+        <!-- end 商品选择列表 -->
+        <!-- start 底部 -->
+        <div class="bar-container row">
+            <div class="column">
+                <div class="price-wrapper row">
+                    <span class="price-tip block">活动价： </span>
+                    <span class="price-new block"></span>
+                    <span class="price-old block"></span>
+                </div>
+                <span class="tip block row">服务上新，会员特价仅限7天</span>
+            </div>
+            <div class="settle row">去结算</div>
+        </div>
+        <!-- end 底部 -->
+    </div>
+
+</section>
+
+<!-- 前端模板demo -->
+<script type="text/tpl" id="tpl_pdu">
+            <% data.forEach(function(obj, i) { %>
+              <div class="item-wrapper column">
+              <img class="item-img" src="<%=obj.topImg%>">
+              <div class="row proc-item" id="<%= obj.specValueId%>" >
+                  <img class="item-check" src="<%= obj.selected==1?'./icon/check.png':'./icon/uncheck.png'%>">
+                  <span class="item-tip block"><%=obj.title%></span>
+              </div>
+          </div>
+            <% }); %>
+
+</script>
+
+<!-- 页面配置参数 -->
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
+<script type="text/javascript">
+    var pageConfig = {
+        baseRemVal: 10,
+        initHead: false
+    }
+
+    zeptoLoaded();
+    function zeptoLoaded() {
+        var page = {
+            giftObj:{},
+            list: [],
+            choosen:{}, //最终选择的商品礼盒
+            chooseContainer:$('.choose-container'),
+            listWrapper:$('.list-wrapper'),
+            closeImg:$('.close-img-wrapper'), // 关闭按钮
+            settle:$('.settle'), // 去结算按钮
+            init: function () {
+                var that=this;
+              that.getGiftPack();
+               that.bindEvent();
+            },
+            bindEvent:function () {
+                let that=this;
+                $("#open").on('click',function () {
+                    that.chooseContainer.addClass('active');
+                });
+                that.closeImg.on('click',function () {
+                    that.chooseContainer.removeClass('active');
+                    // app.statistics({
+                    //     's.paid':2511,
+                    //     's.ot':2,
+                    //     's.opid':2513
+                    // });
+                });
+
+                that.settle.on('click',function () {
+                    // app.statistics({
+                    //     's.paid':2511,
+                    //     's.ot':2,
+                    //     's.opid':2512,
+                    //     's.sid': ''
+                    // });
+                });
+
+               that.checkListener();
+            },
+            checkListener:function () {
+                var that=this;
+                $(".proc-item").click(function () {
+                    var id= $(this).attr('id');
+                    that.updateChosen(id);
+                    // app.statistics({
+                    //     's.paid':2511,
+                    //     's.ot':1,
+                    //     's.opid':2512,
+                    //     's.sid': '',
+                    //     's.lpaid':'2511'
+                    // });
+                });
+            },
+            updateChosen:function (id) {
+                var that=this;
+               that.list.forEach(function (item) {
+                    if(id==item.specValueId) {
+                       if(item.enable) {
+                           item.selected=1;
+                           that.choosen={
+                               'specValueId':item.specValueId,
+                               'count':1
+                           }
+                       }else{
+                           app.toast('系统禁止选中');
+                       }
+                    }else{
+                        item.selected=0;
+                    }
+               });
+                that.listWrapper.html(app.tpl('tpl_pdu', that.list));
+                that.checkListener();
+            },
+            initGiftData:function () {
+                var that=this;
+                that.giftObj=getGift().data;
+                that.list=that.giftObj.productSpec[0].values;
+                that.list.forEach(function (item) {
+                    if(item.selected==1) {
+                        that.choosen={
+                            'specValueId':item.specValueId,
+                            'count':1
+                        }
+                    }
+                });
+
+                that.listWrapper.html(app.tpl('tpl_pdu', that.list));
+                $('.price-old').text(that.giftObj.tipPrice);
+                $('.price-new').text(that.giftObj.price);
+                that.choosen={
+                    'priceNoSymbol':that.giftObj.priceNoSymbol,
+                }
+
+            },
+            getGiftPack:function (productId) {
+                var that=this;
+                var params={
+                    productId:productId,
+                    spec:{
+                        specId:'',
+                        specValue:''
+                    }
+                }
+                that.choosen={
+                    'productId':productId,
+                };
+                //这是假数据，不用了直接删掉
+                // that.initGiftData();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '//las.secoo.com/api/giftpack/spec',
+                    data: params,
+                    success: function (data) {
+                        if (data.retCode === 200) {
+                             that.initGiftData(data.data);
+                        } else {
+                            app.toast(data.retMsg);
+                        }
+                    },
+                    error: function () {
+                        console.log('网络异常');
+                    }
+                });
+            }
+
+        };
+        page.init();
+    };
+</script>
+
+<!-- 主文件不可删除 -->
+<script type="text/javascript" src="//mstatic.secooimg.com/activity2018/all_min/js/activity2018.min.js"></script>
+<!--<script src="js/data.js"></script>-->
+</body>
+</html>

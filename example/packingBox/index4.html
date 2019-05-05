@@ -45,11 +45,11 @@
 <script>
     let cube = document.querySelector(".cube"),
         downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
-    let boxX = 300,boxY = 100,boxZ = 230, activeZ = 50, keyNum = 3;
-    let initDegX = -30;
-    let initDegY = 0;
-    let translateZ = -100;
-
+    let boxX = 300,
+        boxY = 100,
+        boxZ = 230,
+        activeZ = 50,
+        keyNum = 5;
     /*
     * boxX  盒子X轴（盒子的长）
     * boxY  盒子Y轴（盒子的高）
@@ -57,6 +57,10 @@
     * activeZ 当点击其中一个面的时候，那个面在Z轴方向的运动距离
     * keyNum 当拖动盒子的时候，手指拖动距离和盒子转动距离的比例  越大盒子转动越慢
     * */
+
+    let initDegX = -30;    // 初始化时盒子的X轴偏移量
+    let initDegY = 0;      // 初始化时盒子的Y轴偏移量
+    let translateZ = -100;  // 盒子的Z轴偏移量，值越大，盒子越大
 
     let eleArr = {
         boxFront : cube.querySelector('.front'),
@@ -244,7 +248,8 @@
         }
     }
 
-    setTimeout(removeCover,1000)
+    // 去掉外包装
+    setTimeout(removeCover,100)
     function removeCover(){
         let leftDes = '500px'
         css(eleArr.outfont,{
