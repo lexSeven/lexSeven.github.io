@@ -63,7 +63,7 @@
 
     let initDegX = -30;    // 初始化时盒子的X轴偏移量
     let initDegY = 0;      // 初始化时盒子的Y轴偏移量
-    let translateZ = 1400;  // 盒子的Z轴偏移量，值越大，盒子越大
+    let translateZ = 100;  // 盒子的Z轴偏移量，值越大，盒子越大
 
     let outImg = {
         font: 'img/6.png',
@@ -177,37 +177,37 @@
         },
         coverFont:{
             width:boxX+3,
-            height:(boxY+2.5)*0.4,
+            height:(boxY+2)*0.45,
             lineHeight:boxY,
             translateZ:(boxZ/2)+1,
-            translateY:(boxY+2)*0.3,
+            translateY:((boxY+2)*0.25)+2,
             rotateX:0,
             rotateY:0
         },
         coverEnd:{
             width:boxX+3,
-            height:(boxY+2)*0.4,
+            height:(boxY+2)*0.45,
             lineHeight:boxY,
             translateZ:(boxZ/2)+1,
-            translateY:(boxY+2)*0.3,
+            translateY:((boxY+2)*0.25)+2,
             rotateX:0,
             rotateY:180
         },
         coverLeft:{
             width:boxZ+3,
-            height:(boxY+2)*0.4,
+            height:(boxY+2)*0.45,
             lineHeight:boxY,
             translateZ:(boxX/2)+1,
-            translateY:(boxY+2)*0.3,
+            translateY:((boxY+2)*0.25)+2,
             rotateX:0,
             rotateY:-90
         },
         coverRight:{
             width:boxZ+3,
-            height:(boxY+2)*0.4,
+            height:(boxY+2)*0.45,
             lineHeight:boxY,
             translateZ:(boxX/2)+1,
-            translateY:(boxY+2)*0.3,
+            translateY:((boxY+2)*0.25)+2,
             rotateX:0,
             rotateY:90
         },
@@ -215,7 +215,7 @@
             width:boxX+4,
             height:boxZ+4,
             lineHeight:boxZ,
-            translateZ:boxY/2,
+            translateZ:(boxY/2),
             rotateX:90,
             rotateY:0
         },
@@ -224,7 +224,7 @@
             height:(boxY+2)*0.5,
             lineHeight:boxY,
             translateZ:(boxZ/2)+1,
-            translateY:-(boxY+2)*0.25,
+            translateY:-((boxY+2)*0.25)-1,
             rotateX:0,
             rotateY:0
         },
@@ -233,7 +233,7 @@
             height:(boxY+2)*0.5,
             lineHeight:boxY,
             translateZ:(boxZ/2)+1,
-            translateY:-(boxY+2)*0.25,
+            translateY:-((boxY+2)*0.25)-1,
             rotateX:0,
             rotateY:180
         },
@@ -242,7 +242,7 @@
             height:(boxY+2)*0.5,
             lineHeight:boxY,
             translateZ:(boxX/2)+1,
-            translateY:-(boxY+2)*0.25,
+            translateY:-((boxY+2)*0.25)-1,
             rotateX:0,
             rotateY:-90
         },
@@ -251,7 +251,7 @@
             height:(boxY+2)*0.5,
             lineHeight:boxY,
             translateZ:(boxX/2)+1,
-            translateY:-(boxY+2)*0.25,
+            translateY:-((boxY+2)*0.25)-1,
             rotateX:0,
             rotateY:90
         },
