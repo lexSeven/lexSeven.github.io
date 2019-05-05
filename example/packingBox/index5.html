@@ -43,6 +43,8 @@
         <div class="underright"></div>
         <div class="underbottom"></div>
     </div>
+
+    <div class="open">打开</div>
 </div>
 
 <script>
@@ -67,10 +69,12 @@
 
     let outImg = {
         font: 'img/6.png',
-        top: 'img/2.png',
+        top: 'img/9.png',
         end: 'img/5.png',
-        bottom: 'img/1.png',
+        bottom: 'img/8.png',
     }
+
+    let openBtn = document.querySelector('.open');
 
     let eleArr = {
         boxFront : cube.querySelector('.front'),
@@ -368,14 +372,14 @@
     }
 
     // 去掉外包装
-    setTimeout(removeOut,100)
+    // setTimeout(removeOut,100)
     function removeOut(){
         let leftDes = '500px'
         css([eleArr.outFont,eleArr.outTop,eleArr.outEnd,eleArr.outBottom],{
             left: leftDes
         })
     }
-    setTimeout(removeOut2,1000)
+    // setTimeout(removeOut2,1000)
     function removeOut2(){
         css([eleArr.outFont,eleArr.outTop,eleArr.outEnd,eleArr.outBottom],{
             opacity: 0
@@ -388,6 +392,27 @@
             top: '-100px',
             opacity: 0
         })
+    }
+
+    openBtn.onclick = openBtn.ontouchend = function () {
+        cube.style.transition = '1s'
+        setTimeout(function(){
+            cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + initDegX + "deg) rotatey(" + initDegY + "deg)";
+            degX = initDegY;
+            degY = initDegX;
+
+
+        },100);
+
+        setTimeout(function(){
+            cube.style.transition = '0s'
+            setTimeout(removeOut,100)
+            setTimeout(removeOut2,1000)
+            setTimeout(removeCover,1500)
+        },1000);
+
+
+
     }
 </script>
 
