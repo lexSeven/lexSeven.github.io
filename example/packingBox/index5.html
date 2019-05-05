@@ -48,9 +48,9 @@
 <script>
     let cube = document.querySelector(".cube"),
         downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
-    let boxX = 300,
-        boxY = 80,
-        boxZ = 230,
+    let boxX = 190,
+        boxY = 90,
+        boxZ = 140,
         activeZ = 50,
         keyNum = 3;
     /*
@@ -63,7 +63,7 @@
 
     let initDegX = -30;    // 初始化时盒子的X轴偏移量
     let initDegY = 0;      // 初始化时盒子的Y轴偏移量
-    let translateZ = 100;  // 盒子的Z轴偏移量，值越大，盒子越大
+    let translateZ = 1400;  // 盒子的Z轴偏移量，值越大，盒子越大
 
     let outImg = {
         font: 'img/6.png',
@@ -212,8 +212,8 @@
             rotateY:90
         },
         coverTop:{
-            width:boxX+2,
-            height:boxZ+2,
+            width:boxX+4,
+            height:boxZ+4,
             lineHeight:boxZ,
             translateZ:boxY/2,
             rotateX:90,
@@ -256,8 +256,8 @@
             rotateY:90
         },
         underBottom:{
-            width:boxX+2,
-            height:boxZ+2,
+            width:boxX+4,
+            height:boxZ+4,
             lineHeight:boxZ,
             translateZ:(boxY/2)+1,
             rotateX:-90,

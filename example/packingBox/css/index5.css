@@ -33,7 +33,7 @@ body {
   background-color: #ffb828;
   text-align: center;
   color: #fff;
-  border: 1px solid #efa818;
+  border: 1px solid #feb31a;
   user-select: none;
   box-sizing: border-box;
   font-size: 0;
@@ -73,9 +73,9 @@ body {
 .cube .coverleft,
 .cube .coverright {
   height: 40%;
-  background: #dcdddd;
-  border: 1px solid #eee;
-  box-shadow: 0 5px 2px -5px rgba(0, 0, 0, 0.2);
+  background: #efefef;
+  border: 1px solid #e9eaea;
+  box-shadow: 0 2px 2px -2px rgba(174, 117, 0, 0.2);
 }
 .cube .covertop {
   background: #efefef;
@@ -88,10 +88,10 @@ body {
   height: 40%;
   background: #efefef;
   border: 1px solid #e9eaea;
-  box-shadow: 0 -5px 2px -5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -2px 2px -2px rgba(174, 117, 0, 0.2);
 }
 .cube .underbottom {
-  background: #ededed;
+  background: #ebebec;
   border: 1px solid #e9eaea;
 }
 /*# sourceMappingURL=index5.css.map */
