@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index5.css">
 </head>
 <body>
 
@@ -12,39 +12,36 @@
     <div class="cube">
         <div class="front"  data-name="boxFront">
             <div class="fontface"></div>
-            <div class="backface"></div>
         </div>
         <div class="end"    data-name="boxEnd">
             <div class="fontface"></div>
-            <div class="backface"></div>
         </div>
         <div class="left"   data-name="boxLeft">
             <div class="fontface"></div>
-            <div class="backface"></div>
         </div>
         <div class="right"  data-name="boxRight">
             <div class="fontface"></div>
-            <div class="backface"></div>
-        </div>
-        <div class="top"    data-name="boxTop">
-            <div class="fontface"></div>
-            <div class="backface"></div>
         </div>
         <div class="bottom" data-name="boxBottom">
             <div class="fontface"></div>
-            <div class="backface"></div>
         </div>
 
-        <div class="outfont"></div>
-        <div class="outtop"></div>
-        <div class="outend"></div>
-        <div class="outbottom"></div>
+        <div class="out outfont"></div>
+        <div class="out outtop"></div>
+        <div class="out outend"></div>
+        <div class="out outbottom"></div>
 
         <div class="coverfont"></div>
         <div class="coverend"></div>
         <div class="coverleft"></div>
         <div class="coverright"></div>
         <div class="covertop"></div>
+
+        <div class="underfont"></div>
+        <div class="underend"></div>
+        <div class="underleft"></div>
+        <div class="underright"></div>
+        <div class="underbottom"></div>
     </div>
 </div>
 
@@ -52,7 +49,7 @@
     let cube = document.querySelector(".cube"),
         downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
     let boxX = 300,
-        boxY = 100,
+        boxY = 80,
         boxZ = 230,
         activeZ = 50,
         keyNum = 3;
@@ -66,14 +63,20 @@
 
     let initDegX = -30;    // 初始化时盒子的X轴偏移量
     let initDegY = 0;      // 初始化时盒子的Y轴偏移量
-    let translateZ = 600;  // 盒子的Z轴偏移量，值越大，盒子越大
+    let translateZ = 100;  // 盒子的Z轴偏移量，值越大，盒子越大
+
+    let outImg = {
+        font: 'img/6.png',
+        top: 'img/2.png',
+        end: 'img/5.png',
+        bottom: 'img/1.png',
+    }
 
     let eleArr = {
         boxFront : cube.querySelector('.front'),
         boxEnd : cube.querySelector('.end'),
         boxLeft : cube.querySelector('.left'),
         boxRight : cube.querySelector('.right'),
-        boxTop : cube.querySelector('.top'),
         boxBottom : cube.querySelector('.bottom'),
         outFont: cube.querySelector('.outfont'),
         outTop: cube.querySelector('.outtop'),
@@ -84,6 +87,11 @@
         coverLeft: cube.querySelector('.coverleft'),
         coverRight: cube.querySelector('.coverright'),
         coverTop: cube.querySelector('.covertop'),
+        underFont: cube.querySelector('.underfont'),
+        underEnd: cube.querySelector('.underend'),
+        underLeft: cube.querySelector('.underleft'),
+        underRight: cube.querySelector('.underright'),
+        underBottom: cube.querySelector('.underbottom'),
     };
 
     /*
@@ -123,14 +131,6 @@
             rotateX:0,
             rotateY:90
         },
-        boxTop:{
-            width:boxX,
-            height:boxZ,
-            lineHeight:boxZ,
-            translateZ:boxY/2,
-            rotateX:90,
-            rotateY:0
-        },
         boxBottom:{
             width:boxX,
             height:boxZ,
@@ -140,40 +140,44 @@
             rotateY:0
         },
         outFont:{
-            width:boxX+2,
-            height:boxY+2,
+            width:boxX+4,
+            height:boxY+4,
             lineHeight:boxY,
             translateZ:(boxZ/2+2),
             rotateX:0,
-            rotateY:0
+            rotateY:0,
+            background: outImg.font
         },
         outTop:{
-            width:boxX+2,
-            height:boxZ+3,
+            width:boxX+4,
+            height:boxZ+4,
             lineHeight:boxZ,
             translateZ:(boxY/2+2),
             rotateX:90,
-            rotateY:0
+            rotateY:0,
+            background: outImg.top
         },
         outEnd:{
-            width:boxX+2,
-            height:boxY+2,
+            width:boxX+4,
+            height:boxY+4,
             lineHeight:boxY,
             translateZ:(boxZ/2+2),
             rotateX:0,
-            rotateY:180
+            rotateY:180,
+            background: outImg.end
         },
         outBottom:{
-            width:boxX+2,
-            height:boxZ+2,
+            width:boxX+4,
+            height:boxZ+4,
             lineHeight:boxZ,
             translateZ:(boxY/2+2),
             rotateX:-90,
-            rotateY:0
+            rotateY:0,
+            background: outImg.bottom
         },
         coverFont:{
-            width:boxX+2,
-            height:(boxY+2)*0.4,
+            width:boxX+3,
+            height:(boxY+2.5)*0.4,
             lineHeight:boxY,
             translateZ:(boxZ/2)+1,
             translateY:(boxY+2)*0.3,
@@ -181,7 +185,7 @@
             rotateY:0
         },
         coverEnd:{
-            width:boxX+2,
+            width:boxX+3,
             height:(boxY+2)*0.4,
             lineHeight:boxY,
             translateZ:(boxZ/2)+1,
@@ -190,7 +194,7 @@
             rotateY:180
         },
         coverLeft:{
-            width:boxZ+2,
+            width:boxZ+3,
             height:(boxY+2)*0.4,
             lineHeight:boxY,
             translateZ:(boxX/2)+1,
@@ -199,7 +203,7 @@
             rotateY:-90
         },
         coverRight:{
-            width:boxZ+2,
+            width:boxZ+3,
             height:(boxY+2)*0.4,
             lineHeight:boxY,
             translateZ:(boxX/2)+1,
@@ -215,6 +219,50 @@
             rotateX:90,
             rotateY:0
         },
+        underFont:{
+            width:boxX+3,
+            height:(boxY+2)*0.5,
+            lineHeight:boxY,
+            translateZ:(boxZ/2)+1,
+            translateY:-(boxY+2)*0.25,
+            rotateX:0,
+            rotateY:0
+        },
+        underEnd:{
+            width:boxX+3,
+            height:(boxY+2)*0.5,
+            lineHeight:boxY,
+            translateZ:(boxZ/2)+1,
+            translateY:-(boxY+2)*0.25,
+            rotateX:0,
+            rotateY:180
+        },
+        underLeft:{
+            width:boxZ+3,
+            height:(boxY+2)*0.5,
+            lineHeight:boxY,
+            translateZ:(boxX/2)+1,
+            translateY:-(boxY+2)*0.25,
+            rotateX:0,
+            rotateY:-90
+        },
+        underRight:{
+            width:boxZ+3,
+            height:(boxY+2)*0.5,
+            lineHeight:boxY,
+            translateZ:(boxX/2)+1,
+            translateY:-(boxY+2)*0.25,
+            rotateX:0,
+            rotateY:90
+        },
+        underBottom:{
+            width:boxX+2,
+            height:boxZ+2,
+            lineHeight:boxZ,
+            translateZ:(boxY/2)+1,
+            rotateX:-90,
+            rotateY:0
+        }
     }
 
     /*
@@ -222,7 +270,6 @@
     * */
     setBox();
     function setBox(){
-
         cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + initDegX + "deg) rotatey(" + initDegY + "deg)";
         degX = initDegY;
         degY = initDegX;
@@ -235,7 +282,8 @@
                 transform:'rotateX('+ eleData[a].rotateX +'deg)\
                 rotateY('+ eleData[a].rotateY +'deg)\
                 translateZ('+ eleData[a].translateZ +'px)\
-                translateY('+ (-eleData[a].translateY || 0) +'px)'
+                translateY('+ (-eleData[a].translateY || 0) +'px)',
+                backgroundImage: 'url('+ (eleData[a].background || 'none') +')'
             })
         }
     }
@@ -306,40 +354,38 @@
     };
 
     function css(target,styles){
-        for (let k in styles){
-            target.style[k]=styles[k];
+        if(target.length){
+            for(var i=0;i<target.length;i++){
+                for (let k in styles){
+                    target[i].style[k]=styles[k];
+                }
+            }
+        }else{
+            for (let k in styles){
+                target.style[k]=styles[k];
+            }
         }
     }
 
     // 去掉外包装
-    setTimeout(removeCover,100)
-    function removeCover(){
+    setTimeout(removeOut,100)
+    function removeOut(){
         let leftDes = '500px'
-        css(eleArr.outFont,{
-            left: leftDes
-        })
-        css(eleArr.outTop,{
-            left: leftDes
-        })
-        css(eleArr.outEnd,{
-            left: leftDes
-        })
-        css(eleArr.outBottom,{
+        css([eleArr.outFont,eleArr.outTop,eleArr.outEnd,eleArr.outBottom],{
             left: leftDes
         })
     }
-    setTimeout(removeCover2,1000)
-    function removeCover2(){
-        css(eleArr.outFont,{
+    setTimeout(removeOut2,1000)
+    function removeOut2(){
+        css([eleArr.outFont,eleArr.outTop,eleArr.outEnd,eleArr.outBottom],{
             opacity: 0
         })
-        css(eleArr.outTop,{
-            opacity: 0
-        })
-        css(eleArr.outEnd,{
-            opacity: 0
-        })
-        css(eleArr.outBottom,{
+    }
+
+    setTimeout(removeCover,1500)
+    function removeCover(){
+        css([eleArr.coverFont,eleArr.coverEnd,eleArr.coverLeft,eleArr.coverRight,eleArr.coverTop],{
+            top: '-100px',
             opacity: 0
         })
     }
