@@ -4,115 +4,345 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
-    <style>
-        body,
-        html {
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            /*将border和padding绘制在设置宽高之内*/
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-        .wraper {
-            width: 260px;
-            height:100%;
-            margin:0px auto;
-            perspective: 1000px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .cube {
-            height:260px;
-            width: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transform:translateZ(60px);
-        }
-        .cube>div {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: rgba(36, 143, 161, .8);
-            text-align: center;
-            line-height: 260px;
-            color: #fff;
-            font-size: 48px;
-            border: 2px solid #bfcf36;
-            user-select: none;
-        }
-        .front {
-            transform: translateZ(130px);
-        }
-        .end {
-            transform: rotateY(180deg) translateZ(130px);
-        }
-        .top {
-            transform: rotateX(90deg) translateZ(130px);
-        }
-        .bottom {
-            transform: rotateX(-90deg) translateZ(130px);
-        }
-        .left {
-            transform: rotateY(-90deg) translateZ(130px);
-        }
-        .right {
-            transform: rotateY(90deg) translateZ(130px);
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <div class="wraper">
     <div class="cube">
-        <div class="front">Front</div>
-        <div class="end">End</div>
-        <div class="left">Left</div>
-        <div class="right">Right</div>
-        <div class="top">Top</div>
-        <div class="bottom">Bottom</div>
+        <div class="front"  data-name="boxFront">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+        <div class="end"    data-name="boxEnd">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+        <div class="left"   data-name="boxLeft">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+        <div class="right"  data-name="boxRight">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+        <div class="top"    data-name="boxTop">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+        <div class="bottom" data-name="boxBottom">
+            <div class="fontface"></div>
+            <div class="backface"></div>
+        </div>
+
+        <div class="outfont"></div>
+        <div class="outtop"></div>
+        <div class="outend"></div>
+        <div class="outbottom"></div>
+
+        <div class="coverfont"></div>
+        <div class="coverend"></div>
+        <div class="coverleft"></div>
+        <div class="coverright"></div>
+        <div class="covertop"></div>
     </div>
 </div>
 
 <script>
-    var cube = document.querySelector(".cube"),
+    let cube = document.querySelector(".cube"),
         downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
-    let keyNum = 2;
-    let sides = cube.querySelectorAll('div');
-    document.ontouchstart = function(e){
-        e.preventDefault();
+    let boxX = 300,
+        boxY = 100,
+        boxZ = 230,
+        activeZ = 50,
+        keyNum = 3;
+    /*
+    * boxX  盒子X轴（盒子的长）
+    * boxY  盒子Y轴（盒子的高）
+    * boxZ  盒子Z轴（盒子的宽）
+    * activeZ 当点击其中一个面的时候，那个面在Z轴方向的运动距离
+    * keyNum 当拖动盒子的时候，手指拖动距离和盒子转动距离的比例  越大盒子转动越慢
+    * */
+
+    let initDegX = -30;    // 初始化时盒子的X轴偏移量
+    let initDegY = 0;      // 初始化时盒子的Y轴偏移量
+    let translateZ = 600;  // 盒子的Z轴偏移量，值越大，盒子越大
+
+    let eleArr = {
+        boxFront : cube.querySelector('.front'),
+        boxEnd : cube.querySelector('.end'),
+        boxLeft : cube.querySelector('.left'),
+        boxRight : cube.querySelector('.right'),
+        boxTop : cube.querySelector('.top'),
+        boxBottom : cube.querySelector('.bottom'),
+        outFont: cube.querySelector('.outfont'),
+        outTop: cube.querySelector('.outtop'),
+        outEnd: cube.querySelector('.outend'),
+        outBottom: cube.querySelector('.outbottom'),
+        coverFont: cube.querySelector('.coverfont'),
+        coverEnd: cube.querySelector('.coverend'),
+        coverLeft: cube.querySelector('.coverleft'),
+        coverRight: cube.querySelector('.coverright'),
+        coverTop: cube.querySelector('.covertop'),
     };
+
+    /*
+    * 设定盒子中每一个面的宽，高，位置等信息，
+    * 用对象来记录，主要方便后期对单独的一个面进行修改，而不需要另外去获取数据
+    * */
+    let eleData = {
+        boxFront:{
+            width:boxX,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxZ/2,
+            rotateX:0,
+            rotateY:0
+        },
+        boxEnd:{
+            width:boxX,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxZ/2,
+            rotateX:0,
+            rotateY:180
+        },
+        boxLeft:{
+            width:boxZ,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxX/2,
+            rotateX:0,
+            rotateY:-90
+        },
+        boxRight:{
+            width:boxZ,
+            height:boxY,
+            lineHeight:boxY,
+            translateZ:boxX/2,
+            rotateX:0,
+            rotateY:90
+        },
+        boxTop:{
+            width:boxX,
+            height:boxZ,
+            lineHeight:boxZ,
+            translateZ:boxY/2,
+            rotateX:90,
+            rotateY:0
+        },
+        boxBottom:{
+            width:boxX,
+            height:boxZ,
+            lineHeight:boxZ,
+            translateZ:boxY/2,
+            rotateX:-90,
+            rotateY:0
+        },
+        outFont:{
+            width:boxX+2,
+            height:boxY+2,
+            lineHeight:boxY,
+            translateZ:(boxZ/2+2),
+            rotateX:0,
+            rotateY:0
+        },
+        outTop:{
+            width:boxX+2,
+            height:boxZ+3,
+            lineHeight:boxZ,
+            translateZ:(boxY/2+2),
+            rotateX:90,
+            rotateY:0
+        },
+        outEnd:{
+            width:boxX+2,
+            height:boxY+2,
+            lineHeight:boxY,
+            translateZ:(boxZ/2+2),
+            rotateX:0,
+            rotateY:180
+        },
+        outBottom:{
+            width:boxX+2,
+            height:boxZ+2,
+            lineHeight:boxZ,
+            translateZ:(boxY/2+2),
+            rotateX:-90,
+            rotateY:0
+        },
+        coverFont:{
+            width:boxX+2,
+            height:(boxY+2)*0.4,
+            lineHeight:boxY,
+            translateZ:(boxZ/2)+1,
+            translateY:(boxY+2)*0.3,
+            rotateX:0,
+            rotateY:0
+        },
+        coverEnd:{
+            width:boxX+2,
+            height:(boxY+2)*0.4,
+            lineHeight:boxY,
+            translateZ:(boxZ/2)+1,
+            translateY:(boxY+2)*0.3,
+            rotateX:0,
+            rotateY:180
+        },
+        coverLeft:{
+            width:boxZ+2,
+            height:(boxY+2)*0.4,
+            lineHeight:boxY,
+            translateZ:(boxX/2)+1,
+            translateY:(boxY+2)*0.3,
+            rotateX:0,
+            rotateY:-90
+        },
+        coverRight:{
+            width:boxZ+2,
+            height:(boxY+2)*0.4,
+            lineHeight:boxY,
+            translateZ:(boxX/2)+1,
+            translateY:(boxY+2)*0.3,
+            rotateX:0,
+            rotateY:90
+        },
+        coverTop:{
+            width:boxX+2,
+            height:boxZ+2,
+            lineHeight:boxZ,
+            translateZ:boxY/2,
+            rotateX:90,
+            rotateY:0
+        },
+    }
+
+    /*
+    * 初始化盒子，把设定好的数据放到对应的元素身上去
+    * */
+    setBox();
+    function setBox(){
+
+        cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + initDegX + "deg) rotatey(" + initDegY + "deg)";
+        degX = initDegY;
+        degY = initDegX;
+
+        for(var a in eleData){
+            css(eleArr[a],{
+                width:eleData[a].width + 'px',
+                height:eleData[a].height + 'px',
+                lineHeight:eleData[a].lineHeight + 'px',
+                transform:'rotateX('+ eleData[a].rotateX +'deg)\
+                rotateY('+ eleData[a].rotateY +'deg)\
+                translateZ('+ eleData[a].translateZ +'px)\
+                translateY('+ (-eleData[a].translateY || 0) +'px)'
+            })
+        }
+    }
+
     document.ontouchstart = function (e) {
         e = e || event;
         let touch = e.changedTouches[0];
         downX = touch.clientX;
         downY = touch.clientY;
+        let isBack = false
+
+        let caseY = (degY / 90) % 4;
+        if(caseY > 1 && caseY < 3 || caseY < -1 && caseY > -3){
+            isBack = true;
+        }
+
         document.ontouchmove = function (e) {
             e = e || event;
             let touch = e.changedTouches[0];
             moveX = touch.clientX - downX;
             moveY = touch.clientY - downY;
+
+            // let caseY = ((degY - moveY / keyNum) / 90) % 4;
+            if(isBack){
+                moveX = -moveX;
+            }
+
+            /*if(caseY>1 && caseY < 3 || caseY>5 && caseY<7 || caseY>9 && caseY<11){
+                moveX = -moveX;
+            }else if(caseY<-1 && caseY > -3 || caseY<-5 && caseY>-7 || caseY<-9 && caseY>-11 ){
+                moveX = -moveX;
+            }*/
+
             tempX = degX + moveX / keyNum;
             tempY = degY - moveY / keyNum;
-            cube.style.transform = "translateZ(60px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
+            cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
         };
+        e.preventDefault();
     };
+
+
     document.ontouchend = function (e) {
         e = e || event;
-        degX += moveX / keyNum;
-        degY += - moveY / keyNum;
-        window.ontouchmove = null;
+        let touch = e.changedTouches[0];
+        let domName = e.target.dataset.name;
+        if(Math.abs(downX - touch.clientX)<10 && Math.abs(downY - touch.clientY)<10){
+            if(eleArr[domName]){
+                if(e.target.active){
+                    eleData[domName].translateZ -= activeZ;
+                    e.target.active = false;
+                }else{
+                    eleData[domName].translateZ += activeZ;
+                    e.target.active = true;
+                }
+                css(e.target,{
+                    transform:'rotateX('+ eleData[domName].rotateX +'deg)\
+                    rotateY('+ eleData[domName].rotateY +'deg)\
+                    translateZ('+ eleData[domName].translateZ +'px)'
+                })
+            }
+        }else{
+            degX += moveX / keyNum;
+            degY += - moveY / keyNum;
+            degX %= 360;
+            degY %= 360;
+        }
+        document.ontouchmove = null;
     };
 
-    Array.from(sides).forEach((item)=>{
-        item.ontouchstart = function(){
-            this.style.backgroundColor = 'rgba(70,194,215,0.9)';
+    function css(target,styles){
+        for (let k in styles){
+            target.style[k]=styles[k];
         }
-    })
+    }
 
+    // 去掉外包装
+    setTimeout(removeCover,100)
+    function removeCover(){
+        let leftDes = '500px'
+        css(eleArr.outFont,{
+            left: leftDes
+        })
+        css(eleArr.outTop,{
+            left: leftDes
+        })
+        css(eleArr.outEnd,{
+            left: leftDes
+        })
+        css(eleArr.outBottom,{
+            left: leftDes
+        })
+    }
+    setTimeout(removeCover2,1000)
+    function removeCover2(){
+        css(eleArr.outFont,{
+            opacity: 0
+        })
+        css(eleArr.outTop,{
+            opacity: 0
+        })
+        css(eleArr.outEnd,{
+            opacity: 0
+        })
+        css(eleArr.outBottom,{
+            opacity: 0
+        })
+    }
 </script>
 
 </body>
