@@ -64,7 +64,7 @@ body {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-4rem);
+    transform: translateY(-6.66666667rem);
   }
 }
 @keyframes scale {
