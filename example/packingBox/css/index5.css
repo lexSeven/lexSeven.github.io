@@ -8,6 +8,10 @@ body {
   background: #fff;
   height: 100%;
 }
+img {
+  width: 100%;
+  max-width: 100%;
+}
 html {
   font-size: 4vw;
   height: 100%;
@@ -20,7 +24,7 @@ html {
   transition: 0.2s;
 }
 .loadBox {
-  width: 100vw;
+  width: 100%;
   height: 100vw;
   background-image: radial-gradient(circle, #ffc746, #ffbf2b 50%);
   position: relative;
@@ -76,12 +80,12 @@ html {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-3.33333333rem);
+    transform: translateY(-6.66666667rem);
   }
 }
 @keyframes scale {
   0% {
-    transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(1.1);
   }
   100% {
     transform: translateX(-50%) scale(0.8);

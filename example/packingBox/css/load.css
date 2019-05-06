@@ -6,9 +6,14 @@ body {
   background: #ffbf2b;
   height: 100%;
   margin: 0;
+  overflow: hidden;
+}
+img {
+  width: 100%;
+  max-width: 100%;
 }
 .loadBox {
-  width: 100vw;
+  width: 100%;
   height: 100vw;
   background-image: radial-gradient(circle, #ffc746, #ffbf2b 50%);
   position: relative;
@@ -64,7 +69,7 @@ body {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-10rem);
+    transform: translateY(-6.66666667rem);
   }
 }
 @keyframes scale {
