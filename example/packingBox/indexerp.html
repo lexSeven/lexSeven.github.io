@@ -4,27 +4,124 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
-    <link rel="stylesheet" href="css/index5.css">
+    <style>
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            margin: 0;
+            background: #fff;
+        }
+        .wraper {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            perspective: 2000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cube {
+            height: 500px;
+            width: 500px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(-300px);
+        }
+        .cube > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: #ffb828;
+            text-align: center;
+            color: #fff;
+            border: 1px solid #feb31a;
+            user-select: none;
+            box-sizing: border-box;
+            font-size: 0;
+            transition: 0s;
+            transform-style: preserve-3d;
+        }
+        .fontface {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateZ(-1px);
+            background: linear-gradient(#f2a639, #fca83b 30%, #f3972b 99%);
+            border-left: 1px solid #f3972b;
+            border-right: 1px solid #f3972b;
+            box-sizing: border-box;
+            /*box-shadow: 0 0 2px 0 rgba(0,0,0,0.1);*/
+        }
+        .cube .front,
+        .cube .end,
+        .cube .left,
+        .cube .right {
+            border-top-color: #f6c350;
+        }
+        .bottom .fontface {
+            background: #fcb016;
+            box-shadow: inset 0 0 15px 0 rgba(227, 137, 50, 0.7);
+        }
+        .cube .out {
+            border: none;
+            background-size: cover;
+            transition: left 2s, opacity 0.5s;
+        }
+
+        .cube .outleft,.cube .outright{
+            background-color: transparent;
+        }
+
+        .cube .coverfont,
+        .cube .coverend,
+        .cube .coverleft,
+        .cube .coverright {
+            height: 40%;
+            background: #efefef;
+            border: 1px solid #e9eaea;
+            box-shadow: 0 2px 2px -2px rgba(174, 117, 0, 0.4);
+            transition: top 1s, opacity 0.5s 1s;
+        }
+        .cube .covertop {
+            background: #efefef;
+            border: 1px solid #eee;
+        }
+        .cube .underfont,
+        .cube .underend,
+        .cube .underleft,
+        .cube .underright {
+            height: 40%;
+            background: #efefef;
+            border: 1px solid #e9eaea;
+            border-top-color: #fff;
+            box-shadow: 0 -2px 2px -2px rgba(174, 117, 0, 0.4);
+        }
+        .cube .underbottom {
+            background: #ebebec;
+            border: 1px solid #e9eaea;
+        }
+        .open {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #f3972b;
+            border-radius: 50%;
+            line-height: 50px;
+            position: fixed;
+            right: 50px;
+            bottom: 50px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-
-<div class="loadMark">
-    <img src="img/first.png" style="position: absolute; opacity: 0;">
-    <img src="img/second.png" style="position: absolute; opacity: 0;">
-    <img src="img/third.png" style="position: absolute; opacity: 0;">
-    <img src="img/fourth.png" style="position: absolute; opacity: 0;">
-    <img src="img/fifth.png" style="position: absolute; opacity: 0;">
-
-    <div class="loadBox">
-        <img id="img" src="img/first.png">
-        <div class="shadow"></div>
-        <div class="progressLine">
-            <span style="width: 0%;" id="progress"></span>
-        </div>
-        <div class="textBox">loading…20%</div>
-    </div>
-</div>
-
 <div class="wraper">
     <div class="cube">
         <div class="front"  data-name="boxFront">
@@ -45,6 +142,8 @@
 
         <div class="out outfont"></div>
         <div class="out outtop"></div>
+        <div class="out outleft"></div>
+        <div class="out outright"></div>
         <div class="out outend"></div>
         <div class="out outbottom"></div>
 
@@ -65,35 +164,40 @@
 </div>
 
 <script>
-    load()
-    function load(){
-        var imgArr = [
-            'img/first.png',
-            'img/second.png',
-            'img/third.png',
-            'img/fourth.png',
-            'img/fifth.png'
-        ];
 
-
-
-        var loadFile = [
-
-        ];
-        var i = 1;
-        var loadTimer = null;
-        loadTimer = setInterval(function(){
-            img.src = imgArr[i]
-            i++
-            if(i>=imgArr.length){
-                i=0
-            }
-        },800)
+    function handleSearch () {
+        let search = window.location.search.substring(1).split('=')
+        let searchObj = {};
+        for(var i=0;i<search.length;i+=2){
+            searchObj[search[i]] = search[i+1]
+        }
+        return searchObj
     }
 
-    function box () {
+    if(handleSearch().specId){
+        ajax({
+            type:"GET",
+            url:"//las.secoo.com/api/giftpack/gift_img",
+            dataType:"json",
+            data:{
+                "specId":handleSearch().specId,
+            },
+            success:function(data){
+                Box(data.data.imgs)
+            },
+            error:function(){
+                console.log("error")
+            }
+        })
+    }else{
+        console.log('记得传参数哦！')
+    }
+
+
+    function Box(data){
         let cube = document.querySelector(".cube"),
             downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
+
         let boxX = 190,
             boxY = 90,
             boxZ = 140,
@@ -109,10 +213,11 @@
 
         let initDegX = -30;    // 初始化时盒子的X轴偏移量
         let initDegY = 0;      // 初始化时盒子的Y轴偏移量
-        let translateZ = 500;  // 盒子的Z轴偏移量，值越大，盒子越大
+        let translateZ = 1400;  // 盒子的Z轴偏移量，值越大，盒子越大
+        let outImg = data;
+        console.log(outImg);
 
-        let outImg = {}
-
+        // 各个面（不需要动）
         let eleArr = {
             boxFront : cube.querySelector('.front'),
             boxEnd : cube.querySelector('.end'),
@@ -121,6 +226,8 @@
             boxBottom : cube.querySelector('.bottom'),
             outFont: cube.querySelector('.outfont'),
             outTop: cube.querySelector('.outtop'),
+            outLeft: cube.querySelector('.outleft'),
+            outRight: cube.querySelector('.outright'),
             outEnd: cube.querySelector('.outend'),
             outBottom: cube.querySelector('.outbottom'),
             coverFont: cube.querySelector('.coverfont'),
@@ -187,7 +294,7 @@
                 translateZ:(boxZ/2+2),
                 rotateX:0,
                 rotateY:0,
-                background: outImg.font
+                background: outImg.packageFrontImg || 'none'
             },
             outTop:{
                 width:boxX+4,
@@ -196,7 +303,25 @@
                 translateZ:(boxY/2+2),
                 rotateX:90,
                 rotateY:0,
-                background: outImg.top
+                background: outImg.packageTopImg || 'none'
+            },
+            outLeft:{
+                width:boxZ+4,
+                height:boxY+4,
+                lineHeight:boxY,
+                translateZ:(boxX/2+2),
+                rotateX:0,
+                rotateY:-90,
+                background: outImg.boxLeftTopImg || 'none'
+            },
+            outRight:{
+                width:boxZ+4,
+                height:boxY+4,
+                lineHeight:boxY,
+                translateZ:(boxX/2+2),
+                rotateX:0,
+                rotateY:90,
+                background: outImg.boxRightTopImg || 'none'
             },
             outEnd:{
                 width:boxX+4,
@@ -205,7 +330,7 @@
                 translateZ:(boxZ/2+2),
                 rotateX:0,
                 rotateY:180,
-                background: outImg.end
+                background: outImg.packageBackImg || 'none'
             },
             outBottom:{
                 width:boxX+4,
@@ -214,7 +339,7 @@
                 translateZ:(boxY/2+2),
                 rotateX:-90,
                 rotateY:0,
-                background: outImg.bottom
+                background: outImg.packageButtonImg || 'none'
             },
             coverFont:{
                 width:boxX+3,
@@ -309,7 +434,7 @@
         /*
         * 初始化盒子，把设定好的数据放到对应的元素身上去
         * */
-        setBox();
+        setBox()
         function setBox(){
             cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + initDegX + "deg) rotatey(" + initDegY + "deg)";
             degX = initDegY;
@@ -324,16 +449,16 @@
                 rotateY('+ eleData[a].rotateY +'deg)\
                 translateZ('+ eleData[a].translateZ +'px)\
                 translateY('+ (-eleData[a].translateY || 0) +'px)',
-                    backgroundImage: 'url('+ (eleData[a].background || 'none') +')'
+                    backgroundImage: 'url('+ (eleData[a].background || 'none') +')',
+                    backgroundSize: 'cover'
                 })
             }
         }
 
-        document.ontouchstart = function (e) {
+        document.onmousedown = function (e) {
             e = e || event;
-            let touch = e.changedTouches[0];
-            downX = touch.clientX;
-            downY = touch.clientY;
+            downX = e.clientX;
+            downY = e.clientY;
             let isBack = false
 
             let caseY = (degY / 90) % 4;
@@ -341,22 +466,14 @@
                 isBack = true;
             }
 
-            document.ontouchmove = function (e) {
+            document.onmousemove = function (e) {
                 e = e || event;
-                let touch = e.changedTouches[0];
-                moveX = touch.clientX - downX;
-                moveY = touch.clientY - downY;
+                moveX = e.clientX - downX;
+                moveY = e.clientY - downY;
 
-                // let caseY = ((degY - moveY / keyNum) / 90) % 4;
                 if(isBack){
                     moveX = -moveX;
                 }
-
-                /*if(caseY>1 && caseY < 3 || caseY>5 && caseY<7 || caseY>9 && caseY<11){
-                    moveX = -moveX;
-                }else if(caseY<-1 && caseY > -3 || caseY<-5 && caseY>-7 || caseY<-9 && caseY>-11 ){
-                    moveX = -moveX;
-                }*/
 
                 tempX = degX + moveX / keyNum;
                 tempY = degY - moveY / keyNum;
@@ -366,11 +483,10 @@
         };
 
 
-        document.ontouchend = function (e) {
+        document.onmouseup = function (e) {
             e = e || event;
-            let touch = e.changedTouches[0];
             let domName = e.target.dataset.name;
-            if(Math.abs(downX - touch.clientX)<10 && Math.abs(downY - touch.clientY)<10){
+            if(Math.abs(downX - e.clientX)<10 && Math.abs(downY - e.clientY)<10){
                 if(eleArr[domName]){
                     if(e.target.active){
                         eleData[domName].translateZ -= activeZ;
@@ -391,11 +507,9 @@
                 degX %= 360;
                 degY %= 360;
             }
-            document.ontouchmove = null;
+            document.onmousemove = null;
         };
     }
-
-
 
 
     function css(target,styles){
@@ -435,6 +549,7 @@
         })
     }
 
+    // 打开按钮
     let openBtn = document.querySelector('.open');
     openBtn.onclick = openBtn.ontouchend = function () {
         cube.style.transition = '1s'
@@ -442,8 +557,6 @@
             cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + initDegX + "deg) rotatey(" + initDegY + "deg)";
             degX = initDegY;
             degY = initDegX;
-
-
         },100);
 
         setTimeout(function(){
@@ -452,10 +565,73 @@
             setTimeout(removeOut2,1000)
             setTimeout(removeCover,1500)
         },1000);
-
-
-
     }
+
+
+    function ajax(){
+        var ajaxData = {
+            type: (arguments[0].type || "GET").toUpperCase(),
+            url: arguments[0].url || "",
+            async: arguments[0].async || "true",
+            data: arguments[0].data || null,
+            dataType: arguments[0].dataType || "json",
+            contentType: arguments[0].contentType || "application/x-www-form-urlencoded; charset=utf-8",
+            beforeSend: arguments[0].beforeSend || function(){},
+            success: arguments[0].success || function(){},
+            error: arguments[0].error || function(){}
+        }
+
+        ajaxData.beforeSend()
+        var xhr = createxmlHttpRequest();
+        xhr.responseType=ajaxData.dataType;
+
+        var params = [];
+        for(var key in ajaxData.data){
+            params.push(key + "=" + ajaxData.data[key]);
+        }
+        var sendData = params.join("&");
+        if(ajaxData.type.toUpperCase() == "GET"){
+            xhr.open(ajaxData.type, ajaxData.url + "?" + sendData, ajaxData.async);
+            xhr.send(null);
+        }else{
+            xhr.open(ajaxData.type, ajaxData.url, ajaxData.async);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+            xhr.send(sendData);
+        }
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if(xhr.status == 200){
+                    ajaxData.success(xhr.response)
+                }else{
+                    ajaxData.error()
+                }
+            }
+        }
+    }
+
+    function createxmlHttpRequest() {
+        if (window.ActiveXObject) {
+            return new ActiveXObject("Microsoft.XMLHTTP");
+        } else if (window.XMLHttpRequest) {
+            return new XMLHttpRequest();
+        }
+    }
+
+    function convertData(data){
+        if( typeof data === 'object' ){
+            var convertResult = "" ;
+            for(var c in data){
+                convertResult+= c + "=" + data[c] + "&";
+            }
+            convertResult=convertResult.substring(0,convertResult.length-1)
+            return convertResult;
+        }else{
+            return data;
+        }
+    }
+
+
 </script>
 
 </body>

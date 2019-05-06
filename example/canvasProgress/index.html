@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            /*background: #eee;*/
+            border-radius: 50%;
+            border: 10px solid #ddd;
+            box-sizing: border-box;
+        }
+        .box canvas{
+            position: absolute;
+            top: -20px;
+            left: -20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box" id="box">
+    <canvas id="c1">0/100/899</canvas>
+</div>
+
+<script>
+
+    var progress = {
+        init: function () {
+            var _this = progress;
+            _this.c1 = document.querySelector('#c1');
+            _this.eleWidth = box.offsetWidth + 20;
+            _this.eleHeight = box.offsetHeight + 20;
+
+            _this.c1.width = _this.eleWidth;
+            _this.c1.height = _this.eleHeight;
+            _this.oGC = _this.c1.getContext('2d');
+            _this.x = _this.eleWidth/2;
+            _this.y = _this.eleHeight/2;
+            _this.r = (_this.eleWidth-30)/2;
+            _this.pro = _this.c1.innerHTML.split('/');
+            _this.proNum = (_this.pro[0]/_this.pro[1])*360;
+
+            _this.setCanvas();
+            _this.setPro(_this.proNum)
+        },
+        setCanvas: function () {
+            var _this = progress;
+            _this.oGC.lineWidth = 8;
+            _this.oGC.strokeStyle="#fff";
+            _this.oGC.lineCap="round";
+            _this.oGC.save();
+            _this.oGC.shadowOffsetX = 0; // 阴影Y轴偏移
+            _this.oGC.shadowOffsetY = 0; // 阴影X轴偏移
+            _this.oGC.shadowBlur = 1; // 模糊尺寸
+            _this.oGC.shadowColor = 'rgba(0,0,0,0.2)'; // 颜色
+
+            if(_this.pro[2]){
+                _this.oGC.strokeStyle="#"+ _this.pro[2];
+                _this.oGC.shadowColor = "#"+ _this.pro[2];
+            }
+        },
+        setPro: function (proNum) {
+            var _this = progress;
+            _this.oGC.clearRect(0,0,_this.eleWidth,_this.eleHeight);
+            _this.oGC.beginPath();
+            _this.oGC.arc(_this.x, _this.y, _this.r, 0,proNum * Math.PI/180, false);
+            _this.oGC.stroke();
+            _this.oGC.restore();
+        }
+    }
+
+    progress.init()
+    var i = 0;
+
+    setNum(90)
+    function setNum (num) {
+        var timer = setInterval(function(){
+            i++;
+            progress.setCanvas()
+            progress.setPro(i/100*360)
+            if(i>=num){
+                clearInterval(timer)
+            }
+        },20)
+    }
+</script>
+
+</body>
+</html>

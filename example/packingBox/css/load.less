@@ -1,0 +1,89 @@
+
+html{
+  font-size: 4vw;
+  height: 100%;
+}
+@rem:30rem;
+
+body{
+  background: #ffbf2b;
+  height: 100%;
+  margin: 0;
+}
+
+
+.loadBox{
+  width: 100vw;
+  height: 100vw;
+  background-image: radial-gradient(circle , #ffc746, #ffbf2b 50%);
+  position: relative;
+  top: 50%;
+  transform: translateY(-60%);
+
+  img{
+    width: 100%;
+    max-width: 100%;
+    animation: move 0.35s infinite alternate;
+  }
+
+  .shadow{
+    width: 150/@rem;
+    height: 16/@rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    position: absolute;
+    bottom: 23%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scale 0.35s infinite alternate;
+  }
+
+  .progressLine{
+    width: 440/@rem;
+    height: 10/@rem;
+    background: rgba(255,255,255,0.3);
+    border-radius: 5/@rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 0;
+
+    span{
+      display: inline-block;
+      height: 10/@rem;
+      border-radius: 5/@rem;
+      background: #fff;
+    }
+  }
+
+  .textBox{
+    width: 200/@rem;
+    height: 40/@rem;
+    font: 28/@rem 'PingFangSC-Medium';
+    line-height: 40/@rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(20/@rem);
+    color: #fff;
+  }
+}
+
+@keyframes move {
+  0%{
+    transform: translateY(0);
+  }
+  100%{
+    transform: translateY(-100/@rem);
+  }
+}
+
+@keyframes scale {
+  0%{
+    transform:translateX(-50%) scale(1);
+  }
+  100%{
+    transform:translateX(-50%) scale(0.8);
+  }
+}

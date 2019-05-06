@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="css/load.css">
+</head>
+<body>
+
+<img src="img/first.png" style="position: absolute; opacity: 0;">
+<img src="img/second.png" style="position: absolute; opacity: 0;">
+<img src="img/third.png" style="position: absolute; opacity: 0;">
+<img src="img/fourth.png" style="position: absolute; opacity: 0;">
+<img src="img/fifth.png" style="position: absolute; opacity: 0;">
+
+<div class="loadBox">
+    <img id="img" src="img/first.png">
+    <div class="shadow"></div>
+    <div class="progressLine">
+        <span style="width: 20%;"></span>
+    </div>
+    <div class="textBox">loading…20%</div>
+</div>
+
+
+
+<script>
+    var imgArr = [
+        'img/first.png',
+        'img/second.png',
+        'img/third.png',
+        'img/fourth.png',
+        'img/fifth.png'
+    ];
+    var i = 1;
+    setInterval(function(){
+        img.src = imgArr[i]
+        i++
+        if(i>=imgArr.length){
+            i=0
+        }
+    },800)
+</script>
+
+</body>
+</html>
