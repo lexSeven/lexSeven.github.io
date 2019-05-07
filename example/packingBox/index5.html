@@ -2,18 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+    <title>礼盒包装</title>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <!-- 公共样式不可删除 -->
+    <link rel="stylesheet" href="//mstatic.secooimg.com/activity2018/all_min/css/activity2018.min.css">
+
     <link rel="stylesheet" href="css/index5.css">
+
+    <!--添加听云监控-->
+    <script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>
 </head>
-<body>
+<body uuid="page_app_${sectionid?c}" class="eventParent">
 
 <div class="loadMark">
-    <img src="img/first.png" style="position: absolute; opacity: 0;">
-    <img src="img/second.png" style="position: absolute; opacity: 0;">
-    <img src="img/third.png" style="position: absolute; opacity: 0;">
-    <img src="img/fourth.png" style="position: absolute; opacity: 0;">
-    <img src="img/fifth.png" style="position: absolute; opacity: 0;">
+    <img src="img/first.png" style="position: absolute; opacity: 0; width: 100%;">
+    <img src="img/second.png" style="position: absolute; opacity: 0; width: 100%;">
+    <img src="img/third.png" style="position: absolute; opacity: 0; width: 100%;">
+    <img src="img/fourth.png" style="position: absolute; opacity: 0; width: 100%;">
+    <img src="img/fifth.png" style="position: absolute; opacity: 0; width: 100%;">
 
     <div class="loadBox">
         <img id="img" src="img/first.png">
@@ -65,33 +73,97 @@
 </div>
 
 <script>
-    load()
-    function load(){
-        var imgArr = [
-            'img/first.png',
-            'img/second.png',
-            'img/third.png',
-            'img/fourth.png',
-            'img/fifth.png'
-        ];
 
-
-
-        var loadFile = [
-
-        ];
-        var i = 1;
-        var loadTimer = null;
-        loadTimer = setInterval(function(){
-            img.src = imgArr[i]
-            i++
-            if(i>=imgArr.length){
-                i=0
-            }
-        },800)
+    var pageConfig = {
+        //全部js加载完成后的回调，与全局函数中同名函数的择一而用
+        jsLoaded: function() {
+            load.init()
+            loadData()
+        },
     }
 
-    function box () {
+    handleSearch ()
+    function handleSearch () {
+        let q={};
+        location.search.replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=>q[k]=v);
+        return q
+    }
+
+    var load = {
+        init: function () {//动画开始跑
+            var _this = this;
+            var imgArr = [
+                'img/first.png',
+                'img/second.png',
+                'img/third.png',
+                'img/fourth.png',
+                'img/fifth.png'
+            ];
+            var i = 1;
+            _this.loadTimer = null;
+            _this.loadTimer = setInterval(function(){
+                img.src = imgArr[i]
+                i++
+                if(i>=imgArr.length){
+                    i=0
+                }
+            },800)
+
+            _this.n = 0;
+            _this.loadDataTime = null;
+            _this.setPro(20)
+        },
+        setPro: function (num) {
+            var _this = this;
+            clearInterval(_this.loadDataTime)
+            var line = document.querySelector('.loadMark .progressLine span');
+            var text = document.querySelector('.loadMark .textBox');
+            _this.loadDataTime = setInterval(function(){
+                n++;
+                line.style.width = n + '%';
+                text.innerHTML = 'loading…'+ n +'%'
+                if(n > num){
+                    clearInterval(_this.loadDataTime)
+                }
+                if(num >= 98){
+                    clearInterval(_this.loadDataTime)
+                    clearInterval(_this.loadTimer)
+                }
+            },200)
+        }
+    }
+
+    function loadData () {
+        if(handleSearch().specId){
+            ajax({
+                type:"GET",
+                url:"//las.secoo.com/api/giftpack/gift_img",
+                dataType:"json",
+                data:{
+                    "specId":handleSearch().specId,
+                },
+                success:function(data){
+                    var imgs = data.data.imgs;
+                    var img = null;
+                    for (a in imgs) {
+                        img = document.createElement('img');
+                        img.src = imgs[a]
+                        img.style.cssText = 'position: absolute; opacity: 0; width: 100%; z-index:-1;';
+                        document.body.appendChild(img)
+                    }
+                    load.setPro(100);
+                    box(data.data.imgs)
+                },
+                error:function(){
+                    console.log("error")
+                }
+            })
+        }else{
+            console.log('记得传参数哦！')
+        }
+    }
+
+    function box (imgs) {
         let cube = document.querySelector(".cube"),
             downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
         let boxX = 190,
@@ -111,7 +183,7 @@
         let initDegY = 0;      // 初始化时盒子的Y轴偏移量
         let translateZ = 500;  // 盒子的Z轴偏移量，值越大，盒子越大
 
-        let outImg = {}
+        let outImg = imgs
 
         let eleArr = {
             boxFront : cube.querySelector('.front'),
@@ -187,7 +259,7 @@
                 translateZ:(boxZ/2+2),
                 rotateX:0,
                 rotateY:0,
-                background: outImg.font
+                background: outImg.packageFrontImg || 'none'
             },
             outTop:{
                 width:boxX+4,
@@ -196,7 +268,25 @@
                 translateZ:(boxY/2+2),
                 rotateX:90,
                 rotateY:0,
-                background: outImg.top
+                background: outImg.packageTopImg || 'none'
+            },
+            outLeft:{
+                width:boxZ+4,
+                height:boxY+4,
+                lineHeight:boxY,
+                translateZ:(boxX/2+2),
+                rotateX:0,
+                rotateY:-90,
+                background: outImg.boxLeftTopImg || 'none'
+            },
+            outRight:{
+                width:boxZ+4,
+                height:boxY+4,
+                lineHeight:boxY,
+                translateZ:(boxX/2+2),
+                rotateX:0,
+                rotateY:90,
+                background: outImg.boxRightTopImg || 'none'
             },
             outEnd:{
                 width:boxX+4,
@@ -205,7 +295,7 @@
                 translateZ:(boxZ/2+2),
                 rotateX:0,
                 rotateY:180,
-                background: outImg.end
+                background: outImg.packageBackImg || 'none'
             },
             outBottom:{
                 width:boxX+4,
@@ -214,7 +304,7 @@
                 translateZ:(boxY/2+2),
                 rotateX:-90,
                 rotateY:0,
-                background: outImg.bottom
+                background: outImg.packageButtonImg || 'none'
             },
             coverFont:{
                 width:boxX+3,
@@ -457,6 +547,9 @@
 
     }
 </script>
+
+<!-- 主文件不可删除 -->
+<script type="text/javascript" src="//mstatic.secooimg.com/activity2018/all_min/js/activity2018.min.js"></script>
 
 </body>
 </html>

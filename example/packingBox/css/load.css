@@ -19,11 +19,22 @@ img {
   position: relative;
   top: 50%;
   transform: translateY(-60%);
+  line-height: 0;
+  text-align: center;
+}
+.loadBox:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 100%;
 }
 .loadBox img {
-  width: 100%;
+  width: 30%;
   max-width: 100%;
   animation: move 0.35s infinite alternate;
+  display: inline-block;
+  vertical-align: middle;
 }
 .loadBox .shadow {
   width: 5rem;
@@ -46,6 +57,7 @@ img {
   left: 50%;
   transform: translateX(-50%);
   line-height: 0;
+  text-align: left;
 }
 .loadBox .progressLine span {
   display: inline-block;
@@ -66,10 +78,10 @@ img {
 }
 @keyframes move {
   0% {
-    transform: translateY(0);
+    transform: translateY(2rem);
   }
   100% {
-    transform: translateY(-6.66666667rem);
+    transform: translateY(-4.66666667rem);
   }
 }
 @keyframes scale {

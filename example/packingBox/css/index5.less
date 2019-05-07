@@ -15,10 +15,10 @@ img{
 }
 
 html{
-    font-size: 4vw;
+    font-size: 10vw;
     height: 100%;
 }
-@rem:30rem;
+@rem:75rem;
 
 .loadMark{
     width: 100%;
@@ -35,11 +35,23 @@ html{
     position: relative;
     top: 50%;
     transform: translateY(-60%);
+    line-height: 0;
+    text-align: center;
+
+    &:before{
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        height: 100%;
+    }
 
     img{
-        width: 100%;
+        width: 30%;
         max-width: 100%;
         animation: move 0.35s infinite alternate;
+        display: inline-block;
+        vertical-align: middle;
     }
 
     .shadow{
@@ -64,6 +76,7 @@ html{
         left: 50%;
         transform: translateX(-50%);
         line-height: 0;
+        text-align: left;
 
         span{
             display: inline-block;
@@ -76,7 +89,7 @@ html{
     .textBox{
         width: 200/@rem;
         height: 40/@rem;
-        font: 28/@rem 'PingFangSC-Medium';
+        font: (28/@rem) 'PingFangSC-Medium';
         line-height: 40/@rem;
         position: absolute;
         top: 100%;
@@ -88,10 +101,10 @@ html{
 
 @keyframes move {
     0%{
-        transform: translateY(0);
+        transform: translateY(60/@rem);
     }
     100%{
-        transform: translateY(-200/@rem);
+        transform: translateY(-140/@rem);
     }
 }
 
