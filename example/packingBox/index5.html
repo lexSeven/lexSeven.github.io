@@ -6,32 +6,26 @@
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-    <!-- 公共样式不可删除 -->
-    <link rel="stylesheet" href="//mstatic.secooimg.com/activity2018/all_min/css/activity2018.min.css">
-
     <link rel="stylesheet" href="css/index5.css">
-
-    <!--添加听云监控-->
-    <script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>
 </head>
-<body uuid="page_app_${sectionid?c}" class="eventParent">
+<body>
 
-<!--<div class="loadMark">-->
-    <!--<img src="img/first.png" style="position: absolute; opacity: 0; width: 100%;">-->
-    <!--<img src="img/second.png" style="position: absolute; opacity: 0; width: 100%;">-->
-    <!--<img src="img/third.png" style="position: absolute; opacity: 0; width: 100%;">-->
-    <!--<img src="img/fourth.png" style="position: absolute; opacity: 0; width: 100%;">-->
-    <!--<img src="img/fifth.png" style="position: absolute; opacity: 0; width: 100%;">-->
+<div class="loadMark">
+    <img src="img/first.png" style="position: absolute; opacity: 0; width: 100%;">
+    <img src="img/second.png" style="position: absolute; opacity: 0; width: 100%;">
+    <img src="img/third.png" style="position: absolute; opacity: 0; width: 100%;">
+    <img src="img/fourth.png" style="position: absolute; opacity: 0; width: 100%;">
+    <img src="img/fifth.png" style="position: absolute; opacity: 0; width: 100%;">
 
-    <!--<div class="loadBox">-->
-        <!--<img id="img" src="img/first.png">-->
-        <!--<div class="shadow"></div>-->
-        <!--<div class="progressLine">-->
-            <!--<span style="width: 0%;" id="progress"></span>-->
-        <!--</div>-->
-        <!--<div class="textBox">loading…20%</div>-->
-    <!--</div>-->
-<!--</div>-->
+    <div class="loadBox">
+        <img id="img" src="img/first.png">
+        <div class="shadow"></div>
+        <div class="progressLine">
+            <span style="width: 0%;" id="progress"></span>
+        </div>
+        <div class="textBox">loading…0%</div>
+    </div>
+</div>
 
 <div class="wraper">
     <div class="cube">
@@ -53,6 +47,8 @@
 
         <div class="out outfont"></div>
         <div class="out outtop"></div>
+        <div class="out outleft"></div>
+        <div class="out outright"></div>
         <div class="out outend"></div>
         <div class="out outbottom"></div>
 
@@ -74,13 +70,7 @@
 
 <script>
 
-    var pageConfig = {
-        //全部js加载完成后的回调，与全局函数中同名函数的择一而用
-        jsLoaded: function() {
-            load.init()
-            loadData()
-        },
-    }
+
 
     handleSearch ()
     function handleSearch () {
@@ -111,7 +101,7 @@
 
             _this.n = 0;
             _this.loadDataTime = null;
-            _this.setPro(20)
+            _this.setPro(Math.floor(Math.random()*60))
         },
         setPro: function (num) {
             var _this = this;
@@ -119,19 +109,30 @@
             var line = document.querySelector('.loadMark .progressLine span');
             var text = document.querySelector('.loadMark .textBox');
             _this.loadDataTime = setInterval(function(){
-                n++;
-                line.style.width = n + '%';
-                text.innerHTML = 'loading…'+ n +'%'
-                if(n > num){
+                _this.n++;
+                line.style.width = _this.n + '%';
+                text.innerHTML = 'loading…'+ _this.n +'%'
+                if(_this.n >= num){
                     clearInterval(_this.loadDataTime)
                 }
-                if(num >= 98){
+                if(_this.n >= 98){
                     clearInterval(_this.loadDataTime)
                     clearInterval(_this.loadTimer)
+                    _this.callback()
                 }
-            },200)
+            },40)
+        },
+        callback: function(){
+            console.log('进入页面！')
+            var mark = document.querySelector('.loadMark');
+            mark.classList.add('out')
+            setTimeout(function(){
+                mark.remove()
+            },800);
         }
     }
+    load.init()
+    loadData()
 
     function loadData () {
         if(handleSearch().specId){
@@ -151,8 +152,8 @@
                         img.style.cssText = 'position: absolute; opacity: 0; width: 100%; z-index:-1;';
                         document.body.appendChild(img)
                     }
-                    load.setPro(100);
-                    box(data.data.imgs)
+                    // load.setPro(100);
+                    // box(data.data.imgs)
                 },
                 error:function(){
                     console.log("error")
@@ -161,6 +162,20 @@
         }else{
             console.log('记得传参数哦！')
         }
+
+        let outImg = {
+            packageFrontImg: 'img/6.png',
+            packageTopImg: 'img/2.png',
+            boxLeftTopImg: 'img/5.png',
+            packageButtonImg: 'img/1.png',
+            boxRightTopImg: 'img/2.png',
+            packageBackImg: 'img/1.png'
+        }
+
+        setTimeout(function(){ // 模拟ajax
+            load.setPro(100);
+            box(outImg)
+        },Math.floor(Math.random()*2000));
     }
 
     function box (imgs) {
@@ -193,6 +208,8 @@
             boxBottom : cube.querySelector('.bottom'),
             outFont: cube.querySelector('.outfont'),
             outTop: cube.querySelector('.outtop'),
+            outLeft: cube.querySelector('.outleft'),
+            outRight: cube.querySelector('.outright'),
             outEnd: cube.querySelector('.outend'),
             outBottom: cube.querySelector('.outbottom'),
             coverFont: cube.querySelector('.coverfont'),
@@ -206,7 +223,6 @@
             underRight: cube.querySelector('.underright'),
             underBottom: cube.querySelector('.underbottom'),
         };
-
         /*
         * 设定盒子中每一个面的宽，高，位置等信息，
         * 用对象来记录，主要方便后期对单独的一个面进行修改，而不需要另外去获取数据
@@ -483,24 +499,21 @@
             }
             document.ontouchmove = null;
         };
-    }
 
-
-
-
-    function css(target,styles){
-        if(target.length){
-            for(var i=0;i<target.length;i++){
+        function css(target,styles){
+            if(target.length){
+                for(var i=0;i<target.length;i++){
+                    for (let k in styles){
+                        target[i].style[k]=styles[k];
+                    }
+                }
+            }else{
                 for (let k in styles){
-                    target[i].style[k]=styles[k];
+                    target.style[k]=styles[k];
                 }
             }
-        }else{
-            for (let k in styles){
-                target.style[k]=styles[k];
-            }
         }
-    }
+
 
     // 去掉外包装
     // setTimeout(removeOut,100)
@@ -542,14 +555,9 @@
             setTimeout(removeOut2,1000)
             setTimeout(removeCover,1500)
         },1000);
-
-
-
+    }
     }
 </script>
-
-<!-- 主文件不可删除 -->
-<script type="text/javascript" src="//mstatic.secooimg.com/activity2018/all_min/js/activity2018.min.js"></script>
 
 </body>
 </html>

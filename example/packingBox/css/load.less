@@ -66,9 +66,12 @@ img{
     transform: translateX(-50%);
     line-height: 0;
     text-align: left;
+    position: relative;
 
     span{
-      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0;
       height: 10/@rem;
       border-radius: 5/@rem;
       background: #fff;
@@ -84,6 +87,7 @@ img{
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(20/@rem);
+    -webkit-transform: translateX(-50%) translateY(20/@rem);
     color: #fff;
   }
 }
