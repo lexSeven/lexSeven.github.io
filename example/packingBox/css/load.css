@@ -30,7 +30,7 @@ img {
   height: 100%;
 }
 .loadBox img {
-  width: 30%;
+  width: 40%;
   max-width: 100%;
   animation: move 0.35s infinite alternate;
   display: inline-block;
@@ -78,10 +78,10 @@ img {
 }
 @keyframes move {
   0% {
-    transform: translateY(2rem);
+    transform: translateY(0.66666667rem);
   }
   100% {
-    transform: translateY(-4.66666667rem);
+    transform: translateY(-0.66666667rem);
   }
 }
 @keyframes scale {
