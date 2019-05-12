@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/bodymovin.js"></script>
+    <style>
+        body{
+            margin: 0;
+            background: #ffc730;
+        }
+        #lottie{
+            width:100vw;
+            height:100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id="lottie"></div>
+
+<script>
+    var container = document.getElementById('lottie');
+    var animData = {
+        container: container,
+        renderer: 'svg',
+        loop: true,
+        prerender: false,
+        autoplay: true,
+        autoloadSegments: false,
+        path: 'js/data.json'
+    };
+
+    var anim;
+    var isHitting = false;
+
+
+    anim = bodymovin.loadAnimation(animData);
+    anim.addEventListener('DOMLoaded', startAnimation);
+
+    function hitComplete() {
+        isHitting = false;
+        anim.removeEventListener('loopComplete', hitComplete);
+    }
+
+
+    function startAnimation() {
+        anim.playSegments([
+            [0, 157],
+            [0, 157]
+        ], true);
+    }
+</script>
+
+</body>
+</html>
