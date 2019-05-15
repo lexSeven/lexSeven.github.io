@@ -1,0 +1,163 @@
+@mixin btn ($str: success) {
+  border-radius: 4px;
+  width: 650px;
+  height: 90px;
+
+  font-size: 34px;
+  line-height: 90px;
+  text-align: center;
+
+  color: #fff;
+
+  @if $str == success {
+    background: linear-gradient(40deg, #48BCE3, #36EEC9);
+  }@else if $str == disable {
+    background: #ccc;
+  }
+}
+
+@mixin flex ($num: 1) {
+  -webkit-box-flex    : $num;
+  -moz-box-flex       : $num;
+  -ms-flex            : $num;
+  -webkit-flex        : $num;
+  flex                : $num;
+}
+// 横轴方向的对齐方式 start、end、justify、center、space-around
+@mixin box-pack ($str) {
+  @if $str == start {
+    -webkit-justify-content: flex-start;
+    justify-content        : flex-start;
+  }@else if $str == end {
+    -webkit-justify-content: flex-end;
+    justify-content        : flex-end;
+  }@else if $str == justify {
+    -webkit-justify-content: space-between;
+    justify-content        : space-between;
+  }@else {
+    -webkit-justify-content: $str;
+    justify-content        : $str;
+  }
+}
+// 数轴方向的对齐方式 start、end、center、sretch、baseline
+@mixin box-align ($str) {
+  @if $str == start {
+    -webkit-align-items : flex-start;
+    align-items         : flex-start;
+  }@else if $str == end {
+    -webkit-align-items : flex-end;
+    align-items         : flex-end;
+  }@else {
+    -webkit-align-items : $str;
+    align-items         : $str;
+  }
+}
+
+@mixin order ($num: 1) {
+  -webkit-box-ordinal-group: $num;
+  -moz-box-ordinal-group   : $num;
+  -ms-flex-order           : $num;
+  -webkit-order            : $num;
+  order                    : $num;
+}
+
+%flex-horizontal {
+  display                : -webkit-box;
+  display                : -moz-box;
+  display                : -ms-flexbox;
+  display                : -webkit-flex;
+  display                : flex;
+
+  -webkit-box-orient     : horizontal;
+  -moz-box-orient        : horizontal;
+  -webkit-box-direction  : normal;
+  -moz-box-direction     : normal;
+  -webkit-box-lines      : multiple;
+  -moz-box-lines         : multiple;
+}
+
+%flex-vertical {
+  display                : -webkit-box;
+  display                : -moz-box;
+  display                : -ms-flexbox;
+  display                : -webkit-flex;
+  display                : flex;
+
+  -webkit-box-orient     : vertical;
+  -moz-box-orient        : vertical;
+  -webkit-box-direction  : normal;
+  -moz-box-direction     : normal;
+  -webkit-box-lines      : multiple;
+  -moz-box-lines         : multiple;
+}
+
+%flex-left {
+  @extend %flex-horizontal;
+  @include box-pack(start);
+}
+
+%flex-justify {
+  @extend %flex-horizontal;
+  @include box-pack(justify);
+}
+
+%flex-left-center {
+  @extend %flex-left;
+  @include box-align(center);
+}
+
+%flex-justify-center {
+  @extend %flex-justify;
+  @include box-align(center);
+}
+
+%flex-horizontal-start {
+  @extend %flex-horizontal;
+  @include box-pack(start);
+}
+
+%flex-vertical-between {
+  @extend %flex-horizontal;
+  @include box-pack(justify);
+}
+
+%flex-vertical-center {
+  @extend %flex-horizontal;
+  @include box-align(center);
+}
+
+%flex-horizontal-start {
+  @extend %flex-horizontal;
+  @include box-pack(start);
+}
+
+%flex-vertical-between {
+  @extend %flex-horizontal;
+  @include box-pack(justify);
+}
+
+%flex-vertical-center {
+  @extend %flex-horizontal;
+  @include box-align(center);
+}
+
+%text-ellipsis {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
+}
+
+@mixin text-ellipsis-more ($row: 1) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $row;
+  overflow: hidden;
+}
+
+%btn-success {
+  @include btn(success);
+}
+
+%btn-disable {
+  @include btn(disable);
+}

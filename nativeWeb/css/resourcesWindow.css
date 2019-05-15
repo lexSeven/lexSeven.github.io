@@ -1,0 +1,368 @@
+.resourcesWindow {
+  width: 60%;
+  height: 80%;
+  background: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  display: grid;
+  grid-auto-rows: 44px 29px 51px 1fr;
+}
+.topLine {
+  height: 44px;
+}
+.topLine .title {
+  float: left;
+}
+.topLine .title .icon {
+  width: 43px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.topLine .title .text {
+  height: 24px;
+  border-left: 1px solid #b9bab7;
+  padding-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.topLine .control {
+  float: right;
+}
+.topLine .control .item {
+  padding: 0 10px;
+  float: left;
+  height: 34px;
+  line-height: 34px;
+  cursor: pointer;
+}
+.topLine .control .item:hover {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+.topLine .control .item:hover svg {
+  color: #fff;
+}
+.topLine .control .item svg {
+  width: 16px;
+  vertical-align: middle;
+}
+.fileLine {
+  height: 29px;
+  line-height: 29px;
+  margin-bottom: -1px;
+}
+.fileLine .leftMenu {
+  float: left;
+}
+.fileLine .leftMenu .item {
+  padding: 0 25px;
+  float: left;
+  color: #333;
+  height: 29px;
+}
+.fileLine .leftMenu .item.active {
+  background: #333;
+  color: #fff;
+}
+.fileLine .rightBtn {
+  float: right;
+  height: 29px;
+  line-height: 29px;
+  padding-right: 10px;
+}
+.fileLine .rightBtn svg {
+  width: 20px;
+  height: 29px;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+.router {
+  height: 51px;
+  border-top: 1px solid #a2a1a2;
+  border-bottom: 1px solid #a2a1a2;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+.router .item {
+  width: 30px;
+  height: 30px;
+  padding: 10px 7px;
+  text-align: center;
+  line-height: 30px;
+}
+.router .item svg {
+  width: 24px;
+  vertical-align: middle;
+}
+.router .routeBox {
+  flex: 1;
+  height: 30px;
+  border: 1px solid #8b8a8b;
+  background: rgba(255, 255, 255, 0.9);
+  margin-top: 10px;
+  border-radius: 3px;
+  line-height: 30px;
+  margin-right: 20px;
+}
+.router .routeBox .next {
+  width: 10px;
+  height: 30px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.router .routeBox .next svg {
+  width: 8px;
+  margin-top: 3px;
+}
+.router .routeBox .text {
+  vertical-align: middle;
+}
+.router .routeBox .item {
+  padding: 0;
+  vertical-align: middle;
+}
+.router .searchBox {
+  width: 240px;
+  height: 30px;
+  border: 1px solid #8b8a8b;
+  background: rgba(255, 255, 255, 0.9);
+  margin-top: 10px;
+  border-radius: 3px;
+  line-height: 30px;
+  margin-right: 20px;
+}
+.router .searchBox .next {
+  width: 10px;
+  height: 30px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.router .searchBox .next svg {
+  width: 8px;
+  margin-top: 3px;
+}
+.router .searchBox .text {
+  vertical-align: middle;
+}
+.router .searchBox .item {
+  padding: 0;
+  vertical-align: middle;
+}
+.content {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+}
+.content .leftMenu {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  border-right: 1px solid #fff;
+  padding: 10px 0 0 0;
+  box-sizing: border-box;
+}
+.content .rightContent {
+  height: 100%;
+  box-sizing: border-box;
+  padding-top: 35px;
+}
+.menuMain {
+  cursor: pointer;
+}
+.menuMain .line {
+  height: 36px;
+  line-height: 36px;
+}
+.menuMain .line:hover {
+  background: rgba(121, 190, 255, 0.1);
+}
+.menuMain .title {
+  padding-left: 17px;
+}
+.menuMain .item {
+  padding-left: 50px;
+}
+.menuMain .icon {
+  width: 30px;
+  height: 36px;
+  float: left;
+  background: url("../img/resourcesIcon.png") no-repeat;
+}
+.menuMain .icon.quick {
+  background-position: 0 0;
+}
+.menuMain .icon.desk {
+  background-position: -30px 0;
+}
+.menuMain .icon.download {
+  background-position: -60px 0;
+}
+.menuMain .icon.document {
+  background-position: -90px 0;
+}
+.menuMain .icon.image {
+  background-position: -120px 0;
+}
+.menuMain .icon.file {
+  background-position: -150px 0;
+}
+.menuMain .icon.myDownload {
+  background-position: 0 -36px;
+}
+.menuMain .icon.oneDrive {
+  background-position: -150px -36px;
+}
+.menuMain .icon.computer {
+  background-position: 0 -72px;
+}
+.menuMain .icon.video {
+  background-position: -30px -36px;
+}
+.menuMain .icon.music {
+  background-position: -60px -36px;
+}
+.menuMain .icon.diskC {
+  background-position: -90px -36px;
+}
+.menuMain .icon.diskD {
+  background-position: -120px -36px;
+}
+.menuMain .icon.music {
+  background-position: -60px -36px;
+}
+.menuMain .text {
+  padding-left: 7px;
+  float: left;
+  color: #333;
+}
+.rightContent .contBox {
+  padding: 0 20px;
+}
+.rightContent .title {
+  height: 26px;
+  line-height: 26px;
+  display: grid;
+  grid-template-columns: minmax(50px, auto) 1fr;
+}
+.rightContent .title span {
+  padding-right: 6px;
+  cursor: pointer;
+}
+.rightContent .title span svg {
+  width: 10px;
+  vertical-align: middle;
+  padding-right: 6px;
+}
+.rightContent .title em {
+  height: 1px;
+  background: #c3c2c1;
+  align-self: center;
+}
+.rightContent .contMain {
+  padding-top: 13px;
+  min-height: 186px;
+  display: grid;
+  grid-template-columns: repeat(3, 177px);
+  grid-template-rows: repeat(auto-fill, 80px);
+}
+.rightContent .contMain .item {
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 13px;
+  border: 2px solid rgba(255, 255, 255, 0);
+  cursor: pointer;
+}
+.rightContent .contMain .item:hover {
+  background: rgba(150, 150, 150, 0.1);
+}
+.rightContent .contMain .item.active {
+  border: 2px solid #ffffff;
+  background: rgba(0, 0, 0, 0.1);
+}
+.rightContent .contMain .item i {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  background: url("../img/resourcesIconB.png") no-repeat;
+}
+.rightContent .contMain .item i.video {
+  background-position: 0 0;
+}
+.rightContent .contMain .item i.image {
+  background-position: -50px 0;
+}
+.rightContent .contMain .item i.document {
+  background-position: -100px 0;
+}
+.rightContent .contMain .item i.download {
+  background-position: -150px 0;
+}
+.rightContent .contMain .item i.music {
+  background-position: 0 -50px;
+}
+.rightContent .contMain .item i.desk {
+  background-position: -50px -50px;
+}
+.rightContent .contMain .item span {
+  line-height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.rightContent .resourcesMain {
+  padding-top: 13px;
+}
+.rightContent .diskItem {
+  width: 210px;
+  height: 72px;
+  float: left;
+  margin-right: 70px;
+}
+.rightContent .diskItemLeft {
+  width: 50px;
+  float: left;
+  line-height: 50px;
+}
+.rightContent .diskItemLeft i {
+  display: inline-block;
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  line-height: 44px;
+  text-align: center;
+  font-style: normal;
+  margin-top: 13px;
+  color: #fff;
+  background: url("../img/resourcesIconB.png") no-repeat -100px -50px;
+}
+.rightContent .diskItemRight {
+  float: left;
+}
+.rightContent .diskItemRight .name {
+  line-height: 30px;
+}
+.rightContent .diskItemRight .progress {
+  width: 160px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid #c3c3c3;
+  background: rgba(255, 255, 255, 0.3);
+}
+.rightContent .diskItemRight .progress span {
+  display: inline-block;
+  width: 30%;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.5);
+}
+.rightContent .diskItemRight .desc {
+  line-height: 26px;
+  font-size: 12px;
+  color: #6a6a6a;
+}
+/*# sourceMappingURL=resourcesWindow.css.map */

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/bodymovin.js"></script>
     <style>
         body{
             margin: 0;
@@ -20,10 +19,13 @@
             margin: auto;
         }
     </style>
+    <script src="js/lottie.min.js"></script>
 </head>
 <body>
 
-<div id="lottie"></div>
+<div id="lottie">
+    askudhaisjd
+</div>
 
 <script>
     var container = document.getElementById('lottie');
@@ -37,25 +39,11 @@
         path: 'js/data.json'
     };
 
-    var anim;
-    var isHitting = false;
-
-
-    anim = bodymovin.loadAnimation(animData);
-    anim.addEventListener('DOMLoaded', startAnimation);
-
-    function hitComplete() {
-        isHitting = false;
-        anim.removeEventListener('loopComplete', hitComplete);
-    }
-
-
-    function startAnimation() {
-        anim.playSegments([
-            [0, 157],
-            [0, 157]
-        ], true);
-    }
+    var anim = bodymovin.loadAnimation(animData);
+    anim.playSegments([
+        [0, 141],
+        [0, 141]
+    ], true);
 </script>
 
 </body>

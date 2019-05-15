@@ -1,0 +1,65 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p{
+  margin: 0;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+img{
+  max-width: 100%;
+  vertical-align: top;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+input{
+  outline:none;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.clear:after{
+  content: '';
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  clear: both;
+}
+
+.center{
+  line-height: 0;
+  font-size: 0;
+
+  &:before{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+  }
+}
+@mixin top {
+  border-top: 1px solid;
+  //-webkit-border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' …%25' height='100%25' stroke-width='25%25' stroke='%23E1E1E1'/%3E%3C/svg%3E") 1 stretch;
+  //border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' …%25' height='100%25' stroke-width='25%25' stroke='%23BBBBBB'/%3E%3C/svg%3E") 1 stretch;
+}
+@mixin bottom {
+  border-bottom: 1px solid;
+  //-webkit-border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' …%25' height='100%25' stroke-width='25%25' stroke='%23E1E1E1'/%3E%3C/svg%3E") 1 stretch;
+  //border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' …%25' height='100%25' stroke-width='25%25' stroke='%23BBBBBB'/%3E%3C/svg%3E") 1 stretch;
+}
