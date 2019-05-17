@@ -1,0 +1,53 @@
+.rightMenu {
+  width: 316px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid #899;
+}
+.rightMenu ul {
+  padding: 5px 0 6px;
+  border-bottom: 1px solid #c3c4c4;
+}
+.rightMenu ul:last-child {
+  border: 0;
+}
+.rightMenu ul li {
+  height: 38px;
+  line-height: 38px;
+  padding-left: 11px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.rightMenu ul li:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.rightMenu ul li i {
+  width: 39px;
+  float: left;
+  text-align: center;
+}
+.rightMenu ul li i svg {
+  width: 20px;
+  margin-top: 9px;
+}
+.rightMenu ul li span {
+  float: left;
+}
+.rightMenu ul li em {
+  min-width: 39px;
+  text-align: right;
+  float: right;
+  padding-right: 10px;
+  font-style: normal;
+}
+.rightMenu ul li em svg {
+  width: 20px;
+  margin-top: 9px;
+}
+.rightMenu ul li em .arrow {
+  width: 10px;
+  margin-top: 4px;
+}
+/*# sourceMappingURL=rightMenu.css.map */

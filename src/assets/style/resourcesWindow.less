@@ -1,0 +1,410 @@
+.resourcesWindow{
+  width:60%;
+  height:80%;
+  background: rgba(255,255,255,0.8);
+  position: fixed;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 3px;
+  border:1px solid rgba(0,0,0,0.3);
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.8);
+  display: grid;
+  grid-auto-rows: 44px 29px 51px 1fr;
+}
+
+.topLine{
+  height:44px;
+  .title{
+    float: left;
+    .icon{
+      width:43px;
+      height:44px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .text{
+      height:24px;
+      border-left:1px solid #b9bab7;
+      padding-left:10px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .control{
+    float: right;
+    .item{
+      padding:0 10px;
+      float: left;
+      height:34px;
+      line-height:34px;
+      cursor: pointer;
+
+      &:hover{
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+
+        svg{
+          color: #fff;
+        }
+
+      }
+
+      svg{
+        width:16px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.fileLine{
+  height:29px;
+  line-height:29px;
+  margin-bottom: -1px;
+
+  .leftMenu{
+    float: left;
+    .item{
+      padding:0 25px;
+      float: left;
+      color: #333;
+      height:29px;
+      &.active{
+        background: #333;
+        color: #fff;
+      }
+    }
+  }
+
+  .rightBtn{
+    float: right;
+    height:29px;
+    line-height:29px;
+    padding-right:10px;
+    svg{
+      width:20px;
+      height:29px;
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+  }
+
+}
+
+.router{
+  height:51px;
+  border-top:1px solid #a2a1a2;
+  border-bottom:1px solid #a2a1a2;
+  background: rgba(0,0,0,0.1);
+  display: flex;
+  width:100%;
+  box-sizing: border-box;
+
+
+  .item{
+    width:30px;
+    height:30px;
+    padding:10px 7px;
+    //float: left;
+    text-align: center;
+    line-height:30px;
+    svg{
+      width: 24px;
+      vertical-align: middle;
+    }
+  }
+
+  .routeBox{
+    flex: 1;
+    height: 30px;
+    border:1px solid #8b8a8b;
+    background: rgba(255,255,255,0.9);
+    margin-top:10px;
+    border-radius: 3px;
+    line-height:30px;
+    margin-right:20px;
+
+    .next{
+      width:10px;
+      height:30px;
+      vertical-align: middle;
+      display: inline-block;
+      svg{
+        width:8px;
+        margin-top:3px;
+      }
+    }
+
+    .text{
+      vertical-align: middle;
+    }
+
+    .item{
+      padding:0;
+      vertical-align: middle;
+    }
+  }
+
+  .searchBox{
+    width: 240px;
+    height: 30px;
+    border:1px solid #8b8a8b;
+    background: rgba(255,255,255,0.9);
+    margin-top:10px;
+    border-radius: 3px;
+    line-height:30px;
+    margin-right:20px;
+
+    .next{
+      width:10px;
+      height:30px;
+      vertical-align: middle;
+      display: inline-block;
+      svg{
+        width:8px;
+        margin-top:3px;
+      }
+    }
+
+    .text{
+      vertical-align: middle;
+    }
+
+    .item{
+      padding:0;
+      vertical-align: middle;
+    }
+  }
+
+}
+
+.content{
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  .leftMenu{
+    height:100%;
+    background: rgba(255,255,255,0.4);
+    border-right: 1px solid #fff;
+    padding:10px 0 0 0;
+    box-sizing: border-box;
+  }
+  .rightContent{
+    height:100%;
+    box-sizing: border-box;
+    padding-top:35px;
+  }
+}
+
+.menuMain{
+  cursor: pointer;
+  .line{
+    height:36px;
+    line-height:36px;
+    &:hover{
+      background: rgba(121,190,255,0.1);
+    }
+  }
+  .title{
+    padding-left:17px;
+  }
+  .item{
+    padding-left:50px;
+  }
+  .icon{
+    width:30px;
+    height:36px;
+    float: left;
+    background: url("../images/resourcesIcon.png") no-repeat;
+
+    &.quick{
+      background-position: 0 0;
+    }
+    &.desk{
+      background-position: -30px 0;
+    }
+    &.download{
+      background-position: -60px 0;
+    }
+    &.document{
+      background-position: -90px 0;
+    }
+    &.image{
+      background-position: -120px 0;
+    }
+    &.file{
+      background-position: -150px 0;
+    }
+    &.myDownload{
+      background-position: 0 -36px;
+    }
+    &.oneDrive{
+      background-position: -150px -36px;
+    }
+    &.computer{
+      background-position: 0 -72px;
+    }
+    &.video{
+      background-position: -30px -36px;
+    }
+    &.music{
+      background-position: -60px -36px;
+    }
+    &.diskC{
+      background-position: -90px -36px;
+    }
+    &.diskD{
+      background-position: -120px -36px;
+    }
+    &.music{
+      background-position: -60px -36px;
+    }
+
+  }
+  .text{
+    padding-left: 7px;
+    float: left;
+    color: #333;
+  }
+}
+
+.rightContent{
+  .contBox{
+    padding:0 20px;
+  }
+  .title{
+    height:26px;
+    line-height:26px;
+    display: grid;
+    grid-template-columns: minmax(50px,auto) 1fr;
+
+    span{
+      padding-right:6px;
+      cursor: pointer;
+      svg{
+        width:10px;
+        vertical-align: middle;
+        padding-right:6px;
+      }
+    }
+
+    em{
+      height:1px;
+      background: #c3c2c1;
+      align-self: center;
+    }
+
+  }
+  .contMain{
+    padding-top:13px;
+    min-height: 186px;
+    display: grid;
+    grid-template-columns: repeat(3,177px);
+    grid-template-rows: repeat(auto-fill,80px);
+
+    .item{
+      box-sizing: border-box;
+      border-radius: 3px;
+      padding:13px;
+      border:2px solid rgba(255,255,255,0);
+      cursor: pointer;
+
+      &:hover{
+        background: rgba(150,150,150,0.1);
+      }
+
+      &.active{
+        border:2px solid rgba(255,255,255,1);
+        background: rgba(0,0,0,0.1);
+      }
+
+      i{
+        display: inline-block;
+        width:50px;
+        height:50px;
+        vertical-align: middle;
+        background: url("../images/resourcesIconB.png") no-repeat;
+        &.video{
+          background-position: 0 0;
+        }
+        &.image{
+          background-position: -50px 0;
+        }
+        &.document{
+          background-position: -100px 0;
+        }
+        &.download{
+          background-position: -150px 0;
+        }
+        &.music{
+          background-position: 0 -50px;
+        }
+        &.desk{
+          background-position: -50px -50px;
+        }
+      }
+      span{
+        line-height:24px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+    }
+
+  }
+  .resourcesMain{
+    padding-top:13px;
+  }
+  .diskItem{
+    width:210px;
+    height:72px;
+    float: left;
+    margin-right:70px;
+  }
+
+  .diskItemLeft{
+    width: 50px;
+    float: left;
+    line-height:50px;
+
+    i{
+      display: inline-block;
+      vertical-align: middle;
+      width:50px;
+      height:50px;
+      line-height:44px;
+      text-align: center;
+      font-style: normal;
+      margin-top:13px;
+      color: #fff;
+      background: url("../images/resourcesIconB.png") no-repeat -100px -50px;
+    }
+
+  }
+  .diskItemRight{
+    float: left;
+    .name{
+      line-height:30px;
+    }
+    .progress{
+      width:160px;
+      height: 16px;
+      box-sizing: border-box;
+      border: 1px solid #c3c3c3;
+      background: rgba(255,255,255,0.3);
+      span{
+        display: inline-block;
+        width:30%;
+        height:100%;
+        background: rgba(255,0,0,0.5);
+      }
+    }
+    .desc{
+      line-height:26px;
+      font-size:12px;
+      color: #6a6a6a;
+    }
+  }
+
+}
+

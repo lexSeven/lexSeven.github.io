@@ -1,0 +1,111 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  font-family: '微软雅黑', arial;
+  font-size: 14px;
+  font-weight: 200;
+  color: #666;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+dl,
+dd {
+  margin: 0;
+}
+img {
+  vertical-align: top;
+}
+.clear:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.deskTop {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 17px 20px 116px;
+  background-image: url("../images/wallhaven-427645.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-direction: column;
+}
+.deskTop .item {
+  width: 104px;
+  height: 104px;
+  background-image: url("../images/deskIcon.png");
+  background-repeat: no-repeat;
+  position: relative;
+  margin: 13px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.deskTop .item:hover {
+  background-color: rgba(17, 96, 141, 0.3);
+}
+.deskTop .item.focus {
+  background-color: rgba(17, 96, 141, 0.3);
+}
+.deskTop .item .name {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  position: absolute;
+  top: 75px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 3px #000000;
+}
+.deskTop .myComputer {
+  background-position: 0 0;
+}
+.deskTop .webStorm {
+  background-position: -104px 0;
+}
+.deskTop .qqMusic {
+  background-position: -208px 0;
+}
+.deskTop .browser {
+  background-position: -312px 0;
+}
+.deskTop .hBuilder {
+  background-position: -416px 0;
+}
+.deskTop .sublime {
+  background-position: -520px 0;
+}
+.deskTop .recycle {
+  background-position: -624px 0;
+}
+.deskTop .file {
+  background-position: 0 -104px;
+}
+.deskTop .qq {
+  background-position: -104px -104px;
+}
+.deskTop .mine {
+  background-position: -208px -104px;
+}
+@keyframes blurIn {
+  0% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(5px);
+    opacity: 0.8;
+  }
+}
+/*# sourceMappingURL=comment.css.map */

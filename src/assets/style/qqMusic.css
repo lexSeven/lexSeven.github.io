@@ -1,0 +1,560 @@
+.qqMusicPlay {
+  width: 1010px;
+  height: 690px;
+  position: absolute;
+  top: 200px;
+  left: 300px;
+  background: rgba(255, 255, 255, 0.3) url("../images/wallhaven.jpg") no-repeat fixed;
+  background-size: cover;
+  display: grid;
+  grid-template-rows: 1fr 70px;
+  grid-template-columns: 200px 1fr;
+  color: #000;
+  overflow: hidden;
+}
+.qqMleftMenu {
+  background: rgba(234, 234, 234, 0.7);
+  display: grid;
+  grid-template-rows: 147px 1fr;
+}
+.qqMleftMenu .userInfo {
+  background: rgba(234, 234, 234, 0.3);
+}
+.qqMleftMenu .userInfo .userHead {
+  width: 54px;
+  height: 54px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 31px auto 9px;
+}
+.qqMleftMenu .userInfo .userHead img {
+  width: 54px;
+  height: 54px;
+}
+.qqMleftMenu .userInfo .userDesc {
+  text-align: center;
+  height: 25px;
+  line-height: 25px;
+  cursor: pointer;
+}
+.qqMleftMenu .userInfo .userDesc span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.qqMleftMenu .leftScrollBox {
+  position: relative;
+  overflow: hidden;
+}
+.qqMleftMenu .menuBox {
+  padding: 14px 0 0 20px;
+  line-height: 28px;
+}
+.qqMleftMenu .menuBox .menuMain {
+  width: 160px;
+  padding-bottom: 10px;
+}
+.qqMleftMenu .menuBox .menuTit {
+  height: 28px;
+  padding-left: 10px;
+  margin-bottom: 6px;
+}
+.qqMleftMenu .menuBox .menuItem {
+  height: 28px;
+  padding-left: 10px;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+.qqMleftMenu .menuBox .menuItem span {
+  vertical-align: middle;
+  padding-left: 6px;
+}
+.qqMleftMenu .menuBox .menuItem:hover {
+  background: #e8e8e8;
+}
+.qqMleftMenu .menuBox .menuItem.active {
+  background: #31c27c;
+  color: #fff;
+}
+.qqMleftMenu .menuBox .funcBtn {
+  width: 24px;
+  height: 28px;
+  float: right;
+  font-style: normal;
+  cursor: pointer;
+  text-align: center;
+}
+.qqMleftMenu .menuBox .funcBtn:hover {
+  background: rgba(234, 234, 234, 0.8);
+}
+.qqMleftMenu .menuBox .funcBtn svg {
+  width: 14px;
+  vertical-align: middle;
+}
+.qqMContent {
+  background: rgba(234, 234, 234, 0.5);
+}
+.qqMContent .contHead {
+  height: 24px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 13px 0 13px 10px;
+}
+.qqMContent .contHead i {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin: 0 4px;
+  cursor: pointer;
+  border-radius: 3px;
+  line-height: 24px;
+  text-align: center;
+}
+.qqMContent .contHead i:hover {
+  background: #e1e1e1;
+}
+.qqMContent .contHead .fa-redo {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin: 0 4px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.qqMContent .contHead .fa-redo:hover {
+  background: #e1e1e1;
+}
+.qqMContent .contHead .fa-redo svg {
+  width: 14px;
+}
+.qqMContent .contHead .listening {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin: 0 4px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.qqMContent .contHead .listening:hover {
+  background: #e1e1e1;
+}
+.qqMContent .contHead .listening svg {
+  width: 18px;
+}
+.qqMContent .contHead .inpBox {
+  display: inline-block;
+  width: 200px;
+  height: 24px;
+  background: rgba(200, 200, 200, 0.8);
+  border-radius: 12px;
+  vertical-align: middle;
+  cursor: text;
+}
+.qqMContent .contHead .inpBox svg {
+  width: 12px;
+  padding: 0 0 2px 5px;
+  vertical-align: middle;
+}
+.qqMContent .contHead .inpBox svg:hover {
+  background: transparent;
+}
+.qqMContent .contHead .inpBox input {
+  outline: none;
+  height: 24px;
+  line-height: 24px;
+  border: 0;
+  background: transparent;
+}
+.qqMContent .contHead .right {
+  float: right;
+  padding-right: 10px;
+}
+.qqMContent .contHead .right svg {
+  width: 14px;
+  padding: 0 4px;
+}
+.qqMContent .silder {
+  height: 225px;
+  background: rgba(234, 234, 234, 0.3);
+  -moz-user-select: none;
+  perspective: 1000px;
+  perspective-origin: center 200px;
+}
+.qqMContent .silder .silderMain {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 50px 25px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+.qqMContent .silder .card {
+  width: 350px;
+  height: 176px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8), 0 0 10px 0 rgba(71, 30, 0, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  float: left;
+  position: absolute;
+  transition: 0.5s;
+}
+.qqMContent .silder .card img {
+  width: 100%;
+  height: 100%;
+}
+.qqMContent .silder .card span {
+  width: 100%;
+  height: 24px;
+  padding: 5px 10px;
+  font-size: 14px;
+  line-height: 24px;
+  text-indent: 4px;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0), #999);
+  color: #fff;
+}
+.qqMContent .silder .card.active {
+  margin-top: -9px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8), 0 0 70px 0 rgba(71, 30, 0, 0.2);
+}
+.qqMContent .musicLab .musicLabTit {
+  height: 35px;
+  background: rgba(255, 255, 255, 0.4);
+  font: 14px/26px '微软雅黑';
+  color: #000;
+  word-spacing: 30px;
+  text-align: center;
+}
+.qqMContent .musicLab .musicLabTit span {
+  display: inline-block;
+}
+.qqMContent .musicLab .musicLabTit span.active {
+  color: #31c27c;
+}
+.qqMContent .musicLab .musicLabTit span.active:after {
+  content: '';
+  display: block;
+  position: relative;
+  bottom: -8px;
+  width: 100%;
+  height: 2px;
+  background-color: #31c27c;
+}
+.qqMContent .musicLab .searchTit {
+  border-top: 1px solid #e9e9e9;
+  background: rgba(234, 234, 234, 0.1);
+  height: 53px;
+  font: 14px/53px '微软雅黑';
+  color: #000;
+}
+.qqMContent .musicLab .searchTit span {
+  display: inline-block;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.qqMContent .musicLab .searchTit span:hover {
+  color: #31c27c;
+}
+.qqMContent .musicLab .searchTit span.active {
+  color: #31c27c;
+}
+.qqMContent .musicLab .searchTit span.active:after {
+  content: '';
+  display: block;
+  position: relative;
+  bottom: 1px;
+  width: 100%;
+  height: 2px;
+  background-color: #31c27c;
+}
+.qqMContent .musicLab .searchTit .resList {
+  float: left;
+  height: 53px;
+}
+.qqMContent .musicLab .searchTit .response {
+  height: 53px;
+  float: right;
+  font-size: 12px;
+  line-height: 55px;
+  overflow: hidden;
+  padding-right: 30px;
+  color: #929292;
+}
+.qqMContent .musicLab .searchTit .response em {
+  color: #494949;
+}
+.qqMContent .musicLab_musicList {
+  display: grid;
+  background: linear-gradient(rgba(234, 234, 234, 0.1), rgba(255, 255, 255, 0.8));
+  grid-template-rows: 54px 29px  1fr;
+  padding: 12px 30px;
+}
+.qqMContent .musicLab_musicList .musicListTit {
+  font: 16px/54px '微软雅黑';
+  display: flex;
+  justify-content: space-between;
+}
+.qqMContent .musicLab_musicList .musicType {
+  height: 29px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 87px);
+  justify-content: space-between;
+}
+.qqMContent .musicLab_musicList .musicType span {
+  background: #ffffff;
+  text-align: center;
+  font: 14px/29px '微软雅黑';
+}
+.qqMContent .musicLab_musicList .recommend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 131px);
+  grid-template-rows: repeat(auto-fill, 231px);
+  justify-content: space-between;
+  padding-top: 25px;
+}
+.qqMContent .musicLab_musicList .recommend li .imgbox {
+  width: 131px;
+  height: 131px;
+  position: relative;
+}
+.qqMContent .musicLab_musicList .recommend li .musicListTitle {
+  padding-top: 12px;
+  font: 14px/20px '微软雅黑';
+  word-break: break-all;
+}
+.qqMContent .musicLab_musicList .recommend li .musicListDesc {
+  font-size: 12px;
+  line-height: 24px;
+  color: #646464;
+}
+.qqMContent .searchResaultList {
+  background: rgba(255, 255, 255, 0.8);
+  min-height: 100%;
+  padding: 0 30px;
+}
+.qqMContent .searchResaultList li {
+  height: 47px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  line-height: 47px;
+}
+.qqMContent .searchResaultList li .songName {
+  width: 50%;
+}
+.qqMContent .searchResaultList li .singer {
+  width: 15%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.qqMContent .searchResaultList li .album {
+  width: 20%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.qqMContent .searchResaultList li .duration {
+  width: 15%;
+}
+.qqMContent .scrollBox {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.qqMControl {
+  background: #f7f7f7;
+  text-align: center;
+  line-height: 70px;
+  border-top: 1px solid #e5e5e5;
+}
+.qqMControl .btn {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #31c27c;
+  font-size: 50px;
+  line-height: 26px;
+  cursor: pointer;
+}
+.qqMControl .btn:active {
+  color: #4de99e;
+}
+.qqMControl .playBtn {
+  width: 50px;
+  height: 50px;
+  font-size: 70px;
+  line-height: 40px;
+}
+.qqMProgress {
+  border-top: 1px solid #e5e5e5;
+  background: #fcfcfc;
+  display: flex;
+}
+.qqMProgress .cdDesk {
+  width: 70px;
+  height: 68px;
+  background: #f5f5f5;
+}
+.qqMProgress .cdDesk img {
+  width: 100%;
+  height: 100%;
+}
+.qqMProgress .soundEffect {
+  width: 40px;
+  padding: 6px 15px 15px;
+}
+.qqMProgress .soundEffect .effBtn {
+  width: 38px;
+  height: 13px;
+  border: 1px solid #4c4c4c;
+  border-radius: 2px;
+  line-height: 13px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 9px;
+}
+.qqMProgress .soundEffect .effBtn span {
+  display: inline-block;
+  transform: scale(0.83333);
+}
+.qqMProgress .soundEffect .effBtn i {
+  font-size: 12px;
+}
+.qqMProgress .playLine {
+  width: 381px;
+  padding-right: 13px;
+}
+.qqMProgress .playLine .inf {
+  height: 40px;
+  line-height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+.qqMProgress .playLine .inf span {
+  font-size: 14px;
+  color: #666;
+}
+.qqMProgress .playLine .inf em {
+  font-size: 12px;
+  font-style: normal;
+  color: #ddd;
+}
+.qqMProgress .playLine .proMain {
+  height: 2px;
+  padding: 5px 0;
+  background: #efefef;
+  background-clip: content-box;
+  border-radius: 1px;
+}
+.qqMProgress .playLine .proMain span {
+  height: 100%;
+  width: 0%;
+  background: #31c27c;
+  display: block;
+  transition: 0.2s;
+}
+.qqMProgress .fnBtn {
+  padding: 0 13px;
+  line-height: 70px;
+}
+.qqMProgress .fnBtn i {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.qqMProgress .fnBtn em {
+  display: inline-block;
+  margin-left: -10px;
+  line-height: 60px;
+  font-size: 12px;
+  transform: scale(0.83333);
+  vertical-align: bottom;
+}
+.qqMenu {
+  width: 260px;
+  height: 443px;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50px;
+  right: -12px;
+}
+.qqMenu .menuTop {
+  height: 176px;
+  box-sizing: border-box;
+  padding: 12px 16px 14px;
+  border-bottom: 1px solid #f5f5f5;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 75px);
+  grid-template-columns: repeat(auto-fill, 76px);
+  text-align: center;
+  font-size: 12px;
+}
+.qqMenu .menuTop li {
+  border-radius: 3px;
+  cursor: pointer;
+}
+.qqMenu .menuTop li:hover {
+  background: #f1f1f1;
+}
+.qqMenu .menuTop i {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  padding-top: 15px;
+  font-size: 50px;
+}
+.qqMenu .menuTop span {
+  display: inline-block;
+  width: 100%;
+  line-height: 30px;
+}
+.qqMenu .setList {
+  padding: 10px 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f5f5f5;
+}
+.qqMenu .setList li {
+  height: 32px;
+  line-height: 32px;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 10px 0 16px;
+}
+.qqMenu .setList li:hover {
+  background: #f1f1f1;
+}
+.qqMenu .setList i {
+  width: 30px;
+  height: 32px;
+  float: left;
+  line-height: 30px;
+  margin-right: -30px;
+  font-size: 22px;
+}
+.qqMenu .setList span {
+  float: left;
+  position: relative;
+  left: 30px;
+}
+.qqMenu .setList em {
+  width: 32px;
+  height: 32px;
+  float: right;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: right;
+}
+.qqMenu .setList:last-child {
+  border: 0;
+}
+/*# sourceMappingURL=qqMusic.css.map */

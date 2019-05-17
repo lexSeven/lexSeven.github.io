@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+"pushState" in window.history && (
+    window.history.pushState({
+        title: document.title,
+        url: location.href
+    }, document.title, location.href),
+    setTimeout(function () {
+        window.addEventListener("popstate", function (a) {
+            alert('点击了回退');
+            return false;
+        })
+    }, 1000)
+);
+</script>
+
+</body>
+</html>

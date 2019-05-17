@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/doc.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="content swiper-container">
+    <div class="swiper-wrapper"></div>
+</div>
+
+<script>
+    var page = {
+        src:'',
+        autoplay:'',
+        controls:'',
+        loop:'',
+        poster:'',
+        data:data,
+        playStatus:false,
+        parentNode:document.querySelector('.swiper-wrapper'),
+        init:function(){
+            var _this = page;
+            var str = '';
+            _this.data.forEach(function(item){
+                str += '<div data-playvideo="javascript" class="item swiper-slide">\
+                            <img src="'+ item.coverImg +'">\
+                            <video preload width="100%" height="100%" class="video" src="'+ item.video +'"></video>\
+                        </div>'
+            })
+            _this.parentNode.innerHTML = str;
+
+            _this.swiper = new Swiper('.content',{
+                direction: 'vertical',
+                on: {
+                    slideChangeTransitionEnd: function(){
+                        _this.nowVideo.pause();
+                        _this.playStatus = false;
+                        _this.eventLib.playvideo({
+                            obj:this.el.querySelectorAll('.swiper-slide')[this.activeIndex]
+                        })
+                        // alert(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+                    },
+                },
+            });
+            _this.bindEvent();
+        },
+        bindEvent:function(){
+            var _this = page;
+            bind(document,'touchend',function( ev ){
+                var ev = ev || event;
+                var target = ev.target || ev.srcElement;
+                var dataset = target.dataset || $(target).data();
+                var parent = target.parentNode;
+                var num = 0;
+
+                for( a in dataset){
+                    num ++ ;
+                }
+
+                if(num<1){
+                    popup(parent);
+                    num = 0;
+                }else{
+                    for(b in dataset){
+                        if(_this.eventLib[b]){
+                            _this.eventLib[b]({obj:target,ev:ev,target:dataset[b]});
+                        }
+                    }
+                }
+
+                function popup(obj){
+                    if(obj == document){ return false;}
+                    dataset = obj.dataset || $(obj).data();
+
+                    for( a in dataset){
+                        num ++ ;
+                    }
+                    if(num<1){
+                        parent = obj.parentNode;
+                        if(parent == document){ return false;}
+                        popup(parent);
+                        num = 0;
+                    }else{
+                        for(b in dataset){
+
+                            if(_this.eventLib[b]){
+                                _this.eventLib[b]({obj:parent,ev:ev,target:dataset[b]});
+                            }
+                        }
+                    }
+                }
+
+            });
+        },
+        eventLib:{//事件库
+            playvideo:function(option){
+                var _this = page;
+                if(!_this.playStatus){
+                    _this.playStatus = true;
+                    option.obj.classList.add('active');
+                    _this.nowVideo = option.obj.querySelector('video');
+                    _this.nowVideo.play();
+                    _this.duration = _this.nowVideo.duration;
+                }else{
+                    _this.nowVideo.pause();
+                    option.obj.classList.remove('active');
+                    _this.playStatus = false;
+                }
+            },
+            watchPlay:function(){
+                var _this = page;
+                _this.watch = setInterval(function(){
+                    console.log(_this.nowVideo.paused);
+                });
+            }
+        }
+    }
+    page.init();
+
+    function bind(obj, ev, fn) { //事件绑定
+        if (obj.addEventListener) {
+            obj.addEventListener(ev, fn, false);
+        } else {
+            obj.attachEvent('on' + ev, function() {
+                fn.call(obj);
+            });
+        }
+    }
+
+</script>
+
+</body>
+</html>

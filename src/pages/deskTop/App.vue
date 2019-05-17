@@ -86,6 +86,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~assets/style/base.scss";
-@import "~assets/style/style.css";
+@import "~assets/style/comment.css";
+@import "~assets/style/qqMusic.css";
+@import "~assets/style/bottomLine.css";
 </style>
