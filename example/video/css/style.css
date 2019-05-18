@@ -23,9 +23,10 @@ body {
   transform: translate(-50%, -50%);
   width: 100px;
   height: 100px;
-  background: url("https://haitao.nos.netease.com/d5e12ac1-01d6-4b64-84aa-1887c30493b8.png");
+  background: #f00 url("https://haitao.nos.netease.com/d5e12ac1-01d6-4b64-84aa-1887c30493b8.png");
   background-size: cover;
   z-index: 2;
+  border-radius: 50%;
 }
 .content .item.active {
   display: block;
