@@ -36,9 +36,6 @@ body {
 .content .item.active img {
   opacity: 0;
 }
-.content .item.active .video {
-  display: block;
-}
 .content .item img {
   width: 100%;
   height: 100%;
@@ -47,11 +44,11 @@ body {
   top: 0;
   left: 0;
 }
-.content .item .video {
-  display: none;
-}
 .content .item:nth-child(odd) {
   height: 100%;
   background: #999;
+}
+.video {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */
