@@ -49,10 +49,4 @@ body {
   height: 100%;
   background: #999;
 }
-.video {
-  display: none;
-  position: fixed;
-  opacity: 0;
-  top: 100%;
-}
 /*# sourceMappingURL=style.css.map */

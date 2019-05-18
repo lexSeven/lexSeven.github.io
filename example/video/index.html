@@ -26,12 +26,16 @@
         parentNode:document.querySelector('.swiper-wrapper'),
         init:function(){
             var _this = page;
+            _this.width = window.innerWidth;
+            _this.height = window.innerHeight;
             var str = '';
             _this.data.forEach(function(item){
                 str += '<div data-playvideo="javascript" class="item swiper-slide">\
                             <img src="'+ item.coverImg +'">\
                             <video\
                                 src="'+ item.video +'"\
+                                width="'+ _this.width +'"\
+                                height="'+ _this.height +'"\
                                 id="videoDOM"\
                                 preload="auto"\
                                 playsinline="true"\
@@ -40,7 +44,6 @@
                                 x5-video-player-fullscreen="true"\
                                 x5-video-orientation="portraint"\
                                 class="video"\
-                                style="display: none;"\
                             ></video>\
                         </div>'
             })
