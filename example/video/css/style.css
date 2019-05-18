@@ -23,7 +23,7 @@ body {
   transform: translate(-50%, -50%);
   width: 60px;
   height: 60px;
-  background: url("https://haitao.nos.netease.com/d5e12ac1-01d6-4b64-84aa-1887c30493b8.png");
+  background: #899 url("https://haitao.nos.netease.com/d5e12ac1-01d6-4b64-84aa-1887c30493b8.png");
   background-size: cover;
   z-index: 2;
   border-radius: 50%;
