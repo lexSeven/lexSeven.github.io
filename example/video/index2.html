@@ -14,6 +14,21 @@
     <div class="swiper-wrapper"></div>
 </div>
 
+<!--<video src="" class="video" playsinline  webkit-playsinline x5-playsinline id="videoDOM"></video>-->
+
+<video
+    src=""
+    id="videoDOM"
+    preload="auto"
+    playsinline="true"
+    webkit-playsinline="true"
+    x5-video-player-type="h5"
+    x5-video-player-fullscreen="true"
+    x5-video-orientation="portraint"
+    class="video"
+    style="display: none;"
+></video>
+
 <script>
     var page = {
         src:'',
@@ -24,24 +39,14 @@
         data:data,
         playStatus:false,
         parentNode:document.querySelector('.swiper-wrapper'),
+        videoDom:document.querySelector('#videoDOM'),
         init:function(){
             var _this = page;
             var str = '';
             _this.data.forEach(function(item){
-                str += '<div data-playvideo="javascript" class="item swiper-slide">\
+                str += '<div data-playvideo="javascript" data-video="'+ item.video +'" class="item swiper-slide">\
                             <img src="'+ item.coverImg +'">\
-                            <video\
-                                src="'+ item.video +'"\
-                                id="videoDOM"\
-                                preload="auto"\
-                                playsinline="true"\
-                                webkit-playsinline="true"\
-                                x5-video-player-type="h5"\
-                                x5-video-player-fullscreen="true"\
-                                x5-video-orientation="portraint"\
-                                class="video"\
-                                style="display: none;"\
-                            ></video>\
+                            <canvas></canvas>\
                         </div>'
             })
             _this.parentNode.innerHTML = str;
@@ -50,15 +55,17 @@
                 direction: 'vertical',
                 on: {
                     slideChangeTransitionEnd: function(){
-                        _this.nowVideo.pause();
-                        _this.playStatus = false;
-                        _this.eventLib.playvideo({
-                            obj:this.el.querySelectorAll('.swiper-slide')[this.activeIndex]
-                        })
+                        // _this.nowVideo.pause();
+                        // _this.playStatus = false;
+                        // _this.eventLib.playvideo({
+                        //     obj:this.el.querySelectorAll('.swiper-slide')[this.activeIndex]
+                        // })
                         // alert(this.activeIndex);//切换结束时，告诉我现在是第几个slide
                     },
                 },
             });
+            _this.width = window.innerWidth;
+            _this.height = window.innerHeight;
             _this.bindEvent();
         },
         bindEvent:function(){
@@ -115,14 +122,41 @@
                 if(!_this.playStatus){
                     _this.playStatus = true;
                     option.obj.classList.add('active');
-                    _this.nowVideo = option.obj.querySelector('video');
-                    _this.nowVideo.play();
-                    _this.duration = _this.nowVideo.duration;
+                    _this.eventLib.play({
+                        obj:option.obj
+                    })
                 }else{
-                    _this.nowVideo.pause();
+                    _this.videoDom.pause();
                     option.obj.classList.remove('active');
                     _this.playStatus = false;
                 }
+            },
+            play:function(option){
+                var _this = page;
+                _this.timer = null;
+                console.log(_this.videoDom);
+                _this.videoDom.src = option.obj.dataset.video;
+                _this.videoDom.play();
+                _this.canvasDom = option.obj.querySelector('canvas');
+                _this.canvasDom.width = _this.width;
+                _this.canvasDom.height = _this.height;
+                _this.player = _this.canvasDom.getContext('2d');
+                _this.duration = _this.videoDom.duration;
+
+                _this.videoDom.addEventListener("canplay", function() {
+                    _this.eventLib.draw()
+                }, false)
+            },
+            draw:function(){
+                var _this = page;
+                if(_this.videoDom.paused || _this.videoDom.ended) {
+                    cancelAnimationFrame(_this.timer);
+                    return false;
+                }
+                _this.player.drawImage(_this.videoDom, 0, 0, _this.width, _this.height)
+                _this.timer = requestAnimationFrame(function() {
+                    _this.eventLib.draw()
+                });
             },
             watchPlay:function(){
                 var _this = page;
