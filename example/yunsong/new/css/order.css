@@ -1,0 +1,315 @@
+.content {
+  width: 100%;
+  height: 100%;
+  background: #f0f2f5;
+}
+.wrap {
+  width: 1200px;
+  margin: 0 auto;
+}
+.wrap .main {
+  padding: 120px 0 20px;
+}
+.wrap .main .card {
+  width: 100%;
+  height: 224px;
+  background: #fff;
+  margin-top: 30px;
+}
+.wrap .main .sendout {
+  margin-top: 0;
+}
+.wrap .main .goods {
+  height: 274px;
+}
+.wrap .main .cost {
+  height: 377px;
+}
+.wrap .main .card-title {
+  border-bottom: 1px solid #d3d3d3;
+  font: 700 20px/53px "宋体";
+  color: #333;
+  padding: 0 40px;
+}
+.wrap .main .card-main,
+.wrap .main .card-content {
+  padding: 21px 0 17px;
+}
+.wrap .main .card-main .card-line,
+.wrap .main .card-content .card-line {
+  height: 66px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  position: relative;
+}
+.wrap .main .card-main .card-line .warning,
+.wrap .main .card-content .card-line .warning {
+  font: 12px/12px '宋体';
+  color: red;
+  position: absolute;
+  left: 184px;
+  bottom: -8px;
+  display: none;
+}
+.wrap .main .card-main .card-line .warningTel,
+.wrap .main .card-content .card-line .warningTel {
+  left: 503px;
+}
+.wrap .main .card-main .card-line .red,
+.wrap .main .card-content .card-line .red {
+  color: red;
+  line-height: 66px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.wrap .main .card-main .card-line span,
+.wrap .main .card-content .card-line span {
+  display: inline-block;
+  text-align: right;
+}
+.wrap .main .card-main .card-line label:nth-child(1) span,
+.wrap .main .card-content .card-line label:nth-child(1) span {
+  width: 179px;
+}
+.wrap .main .card-main .card-line input[type='text'],
+.wrap .main .card-content .card-line input[type='text'] {
+  border: 1px solid #d3d3d3;
+  text-indent: 10px;
+  height: 36px;
+  margin-right: 15px;
+}
+.wrap .main .card-main .card-line .sendadd,
+.wrap .main .card-content .card-line .sendadd {
+  width: 452px;
+  background: #fff;
+}
+.wrap .main .card-main .card-line .detialadd,
+.wrap .main .card-content .card-line .detialadd {
+  width: 379px;
+}
+.wrap .main .card-main .card-line .sendname,
+.wrap .main .card-content .card-line .sendname {
+  width: 170px;
+}
+.wrap .main .card-main .card-line .sendphone,
+.wrap .main .card-content .card-line .sendphone {
+  width: 170px;
+}
+.wrap .main .card-main .card-text,
+.wrap .main .card-content .card-text {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.wrap .main .card-main .card-text span,
+.wrap .main .card-content .card-text span {
+  width: 179px;
+  font: 16px/110px "宋体";
+  display: inline-block;
+  text-align: right;
+}
+.wrap .main .card-main .card-text textarea,
+.wrap .main .card-content .card-text textarea {
+  height: 110px;
+  vertical-align: middle;
+  margin-right: 15px;
+  overflow: auto;
+  resize: none;
+}
+.wrap .main .card-main .card-text i,
+.wrap .main .card-content .card-text i {
+  position: absolute;
+  left: 364px;
+  bottom: 5px;
+  color: #d3d3d3;
+}
+.wrap .main .card-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.wrap .main .card-content .card-right {
+  width: 400px;
+  height: 250px;
+  border: 1px solid #d6d6d6;
+}
+.wrap .main .card-content .card-left {
+  width: 400px;
+  height: 250px;
+}
+.wrap .main .card-content .card-left .distance {
+  height: 45px;
+  font: 700 16px/45px "宋体";
+}
+.wrap .main .card-content .card-left .distance strong {
+  text-align: center;
+  display: inline-block;
+}
+.wrap .main .card-content .card-left .distance strong.start {
+  width: 164px;
+  text-align: right;
+}
+.wrap .main .card-content .card-left .distance select {
+  width: 155px;
+  height: 38px;
+  border: 1px solid #d3d3d3;
+}
+.wrap .main .card-content .card-left .btnbox {
+  height: 85px;
+  padding-top: 16px;
+  text-align: center;
+  color: #e5e5e5;
+  font-size: 10px;
+  line-height: 25px;
+  cursor: pointer;
+}
+.wrap .main .card-content .card-left .btnbox button {
+  border: none;
+  outline: none;
+  height: 42px;
+  width: 255px;
+  background: #3890ef;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+}
+.wrap .main .card-content .card-left .btnbox a {
+  font-size: 10px;
+  color: #3890ef;
+}
+input::-webkit-input-placeholder {
+  color: #e5e5e5;
+  font-size: 15px;
+}
+.card-line {
+  line-height: 66px;
+}
+.card-line .classselect {
+  width: 147px;
+  height: 36px;
+  margin-right: 15px;
+  border: 1px solid #d3d3d3;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+}
+.card-line .classselect #classleft {
+  width: 34px;
+  font: 20px/36px "宋体";
+  border-right: 1px solid #d3d3d3;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+.card-line .classselect input[type='text']#weight {
+  margin: 0;
+  border: 0;
+  width: 75px ;
+  height: 34px;
+  text-align: left;
+  text-indent: 5px;
+  position: absolute;
+  top: 0;
+  left: 35px;
+  color: #d6d6d6;
+}
+.card-line .classselect #classright {
+  width: 34px;
+  font: 20px/36px "宋体";
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-left: 1px solid #d3d3d3;
+  cursor: pointer;
+}
+.card-line .classselect #classtime {
+  width: 111px;
+  height: 100%;
+  font: 20px/36px "宋体";
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.card-line .classselect #classtime ul#classbox {
+  width: 147px;
+  position: absolute;
+  top: 37px;
+  left: -1px;
+  z-index: 2;
+  border: 1px solid #d3d3d3;
+  border-top: 0;
+  background: #fff;
+  display: none;
+}
+.card-line .classselect #classtime ul#classbox li {
+  cursor: pointer;
+  width: 147px;
+  height: 100%;
+  font: 20px/36px "宋体";
+  text-align: center;
+  border-bottom: 1px solid #d3d3d3;
+}
+.card-line .classselect #classtime ul#classbox li:hover {
+  background: #c2e2ff;
+}
+.card-line .classselect #classify {
+  width: 142px;
+  height: 36px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #d6d6d6;
+  border: 0;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+}
+.card-line .classselect ul.classbox {
+  width: 179px;
+  position: absolute;
+  top: 37px;
+  left: -1px;
+  z-index: 2;
+  border: 1px solid #d3d3d3;
+  border-top: 0;
+  background: #fff;
+  display: none;
+}
+.card-line .classselect ul.classbox li {
+  cursor: pointer;
+  width: 179px;
+  height: 100%;
+  font: 20px/36px "宋体";
+  text-align: center;
+  border-bottom: 1px solid #d3d3d3;
+}
+.card-line .classselect ul.classbox li:hover {
+  background: #c2e2ff;
+}
+.card-line .classselect .classbtn {
+  width: 34px;
+  height: 100%;
+  font: 20px/36px "宋体";
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotate(90deg);
+  border-bottom: 1px solid #d3d3d3;
+  cursor: pointer;
+}
+#dateTime,
+#classify {
+  font: 18px/36px "宋体";
+  color: #000;
+}
+/*# sourceMappingURL=order.css.map */

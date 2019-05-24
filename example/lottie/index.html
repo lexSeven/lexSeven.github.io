@@ -27,6 +27,7 @@
     askudhaisjd
 </div>
 
+
 <script>
     var container = document.getElementById('lottie');
     var animData = {
@@ -39,11 +40,71 @@
         path: 'js/data.json'
     };
 
-    var anim = bodymovin.loadAnimation(animData);
-    anim.playSegments([
-        [0, 141],
-        [0, 141]
-    ], true);
+    var anim;
+    var isHitting = false;
+
+
+    anim = bodymovin.loadAnimation(animData);
+    anim.setSpeed(1.2)
+    anim.addEventListener('DOMLoaded', startAnimation);
+    click_r.onclick = hitRight;
+    click_l.onclick = hitLeft;
+
+    function hitComplete() {
+        isHitting = false;
+        anim.removeEventListener('loopComplete', hitComplete);
+    }
+
+    function hitRight() {
+        if (isHitting) {
+            return;
+        }
+        isHitting = true;
+        anim.playSegments([
+            [75, 95],
+            [65, 75]
+        ], true);
+        anim.addEventListener('loopComplete', hitComplete);
+    }
+
+
+    function hitLeft() {
+        if (isHitting) {
+            return;
+        }
+        isHitting = true;
+        anim.playSegments([
+            [95, 115],
+            [65, 75]
+        ], true);
+        anim.addEventListener('loopComplete', hitComplete);
+    }
+
+    function startAnimation() {
+        anim.playSegments([
+            [0, 125],
+            [124, 125]
+        ], true);
+    }
+</script>
+
+<script>
+    // var container = document.getElementById('lottie');
+    // var animData = {
+    //     container: container,
+    //     renderer: 'svg',
+    //     loop: true,
+    //     prerender: false,
+    //     autoplay: true,
+    //     autoloadSegments: false,
+    //     path: 'js/data.json'
+    // };
+    //
+    // var anim = bodymovin.loadAnimation(animData);
+    // anim.playSegments([
+    //     [20, 25],
+    //     [35, 55]
+    // ], true);
 </script>
 
 </body>

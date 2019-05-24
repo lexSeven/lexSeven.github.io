@@ -1,0 +1,452 @@
+.center {
+  font-size: 0;
+  line-height: 0;
+}
+.center:before {
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.center img {
+  display: inline-block;
+  vertical-align: middle;
+}
+.bigImgBox {
+  position: relative;
+  height: 597px;
+  background: #f9f9f9;
+}
+.bigImgBox .item {
+  width: 100%;
+  height: 100%;
+  background: url("../img/image_02.png") no-repeat center;
+  background-size: cover;
+}
+.serverContent {
+  height: 598px;
+  background: #fff;
+}
+.serverContent .title {
+  height: 50px;
+  padding-top: 59px;
+  border-bottom: 1px solid #eeeeee;
+  text-align: center;
+}
+.serverContent .content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 58px;
+}
+.serverContent .content .item {
+  width: 310px;
+  height: 360px;
+  text-align: center;
+}
+.serverContent .content .item:hover {
+  background: #2f2f31;
+}
+.serverContent .content .item:hover .icon.security {
+  background-position: 0 0;
+}
+.serverContent .content .item:hover .icon.order {
+  background-position: -80px 0;
+}
+.serverContent .content .item:hover .icon.faster {
+  background-position: -160px 0;
+}
+.serverContent .content .item:hover .itemTitle {
+  background: #2f2f31;
+}
+.serverContent .content .item:hover .itemBtn {
+  width: 100px;
+  padding: 0 40px;
+  background: #fff;
+}
+.serverContent .content .item:hover .itemBtn:before {
+  width: 40%;
+  left: 30%;
+  background: #000;
+}
+.serverContent .content .item:hover .itemBtn:after {
+  left: 70%;
+  border-color: transparent transparent transparent #000;
+}
+.serverContent .content .item .icon {
+  width: 80px;
+  height: 60px;
+  margin: 49px 0 18px 0;
+  display: inline-block;
+  background: url("../img/service.png") no-repeat;
+}
+.serverContent .content .item .icon.security {
+  background-position: 0 -60px;
+}
+.serverContent .content .item .icon.order {
+  background-position: -80px -60px;
+}
+.serverContent .content .item .icon.faster {
+  background-position: -160px -60px;
+}
+.serverContent .content .item .itemTitle {
+  font: 200 18px/58px '微软雅黑';
+  color: #fff;
+  position: relative;
+}
+.serverContent .content .item .itemTitle:before {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 1px;
+  background: #666;
+  left: 50%;
+  bottom: 0;
+  margin-left: -30px;
+}
+.serverContent .content .item .itemText {
+  padding-top: 16px;
+  font: 14px/24px '微软雅黑';
+  color: #b9b9b9;
+}
+.serverContent .content .item .itemBtn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d6d6d6;
+  box-sizing: border-box;
+  border-radius: 15px;
+  margin-top: 45px;
+  display: inline-block;
+  position: relative;
+}
+.serverContent .content .item .itemBtn:before {
+  content: '';
+  width: 50%;
+  height: 2px;
+  background: #d6d6d6;
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  margin-top: -1px;
+}
+.serverContent .content .item .itemBtn:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-width: 4px 0 4px 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #d6d6d6;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  margin-left: -4px;
+  left: 75%;
+}
+.serverSteps {
+  height: 250px;
+  background: #f9f9f9;
+}
+.serverSteps .line {
+  padding-top: 63px;
+  border-bottom: 1px solid #2f91ff;
+}
+.serverSteps .stepsItem {
+  margin-top: 30px;
+  width: 180px;
+  height: 102px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  text-align: center;
+  float: left;
+  margin-right: 60px;
+  cursor: pointer;
+}
+.serverSteps .stepsItem:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-width: 0 7px 7px;
+  border-style: solid;
+  border-color: transparent transparent #fff;
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  margin-left: -7px;
+}
+.serverSteps .stepsItem:after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #2f91ff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #e4e4e4, 0 0 0 7px #fff;
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  margin-left: -3px;
+}
+.serverSteps .stepsItem:last-child .next {
+  display: none;
+}
+.serverSteps .stepsItem .next {
+  position: absolute;
+  top: -40px;
+  width: 20px;
+  height: 20px;
+  right: -40px;
+  background: url("../img/icon.png") no-repeat -20px 0;
+}
+.serverSteps .stepsItem .stepsTitle {
+  padding-top: 21px;
+  font: 18px/34px '微软雅黑';
+  color: #333333;
+}
+.serverSteps .stepsItem .stepsText {
+  font: 14px/27px '微软雅黑';
+  color: #999999;
+}
+.serverSteps .stepsItem.active {
+  background: #2f91ff;
+}
+.serverSteps .stepsItem.active:before {
+  border-color: transparent transparent #2f91ff;
+}
+.serverSteps .stepsItem.active:after {
+  box-shadow: 0 0 0 4px #c3dfff, 0 0 0 7px #e9f3ff;
+}
+.serverSteps .stepsItem.active .stepsTitle {
+  color: #fff;
+}
+.serverSteps .stepsItem.active .stepsText {
+  color: #c2e2ff;
+}
+.ueageScene {
+  height: 750px;
+  position: relative;
+}
+.ueageScene .leftbtn {
+  position: absolute;
+  top: 38%;
+  left: 20%;
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ueageScene .rightbtn {
+  position: absolute;
+  top: 38%;
+  right: 20%;
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.ueageScene .title {
+  height: 50px;
+  padding-top: 59px;
+  border-bottom: 1px solid #eeeeee;
+  text-align: center;
+}
+.ueageScene .sceneContent {
+  padding-top: 19px;
+  width: 1000px;
+  margin: 0 auto;
+}
+.ueageScene .sceneContent .contentLeft {
+  width: 50%;
+  text-align: right;
+  float: left;
+}
+.ueageScene .sceneContent .contentRight {
+  width: 30%;
+  box-sizing: border-box;
+  padding-left: 70px;
+  float: left;
+}
+.ueageScene .sceneContent .contentRight .business {
+  padding-top: 88px;
+  font: 30px/69px '微软雅黑';
+  color: #333333;
+}
+.ueageScene .sceneContent .contentRight .subTitle {
+  font: 18px/48px '微软雅黑';
+  color: #333333;
+}
+.ueageScene .sceneContent .contentRight .blank {
+  height: 78px;
+  padding-top: 6px;
+}
+.ueageScene .sceneContent .contentRight .blank .dot {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #eeeeee;
+  margin-top: 6px;
+}
+.ueageScene .sceneContent .contentRight .noteText {
+  font: 14px/25px '微软雅黑';
+  color: #999999;
+}
+.ueageScene .sceneBtnBox {
+  text-align: center;
+}
+.ueageScene .sceneBtnBox .searchBtn {
+  display: inline-block;
+  width: 230px;
+  height: 50px;
+  background: #2f91ff;
+  color: #fff;
+  font: 18px/50px '微软雅黑';
+  cursor: pointer;
+}
+.ueageScene .sceneBtnBox .btnTitle {
+  padding-top: 15px;
+  font: 18px/26px '微软雅黑';
+  color: #333333;
+}
+.ueageScene .sceneBtnBox .note {
+  font: 14px/19px '微软雅黑';
+  color: #999999;
+}
+.recruit {
+  height: 528px;
+  background-image: url("../img/m3.png");
+  background-color: rgba(63, 153, 254.5);
+}
+.recruit .title {
+  height: 70px;
+  padding-top: 59px;
+  text-align: center;
+  overflow: hidden;
+}
+.recruit .title .titImg {
+  position: relative;
+  width: 368px;
+  margin: 0 auto;
+}
+.recruit .title .titImg:before {
+  content: '';
+  width: 1000%;
+  height: 1px;
+  position: absolute;
+  right: 100%;
+  bottom: 24px;
+  background: #fff;
+}
+.recruit .title .titImg:after {
+  content: '';
+  width: 1000%;
+  height: 1px;
+  position: absolute;
+  left: 100%;
+  bottom: 24px;
+  background: #fff;
+}
+.recruit .recContent {
+  padding-top: 39px;
+  display: flex;
+  justify-content: space-between;
+}
+.recruit .recContent .item {
+  width: 220px;
+  height: 290px;
+  background: #fff;
+  border-radius: 0 40px 0 40px;
+  text-align: center;
+}
+.recruit .recContent .item .iconBox {
+  padding-top: 60px;
+}
+.recruit .recContent .item .showTitle {
+  padding: 23px 0 14px;
+  font: 200 18px/38px '微软雅黑';
+  color: #333333;
+}
+.recruit .recContent .item .btn {
+  box-sizing: border-box;
+  width: 160px;
+  height: 40px;
+  border: 1px solid #eeeeee;
+  border-radius: 0 20px 0 20px;
+  position: relative;
+  margin: 0 auto;
+}
+.recruit .recContent .item .btn:before {
+  content: '';
+  width: 30%;
+  height: 2px;
+  background: #d6d6d6;
+  position: absolute;
+  left: 35%;
+  top: 50%;
+  margin-top: -1px;
+}
+.recruit .recContent .item .btn:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-width: 4px 0 4px 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #d6d6d6;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  margin-left: -4px;
+  left: 65%;
+}
+.download {
+  height: 464px;
+  padding-top: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+.download .imgBox {
+  float: left;
+  width: 412px;
+  text-align: right;
+}
+.download .codeImg {
+  width: 166px;
+  float: left;
+  padding-top: 130px;
+  text-align: center;
+}
+.download .codeImg span {
+  padding-top: 16px;
+  font: 18px/25px '微软雅黑';
+  color: #000;
+  display: inline-block;
+  width: 100%;
+}
+.download .codeImg em {
+  font: 18px/22px '微软雅黑';
+  color: #999999;
+}
+.download .text {
+  width: 264px;
+  float: left;
+  padding: 130px 0 0 96px;
+}
+.download .text span {
+  display: inline-block;
+  padding-top: 19px;
+  font: 18px/22px '微软雅黑';
+  color: #666666;
+}
+/*# sourceMappingURL=style.css.map */

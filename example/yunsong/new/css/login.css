@@ -1,0 +1,156 @@
+body {
+  background: #f9f9f9;
+}
+.content {
+  height: 439px;
+  padding: 168px 0;
+}
+.content .loginImg {
+  height: 439px;
+  width: 50%;
+  float: left;
+  background: url("../img/login.png") no-repeat center;
+}
+.content .loginBox {
+  float: right;
+  height: 439px;
+  width: 500px;
+  background: #fff;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.1);
+}
+.content .loginBox .tabLine {
+  height: 80px;
+  font-size: 0;
+}
+.content .loginBox .tabLine input {
+  display: none;
+}
+.content .loginBox .tabLine input:checked ~ .btn {
+  color: #2a8eff;
+  background: #fff;
+}
+.content .loginBox .tabLine .btn {
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+  font: 18px/80px '微软雅黑';
+  color: #000;
+  background: #f9f9f9;
+  text-align: center;
+}
+.content .loginBox .inputBox {
+  padding: 1px 50px;
+}
+.content .loginBox .inputBox .input {
+  height: 30px;
+  border: 1px solid #eeeeee;
+  padding: 8px 0;
+  margin-top: 30px;
+}
+.content .loginBox .inputBox .input input {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  outline: none;
+  height: 30px;
+  font: 14px/30px '微软雅黑';
+  padding-left: 18px;
+}
+.content .loginBox .inputBox .verification {
+  height: 48px;
+  margin-top: 30px;
+}
+.content .loginBox .inputBox .verification .input {
+  width: 288px;
+  height: 30px;
+  border: 1px solid #eeeeee;
+  padding: 8px 0;
+  margin-top: 0;
+  float: left;
+}
+.content .loginBox .inputBox .verification .input input {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  outline: none;
+  height: 30px;
+  font: 14px/30px '微软雅黑';
+  padding-left: 18px;
+}
+.content .loginBox .inputBox .verification .button {
+  width: 98px;
+  height: 46px;
+  float: right;
+  border: 1px solid #eeeeee;
+  font: 14px/46px '微软雅黑';
+  text-align: center;
+  background: #2a8eff;
+  color: #fff;
+  cursor: pointer;
+}
+.content .loginBox .inputBox .verification .button.disable {
+  color: #999;
+  background: #f9f9f9;
+}
+.content .loginBox .inputBox .noteText {
+  height: 74px;
+  font-size: 0;
+  line-height: 0;
+}
+.content .loginBox .inputBox .noteText:before {
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.content .loginBox .inputBox .noteText span {
+  font: 14px/20px '微软雅黑';
+  color: #333333;
+  display: inline-block;
+  vertical-align: middle;
+}
+.content .loginBox .inputBox .loginBtn {
+  height: 50px;
+  background: #2a8eff;
+  text-align: center;
+  font: 18px/50px '微软雅黑';
+  color: #fff;
+  cursor: pointer;
+}
+.content .loginBox .inputBox .protocol {
+  height: 53px;
+}
+.content .loginBox .inputBox .protocol:before {
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.content .loginBox .inputBox .protocol input {
+  display: none;
+}
+.content .loginBox .inputBox .protocol input:checked ~ .checkBox {
+  background: url("../img/login_03.png") no-repeat;
+}
+.content .loginBox .inputBox .protocol .checkBox {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+  background: url("../img/login_06.png") no-repeat;
+}
+.content .loginBox .inputBox .protocol span {
+  font: 14px/20px '微软雅黑';
+  color: #333333;
+  display: inline-block;
+  vertical-align: middle;
+}
+.content .loginBox .inputBox .protocol .forget {
+  float: right;
+  font: 14px/53px '微软雅黑';
+  color: #333333;
+}
+/*# sourceMappingURL=login.css.map */

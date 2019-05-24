@@ -1,0 +1,86 @@
+body{
+  background: #f9f9f9;
+}
+
+.content{
+  width: 1200px;
+  min-height: 600px;
+  margin:100px auto 30px ;
+  background: #fff;
+  padding: 54px 60px 100px;
+  box-sizing: border-box;
+
+  .listTitle{
+    height: 85px;
+    display: flex;
+    justify-content: space-between;
+
+    .item{
+      width: 200px;
+      height: 85px;
+      background: #eeeeee;
+      text-align: center;
+      font: 18px/85px '微软雅黑';
+      color: #333333;
+      cursor: pointer;
+
+      span{
+        display: block;
+
+        &:hover{
+          background: #2a8eff;
+          color: #fff;
+        }
+
+      }
+
+      input{
+        display: none;
+      }
+
+      input:checked ~ span{
+        background: #2a8eff;
+        color: #fff;
+      }
+    }
+
+  }
+
+  .questionList{
+    padding-top: 18px;
+    display: none;
+
+    &.active{
+      display: block;
+    }
+
+    .item{
+      height: 129px;
+      border-bottom: 1px dashed #eeeeee;
+      font-size: 0;
+      line-height: 0;
+
+      &:before{
+        content: '';
+        height: 100%;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .textBox{
+        display: inline-block;
+        vertical-align: middle;
+        font: 18px/40px '微软雅黑';
+        color: #999999;
+
+        em{
+          font-style: normal;
+          color: #2a8eff;
+        }
+
+      }
+
+    }
+  }
+
+}

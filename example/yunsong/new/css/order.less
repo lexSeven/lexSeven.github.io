@@ -1,0 +1,322 @@
+.content{
+  width:100%;
+  height:100%;
+  background:#f0f2f5;
+}
+
+.wrap{
+  width:1200px;
+  margin:0 auto;
+
+  .main{
+    padding:120px 0 20px;
+
+    .card{
+      width:100%;
+      height:224px;
+      background:#fff;
+      margin-top:30px;
+    }
+    .sendout{
+      margin-top:0;
+    }
+    .goods{
+      height:274px;
+    }
+    .cost{
+      height:377px;
+    }
+    .card-title{
+      border-bottom: 1px solid #d3d3d3;
+      font:700 20px/53px "宋体";
+      color:#333;
+      padding:0 40px;
+    }
+    .card-main, .card-content{
+      padding:21px 0 17px;
+
+      .card-line{
+        height:66px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        position: relative;
+
+        .warning{
+          font:12px/12px '宋体';
+          color:red;
+          position: absolute;
+          left:184px;
+          bottom:-8px;
+          display: none;
+        }
+        .warningTel{
+          left: 503px;
+        }
+        .red{
+          color:red;
+          line-height: 66px;
+          font-weight: 700;
+          font-size: 20px;
+        }
+        span{
+          display: inline-block;
+          text-align: right;
+        }
+        label:nth-child(1) span{
+          width:179px;
+        }
+        input[type='text']{
+          border:1px solid #d3d3d3;
+          text-indent: 10px;
+          height:36px;
+          margin-right:15px;
+        }
+        .sendadd{
+          width:452px;
+          background:#fff;
+        }
+        .detialadd{
+          width:379px;
+        }
+        .sendname{
+          width:170px;
+        }
+        .sendphone{
+          width:170px;
+        }
+      }
+
+      .card-text{
+        height:120px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        span{
+          width:179px;
+          font:16px/110px "宋体";
+          display: inline-block;
+          text-align: right;
+        }
+        textarea{
+          height:110px;
+          vertical-align: middle;
+          margin-right:15px;
+          overflow: auto;
+          resize:none
+        }
+        i{
+          position: absolute;
+          left:364px;
+          bottom:5px;
+          color:#d3d3d3;
+        }
+
+      }
+    }
+    .card-content{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .card-right{
+        width:400px;
+        height:250px;
+        border:1px solid #d6d6d6;
+      }
+      .card-left{
+        width:400px;
+        height:250px;
+
+        .distance{
+          height:45px;
+          font:700 16px/45px "宋体";
+          strong{
+            text-align: center;
+            display: inline-block;
+          }
+          strong.start{
+            width:164px;
+            text-align: right;
+          }
+          select{
+            width:155px;
+            height:38px;
+            border: 1px solid #d3d3d3;
+            //-webkit-appearance: none;
+            //-moz-appearance: none;
+            //appearance: none;
+          }
+
+        }
+        .btnbox{
+          height:85px;
+          padding-top:16px;
+          text-align: center;
+          color:#e5e5e5;
+          font-size:10px;
+          line-height: 25px;
+          cursor:pointer;
+
+          button{
+            border:none;
+            outline: none;
+            height:42px;
+            width:255px;
+            background:#3890ef;
+            border-radius: 5px;
+            color:#fff;
+            font-size:18px;
+          }
+          a{
+            font-size:10px;
+            color:#3890ef;
+          }
+        }
+      }
+    }
+  }
+}
+
+input::-webkit-input-placeholder{
+  color:#e5e5e5;
+  font-size: 15px;
+}
+.card-line{
+  line-height: 66px;
+
+  .classselect{
+    width:147px;
+    height: 36px;
+    margin-right: 15px;
+    border:1px solid #d3d3d3;;
+    vertical-align: middle;
+    position: relative;
+    cursor:pointer;
+
+    //&:hover .classbox , &:hover ul#classbox{
+    //  display: block !important;
+    //}
+
+    #classleft{
+      width:34px;
+      font:20px/36px "宋体";
+      border-right:1px solid #d3d3d3;
+      text-align: center;
+      position: absolute;
+      top:0;
+      left:0;
+      cursor: pointer;
+    }
+    input[type='text']#weight{
+      margin:0;
+      border:0;
+      width:75px ;
+      height:34px;
+      text-align: left;
+      text-indent: 5px;
+      position: absolute;
+      top:0;
+      left:35px;
+      color:#d6d6d6;
+    }
+    #classright{
+      width:34px;
+      font:20px/36px "宋体";
+      text-align: center;
+      position: absolute;
+      top:0;
+      right:0;
+      border-left:1px solid #d3d3d3;
+      cursor: pointer;
+    }
+    #classtime {
+      width:111px;
+      height:100%;
+      font:20px/36px "宋体";
+      text-align: center;
+      position: absolute;
+      top:0;
+      left:0;
+
+      ul#classbox{
+        width:147px;
+        position: absolute;
+        top:37px;
+        left:-1px;
+        z-index: 2;
+        border:1px solid #d3d3d3;
+        border-top:0;
+        background:#fff;
+        display: none;
+        li{
+          cursor:pointer;
+          width:147px;
+          height:100%;
+          font:20px/36px "宋体";
+          text-align: center;
+          border-bottom:1px solid #d3d3d3;
+          &:hover{
+            background:#c2e2ff;
+          }
+        }
+      }
+    }
+    #classify{
+      width: 142px;
+      height: 36px;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #d6d6d6;
+      border: 0;
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+      outline: none;
+      cursor: pointer;
+    }
+    ul.classbox{
+      width:179px;
+      position: absolute;
+      top:37px;
+      left:-1px;
+      z-index: 2;
+      border:1px solid #d3d3d3;
+      border-top:0;
+      background:#fff;
+      display: none;
+      li{
+        cursor:pointer;
+        width:179px;
+        height:100%;
+        font:20px/36px "宋体";
+        text-align: center;
+        border-bottom:1px solid #d3d3d3;
+        &:hover{
+          background:#c2e2ff;
+        }
+      }
+    }
+
+    .classbtn{
+      width:34px;
+      height:100%;
+      font:20px/36px "宋体";
+      text-align: center;
+      position: absolute;
+      top:0;
+      right:0;
+      transform: rotate(90deg);
+      border-bottom:1px solid #d3d3d3;
+      cursor: pointer;
+    }
+  }
+}
+#dateTime , #classify{
+  font:18px/36px "宋体";
+  color:#000;
+}
+
+

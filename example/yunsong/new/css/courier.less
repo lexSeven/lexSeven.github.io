@@ -1,0 +1,125 @@
+
+.banner {
+  width: 100%;
+  height: 488px;
+  margin-top: 100px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.turnInto{
+  width:100%;
+  height:718px;
+  background:#fff;
+
+  .title{
+    height:112px;
+    padding:44px 0;
+    font:1000 44px/70px "微软雅黑 Light";
+    color:#000;
+    text-align: center;
+
+    .en{
+      font-size: 28px;
+      color:#989898;
+    }
+  }
+
+  .content{
+    transform: translateY(-44px);
+    position: relative;
+    height:562px;
+    background:url("../img/courier2.png") no-repeat;
+    background-size: contain;
+
+    .nub-box:nth-child(1){
+      top:169px;
+      left:757px;
+    }
+    .nub-box:nth-child(2){
+      top:169px;
+      left:1039px;
+
+      &:hover ::before{
+        content: url("../img/courier.png");
+        position: absolute;
+        top:-173px;
+        left:-685px;
+      }
+    }
+    .nub-box:nth-child(3){
+      top:169px;
+      left:1320px;
+
+      &:hover ::before{
+        content: url("../img/courier3.png");
+        position: absolute;
+        top:-173px;
+        left:-965px;
+      }
+    }
+    .nub-box{
+      position: absolute;
+      width:199px;
+      height:319px;
+      display:flex;
+      align-items: center;
+      flex-direction: column;
+      &:hover .nub-btn{
+        background:#398ff0;
+      }
+      &:hover .nub-title{
+        background: rgba(255,255,255,.5);
+        color:#000;
+      }
+      &:hover .nub-title:after{
+        border-color: rgba(255,255,255,.5) transparent transparent;
+      }
+
+      .nub-title{
+        text-align: center;
+        width:119px;
+        height:84px;
+        border-radius: 20px;
+        padding:13px 40px;
+        background: rgba(255,255,255,.2);
+        font:14px/28px '宋体';
+        color:#fff;
+
+        &:after{
+          content: '';
+          width:0;
+          height:0;
+          border-style:solid ;
+          border-color: rgba(255,255,255,.2) transparent transparent;
+          border-width:20px 10px;
+          position: absolute;
+          left: 50%;
+          bottom: 169px;
+          margin-left: -11px;
+        }
+      }
+      .nub-btn{
+        text-align: center;
+        width:66px;
+        height:66px;
+        background: rgba(255,255,255,.2);
+        font:28px/66px '微软雅黑';
+        color:#fff;
+        border-radius: 50%;
+        margin-top:71px;
+        cursor: pointer;
+      }
+      .nub--main{
+        height:75px;
+        font:700 20px/75px '微软雅黑';
+        text-align: center;
+        color:#fff;
+      }
+    }
+  }
+}
