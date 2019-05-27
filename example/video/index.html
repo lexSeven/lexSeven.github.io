@@ -24,6 +24,7 @@
         data:data,
         playStatus:false,
         parentNode:document.querySelector('.swiper-wrapper'),
+        now:0,
         init:function(){
             var _this = page;
             _this.width = window.innerWidth;
@@ -58,7 +59,7 @@
                         _this.eventLib.playvideo({
                             obj:this.el.querySelectorAll('.swiper-slide')[this.activeIndex]
                         })
-                        // alert(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+                        alert(this.activeIndex);//切换结束时，告诉我现在是第几个slide
                     },
                 },
             });
@@ -66,8 +67,23 @@
         },
         bindEvent:function(){
             var _this = page;
+
+            var startX = 0;
+            var startY = 0;
+
+            bind(document,'touchstart',function( ev ){
+                var ev = ev || event;
+                startX = ev.changedTouches[0].pageX;
+                startY = ev.changedTouches[0].pageY;
+            })
+
             bind(document,'touchend',function( ev ){
                 var ev = ev || event;
+
+                if(Math.abs(startX - ev.changedTouches[0].pageX)>50 || Math.abs(startY - ev.changedTouches[0].pageY)>50){
+                    return false;
+                }
+
                 var target = ev.target || ev.srcElement;
                 var dataset = target.dataset || $(target).data();
                 var parent = target.parentNode;
@@ -109,7 +125,6 @@
                         }
                     }
                 }
-
             });
         },
         eventLib:{//事件库
