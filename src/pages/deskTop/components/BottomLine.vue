@@ -1,7 +1,5 @@
 <template>
-    <div class="stepTwo wrap">
-
-    </div>
+    <div class="stepTwo wrap">底部菜单栏</div>
 </template>
 <script>
 import api from 'services/index'

@@ -26,5 +26,4 @@ export default {
 <style lang="scss" scoped>
 @import "~assets/style/comment.css";
 @import "~assets/style/qqMusic.css";
-
 </style>

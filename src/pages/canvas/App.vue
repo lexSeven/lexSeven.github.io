@@ -2,24 +2,28 @@
     <div id="app" class="wrap">
         <div class="content swiper-container">
             <div class="swiper-wrapper">
-                <div @click="playvideo" v-for="item in videoList" class="item swiper-slide">
+                <div
+                    @click="playvideo"
+                    v-for="item in videoList"
+                    class="item swiper-slide"
+                    :data-video="item.video"
+                >
                     <img :src="item.coverImg">
-                    <video
-                        :src="item.video"
-                        :width="scrollwidth/2"
-                        :height="scrollheight/2"
-                        id="videoDOM"
-                        :preload="auto"
-                        playsinline="true"
-                        webkit-playsinline="true"
-                        x5-video-player-type="h5"
-                        x5-video-player-fullscreen="true"
-                        x5-video-orientation="portraint"
-                        class="video"
-                    ></video>
+                    <canvas></canvas>
                 </div>
             </div>
         </div>
+        <video
+            src=""
+            ref="videoDOM"
+            preload="auto"
+            playsinline="true"
+            webkit-playsinline="true"
+            x5-video-player-type="h5"
+            x5-video-player-fullscreen="true"
+            x5-video-orientation="portraint"
+            class="video"
+        ></video>
     </div>
 </template>
 
@@ -62,26 +66,56 @@ export default {
             now:0,
             showItem: 1,
             scrollwidth: window.innerWidth,
-            scrollheight: window.innerHeight
+            scrollheight: window.innerHeight,
         }
     },
     methods: {
-        playvideo:function(ev,option){
+        playvideo:function(ev, option){
             var _this = this;
-            var obj = option && option.obj ||ev.currentTarget;
-            console.log(obj);
+            var obj = option && option.obj || ev.currentTarget;
             if(!_this.playStatus){
                 _this.playStatus = true;
                 obj.classList.add('active');
-                _this.nowVideo = obj.querySelector('video');
-                _this.nowVideo.play();
-                _this.duration = _this.nowVideo.duration;
+                _this.play({
+                    obj:obj
+                })
             }else{
-                _this.nowVideo.pause();
-                // obj.classList.remove('active');
+                _this.$refs.videoDOM.pause();
+                obj.classList.remove('active');
                 _this.playStatus = false;
             }
         },
+        play:function(option){
+            var _this = this;
+            _this.timer = null;
+            _this.$refs.videoDOM.src = option.obj.dataset.video;
+            _this.$refs.videoDOM.play();
+            _this.canvasDom = option.obj.querySelector('canvas');
+            _this.canvasDom.width = _this.scrollwidth;
+            _this.canvasDom.height = _this.scrollheight;
+            _this.player = _this.canvasDom.getContext('2d');
+            _this.duration = _this.$refs.videoDOM.duration;
+            _this.$refs.videoDOM.addEventListener("canplay", function() {
+                _this.draw()
+            }, false)
+        },
+        draw:function(){
+            var _this = this;
+            if(_this.$refs.videoDOM.paused || _this.$refs.videoDOM.ended) {
+                cancelAnimationFrame(_this.timer);
+                return false;
+            }
+            _this.player.drawImage(_this.$refs.videoDOM, 0, 0, _this.scrollwidth, _this.scrollheight)
+            _this.timer = requestAnimationFrame(function() {
+                _this.draw()
+            });
+        },
+        watchPlay:function(){
+            var _this = page;
+            _this.watch = setInterval(function(){
+                console.log(_this.nowVideo.paused);
+            });
+        }
     },
     computed: {},
     updated () {},
@@ -124,9 +158,9 @@ export default {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%,-50%);
-                width: 200px;
-                height: 200px;
-                background: #999406 url("https://haitao.nos.netease.com/d5e12ac1-01d6-4b64-84aa-1887c30493b8.png");
+                width: 100px;
+                height: 100px;
+                background:url("https://haitao.nos.netease.com/d5e12ac1-01d6-4b64-84aa-1887c30493b8.png");
                 background-size: cover;
                 z-index: 2;
                 border-radius: 50%;
@@ -152,17 +186,17 @@ export default {
                 top: 0;
                 left: 0;
             }
-
-            .video{
-                width: 100%;
-                height: 100%;
-                -o-object-fit: cover;
-                object-fit: cover;
-            }
         }
         .item:nth-child(odd){
             height: 100%;
             background: #999;
         }
+    }
+
+    .video{
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
     }
 </style>
