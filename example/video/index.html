@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script>
+        var pix = 1/window.devicePixelRatio;
+        document.write('<meta name="viewport" content="width=device-width,initial-scale='+ pix +',minimum-scale='+ pix +',maximum-scale='+ pix +',user-scalable=no">');
+    </script>
     <script src="js/doc.js"></script>
     <script src="js/swiper.min.js"></script>
     <link rel="stylesheet" href="css/style.css">

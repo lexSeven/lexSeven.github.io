@@ -1,0 +1,158 @@
+html{
+  font-size: 1vw;
+}
+
+@rem:10.8rem;
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.center{
+  text-align: center;
+  line-height: 0;
+  &:before{
+    content: '';
+    width: 0;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.topMenu{
+  height: 25/@rem;
+  background: #000000;
+
+  .content{
+    width: 673/@rem;
+    height: 100%;
+    margin: 0 auto;
+
+    .logo{
+      width: 129/@rem;
+      height: 42/@rem;
+      float: left;
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
+
+    }
+
+    .menu{
+      float: right;
+      height: 100%;
+      margin-right: 35/@rem;
+
+      .item{
+        padding: 0 9/@rem 0 10/@rem;
+        float: left;
+        height: 100%;
+
+        a{
+          height: 100%;
+          display: block;
+          .center;
+        }
+        span{
+          color: #fff;
+          font:(6/@rem)/(9/@rem) 'Noto Sans S Chinese R';
+        }
+
+      }
+
+    }
+
+    .login{
+      width: 48/@rem;
+      height: 19/@rem;
+      margin-top: 4/@rem;
+      background: url('../images/group29.png') no-repeat;
+      -webkit-background-size: 100%;
+      background-size: 100%;
+      float: right;
+      padding-left: 4/@rem;
+      .center;
+
+      span{
+        font: (8/@rem)/(11/@rem) 'Noto Sans S Chinese R';
+        display: inline-block;
+        vertical-align: middle;
+        color: #fff;
+      }
+
+    }
+
+  }
+
+}
+
+.centerContent{
+  width: 673/@rem;
+  margin: 0 auto;
+  position: relative;
+  min-height: 600/@rem;
+
+  .bottomColor{
+    width: 645/@rem;
+    height: 65/@rem;
+    background: url("../images/color.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 11/@rem;
+    bottom: 30/@rem;
+  }
+
+  .mumuT{
+    width: 117/@rem;
+    height: 145/@rem;
+    background: url("../images/muT.png") no-repeat;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    position: absolute;
+    right: 28/@rem;
+    bottom: 78/@rem;
+  }
+
+  .text2{
+    width: 353/@rem;
+    height: 126/@rem;
+    background: url("../images/text1.png") no-repeat;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 78/@rem;
+    right: 116/@rem;
+  }
+
+  .zhao{
+    width: 226/@rem;
+    height: 445/@rem;
+    background: url("../images/zhao.png") no-repeat;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 111/@rem;
+    left: 10/@rem;
+  }
+
+}

@@ -1,3 +1,24 @@
+
+.center{
+  line-height: 0;
+  &:before{
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+  }
+  i{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 5px;
+  }
+  span{
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
 .qqMusicPlay{
   width:1010px;
   height:690px;
@@ -38,11 +59,7 @@
       height:25px;
       line-height: 25px;
       cursor: pointer;
-      span{
-        display: inline-block;
-        vertical-align: middle;
-      }
-
+      .center;
     }
 
   }
@@ -71,6 +88,7 @@
       padding-left:10px;
       cursor: pointer;
       margin-bottom:6px;
+      .center;
       span{
         vertical-align: middle;
         padding-left: 6px;
@@ -435,20 +453,19 @@
     display: inline-block;
     vertical-align: middle;
     color: #31c27c;
-    font-size:50px;
+    font-size:30px;
     line-height: 26px;
     cursor: pointer;
 
     &:active{
       color: #4de99e;
     }
-
   }
 
   .playBtn{
     width:50px;
     height:50px;
-    font-size:70px;
+    font-size:50px;
     line-height: 40px;
   }
 

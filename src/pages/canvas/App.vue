@@ -9,21 +9,21 @@
                     :data-video="item.video"
                 >
                     <img :src="item.coverImg">
-                    <canvas></canvas>
+                    <video
+                        preload="auto"
+                        width="100"
+                        height="200"
+                        playsinline="true"
+                        webkit-playsinline="true"
+                        x5-video-player-type="h5"
+                        x5-video-player-fullscreen="true"
+                        x5-video-orientation="portraint"
+                        class="video"
+                    ><source :src="item.video"/></video>
+                    <div class="canvas"></div>
                 </div>
             </div>
         </div>
-        <video
-            src=""
-            ref="videoDOM"
-            preload="auto"
-            playsinline="true"
-            webkit-playsinline="true"
-            x5-video-player-type="h5"
-            x5-video-player-fullscreen="true"
-            x5-video-orientation="portraint"
-            class="video"
-        ></video>
     </div>
 </template>
 
@@ -80,7 +80,7 @@ export default {
                     obj:obj
                 })
             }else{
-                _this.$refs.videoDOM.pause();
+                _this.videoDOM.pause();
                 obj.classList.remove('active');
                 _this.playStatus = false;
             }
@@ -88,24 +88,25 @@ export default {
         play:function(option){
             var _this = this;
             _this.timer = null;
-            _this.$refs.videoDOM.src = option.obj.dataset.video;
-            _this.$refs.videoDOM.play();
+            _this.videoDOM = option.obj.querySelector('.video');
+            _this.videoDOM.play()
             _this.canvasDom = option.obj.querySelector('canvas');
-            _this.canvasDom.width = _this.scrollwidth;
-            _this.canvasDom.height = _this.scrollheight;
+            _this.canvasDom.width = _this.scrollwidth/3;
+            _this.canvasDom.height = _this.scrollheight/3;
             _this.player = _this.canvasDom.getContext('2d');
-            _this.duration = _this.$refs.videoDOM.duration;
-            _this.$refs.videoDOM.addEventListener("canplay", function() {
-                _this.draw()
-            }, false)
+            _this.duration = _this.videoDOM.duration;
+            // _this.videoDOM.addEventListener("canplay", function() {
+            //     _this.draw()
+            // }, false)
+            _this.draw()
         },
         draw:function(){
             var _this = this;
-            if(_this.$refs.videoDOM.paused || _this.$refs.videoDOM.ended) {
+            if(_this.videoDOM.paused || _this.videoDOM.ended) {
                 cancelAnimationFrame(_this.timer);
                 return false;
             }
-            _this.player.drawImage(_this.$refs.videoDOM, 0, 0, _this.scrollwidth, _this.scrollheight)
+            _this.player.drawImage(_this.videoDOM, 0, 0, _this.scrollwidth, _this.scrollheight)
             _this.timer = requestAnimationFrame(function() {
                 _this.draw()
             });
@@ -144,8 +145,11 @@ export default {
 </script>
 <style  lang="scss" scoped>
     .content{
+        width: 100vw;
         height: 100vh;
         overflow: hidden;
+        /*position: absolute;*/
+        /*z-index: 2;*/
 
         .item{
             height: 100%;
@@ -158,8 +162,8 @@ export default {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%,-50%);
-                width: 100px;
-                height: 100px;
+                width: 200px;
+                height: 200px;
                 background:url("https://haitao.nos.netease.com/d5e12ac1-01d6-4b64-84aa-1887c30493b8.png");
                 background-size: cover;
                 z-index: 2;
@@ -169,9 +173,10 @@ export default {
             &.active{
                 display: block;
 
-                /*&:before{*/
-                    /*display: none;*/
-                /*}*/
+                &:before{
+                    background: url("https://haitao.nosdn1.127.net/6ed9d2a8-180a-4cd1-bb6e-33fa6cb088f6_124_124.png?imageView&thumbnail=60x0&quality=75&type=webp");
+                    background-size: cover;
+                }
 
                 img{
                     opacity: 0;
@@ -186,6 +191,16 @@ export default {
                 top: 0;
                 left: 0;
             }
+
+            .canvas{
+                width: 300px;
+                height: 400px;
+                background: #f00;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                z-index: 2;
+            }
         }
         .item:nth-child(odd){
             height: 100%;
@@ -194,9 +209,10 @@ export default {
     }
 
     .video{
-        width: 100%;
-        height: 100%;
-        -o-object-fit: cover;
-        object-fit: cover;
+        width:100px;
+        height:200px;
+        object-position: center top;
+        position: absolute;
+        /*top: 0;*/
     }
 </style>

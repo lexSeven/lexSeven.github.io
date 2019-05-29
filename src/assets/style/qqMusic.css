@@ -1,3 +1,22 @@
+.center {
+  line-height: 0;
+}
+.center:before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+.center i {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 5px;
+}
+.center span {
+  display: inline-block;
+  vertical-align: middle;
+}
 .qqMusicPlay {
   width: 1010px;
   height: 690px;
@@ -36,6 +55,19 @@
   height: 25px;
   line-height: 25px;
   cursor: pointer;
+  line-height: 0;
+}
+.qqMleftMenu .userInfo .userDesc:before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+.qqMleftMenu .userInfo .userDesc i {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 5px;
 }
 .qqMleftMenu .userInfo .userDesc span {
   display: inline-block;
@@ -63,6 +95,23 @@
   padding-left: 10px;
   cursor: pointer;
   margin-bottom: 6px;
+  line-height: 0;
+}
+.qqMleftMenu .menuBox .menuItem:before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+.qqMleftMenu .menuBox .menuItem i {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 5px;
+}
+.qqMleftMenu .menuBox .menuItem span {
+  display: inline-block;
+  vertical-align: middle;
 }
 .qqMleftMenu .menuBox .menuItem span {
   vertical-align: middle;
@@ -376,7 +425,7 @@
   display: inline-block;
   vertical-align: middle;
   color: #31c27c;
-  font-size: 50px;
+  font-size: 30px;
   line-height: 26px;
   cursor: pointer;
 }
@@ -386,7 +435,7 @@
 .qqMControl .playBtn {
   width: 50px;
   height: 50px;
-  font-size: 70px;
+  font-size: 50px;
   line-height: 40px;
 }
 .qqMProgress {

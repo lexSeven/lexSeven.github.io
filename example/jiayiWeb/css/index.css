@@ -1,0 +1,148 @@
+html {
+  font-size: 1vw;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.center {
+  text-align: center;
+  line-height: 0;
+}
+.center:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.topMenu {
+  height: 2.31481481rem;
+  background: #000000;
+}
+.topMenu .content {
+  width: 62.31481481rem;
+  height: 100%;
+  margin: 0 auto;
+}
+.topMenu .content .logo {
+  width: 11.94444444rem;
+  height: 3.88888889rem;
+  float: left;
+}
+.topMenu .content .logo img {
+  width: 100%;
+  height: 100%;
+}
+.topMenu .content .menu {
+  float: right;
+  height: 100%;
+  margin-right: 3.24074074rem;
+}
+.topMenu .content .menu .item {
+  padding: 0 0.83333333rem 0 0.92592593rem;
+  float: left;
+  height: 100%;
+}
+.topMenu .content .menu .item a {
+  height: 100%;
+  display: block;
+  text-align: center;
+  line-height: 0;
+}
+.topMenu .content .menu .item a:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.topMenu .content .menu .item span {
+  color: #fff;
+  font: 0.55555556rem/0.83333333rem 'Noto Sans S Chinese R';
+}
+.topMenu .content .login {
+  width: 4.44444444rem;
+  height: 1.75925926rem;
+  margin-top: 0.37037037rem;
+  background: url('../images/group29.png') no-repeat;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  float: right;
+  padding-left: 0.37037037rem;
+  text-align: center;
+  line-height: 0;
+}
+.topMenu .content .login:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.topMenu .content .login span {
+  font: 0.74074074rem/1.01851852rem 'Noto Sans S Chinese R';
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+}
+.centerContent {
+  width: 62.31481481rem;
+  margin: 0 auto;
+  position: relative;
+  min-height: 55.55555556rem;
+}
+.centerContent .bottomColor {
+  width: 59.72222222rem;
+  height: 6.01851852rem;
+  background: url("../images/color.png") no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 1.01851852rem;
+  bottom: 2.77777778rem;
+}
+.centerContent .mumuT {
+  width: 10.83333333rem;
+  height: 13.42592593rem;
+  background: url("../images/muT.png") no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  position: absolute;
+  right: 2.59259259rem;
+  bottom: 7.22222222rem;
+}
+.centerContent .text2 {
+  width: 32.68518519rem;
+  height: 11.66666667rem;
+  background: url("../images/text1.png") no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 7.22222222rem;
+  right: 10.74074074rem;
+}
+.centerContent .zhao {
+  width: 20.92592593rem;
+  height: 41.2037037rem;
+  background: url("../images/zhao.png") no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 10.27777778rem;
+  left: 0.92592593rem;
+}
+/*# sourceMappingURL=index.css.map */

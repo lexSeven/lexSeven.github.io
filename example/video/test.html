@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<script>
+        var pix = 1/window.devicePixelRatio;
+        document.write('<meta name="viewport" content="width=device-width,initial-scale='+ pix +',minimum-scale='+ pix +',maximum-scale='+ pix +',user-scalable=no">');
+    </script>
+	<style>
+		body{
+			margin: 0;
+		}
+		.video{
+			width: 100vw;
+			height: 100vh;
+			object-position: center center;
+			overflow: hidden;
+		}
+		.mark{
+			width: 100%;
+			height: 100vh;
+			line-height: 200px;
+			background: transparent;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 99;
+			color: #666;
+		}
+		.control{
+			width: 100%;
+			height: 30px;
+			background: #f00;
+			position: absolute;
+			bottom: 0;
+		}
+		.videoBox{
+			position: relative;
+		}
+	</style>
+</head>
+<body>
+
+<div class="videoBox swiper-slide">
+	<div class="mark">
+		<div class="control"></div>
+	</div>
+	
+	<div class="video">
+		<video
+			preload="auto"
+			x5-video-player-fullscreen="true"
+			x5-video-orientation="portraint"
+			x5-video-player-type="h5"
+			x5-playsinline="true"
+			playsinline="true"
+			webkit-playsinline="true"
+			class="video"
+		>
+			<source src="https://voddafz06jj.vod.126.net/voddafz06jj/aOkmUaVj_2418171963_shd.mp4" />
+		</video>
+	</div>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;ksjdnk</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;aksjdkaksdjnkajsd</p>
+	<p>&nbsp;akdjkasj</p>
+	<p>&nbsp;akdjkasj</p>
+	<p>&nbsp;akdjkasj</p>
+	<p>&nbsp;akdjkasj</p>
+	<div class="video">
+		<video
+			preload="auto"
+			x5-video-player-fullscreen="true"
+			x5-video-orientation="portraint"
+			x5-video-player-type="h5"
+			x5-playsinline="true"
+			playsinline="true"
+			webkit-playsinline="true"
+			class="video"
+			controls
+		>
+			<source src="https://voddafz06jj.vod.126.net/voddafz06jj/aOkmUaVj_2418171963_shd.mp4" />
+		</video>
+	</div>
+</div>
+
+
+
+<script src="js/swiper.min.js"></script>
+<script type="text/javascript">
+	var player = document.querySelector('video');
+	var view = {
+		w:window.innerWidth,
+		h:window.screen.height
+	}
+	
+	player.width = view.w
+	player.height = view.h
+	
+	// alert(view.h)
+	
+	// player.addEventListener('x5videoenterfullscreen',function(){
+	// 	player.width = view.w
+	// 	player.height = view.h
+	// 	player.style.width = view.w + 'px'
+	// 	player.style.height = view.h + 'px';
+	// })
+	
+	
+	 var swiper = new Swiper('.swiper-container',{
+	    direction: 'vertical',
+	    on: {
+			sliderMove: function () {
+				player.width = view.w
+				player.height = view.h
+				player.style.width = view.w + 'px'
+				player.style.height = view.h + 'px';
+			},
+	        slideChangeTransitionEnd: function(){
+				player = document.querySelectorAll('video')[this.activeIndex];
+				player.width = view.w
+				player.height = view.h
+	            // alert(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+	        },
+	    },
+	});
+</script>
+
+</body>
+</html>
