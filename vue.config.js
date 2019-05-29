@@ -9,7 +9,7 @@ const pages = utils.setPages({})
 
 const isPro = process.env.NODE_ENV === 'production'
 
-let baseUrl = '/'
+let baseUrl = ''
 
 module.exports = {
     publicPath: baseUrl,
