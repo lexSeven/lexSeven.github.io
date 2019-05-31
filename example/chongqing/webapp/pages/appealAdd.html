@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>人才诉求服务</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/list.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <style type="text/css">
+        .layui-btn-red {
+            background-color: #ff4433 !important;
+        }
+
+        .content .contentMain .detailBox {
+            font-size: 14px !important;
+        }
+
+        .layui-btn-red {
+            background-color: #ff4433 !important;
+        }
+        .layui-field-title legend{
+            font-weight: bold;
+        }
+        .layui-form-item{
+            margin-bottom: 25px !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topMenu">
+    <a href="/">
+        <div class="logo">
+            江北智能党建
+        </div>
+    </a>
+    <div class="menu">
+        @for(menu in menus) {
+        <div class="item ${menu.id == pMenuId?'active':''}"><a href="${menu.children[0].url}">${menu.name}</a></div>
+        @}
+    </div>
+    <div class="sinout"><img src="/static/img/list_04.png"></div>
+</div>
+
+<div class="content">
+    <div class="leftMenu">
+        <div class="list">
+            <ul class="yiji">
+                @for(menu in menus) {
+                <li>
+                    <div class="titleItem inactive ${menu.id == pMenuId?'inactives':''}">
+                        <i class="icon">
+                            <img src="/static/img/list_12.png">
+                        </i>
+                        <span>${menu.name}</span>
+                        <i class="arrow"></i>
+                    </div>
+                    <ul style="display: block">
+                        @for(subMenu in menu.children){
+                        <li class="item">
+                            @if(subMenu.children ==null ||subMenu.children.~size==0){
+                        <li class="item">
+                            <a href="${subMenu.url}" class="inactive active ${subMenu.id == menuId?'inactives':''}">${subMenu.name}</a>
+                        </li>
+                        @}else{
+                        <span class="inactive active ${subMenu.id == menuId?'inactives':''}">${subMenu.name}</span>
+
+                        @if(subMenu.id ==menuId){
+                        <ul class="thirdMenu" style="display: block;">
+                            @for(ssubMenu in subMenu.children){
+                            <li class="item"><a href="${ssubMenu.url}" class="inactive active ${ssubMenu.id == sonMenuId?'inactives':''}">${ssubMenu.name}</a></li>
+                            @}
+                        </ul>
+                        @}else{
+                        <ul class="thirdMenu" style="display: none;">
+                            @for(ssubMenu in subMenu.children){
+                            <li class="item"><a href="${ssubMenu.url}" class="inactive active ${ssubMenu.id == sonMenuId?'inactives':''}">${ssubMenu.name}</a></li>
+                            @}
+                        </ul>
+                        @}
+                        @}
+                        </li>
+                        @}
+                    </ul>
+                </li>
+                @}
+            </ul>
+        </div>
+    </div>
+    <div class="contentMain">
+        <div class="localtion">
+            <img src="/static/img/list_09.png">
+            <span>
+                <a href="#">${pMenuName}</a>  >
+                <a href="#">人才诉求服务</a>
+            </span>
+        </div>
+        <div class="detailBox">
+            <!--<blockquote class="layui-elem-quote layui-text">-->
+            <!--人才诉求服务-->
+            <!--</blockquote>-->
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <legend>人才诉求服务</legend>
+            </fieldset>
+
+            <form id="bizAppealForm" lay-filter="bizAppealForm" class="layui-form"  method="post">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-inline">
+                        <select name="sex" lay-filter="sex">
+                            <option value="M">男</option>
+                            <option value="F">女</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出生年月</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="birthday" lay-verify="required" autocomplete="off" class="layui-input"
+                               id="date">
+                    </div>
+                    <label class="layui-form-label">政治面貌</label>
+                    <div class="layui-input-inline">
+                        <select name="politics" lay-filter="politics">
+                            @for(zzmm in zzmmList) {
+                            <option value="${zzmm.code}">${zzmm.name}</option>
+                            @}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">毕业院校及专业</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="major" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学历</label>
+                    <div class="layui-input-inline">
+                        <select name="education" lay-filter="education">
+                            @for(education in educationList) {
+                            <option value="${education.code}">${education.name}</option>
+                            @}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">现工作地</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="workPlace" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">现工作单位及职务</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="post" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">专业技术职称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">诉求及问题</label>
+                    <div class="layui-input-block">
+                        <textarea name="question" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-upload">
+                    <label class="layui-form-label">项目材料</label>
+                    <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+                    <button type="button" class="layui-btn layui-btn-red" id="testListAction">开始上传</button>
+                    <div class="layui-upload-list">
+                        <table class="layui-table">
+                            <thead>
+                            <tr><th>文件名</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr></thead>
+                            <tbody id="demoList"></tbody>
+                        </table>
+                        <input type="hidden" id="fileUrl" name="fileUrl"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联系方式</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="phone" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                    <!--<div class="layui-input-inline" style="width: 10% !important;">-->
+                    <!--<button class="layui-btn layui-btn-red">获取验证码</button>-->
+                    <!--</div>-->
+                    <!--<label class="layui-form-label">验证码</label>-->
+                    <!--<div class="layui-input-inline">-->
+                    <!--<input type="text" name="code" lay-verify="required"  autocomplete="off" class="layui-input">-->
+                    <!--</div>-->
+                    <label class="layui-form-label">电子邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-red" lay-submit="" lay-filter="demo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="footer">
+    <div class="subFoot">
+        <p>地址：重庆市江北区金港新区江北区行政服务中心&nbsp;&nbsp;&nbsp;联系电话：023-67560169</p>
+        <p><span>渝ICP备8888888号</span></p>
+    </div>
+</div>
+<script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/static/layui/layui.all.js" type="text/javascript"></script>
+<script>
+    layui.config({
+        base: '/static/js/'
+    }).extend({ax: 'ax'});
+    layui.use(['form', 'layedit', 'laydate', 'ax','upload'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , $ax = layui.ax
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+
+
+        //监听提交
+        form.on('submit(demo)', function (data) {
+            var ajax = new $ax("/appeal/add", function (data) {
+                layer.alert("你的需求已经受理，如需帮助请联系组织部${phone}");
+                $("#demoList").html("");
+                $("#bizAppealForm")[0].reset();
+            }, function (data) {
+                layer.alert("添加失败！");
+            });
+            ajax.set(data.field);
+            ajax.start();
+            return false;
+        });
+
+        var upload = layui.upload;
+        //多文件列表示例
+        var demoListView = $('#demoList')
+            ,uploadListIns = upload.render({
+            elem: '#testList'
+            ,url: '/uploadfile'
+            ,accept: 'file'
+            ,multiple: true
+            ,auto: false
+            ,bindAction: '#testListAction'
+            ,choose: function(obj){
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var tr = $(['<tr id="upload-'+ index +'">'
+                        ,'<td>'+ file.name +'</td>'
+                        ,'<td>等待上传</td>'
+                        ,'<td>'
+                        ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        ,'</td>'
+                        ,'</tr>'].join(''));
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function(){
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+
+                    demoListView.append(tr);
+                });
+            }
+            ,done: function(res, index, upload){
+
+                if(res.code === 200){ //上传成功
+                    //上传成功
+                    var fileUrlStr = $("#fileUrl").val();
+                    if(fileUrlStr){
+                        $("#fileUrl").val(fileUrlStr+","+res.data);
+                    }else {
+                        $("#fileUrl").val(fileUrlStr+","+res.data);
+                    }
+                    var tr = demoListView.find('tr#upload-'+ index)
+                        ,tds = tr.children();
+                    tds.eq(1).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(2).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            ,error: function(index, upload){
+                var tr = demoListView.find('tr#upload-'+ index)
+                    ,tds = tr.children();
+                tds.eq(1).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(2).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+
+
+    });
+
+
+    $(document).ready(function() {
+        $('.inactive').click(function() {
+            if ($(this).siblings('ul').css('display') == 'none') {
+                $(this).parent('li').siblings('li').children('.inactive').removeClass('inactives');
+                $(this).parent('li').siblings('li').children('ul').css('display', 'none');
+                $(this).addClass('inactives');
+                $(this).siblings('ul').slideDown(100).children('li');
+                if ($(this).parents('li').siblings('li').children('ul').css('display') == 'block') {
+                    $(this).parents('li').siblings('li').children('ul').parent('li').children('a').removeClass('inactives');
+                    $(this).parents('li').siblings('li').children('ul').slideUp(100);
+
+                }
+            } else if ($(this).siblings('ul').css('display') == 'block') {
+                //控制自身变成+号
+                $(this).removeClass('inactives');
+                //控制自身菜单下子菜单隐藏
+                $(this).siblings('ul').slideUp(100);
+                //控制自身子菜单变成+号
+                $(this).parent('li').siblings('li').find('.inactive').removeClass('inactives');
+                //控制自身菜单下子菜单隐藏
+                $(this).siblings('ul').children('li').children('ul').slideUp(100);
+
+                //控制同级菜单只保持一个是展开的（-号显示）
+                $(this).siblings('ul').children('li').children('a').removeClass('inactives');
+            } else {
+                $(this).addClass('inactives');
+                $(this).parents('li').siblings('li').children('a').removeClass('inactives');
+            }
+        })
+    });
+</script>
+
+</body>
+</html>

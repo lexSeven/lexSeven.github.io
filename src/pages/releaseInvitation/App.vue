@@ -17,6 +17,8 @@
                         x5-video-player-fullscreen="true"
                         x5-video-orientation="portraint"
                         x5-video-player-type="h5"
+                        playsinline="true"
+                        webkit-playsinline="true"
                         class="video"
                         style="display: none"
                     ></video>
@@ -146,8 +148,8 @@ export default {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%,-50%);
-                width: 200px;
-                height: 200px;
+                width: 100px;
+                height: 100px;
                 background:url("https://haitao.nos.netease.com/d5e12ac1-01d6-4b64-84aa-1887c30493b8.png");
                 background-size: cover;
                 z-index: 2;

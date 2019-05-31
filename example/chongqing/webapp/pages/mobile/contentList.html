@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${titleName}</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!-- 列表 -->
+<div class="container-fluid list">
+    <ul>
+        @for(content in catalog.contentList) {
+        <li class="icon icon-point" >
+            <span class="more icon">${content.updateTime,'yyyy-MM-dd'}</span>
+            <a href="/mobile/content/info/${content.id}">${content.title}</a>
+            <!--<span class="icon icon-new"></span>-->
+        </li>
+        @}
+    </ul>
+</div>
+
+<!-- 列表分页 -->
+<div class="container-fluid page">
+    <nav>
+        <ul class="pager">
+            @if(hasPre){
+            <li class="previous"><a href="/mobile/content/list/${id}?pageNum=${pageNum-1}"><span aria-hidden="true">&larr;</span> </a></li>
+            @}else{
+            <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> </a></li>
+            @}
+
+            @if(hasNext){
+            <li class="next"><a href="/mobile/content/list/${id}?pageNum=${pageNum+1}"><span aria-hidden="true">&rarr;</span> </a></li>
+            @}else{
+            <li class="next"><a href="#"><span aria-hidden="true">&rarr;</span> </a></li>
+            @}
+        </ul>
+    </nav>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

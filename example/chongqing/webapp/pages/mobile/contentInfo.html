@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${content.title}</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!-- 内容 -->
+<div class="container-fluid article">
+    <h1>${content.title}</h1>
+    <h5 style="border-bottom:1px solid #eee;padding-bottom: 9px"></h5>
+    <div class="article-content">
+        ${content.content}
+    </div>
+    <div class="info" style="float: right">
+        @if(isNotEmpty(content.source)){
+        <span>来源：${content.source}</span>
+        @}
+        <span>浏览次数：${content.readTime}次</span>
+        <span>${content.updateTime,'yyyy-MM-dd'}</span>
+    </div>
+    <div class="article-page">
+        <ul>
+            @if(isEmpty(preContent)){
+            <li><span>上一篇：</span><a href="#">没有了</a></li>
+            @}else{
+            <li><span>上一篇：</span><a href="/mobile/content/info/${preContent.id}">${preContent.title}</a></li>
+            @}
+
+            @if(isEmpty(nextContent)){
+            <li><span>下一篇：</span><a href="#">没有了</a></li>
+            @}else{
+            <li><span>下一篇：</span><a href="/mobile/content/info/${nextContent.id}">${nextContent.title}</a></li>
+            @}
+        </ul>
+    </div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

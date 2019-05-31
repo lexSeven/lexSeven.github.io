@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${titleName}</title>
+</head>
+<body>
+@for(catalog in contentList) {
+<div>标题：${catalog.name}</div>
+@for(content in catalog.contentList) {
+<div>标题：${content.title}</div>
+<div>图片：<img src="${content.fileUrl}" alt="图片"/></div>
+
+@}
+<div><a href="/content/list/${catalog.id}">更多</a> </div>
+@}
+
+<div><a href="/mobile/content/index/jbqq">江北区情(手机端)</a> </div>
+<div><a href="/mobile/content/index/rczc">人才政策(手机端)</a> </div>
+<div><a href="/mobile/content/index/rccg">人才成果(手机端)</a> </div>
+<div><a href="/content/index/jbqq">江北区情</a> </div>
+<div><a href="/content/index/rczc">人才政策</a> </div>
+<div><a href="/content/index/rccg">人才成果</a> </div>
+<div><a href="/location/list">人才平台</a> </div>
+<div><a href="/company/list">企业人才需求服务</a> </div>
+<div><a href="/appeal/toAdd">人才诉求服务</a> </div>
+<div><a href="#">人才项目服务</a> </div>
+<div><a href="/policy/add">政策申报服务</a> </div>
+</body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>人才项目服务</title>
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/list.css">
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <style type="text/css">
+        .content .contentMain .detailBox {
+            font-size: 14px !important;
+        }
+
+        .layui-text {
+            font-size: 16px !important;
+        }
+
+        .layui-elem-quote {
+            border-left-color: #ff4433 !important;
+        }
+
+        .layui-btn-red {
+            background-color: #ff4433 !important;
+        }
+
+        .layui-field-title legend {
+            font-weight: bold;
+        }
+
+        .layui-text {
+            font-weight: bold;
+        }
+
+        .layui-form-item {
+            margin-bottom: 25px !important;
+        }
+        .tarLeft {
+            text-align: left !important;
+        }
+
+        .wd120{
+            width: 120px !important;
+        }
+
+        @media screen and (max-width: 450px){
+            .layui-form-item .layui-form-label{
+                width: 100%;
+            }
+            .layui-form-item .layui-form-label{
+                padding-left: 0;
+                padding-right: 0;
+                width: 100px !important;
+            }
+            .layui-upload:after{
+                content: '';
+                display: block;
+                width: 100%;
+                clear: both;
+                height: 0;
+                font-size: 0;
+                line-height: 0;
+            }
+            .layui-upload .layui-form-label{
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .layui-upload .layui-btn{
+                float: left;
+                margin-left: 10px !important;
+            }
+            .layui-upload .layui-upload-list{
+                float: left;
+                width: 100%;
+            }
+        }
+        @media screen and (min-width: 350px){
+            .layui-form-item .layui-form-label{
+                width: 100%;
+            }
+            .layui-form-item .layui-form-label{
+                padding-left: 0;
+                padding-right: 0;
+                width: 100px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topMenu">
+    <a href="/">
+        <div class="logo">
+            江北智能党建
+        </div>
+    </a>
+    <div class="menu">
+        @for(menu in menus) {
+        <div class="item ${menu.id == pMenuId?'active':''}"><a href="${menu.children[0].url}">${menu.name}</a></div>
+        @}
+    </div>
+    <div class="sinout"><img src="/static/img/list_04.png"></div>
+</div>
+
+<div class="content">
+    <div class="leftMenu">
+        <div class="list">
+            <ul class="yiji">
+                @for(menu in menus) {
+                <li>
+                    <div class="titleItem inactive ${menu.id == pMenuId?'inactives':''}">
+                        <i class="icon">
+                            <img src="/static/img/list_12.png">
+                        </i>
+                        <span>${menu.name}</span>
+                        <i class="arrow"></i>
+                    </div>
+                    <ul style="display: block">
+                        @for(subMenu in menu.children){
+                        <li class="item">
+                            @if(subMenu.children ==null ||subMenu.children.~size==0){
+                        <li class="item">
+                            <a href="${subMenu.url}" class="inactive active ${subMenu.id == menuId?'inactives':''}">${subMenu.name}</a>
+                        </li>
+                        @}else{
+                        <span class="inactive active ${subMenu.id == menuId?'inactives':''}">${subMenu.name}</span>
+
+                        @if(subMenu.id ==menuId){
+                        <ul class="thirdMenu" style="display: block;">
+                            @for(ssubMenu in subMenu.children){
+                            <li class="item"><a href="${ssubMenu.url}"
+                                                class="inactive active ${ssubMenu.id == sonMenuId?'inactives':''}">${ssubMenu.name}</a>
+                            </li>
+                            @}
+                        </ul>
+                        @}else{
+                        <ul class="thirdMenu" style="display: none;">
+                            @for(ssubMenu in subMenu.children){
+                            <li class="item"><a href="${ssubMenu.url}"
+                                                class="inactive active ${ssubMenu.id == sonMenuId?'inactives':''}">${ssubMenu.name}</a>
+                            </li>
+                            @}
+                        </ul>
+                        @}
+                        @}
+                        </li>
+                        @}
+                    </ul>
+                </li>
+                @}
+            </ul>
+        </div>
+    </div>
+    <div class="contentMain">
+        <div class="localtion">
+            <img src="/static/img/list_09.png">
+            <span>
+                <a href="#">${pMenuName}</a>  >
+                <a href="#">人才项目服务</a>
+            </span>
+        </div>
+        <div class="detailBox">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <legend>创业创新人才信息表</legend>
+            </fieldset>
+            <form id="bizInfoForm" lay-filter="bizInfoForm" class="layui-form" method="post">
+                <blockquote class="layui-elem-quote layui-text">
+                    基本情况
+                </blockquote>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-inline">
+                        <select name="sex" lay-filter="sex">
+                            <option value="M">男</option>
+                            <option value="F">女</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">国籍</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="country" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出生日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="birthday" lay-verify="required" autocomplete="off" class="layui-input"
+                               id="date">
+                    </div>
+                    <label class="layui-form-label">出生地</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="birthplace" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <label class="layui-form-label">现居住地</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="place" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">政治面貌</label>
+                    <div class="layui-input-inline">
+                        <select name="politics" lay-filter="politics">
+                            @for(zzmm in zzmmList) {
+                            <option value="${zzmm.code}">${zzmm.name}</option>
+                            @}
+                        </select>
+                    </div>
+                    <label class="layui-form-label">护照号码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="idcard" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label">电子邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">通讯地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="address" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <blockquote class="layui-elem-quote layui-text">
+                    学习经历
+                </blockquote>
+                <div class="layui-form-item">
+                    <label class="layui-form-label wd120">留学国家（地区）</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="abroadAddress" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <label class="layui-form-label wd120">最高学历毕业学校</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="school" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label wd120">最高学历所学专业</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="major" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label wd120">最高学历学位</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="education" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>请附最高学位证书或在读证明扫描件作为申请证明材料</legend>
+                </fieldset>
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+                    <button type="button" class="layui-btn layui-btn-red" style="margin-left: 30px"  id="testListAction">开始上传</button>
+                    <div class="layui-upload-list" style="margin-top: 20px">
+                        <table class="layui-table">
+                            <thead>
+                            <tr>
+                                <th>文件名</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="demoList"></tbody>
+                        </table>
+                        <input type="hidden" id="fileUrl" name="fileUrl"/>
+                    </div>
+                </div>
+
+                <blockquote class="layui-elem-quote layui-text">
+                    工作经历
+                </blockquote>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 90px !important;">海外工作年限</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="overseasYear" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <label class="layui-form-label" style="width: 90px !important;">国内工作年限</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="homeYear" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label" style="width: 90px !important;">现从事领域</label>
+                    <div class="layui-input-inline">
+                        <select name="workField" lay-filter="workField">
+                            <option value="A.电子信息">A.电子信息</option>
+                            <option value="B.生物、医药">B.生物、医药</option>
+                            <option value="C.新材料">C.新材料</option>
+                            <option value="D. 金融、财务">D. 金融、财务</option>
+                            <option value="E.化工、轻工">E.化工、轻工</option>
+                            <option value="F.新能源、环保技术">F.新能源、环保技术</option>
+                            <option value="G.城市规划、建筑">G.城市规划、建筑</option>
+                            <option value="H.物流、交通">H.物流、交通</option>
+                            <option value="I.农林牧渔">I.农林牧渔</option>
+                            <option value="J.管理、咨询">J.管理、咨询</option>
+                            <option value="K.商务贸易">K.商务贸易</option>
+                            <option value="L. 机电一体化、制造业">L. 机电一体化、制造业</option>
+                            <option value="M.法律">M.法律</option>
+                            <option value="N.文化、艺术">N.文化、艺术</option>
+                            <option value="O.教育">O.教育</option>
+                            <option value="P.其它">P.其它</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 90px !important;">现工作单位及职务</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="post" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>工作经历（请从最近经历写起）
+                        <button type="button" class="layui-btn layui-btn-normal" id="addWork">添加经历</button>
+                    </legend>
+
+                </fieldset>
+                <div class="layui-form-item" style="margin-top: 20px">
+
+                    <div class="layui-upload-list">
+                        <table class="layui-table">
+                            <thead>
+                            <tr>
+                                <th>国内/国外</th>
+                                <th>起至年月</th>
+                                <th>工作单位及职务</th>
+                                <th>职责描述</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="workList"></tbody>
+                        </table>
+                        <input type="hidden" id="workIds" name="workIds"/>
+                    </div>
+                </div>
+                <blockquote class="layui-elem-quote layui-text">
+                    项目基本信息
+                </blockquote>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 90px !important;">项目名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="projectName" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <label class="layui-form-label" style="width: 90px !important;">项目意向</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="intention" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <label class="layui-form-label" style="width: 90px !important;">项目所属领域</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="projectField" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item tarLeft" pane="">
+                    <label class="layui-form-label" style="width: 90px !important;">成果持有者</label>
+                    <div class="layui-input-block ">
+                        <input type="radio" name="person" title="本人" value="本人" checked>
+                        <input type="radio" name="person" title="合伙" value="合伙">
+                        <input type="radio" name="person" title="机构" value="机构">
+                    </div>
+                </div>
+                <div class="layui-form-item tarLeft" pane="">
+                    <label class="layui-form-label">专利注册情况</label>
+                    <div class="layui-input-block">
+                        <div class="layui-input-inline">
+                            <input type="radio" name="patent" title="已注册专利" value="已注册专利" id="patentZc" lay-filter="patentZc"  checked>
+                        </div>
+                        <label class="layui-form-label">注册国家</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="patentCountry"  autocomplete="off"
+                                   class="layui-input" lay-verify="patentCountryZc" id="patentCountryZc">
+                        </div>
+                        <label class="layui-form-label">专利号</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="patentNum"  autocomplete="off"
+                                   class="layui-input" lay-verify="patentNumZc" id="patentNumZc">
+                        </div>
+                    </div>
+                    <div class="layui-input-block" style="margin-top: 20px">
+                        <div class="layui-input-inline">
+                            <input type="radio" name="patent" title="已申请专利" value="已申请专利" id="patentSq" lay-filter="patentSq">
+                        </div>
+                        <label class="layui-form-label">申请国家</label>
+                        <div class="layui-input-inline" >
+                            <input type="text" name="patentCountry" autocomplete="off"
+                                   class="layui-input" lay-verify="patentCountrySq" id="patentCountrySq" disabled="disabled">
+                        </div>
+                        <label class="layui-form-label">受理号</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="patentNum"  autocomplete="off"
+                                   class="layui-input" lay-verify="patentNumSq" id="patentNumSq" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="layui-input-block" style="margin-top: 20px">
+                        <input type="radio" name="patent" title="没有专利" value="没有专利" lay-filter="patentNone">
+                    </div>
+                </div>
+
+                <div class="layui-form-item tarLeft" pane="">
+                    <label class="layui-form-label" style="width: 90px !important;">技术所处阶段</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="stage" title="研开发阶段" value="研开发阶段" checked>
+                        <input type="radio" name="stage" title="项目孵化阶段" value="项目孵化阶段">
+                        <input type="radio" name="stage" title="中试阶段" value="中试阶段">
+                        <input type="radio" name="stage" title="产业化阶段" value="产业化阶段">
+                        <input type="radio" name="stage" title="其它" value="其它">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">项目介绍</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入内容" class="layui-textarea" name="info"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">预期投资</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="invest" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label">预期收益</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="income" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item tarLeft" pane="">
+                    <label class="layui-form-label">融资状态</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="financingStatus" title="有" value="有" checked>
+                        <input type="radio" name="financingStatus" title="无" value="无">
+                        <input type="radio" name="financingStatus" title="不便透露" value="不便透露">
+                    </div>
+                </div>
+                <div class="layui-form-item tarLeft" pane="">
+                    <label class="layui-form-label">是否需要融资</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="needFinancing" title="是" value="是"  checked>
+                        <input type="radio" name="needFinancing" title="否" value="否">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">合作方式</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="cooperation" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">江北区推荐/合作单位</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="cooperationDept" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">其他要求或特别说明</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入内容" class="layui-textarea" name="otherQuestion"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">申明人</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="applyPerson" lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <label class="layui-form-label">日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="projectDate" lay-verify="required" autocomplete="off" id="date2"
+                               class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-upload">
+                    <label class="layui-form-label">项目材料</label>
+                    <button type="button" class="layui-btn layui-btn-normal" id="testList2">选择多文件</button>
+                    <button type="button" class="layui-btn layui-btn-red" style="margin-left: 30px" id="testListAction2">开始上传</button>
+                    <div class="layui-upload-list" style="margin-top: 20px">
+                        <table class="layui-table">
+                            <thead>
+                            <tr>
+                                <th>文件名</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="demoList2"></tbody>
+                        </table>
+                        <input type="hidden" id="projectFileUrl" name="projectFileUrl"/>
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联系方式</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="phone" lay-verify="phone" autocomplete="off" class="layui-input">
+                    </div>
+                    <!--<div class="layui-input-inline" style="width: 10% !important;">-->
+                    <!--<button class="layui-btn layui-btn-red">获取验证码</button>-->
+                    <!--</div>-->
+                    <!--<label class="layui-form-label">验证码</label>-->
+                    <!--<div class="layui-input-inline">-->
+                    <!--<input type="text" name="code" lay-verify="required"  autocomplete="off" class="layui-input">-->
+                    <!--</div>-->
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-red" lay-submit="" lay-filter="demo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="subFoot">
+        <p>地址：重庆市江北区金港新区江北区行政服务中心&nbsp;&nbsp;&nbsp;联系电话：023-67560169</p>
+        <p><span>渝ICP备8888888号</span></p>
+    </div>
+</div>
+<script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/static/layui/layui.all.js" type="text/javascript"></script>
+
+<script>
+    layui.config({
+        base: '/static/js/'
+    }).extend({ax: 'ax'});
+
+    layui.use(['form', 'layedit', 'laydate', 'ax', 'upload'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , $ax = layui.ax
+            , $ = layui.jquery
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        //日期
+        laydate.render({
+            elem: '#date2'
+        });
+        form.verify({
+            patentCountryZc: function(value, item){ //value：表单的值、item：表单的DOM对象
+                var val=$('input:radio[name="patent"]:checked').val();
+                if(val=='已注册专利'){
+                    if(!value){
+                        return '必填项不能为空';
+                    }
+                }
+            },
+            patentNumZc: function(value, item){ //value：表单的值、item：表单的DOM对象
+                var val=$('input:radio[name="patent"]:checked').val();
+                if(val=='已注册专利'){
+                    if(!value){
+                        return '必填项不能为空';
+                    }
+                }
+            },
+            patentCountrySq: function(value, item){ //value：表单的值、item：表单的DOM对象
+                var val=$('input:radio[name="patent"]:checked').val();
+                if(val=='已申请专利'){
+                    if(!value){
+                        return '必填项不能为空';
+                    }
+                }
+            },
+            patentNumSq: function(value, item){ //value：表单的值、item：表单的DOM对象
+                var val=$('input:radio[name="patent"]:checked').val();
+                if(val=='已申请专利'){
+                    if(!value){
+                        return '必填项不能为空';
+                    }
+                }
+            }
+        })
+
+
+        //监听提交
+        form.on('submit(demo)', function (data) {
+            var ajax = new $ax("/info/add", function (data) {
+                layer.alert("你的需求已经受理，如需帮助请联系组织部${phone}");
+                $("#demoList").html("");
+                $("#demoList2").html("");
+                $("#workList").html("");
+                $("#bizInfoForm")[0].reset();
+            }, function (data) {
+                layer.alert("添加失败！");
+            });
+            ajax.set(data.field);
+            ajax.start();
+            return false;
+        });
+
+        var upload = layui.upload;
+        //多文件列表示例
+        var demoListView = $('#demoList')
+            , uploadListIns = upload.render({
+            elem: '#testList'
+            , url: '/uploadfile'
+            , accept: 'file'
+            , multiple: true
+            , auto: false
+            , bindAction: '#testListAction'
+            , choose: function (obj) {
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function (index, file, result) {
+                    var tr = $(['<tr id="upload-' + index + '">'
+                        , '<td>' + file.name + '</td>'
+                        , '<td>等待上传</td>'
+                        , '<td>'
+                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        , '</td>'
+                        , '</tr>'].join(''));
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function () {
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+
+                    demoListView.append(tr);
+                });
+            }
+            , done: function (res, index, upload) {
+
+                if (res.code === 200) { //上传成功
+                    //上传成功
+                    var fileUrlStr = $("#fileUrl").val();
+                    if (fileUrlStr) {
+                        $("#fileUrl").val(fileUrlStr + "," + res.data);
+                    } else {
+                        $("#fileUrl").val(fileUrlStr + "," + res.data);
+                    }
+                    var tr = demoListView.find('tr#upload-' + index)
+                        , tds = tr.children();
+                    tds.eq(1).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(2).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            , error: function (index, upload) {
+                var tr = demoListView2.find('tr#upload-' + index)
+                    , tds = tr.children();
+                tds.eq(1).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(2).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+
+
+        //多文件列表示例
+        var demoListView2 = $('#demoList2')
+            , uploadListIns2 = upload.render({
+            elem: '#testList2'
+            , url: '/uploadfile'
+            , accept: 'file'
+            , multiple: true
+            , auto: false
+            , bindAction: '#testListAction2'
+            , choose: function (obj) {
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function (index, file, result) {
+                    var tr = $(['<tr id="upload-' + index + '">'
+                        , '<td>' + file.name + '</td>'
+                        , '<td>等待上传</td>'
+                        , '<td>'
+                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        , '</td>'
+                        , '</tr>'].join(''));
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function () {
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns2.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+
+                    demoListView2.append(tr);
+                });
+            }
+            , done: function (res, index, upload) {
+
+                if (res.code === 200) { //上传成功
+                    //上传成功
+                    var fileUrlStr = $("#projectFileUrl").val();
+                    if (fileUrlStr) {
+                        $("#projectFileUrl").val(fileUrlStr + "," + res.data);
+                    } else {
+                        $("#projectFileUrl").val(fileUrlStr + "," + res.data);
+                    }
+                    var tr = demoListView2.find('tr#upload-' + index)
+                        , tds = tr.children();
+                    tds.eq(1).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(2).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            , error: function (index, upload) {
+                var tr = demoListView2.find('tr#upload-' + index)
+                    , tds = tr.children();
+                tds.eq(1).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(2).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+
+        // 添加按钮点击事件
+        $('#addWork').click(function () {
+            layer.open({
+                type: 2,
+                title: '添加工作经历',
+                content: '/info/toAddWork',
+                area: ['350px', '380px']
+            });
+        });
+
+        form.on('radio(patentSq)', function(data){
+            console.log(data.elem); //得到radio原始DOM对象
+            console.log(data.value); //被点击的radio的value值
+            $("#patentNumZc").val("");
+            $("#patentCountryZc").val("");
+            $("#patentNumZc").attr("disabled","disabled");
+            $("#patentCountryZc").attr("disabled","disabled");
+            $("#patentNumSq").removeAttr("disabled");
+            $("#patentCountrySq").removeAttr("disabled");
+        });
+
+        form.on('radio(patentZc)', function(data){
+            console.log(data.elem); //得到radio原始DOM对象
+            console.log(data.value); //被点击的radio的value值
+            $("#patentNumSq").val("");
+            $("#patentCountrySq").val("");
+            $("#patentNumSq").attr("disabled","disabled");
+            $("#patentCountrySq").attr("disabled","disabled");
+            $("#patentNumZc").removeAttr("disabled");
+            $("#patentCountryZc").removeAttr("disabled");
+        });
+
+        form.on('radio(patentNone)', function(data){
+            console.log(data.elem); //得到radio原始DOM对象
+            console.log(data.value); //被点击的radio的value值
+            $("#patentNumSq").val("");
+            $("#patentCountrySq").val("");
+            $("#patentNumZc").val("");
+            $("#patentCountryZc").val("");
+            $("#patentNumSq").attr("disabled","disabled");
+            $("#patentCountrySq").attr("disabled","disabled");
+            $("#patentNumZc").attr("disabled","disabled");
+            $("#patentCountryZc").attr("disabled","disabled");
+        });
+    });
+
+    function deleteWork(workId) {
+        var workIds = $("#workIds").val();
+        if(workIds){
+            var array = workIds.split(",");
+            array=$.grep(array,function(n,i){
+                return n!=workId;
+            });
+
+            $("#workIds").val(array.join(","));
+        }else {
+            $("#workIds").val("");
+        }
+        console.log($(this).html());
+        console.log($(this).parent().html());
+        console.log($(this).parent().parent().html());
+        $("#"+workId).remove();
+    }
+
+    $(document).ready(function () {
+        $('.inactive').click(function () {
+            if ($(this).siblings('ul').css('display') == 'none') {
+                $(this).parent('li').siblings('li').children('.inactive').removeClass('inactives');
+                $(this).parent('li').siblings('li').children('ul').css('display', 'none');
+                $(this).addClass('inactives');
+                $(this).siblings('ul').slideDown(100).children('li');
+                if ($(this).parents('li').siblings('li').children('ul').css('display') == 'block') {
+                    $(this).parents('li').siblings('li').children('ul').parent('li').children('a').removeClass('inactives');
+                    $(this).parents('li').siblings('li').children('ul').slideUp(100);
+
+                }
+            } else if ($(this).siblings('ul').css('display') == 'block') {
+                //控制自身变成+号
+                $(this).removeClass('inactives');
+                //控制自身菜单下子菜单隐藏
+                $(this).siblings('ul').slideUp(100);
+                //控制自身子菜单变成+号
+                $(this).parent('li').siblings('li').find('.inactive').removeClass('inactives');
+                //控制自身菜单下子菜单隐藏
+                $(this).siblings('ul').children('li').children('ul').slideUp(100);
+
+                //控制同级菜单只保持一个是展开的（-号显示）
+                $(this).siblings('ul').children('li').children('a').removeClass('inactives');
+            } else {
+                $(this).addClass('inactives');
+                $(this).parents('li').siblings('li').children('a').removeClass('inactives');
+            }
+        })
+    });
+</script>
+
+</body>
+</html>

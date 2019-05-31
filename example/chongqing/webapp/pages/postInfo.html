@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>企业人才需求</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/list.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+</head>
+<body>
+
+<div class="topMenu">
+    <a href="/">
+        <div class="logo">
+            江北智能党建
+        </div>
+    </a>
+    <div class="menu">
+        @for(menu in menus) {
+        <div class="item ${menu.id == pMenuId?'active':''}"><a href="${menu.children[0].url}">${menu.name}</a></div>
+        @}
+    </div>
+    <div class="sinout"><img src="/static/img/list_04.png"></div>
+</div>
+
+<div class="content">
+    <div class="leftMenu">
+        <div class="list">
+            <ul class="yiji">
+                @for(menu in menus) {
+                <li>
+                    <div class="titleItem inactive ${menu.id == pMenuId?'inactives':''}">
+                        <i class="icon">
+                            <img src="/static/img/list_12.png">
+                        </i>
+                        <span>${menu.name}</span>
+                        <i class="arrow"></i>
+                    </div>
+                    <ul style="display: block">
+                        @for(subMenu in menu.children){
+                        <li class="item">
+                            @if(subMenu.children ==null ||subMenu.children.~size==0){
+                        <li class="item">
+                            <a href="${subMenu.url}" class="inactive active ${subMenu.id == menuId?'inactives':''}">${subMenu.name}</a>
+                        </li>
+                        @}else{
+                        <span class="inactive active ${subMenu.id == menuId?'inactives':''}">${subMenu.name}</span>
+
+                        @if(subMenu.id ==menuId){
+                        <ul class="thirdMenu" style="display: block;">
+                            @for(ssubMenu in subMenu.children){
+                            <li class="item"><a href="${ssubMenu.url}" class="inactive active ${ssubMenu.id == sonMenuId?'inactives':''}">${ssubMenu.name}</a></li>
+                            @}
+                        </ul>
+                        @}else{
+                        <ul class="thirdMenu" style="display: none;">
+                            @for(ssubMenu in subMenu.children){
+                            <li class="item"><a href="${ssubMenu.url}" class="inactive active ${ssubMenu.id == sonMenuId?'inactives':''}">${ssubMenu.name}</a></li>
+                            @}
+                        </ul>
+                        @}
+                        @}
+                        </li>
+                        @}
+                    </ul>
+                </li>
+                @}
+            </ul>
+        </div>
+    </div>
+    <div class="contentMain">
+        <div class="localtion">
+            <img src="/static/img/list_09.png">
+            <span>
+                <a href="#">${pMenuName}</a>  >
+                <a href="#">企业人才需求</a>
+            </span>
+        </div>
+        <div class="detailBox">
+            <div>岗位名称：${post.name}</div>
+            <div style="text-align: left">岗位描述：${post.postDesc}</div>
+            <div style="text-align: left">岗位薪酬：${post.postPay}</div>
+            <div style="text-align: left">相关要求：${post.postCondition}</div>
+            <div style="text-align: left">电话：${post.phone}</div>
+            <div style="text-align: left">邮箱：${post.email}</div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="subFoot">
+        <p>地址：重庆市江北区金港新区江北区行政服务中心&nbsp;&nbsp;&nbsp;联系电话：023-67560169</p>
+        <p><span>渝ICP备8888888号</span></p>
+    </div>
+</div>
+<script src="/static/layui/layui.all.js" type="text/javascript"></script>
+<script>
+
+    $(document).ready(function() {
+        $('.inactive').click(function() {
+            if ($(this).siblings('ul').css('display') == 'none') {
+                $(this).parent('li').siblings('li').children('.inactive').removeClass('inactives');
+                $(this).parent('li').siblings('li').children('ul').css('display', 'none');
+                $(this).addClass('inactives');
+                $(this).siblings('ul').slideDown(100).children('li');
+                if ($(this).parents('li').siblings('li').children('ul').css('display') == 'block') {
+                    $(this).parents('li').siblings('li').children('ul').parent('li').children('a').removeClass('inactives');
+                    $(this).parents('li').siblings('li').children('ul').slideUp(100);
+
+                }
+            } else if ($(this).siblings('ul').css('display') == 'block') {
+                //控制自身变成+号
+                $(this).removeClass('inactives');
+                //控制自身菜单下子菜单隐藏
+                $(this).siblings('ul').slideUp(100);
+                //控制自身子菜单变成+号
+                $(this).parent('li').siblings('li').find('.inactive').removeClass('inactives');
+                //控制自身菜单下子菜单隐藏
+                $(this).siblings('ul').children('li').children('ul').slideUp(100);
+
+                //控制同级菜单只保持一个是展开的（-号显示）
+                $(this).siblings('ul').children('li').children('a').removeClass('inactives');
+            } else {
+                $(this).addClass('inactives');
+                $(this).parents('li').siblings('li').children('a').removeClass('inactives');
+            }
+        })
+    });
+</script>
+
+</body>
+</html>

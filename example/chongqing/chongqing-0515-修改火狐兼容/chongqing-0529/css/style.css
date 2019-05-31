@@ -568,7 +568,7 @@ body {
   color: #333333;
 }
 .item3 .menuBox .subItem:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.4);
 }
 .item3 .menuBox .subItem .subMenuBox {
   width: 100%;

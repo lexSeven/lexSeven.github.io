@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/list.css">
+    <style type="text/css">
+        .content .contentMain .detailBox {
+            font-size: 14px !important;
+        }
+
+        .layui-field-title legend {
+            font-weight: bold;
+        }
+
+        .layui-form-item {
+            margin-bottom: 25px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="contentMain layui-row">
+        <div class="detailBox">
+            <form id="bizPostForm" lay-filter="bizPostForm" class="layui-form model-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">国内国外<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input name="country" type="text" class="layui-input" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">起至年月<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input name="careerDate" type="text" class="layui-input" id="careerDate" lay-verify="required"
+                               required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">工作单位及职务<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input name="deptPost" type="text" class="layui-input" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">职责描述<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input name="workDesc" type="text" class="layui-input" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item text-right">
+                    <button class="layui-btn layui-btn-primary" type="button" onclick="parent.layer.closeAll()">取消
+                    </button>
+                    <button class="layui-btn" style=" background-color: #ff4433 !important;" lay-filter="btnSubmit"
+                            lay-submit>
+                        保存
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/static/layui/layui.all.js" type="text/javascript"></script>
+<script type="text/javascript">
+    layui.config({
+        base: '/static/js/'
+    }).extend({ax: 'ax'});
+
+    layui.use(['form', 'layedit', 'laydate', 'ax', 'upload'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , $ = layui.jquery
+            , $ax = layui.ax
+            , laydate = layui.laydate;
+        // //日期
+        // laydate.render({
+        //     elem: '#careerDate'
+        // });
+
+        // 表单提交事件
+        form.on('submit(btnSubmit)', function (data) {
+            var ajax = new $ax("/info/addWork", function (data) {
+                //传给上个页面，刷新table用
+                var tr = '<tr id='+data.data.idStr+'>'
+                    + '<td>' + data.data.country + '</td>'
+                    + '<td>' + data.data.careerDate + '</td>'
+                    + '<td>' + data.data.deptPost + '</td>'
+                    + '<td>' + data.data.workDesc + '</td>'
+                    + '<td>'
+                    + '<a class="layui-btn layui-btn-xs layui-btn-danger" data="' + data.data.idStr + '" onclick=deleteWork(' + data.data.idStr + ')>删除</a>'
+                    + '</td>'
+                    + '</tr>';
+                parent.$('#workList').append(tr);
+                var workIds = parent.$("#workIds").val();
+                if (workIds) {
+                    var array = workIds.split(",");
+                    array.push(data.data.idStr);
+                    parent.$("#workIds").val(array.join(","));
+                } else {
+                    parent.$("#workIds").val(data.data.idStr);
+                }
+                parent.layer.closeAll();
+            });
+            ajax.set(data.field);
+            ajax.start();
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

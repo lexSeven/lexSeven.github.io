@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${titleName}</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!-- 焦点图 -->
+@if(isNotEmpty(contentImg)){
+<div class="container-fluid banner">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+            @for(content in contentImg.contentList) {
+                @if(contentLP.first){
+                <li data-target="#myCarousel" data-slide-to="${contentLP.index}" class="active"></li>
+                @}else{
+                <li data-target="#myCarousel" data-slide-to="${contentLP.index}"></li>
+                @}
+            @}
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner">
+            @for(content in contentImg.contentList) {
+                @if(contentLP.first){
+                <div class="item active">
+                    <a href="${content.imgUrl}"><img src="${content.fileUrl}" alt="alt"></a>
+                    <div class="carousel-caption"></div>
+                </div>
+                @}else{
+                <div class="item">
+                    <a href="${content.imgUrl}"><img src="${content.fileUrl}" alt="alt"></a>
+                    <div class="carousel-caption"></div>
+                </div>
+                @}
+            @}
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+@}
+@if(isNotEmpty(contentDy)){
+<div class="container-fluid box">
+    <div class="box-body">
+        <ul>
+            @for(content in contentDy.contentList) {
+            <li><p style="font-size: 1.1em !important; height: auto !important;">${content.brief}</p></li>
+            @}
+        </ul>
+    </div>
+</div>
+@}
+@if(isNotEmpty(contentInfo)){
+<div class="container-fluid box">
+    <div class="box-head">
+        <h3 class="icon ${contentInfo.icon} pull-left">${contentInfo.name}</h3>
+        <a class="more pull-right" href="/mobile/content/list/${contentInfo.id}">更多 ></a>
+    </div>
+    <div class="box-body">
+        <ul>
+            @for(content in contentInfo.contentList) {
+            <li>
+                <h4><a href="/mobile/content/info/${content.id}">${content.title}</a></h4>
+                <p>${content.brief}</p>
+            </li>
+            @}
+        </ul>
+    </div>
+</div>
+@}
+@for(catalog in contentList) {
+<div class="container-fluid box">
+    <div class="box-head">
+        <h3 class="icon ${catalog.icon} pull-left">${catalog.name}</h3>
+        <a class="more pull-right" href="/mobile/content/list/${catalog.id}">更多 ></a>
+    </div>
+    <div class="box-body">
+        <ul>
+            @for(content in catalog.contentList) {
+            <li>
+                <div class="img pull-left"><a href="/mobile/content/info/${content.id}"><img src="${isNotEmpty(content.fileUrl)?content.fileUrl:'/file/default.png'}" alt=""></a></div>
+                <div class="content pull-right">
+                    <h4><a href="/mobile/content/info/${content.id}">${content.title}</a></h4>
+                    <p class="hidden-xs">${content.brief}</p>
+                    <div class="info">${content.source} ${content.readTime}阅读 ${content.updateTime, 'yyyy-MM-dd'}</div>
+                </div>
+            </li>
+            @}
+        </ul>
+    </div>
+</div>
+@}
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

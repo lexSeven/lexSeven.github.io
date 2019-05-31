@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .dot{
+            width: 10px;
+            height:10px;
+            background: #000743;
+            background-clip: content-box;
+            padding:10px;
+            border:1px solid #000743;
+            position: absolute;
+            z-index: 2;
+        }
+        #c{
+            position: absolute;
+            top:0;
+            left:0;
+            z-index:1;
+            transform: scale(0.5);
+            transform-origin: left top;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<canvas id="c"></canvas>
+
+<script src="js/startMove.js"></script>
+<script src="js/bezier2.js"></script>
+<script>
+
+    var defaultPoint = [
+        [146,402],
+        [446,402],
+        [446,702],
+        [146,702]
+    ]
+
+    var dot = document.querySelectorAll('.dot');
+    for(var i=0;i<dot.length;i++){
+        dot.index = i;
+        css(dot[i], 'left', defaultPoint[i][0])
+        css(dot[i], 'top', defaultPoint[i][1])
+    }
+
+    var position = {};
+    vertex = [];
+    var c = document.getElementById('c');
+    c.width = document.documentElement.clientWidth*2;
+    c.height = document.documentElement.clientHeight*2;
+    var C1 = c.getContext('2d');
+
+    Array.from(dot).forEach(function(item,index){
+        item.index = index;
+        var x = item.offsetLeft + item.offsetWidth/2;
+        var y = item.offsetTop + item.offsetHeight/2;
+        position[index] = [x,y];
+
+        item.onmousedown = function(ev){
+            var ev = ev || event;
+            var downMouseX = ev.clientX;
+            var downMouseY = ev.clientY;
+            var defaultLeft = item.getBoundingClientRect().left;
+            var defaultTop = item.getBoundingClientRect().top;
+            var next = index+1==4?0:index+1;
+            var prev = index-1<0?3:index-1;
+
+            document.onmousemove = item.onmousemove = function(ev){
+                var ev = ev || event;
+                var changeX = (downMouseX - ev.clientX)/2;
+                var changeY = (downMouseY - ev.clientY)/2;
+                item.style.left = defaultLeft - changeX +'px';
+                item.style.top = defaultTop - changeY +'px';
+                position[index] = [
+                    (defaultLeft - changeX  + item.offsetWidth/2),
+                    (defaultTop - changeY + item.offsetHeight/2)
+                ];
+                move(position);
+                ev.preventDefault();
+            }
+
+            document.onmouseup = item.onmouseup = function(){
+                tweenMove({
+                    obj:item,
+                    oTarget:{
+                        left:defaultPoint[item.index][0],
+                        top:defaultPoint[item.index][1]
+                    },
+                    iType:'elasticOut',
+                    fnDuring:function(obj,b){
+                        position[item.index] = [
+                            (b.left  + item.offsetWidth/2),
+                            (b.top + item.offsetHeight/2)
+                        ];
+                        move(position);
+                    }
+                })
+                item.onmousemove = document.onmousemove = null;
+            }
+        }
+    });
+
+    move(position);
+
+
+    function move(position){
+        vertex = [];
+        for(var a in position){
+            vertex.push([(position[a][0]*2),(position[a][1]*2)]);
+        }
+
+        bezier.init({
+            point:vertex,
+            element:c,
+            canvas:C1,
+            isFull:true,
+            k:1.1,
+            // drawFunction:true,
+            speed:1
+        });
+    }
+</script>
+
+</body>
+</html>
