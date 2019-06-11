@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>妙味课堂-2016年课程详情-www.miaov.com</title>
+    <link href="http://www.miaov.com/2013/favicon.ico" rel="icon">
+    <style>
+
+        img{
+            vertical-align: top;
+        }
+
+        .studentWorks {
+          width: 1050px;
+          position: relative;
+          left: 50%;
+          margin-left: -525px;
+          height: 300px;
+          box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+          user-select: none;
+          border: 1px solid #d1cbc6;
+          perspective: 1000px;
+        }
+
+        .studentWorks .studentMain {
+          width: 1000px;
+          height: 202px;
+          padding: 50px 25px;
+          transform-style: preserve-3d;
+          -webkit-transform-style: preserve-3d;
+          perspective-origin: 50% 50%;
+          transform-origin: center 500px;
+          -webkit-transform-origin: center 500px;
+          transition: 1s;
+        }
+        .studentWorks .studentMain .card {
+          width: 200px;
+          height: 202px;
+          background: #FFF;
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8), 0 0 10px 0 rgba(71, 30, 0, 0.2);
+          border-radius: 4px;
+          overflow: hidden;
+          float: left;
+          position: absolute;
+          transition: 0.5s;
+        }
+        .studentWorks .studentMain .card img {
+          width: 100%;
+          height: 150px;
+        }
+        .studentWorks .studentMain .card span {
+          width: 180px;
+          height: 32px;
+          padding: 7px 10px;
+          display: inline-block;
+          font-size: 14px;
+          line-height:32px;
+        }
+        .studentWorks .studentMain .card.active {
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8), 0 0 70px 0 rgba(71, 30, 0, 0.2);
+        }
+
+    </style>
+    <script src="jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<div class="studentWorks">
+    <div class="studentMain">
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/1_238_174.jpg">
+            </a>
+            <span>炫酷个人网站</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/3_238_174.jpg">
+            </a>
+            <span>个人练习集合展示</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/2_238_174.jpg">
+            </a>
+            <span>华丽版2048</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/5_238_174.jpg">
+            </a>
+            <span>经典坦克大战游戏</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/1_238_174.jpg">
+            </a>
+            <span>炫酷个人网站</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/3_238_174.jpg">
+            </a>
+            <span>个人练习集合展示</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/2_238_174.jpg">
+            </a>
+            <span>华丽版2048</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/5_238_174.jpg">
+            </a>
+            <span>经典坦克大战游戏</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/1_238_174.jpg">
+            </a>
+            <span>炫酷个人网站</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/3_238_174.jpg">
+            </a>
+            <span>个人练习集合展示</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/2_238_174.jpg">
+            </a>
+            <span>华丽版2048<</span>
+        </div>
+        
+        <div class="card">
+            <a href="#" target="_blank">
+                <img src="images/5_238_174.jpg">
+            </a>
+            <span>经典坦克大战游戏</span>
+        </div>
+    
+    </div>
+</div>
+<script>
+
+var workes = {
+	init:function(){
+
+	    $('.studentWorks').on('selectstart',function(){
+            return false;
+        });
+
+		var _this = this;
+		_this.obj = $('.studentWorks').find('.studentMain');
+		_this.card = null;
+		_this.arr = [];
+		_this.width = 1000;
+		_this.now = 0;
+		_this.off = true;
+		
+		
+		_this.card = _this.obj.find('.card');
+		_this.findNum();
+		_this.bindEvent();
+		_this.setPosition();
+	},
+	setPosition:function(){
+		var _this = this;
+		_this.theta = 2*Math.PI/_this.card.length;
+		var r = 400;
+		
+		$.each(_this.card,function( key,value ){
+
+			$(value).get(0).xAxis =  r*Math.sin(_this.theta*_this.arr[key]) + 400;
+			$(value).get(0).zAxis = r*Math.cos(_this.theta*_this.arr[key])/6 + 10;
+			$(value).get(0).style.transform = 'translate3D('+ $(value).get(0).xAxis +'px,0px,'+ $(value).get(0).zAxis +'px) scale(0.9,0.9)';
+			$(value).get(0).style.webkitTransform = 'translate3D('+ $(value).get(0).xAxis +'px,0px,'+ $(value).get(0).zAxis +'px) scale(0.9,0.9)';
+			
+			$(value).removeClass('active');
+			if(key == _this.now){
+				
+				for(var i=1;i<Math.ceil((_this.card.length)/4)+1;i++){
+					var n = (_this.arr.indexOf($(value).index())-i)<0?(_this.arr.indexOf($(value).index())-i)+_this.card.length:(_this.arr.indexOf($(value).index())-i);
+					_this.card.eq(_this.arr[n]).css({opacity:(10-i)/10});
+					_this.card.eq(_this.arr[_this.arr.indexOf($(value).index())+i]).css({opacity:(10-i)/10});
+				}
+				$(value).addClass('active');
+				$(value).css({opacity:1,zIndex:99});
+				$(value).get(0).style.transform = 'translate3D('+ $(value).get(0).xAxis +'px,0px,'+ ($(value).get(0).zAxis+2) +'px) scale(1.1,1.1)';
+				$(value).get(0).style.webkitTransform = 'translate3D('+ $(value).get(0).xAxis +'px,0px,'+ ($(value).get(0).zAxis+2) +'px) scale(1.1,1.1)';
+			}
+		});
+	},
+	findNum:function(){
+		var _this = this;
+		$.each(_this.card,function( key,value ){ _this.arr.push(key);});
+	},
+	next:function( option ){
+		var _this = this;
+		var num = option && option.num;
+		var index = option && option.index;
+		
+		_this.arr.push(_this.arr[0]);_this.arr.shift();
+		_this.setPosition();
+		if(num>1){
+			num--;
+			setTimeout(function(){
+				_this.next({num:num});
+			},100);
+		}
+	},
+	prev:function( option ){
+		var _this = this;
+		var num = option && option.num;
+		var index = option && option.index;
+		
+		_this.arr.unshift(_this.arr[_this.arr.length-1]);_this.arr.pop();
+		_this.setPosition();
+		if(num>1){
+			num--;
+			setTimeout(function(){
+				_this.prev({num:num});
+			},100);
+		}
+		
+	},
+	bindEvent:function(){
+		var _this = this;
+		var timer = null;
+		
+		_this.card.on('click',function(){
+
+			if($(this).index()!=_this.now && _this.off){
+				_this.off = false;
+				clearTimeout(timer);
+				timer = setTimeout(function(){
+					_this.off = true;
+				},200);
+				var m = _this.arr.indexOf($(this).index()) - _this.arr.indexOf(_this.now);
+				
+				if( m > _this.card.length/2){
+					_this.next({num:_this.card.length - m});
+				}else if(m < 0 && Math.abs(m)>_this.card.length/2){
+					_this.prev({num:_this.card.length - Math.abs(m)});
+				}else if(m > 0){
+					_this.prev({num:m});
+				}else{
+					_this.next({num:Math.abs(m)});
+				}
+				
+				_this.now = $(this).index();
+				_this.setPosition();
+				return false;
+			}else if($(this).index()==_this.now && _this.off){
+				//console.log('跳转吧');
+			}else{
+				return false;
+			}
+		});
+	}
+};
+workes.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="c"></canvas>
+
+<script>
+
+    var c = document.getElementById('c');
+    c.height = '800';
+    c.width = '800';
+    var C1 = c.getContext('2d');
+    C1.strokeStyle="#dd657c";
+    C1.fillStyle = '#899';
+
+    var lastPosition = [];
+    var t = [];
+    var num = 0;
+    for(var i=1;i<101;i++){
+        t.push(i);
+    }
+
+    var timer = null;
+
+    var position = [
+        [226,560],
+        [226,560,256,497,260,383,264,269],
+        [264,269,270,256,244,259,218,262],
+        [218,262,189,251,250,242,311,233],
+        [311,233,298,229,341,351,384,473],
+        [384,473,392,497,392,497,392,497],
+        [392,497,478,299,489,273,500,247],
+        [500,247,520,224,534,240,548,256],
+        [548,256,527,277,528,398,529,519],
+        [529,519,521,551,566,540,611,529],
+        [611,529,571,553,546,560,521,567],
+        [521,567,489,569,494,449,499,329],
+        [499,329,499,291,499,291,499,291],
+        [499,291,416,479,395,531,374,583],
+        [374,583,373,552,344,468,315,384],
+        [315,384,280,287,280,287,280,287],
+        [280,287,280,432,273,489,266,546],
+        [266,546,274,564,226,560,226,560]
+    ];
+
+
+
+    getlastPosition();
+    function getlastPosition(){
+        var i = 1;
+        var n = 1;
+        start();
+        function start(){
+            var X = getposition({position:position[n],t:t[i]/100})[0];
+            var Y = getposition({position:position[n],t:t[i]/100})[1];
+            lastPosition.push([X,Y]);
+            i+= position[n][8] || 1;
+            if(i>100){n++;i=1;}
+            if(n >= position.length) {
+//                console.log(lastPosition);
+                drawLine();
+            } else {
+                start();
+            }
+        }
+    }
+
+    function getposition(option){//利用贝塞尔曲线公式解析坐标
+        var position = option.position;
+        var t = option.t;
+        var Ix = position[0]*((1-t)*(1-t)) + position[2]*2*(1-t)*t + position[4]*(t*t);
+        var Iy = position[1]*((1-t)*(1-t)) + position[3]*2*(1-t)*t + position[5]*(t*t);
+
+        var Jx = position[2]*((1-t)*(1-t)) + position[4]*2*(1-t)*t + position[6]*(t*t);
+        var Jy = position[3]*((1-t)*(1-t)) + position[5]*2*(1-t)*t + position[7]*(t*t);
+
+        var Ex = Ix*(1-t) + Jx*t;
+        var Ey = Iy*(1-t) + Jy*t;
+        return [Ex,Ey];
+    }
+
+
+    function drawLine(){
+        C1.beginPath();
+        C1.moveTo(position[0][0],position[0][1]);
+    }
+
+    function move(option){
+        var speed = 6;
+        timer = setInterval(function(){
+            num = parseInt(num);
+            C1.lineTo(lastPosition[num][0],lastPosition[num][1]);
+            C1.stroke();
+            num+=speed;
+            if(num>=lastPosition.length){
+                C1.fill();
+                clearInterval(timer);
+            }
+        },10);
+    }
+
+    move();
+
+
+</script>
+
+</body>
+</html>

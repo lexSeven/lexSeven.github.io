@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>加载</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            background:#dcd5ce;
+        }
+        .load{
+            width:1000px;
+            height:800px;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            text-align:center;
+        }
+        .load span{
+            display:inline-block;
+            height:100%;
+            vertical-align:middle;
+        }
+        .load img{
+            vertical-align:middle;
+        }
+        .penBox{
+            width:600px;
+            height:400px;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            display: none;
+        }
+        .pen{
+
+            width:61px;
+            height:62px;
+            position:absolute;
+            z-index:99;
+        }
+        .note{
+
+            width:60px;
+            height:28px;
+            border-radius:5px;
+            background:#e15671;
+            color:#FFF;
+            text-align:center;
+            box-shadow:3px 3px 5px 0 rgba(218,206,191,0.5);
+            position:absolute;
+            z-index:9;
+        }
+        .note:before{
+            content:'';
+            width:0;
+            height:0;
+            border-width:5px;
+            border-style:dashed dashed solid dashed;
+            border-color:transparent transparent #e15671 transparent;
+            position:absolute;
+            top:-10px;
+            left:50%;
+            margin-left:-5px;
+        }
+        .note span{
+            font-size:20px;
+            line-height:28px;}
+        .note em{
+            font-style:normal;
+            font-size:14px;}
+        #c{
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin:-200px 0 0 -295px;}
+    </style>
+</head>
+
+<body>
+
+
+<div class="load" id="loadBg">
+    <div class="penBox" id="penBox">
+        <img class="pen" id="pen" src="loadPen.png">
+        <div class="note" id="note">
+            <span>26</span>
+            <em>%</em>
+        </div>
+    </div>
+    <canvas id="c"></canvas>
+    <span></span>
+    <img id="loadRoute" src="loadRoute.png">
+</div>
+<script>
+var loadAni = {
+    init:function(){
+        var _this = this;
+        _this.t = [];
+        for(var i=1;i<101;i++){
+            _this.t.push(i);
+        }
+        _this.timer2 = null;
+        _this.n = 0;
+        _this.time = 200;
+        _this.lastPosition = [];
+        _this.penBox = document.getElementById('penBox');
+        _this.pen = document.getElementById('pen');
+        _this.note = document.getElementById('note');
+        _this.c = document.getElementById('c');
+        _this.c.height = '400';
+        _this.c.width = '600';
+        _this.C1 = c.getContext('2d');
+        _this.C1.strokeStyle="#dd657c";
+        _this.offsetY = -3;
+        _this.position = [
+            [369,143],
+            [369,143,369,143,369,260,369,260,1],
+            [369,260,369,260,367,265,364,268,4],
+            [364,268,364,268,341,268,338,268,2],
+            [338,268,335,268,330,265,330,259,4],
+            [330,259,330,253,330,199,330,199,2],
+            [330,199,330,199,320,259,320,259,1],
+            [320,259,320,259,319,268,311,268,3],
+            [311,268,303,268,301,268,301,268,4],
+            [301,268,301,268,295,268,293,259,2],
+            [293,259,291,250,283,199,283,199,1],
+            [283,199,283,199,283,259,283,259,1],
+            [283,259,283,259,284,268,275,268,3],
+            [275,268,266,268,253,268,253,268,1],
+            [253,268,253,268,245,268,245,258,3],
+            [245,258,245,248,245,142,245,142,1],
+            [245,142,245,142,245,135,253,135,3],
+            [253,135,261,135,291,135,291,135,1],
+            [291,135,291,135,297,136,299,145,3],
+            [299,145,301,154,307,194,307,194,1],
+            [307,194,307,194,315,143,315,143,1],
+            [315,143,315,143,317,135,324,135],
+            [324,135,331,135,364,135,364,135],
+            [364,135,364,135,371,144,375,150,2],
+            [375,150,379,156,384,160,390,159,3],
+            [390,159,396,158,401,151,401,149,3],
+            [401,149,401,147,405,134,419,134,2],
+            [419,134,433,134,438,144,439,150,2],
+            [439,150,440,156,438,165,429,171,2],
+            [429,171,420,177,410,170,407,168,2],
+            [407,168,404,166,395,161,389,169,2],
+            [389,169,382,179,388,207,383,227,2],
+            [383,227,378,247,367,276,330,298],
+            [330,298,293,320,250,315,219,298],
+            [219,298,188,281,164,249,162,202],
+            [162,202,160,155,194,111,231,98],
+            [231,98,268,85,303,88,326,102],
+            [326,102,349,116,363,130,369,143]
+        ];
+        _this.getlastPosition();
+    },
+    getlastPosition:function(){
+        var _this = this;
+        var i = 1;
+        var n = 1;
+        start();
+        function start(){
+            var X = _this.getposition({position:_this.position[n],t:_this.t[i]/100})[0] + _this.offsetY;
+            var Y = _this.getposition({position:_this.position[n],t:_this.t[i]/100})[1];
+            _this.lastPosition.push([X,Y]);
+            i+= _this.position[n][8] || 1;
+            if(i>100){n++;i=1;}
+            if(n >= _this.position.length) {
+                _this.drawLine();
+            } else {
+                start();
+            }
+        }
+    },
+    getposition:function(option){
+        var _this = this;
+        var position = option.position;
+        var t = option.t;
+        var Ix = position[0]*((1-t)*(1-t)) + position[2]*2*(1-t)*t + position[4]*(t*t);
+        var Iy = position[1]*((1-t)*(1-t)) + position[3]*2*(1-t)*t + position[5]*(t*t);
+
+        var Jx = position[2]*((1-t)*(1-t)) + position[4]*2*(1-t)*t + position[6]*(t*t);
+        var Jy = position[3]*((1-t)*(1-t)) + position[5]*2*(1-t)*t + position[7]*(t*t);
+
+        var Ex = Ix*(1-t) + Jx*t;
+        var Ey = Iy*(1-t) + Jy*t;
+        return [Ex,Ey];
+    },
+    drawLine:function(){
+        var _this = this;
+        _this.C1.beginPath();
+        _this.C1.moveTo(_this.position[0][0]  + _this.offsetY,this.position[0][1]);
+
+    },
+    move:function(option){
+        var _this = this;
+        var speed = option.speed || 6;
+        _this.timer2 = setInterval(function(){
+            _this.n = parseInt(_this.n);
+            _this.pen.style.left = _this.lastPosition[_this.n][0] + 'px';
+            _this.pen.style.top = _this.lastPosition[_this.n][1] - 62 + 'px';
+            _this.note.style.left = _this.lastPosition[_this.n][0] - 30 + 'px';
+            _this.note.style.top = _this.lastPosition[_this.n][1] + 15  + 'px';
+            _this.C1.lineTo(_this.lastPosition[_this.n][0],_this.lastPosition[_this.n][1]);
+            _this.C1.stroke();
+            _this.n+=speed;
+            if (_this.n > 1) {
+                _this.penBox.style.display = 'block';
+            }
+            if(_this.n>=_this.lastPosition.length * (option.num/100)){
+                clearInterval(_this.timer2);
+            }
+            if (_this.n >= _this.lastPosition.length) {
+                clearInterval(_this.timer2);
+                option.fn&&option.fn();
+            }
+            _this.note.innerHTML = '<span>'+ parseInt(( _this.n / _this.lastPosition.length * 100 )) +'</span><em>%</em>';
+        },_this.time/_this.lastPosition.length);
+    }
+};
+loadAni.init();
+loadAni.move({num:100});
+	//loadAni.move 参数：1个  参数形式：JSON  键值：num:进度（100为完成） speed:速度 越大动画越快  fn:回调函数（可不写）
+</script>
+</body>
+</html>
