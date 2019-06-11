@@ -23,9 +23,29 @@
             top: -20px;
             left: -20px;
         }
+
+        .input{
+            width: 200px;
+            height: 40px;
+            border: 1px solid #899;
+        }
+        .btn{
+            padding: 0 20px;
+            height: 42px;
+            line-height: 42px;
+            border-radius: 0;
+            display: inline-block;
+            background: none;
+            border: 1px solid #899;
+            margin-left: -1px;
+            vertical-align: top;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+
+<input type="number" class="input"><span class="btn">设置进度</span>
 
 <div class="box" id="box">
     <canvas id="c1">0/100/899</canvas>
@@ -68,6 +88,10 @@
                 _this.oGC.shadowColor = "#"+ _this.pro[2];
             }
         },
+        clear: function(){
+            var _this = progress;
+            _this.oGC.clearRect(0,0,_this.eleWidth,_this.eleHeight);
+        },
         setPro: function (proNum) {
             var _this = progress;
             _this.oGC.clearRect(0,0,_this.eleWidth,_this.eleHeight);
@@ -80,8 +104,14 @@
 
     progress.init()
     var i = 0;
+    var inputDom = document.querySelector('.input');
+    var btn = document.querySelector('.btn');
 
-    setNum(90)
+    btn.onclick = function(){
+        i = 0;
+        setNum(Number(inputDom.value));
+    }
+
     function setNum (num) {
         var timer = setInterval(function(){
             i++;
