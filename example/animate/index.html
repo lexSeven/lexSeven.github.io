@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        body{
+            margin: 0;
+        }
+
+        .nav{
+            height: 60px;
+            width: 100%;
+            background: #899;
+            margin-bottom: 20px;
+        }
+
+        .navContent{
+            width: 1400px;
+            margin: 0 auto;
+        }
+
+        .navContent .logo{
+            height: 60px;
+            background: url("img/logo.png") no-repeat left center;
+            float: left;
+            background-size: auto 80%;
+            padding-left: 70px;
+            line-height: 60px;
+            color: #fff;
+        }
+
+        .navContent .other{
+            float: right;
+            line-height: 60px;
+            color: #fff;
+            cursor: pointer;
+        }
+
         .content{
             width: 1400px;
             margin: 0 auto;
@@ -32,6 +65,13 @@
     </style>
 </head>
 <body>
+
+<div class="nav">
+    <div class="navContent">
+        <div class="logo">lexSeven</div>
+        <div class="other" id="login">登录 | 注册</div>
+    </div>
+</div>
 
 <div class="content">
     <div class="item">
@@ -64,8 +104,21 @@
     <div class="item">
         <span>lottie：</span>
         <a href="https://github.com/airbnb/lottie-web">用软件做动画</a>
+        <a href="http://airbnb.io/lottie/#/web">lottieAPI</a>
+        <a href="https://codepen.io/collection/nVYWZR/">lottieExample</a>
+    </div>
+    <div class="item">
+        <span>一些收藏：</span>
+        <a href="http://next.36kr.com/posts">不错过好应用</a>
+        <a href="https://tinypng.com/">图片压缩</a>
     </div>
 </div>
+
+<script>
+    login.onclick = function(){
+        alert('想啥呢？还登录？你想干嘛？')
+    }
+</script>
 
 </body>
 </html>
