@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 250px;
+            height:150px;
+            border:5px solid #1b6d85;
+            overflow: hidden;
+            transform: scale(3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        ul{
+            margin:0;
+            padding:0;
+            list-style: none;
+            width:1250px;
+            position: absolute;
+            left:0;
+            transition: 0.5s;
+        }
+        ul li{
+            float: left;
+        }
+        ul li img{
+            width:250px;
+            height:150px;
+        }
+        .dot{
+            position: absolute;
+            top:130px;
+            z-index: 1;
+        }
+        .dot1{
+            left:70px;
+        }
+        .dot1:checked ~ ul{
+            left:0;
+        }
+        .dot2{
+            left:90px;
+        }
+        .dot2:checked ~ ul{
+            left:-250px;
+        }
+        .dot3{
+            left:110px;
+        }
+        .dot3:checked ~ ul{
+            left:-500px;
+        }
+        .dot4{
+            left:130px;
+        }
+        .dot4:checked ~ ul{
+            left:-750px;
+        }
+        .dot5{
+            left:150px;
+        }
+        .dot5:checked ~ ul{
+            left:-1000px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <input type="radio" name="ppt" class="dot dot1" checked>
+    <input type="radio" name="ppt" class="dot dot2">
+    <input type="radio" name="ppt" class="dot dot3">
+    <input type="radio" name="ppt" class="dot dot4">
+    <input type="radio" name="ppt" class="dot dot5">
+    <ul>
+        <li><img src="img/1.png" ></li>
+        <li><img src="img/2.png" ></li>
+        <li><img src="img/3.png" ></li>
+        <li><img src="img/4.png" ></li>
+        <li><img src="img/5.png" ></li>
+    </ul>
+</div>
+
+</body>
+</html>

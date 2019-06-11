@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width:200px;
+            height: 100px;
+            border: 3px solid #1b6d85;
+            margin:100px;
+            /*overflow: hidden;*/
+        }
+        .box:hover ul{
+            animation-play-state:paused;
+        }
+        .box ul{
+            margin:0;
+            padding:0;
+            list-style: none;
+            width: 1200px;
+            position: relative;
+            animation: move 5s infinite;
+        }
+        .box li {
+            float: left;
+        }
+        .box img{
+            width:200px;
+        }
+
+
+
+        @keyframes move {
+            0%{
+                left:0;
+            }
+            15%{
+                left:0;
+            }
+            20%{
+                left:-200px;
+            }
+            35%{
+                left:-200px;
+            }
+            40%{
+                left:-400px;
+            }
+            55%{
+                left: -400px;
+            }
+            60%{
+                left:-600px;
+            }
+            75%{
+                left:-600px;
+            }
+            80%{
+                left:-800px;
+            }
+            95%{
+                left:-800px;
+            }
+            100%{
+                left:-1000px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <ul>
+        <li><img src="img/num1.png"></li>
+        <li><img src="img/num2.png"></li>
+        <li><img src="img/num3.png"></li>
+        <li><img src="img/num4.png"></li>
+        <li><img src="img/num5.png"></li>
+        <li><img src="img/num1.png"></li>
+    </ul>
+</div>
+
+</body>
+</html>

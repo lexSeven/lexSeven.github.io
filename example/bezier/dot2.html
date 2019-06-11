@@ -42,6 +42,15 @@
             transform: scale(0.5);
             transform-origin: left top;
         }
+
+        .layui-input-block {
+            min-height: 36px;
+            margin-left: 100px;
+        }
+
+        .moreChoose{
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -99,19 +108,25 @@
 
     // console.log(position)
 
+    // var point = {
+    //     0:[0,4],
+    //     1:[4,0],
+    //     3:[21,17],
+    //     4:[0,38],
+    //     5:[42,4],
+    //     6:[25,21],
+    //     7:[42,38],
+    //     8:[38,42],
+    //     9:[21,25],
+    //     10:[42,4],
+    //     11:[0,38],
+    //     12:[17,21]
+    // }
+
     var point = {
-        0:[0,4],
-        1:[4,0],
-        3:[21,17],
-        4:[0,38],
-        5:[42,4],
-        6:[25,21],
-        7:[42,38],
-        8:[38,42],
-        9:[21,25],
-        10:[42,4],
-        11:[0,38],
-        12:[17,21]
+        0:[307,741],
+        1:[626,305],
+        3:[859,741]
     }
     move(point);
     // move(position);
@@ -120,7 +135,7 @@
     function move(position){
         vertex = [];
         for(var a in position){
-            vertex.push([(position[a][0]+10)*20,(position[a][1]+10)*20]);
+            vertex.push([(position[a][0]+10),(position[a][1]+10)]);
             // vertex.push([(position[a][0]*2),(position[a][1]*2)]);
         }
 
@@ -129,8 +144,8 @@
             element:c,
             canvas:C1,
             isFull:true,
-            k:1.1,
-            drawFunction:true,
+            k:'0',
+            drawFunction:false,
             speed:1
         });
     }

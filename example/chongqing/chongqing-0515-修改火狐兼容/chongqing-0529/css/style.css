@@ -546,13 +546,15 @@ body {
   background: url("../img/bg_03.jpg") no-repeat center;
   background-size: cover;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 .item3 .menuBox {
   width: 90%;
+  max-width: 1200px;
   height: 220px;
-  position: absolute;
+  position: relative;
   top: 60%;
-  left: 5%;
   margin: -170px 0 0 0;
   transform: scale(0.1);
   transition: 1s;
@@ -560,8 +562,8 @@ body {
   justify-content: space-between;
 }
 .item3 .menuBox .subItem {
-  width: 208px;
-  height: 208px;
+  width: 168px;
+  height: 168px;
   border: 1px solid #fd2a2a;
   margin: 0 -1px -1px 0;
   float: left;
@@ -629,10 +631,10 @@ body {
 .item3 .menuBox .subItem .menuText {
   width: 100%;
   display: inline-block;
-  font: 24px/64px '微软雅黑';
+  font: 20px/64px '微软雅黑';
 }
 .item3.swiper-slide-active .menuBox {
-  transform: scale(0.7);
+  transform: scale(1);
 }
 .item4 {
   width: 100vw;

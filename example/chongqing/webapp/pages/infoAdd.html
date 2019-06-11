@@ -73,15 +73,22 @@
                 float: left;
                 width: 100%;
             }
-        }
-        @media screen and (min-width: 350px){
-            .layui-form-item .layui-form-label{
-                width: 100%;
+
+            .layui-input-block{
+                margin: 0 0 10px 112px;
             }
-            .layui-form-item .layui-form-label{
-                padding-left: 0;
-                padding-right: 0;
-                width: 100px !important;
+
+            .noMarginInApp{
+                margin-left: 0;
+            }
+
+        }
+        @media screen and (min-width: 650px){
+            body{
+                min-width: 1200px;
+            }
+            .layui-form-label{
+                min-width: 80px !important;
             }
         }
     </style>
@@ -367,8 +374,10 @@
                     </div>
                 </div>
                 <div class="layui-form-item tarLeft" pane="">
-                    <label class="layui-form-label">专利注册情况</label>
-                    <div class="layui-input-block">
+                    <div class="layui-row">
+                        <label class="layui-form-label">专利注册情况</label>
+                    </div>
+                    <div class="layui-input-block noMarginInApp">
                         <div class="layui-input-inline">
                             <input type="radio" name="patent" title="已注册专利" value="已注册专利" id="patentZc" lay-filter="patentZc"  checked>
                         </div>
@@ -383,7 +392,7 @@
                                    class="layui-input" lay-verify="patentNumZc" id="patentNumZc">
                         </div>
                     </div>
-                    <div class="layui-input-block" style="margin-top: 20px">
+                    <div class="layui-input-block noMarginInApp" style="margin-top: 20px;">
                         <div class="layui-input-inline">
                             <input type="radio" name="patent" title="已申请专利" value="已申请专利" id="patentSq" lay-filter="patentSq">
                         </div>
@@ -398,8 +407,14 @@
                                    class="layui-input" lay-verify="patentNumSq" id="patentNumSq" disabled="disabled">
                         </div>
                     </div>
-                    <div class="layui-input-block" style="margin-top: 20px">
-                        <input type="radio" name="patent" title="没有专利" value="没有专利" lay-filter="patentNone">
+                    <div class="layui-input-block noMarginInApp" style="margin-top: 20px;">
+                        <div class="layui-input-inline">
+                            <input type="radio" name="patent" title="没有专利" value="没有专利" lay-filter="patentNone">
+                            <div class="layui-unselect layui-form-radio">
+                                <i class="layui-anim layui-icon"></i>
+                                <div>没有专利</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -412,6 +427,37 @@
                         <input type="radio" name="stage" title="产业化阶段" value="产业化阶段">
                         <input type="radio" name="stage" title="其它" value="其它">
                     </div>
+
+                    <div class="layui-input-block noMarginInApp">
+                        <div class="layui-input-inline moreChoose">
+                            <input type="radio" name="stage" title="研开发阶段" value="研开发阶段" checked="">
+                            <div class="layui-unselect layui-form-radio layui-form-radioed">
+                                <i class="layui-anim layui-icon"></i>
+                                <div>研开发阶段</div>
+                            </div>
+                            <input type="radio" name="stage" title="项目孵化阶段" value="项目孵化阶段">
+                            <div class="layui-unselect layui-form-radio">
+                                <i class="layui-anim layui-icon"></i>
+                                <div>项目孵化阶段</div>
+                            </div>
+                            <input type="radio" name="stage" title="中试阶段" value="中试阶段">
+                            <div class="layui-unselect layui-form-radio">
+                                <i class="layui-anim layui-icon"></i>
+                                <div>中试阶段</div>
+                            </div>
+                            <input type="radio" name="stage" title="产业化阶段" value="产业化阶段">
+                            <div class="layui-unselect layui-form-radio">
+                                <i class="layui-anim layui-icon"></i>
+                                <div>产业化阶段</div>
+                            </div>
+                            <input type="radio" name="stage" title="其它" value="其它">
+                            <div class="layui-unselect layui-form-radio">
+                                <i class="layui-anim layui-icon"></i>
+                                <div>其它</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">项目介绍</label>

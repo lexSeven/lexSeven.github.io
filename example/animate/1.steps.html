@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 1280px;
+            height: 80px;
+            border: 1px solid #899;
+            /*background: url("img/qrcode1-t0313.jpg") no-repeat;*/
+            background: url("img/app-download.png") no-repeat;
+            background-position: 0 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .box:before{
+            content: '';
+            width: 80px;
+            height: 80px;
+            border: 1px solid #e15671;
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .box:after{
+            content: '';
+            width: 1200px;
+            height: 80px;
+            background: #fff;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .box:hover{
+            animation: move 4s steps(15) forwards;
+        }
+
+        @keyframes move {
+            to{
+                background-position: -1200px 0;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<!--核心点：一个动画拆成多个帧-->
+<div class="box"></div>
+
+</body>
+</html>
