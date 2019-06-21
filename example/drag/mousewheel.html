@@ -102,17 +102,25 @@
             moveX = -moveX;
         }
 
-        tempX = degX + moveX / keyNum;
+
+
         tempY = degY - moveY / keyNum;
+
+        if(tempY > 350 || tempY < 10){
+            return
+        }
+
         cube.style.transform = "rotatex(" + tempY + "deg) rotatey(0deg)";
         sound.getSound(tempY);
     }
 
     function endEvent () {
+        if((degY + - moveY / keyNum) > 350 || (degY + - moveY / keyNum) < 10){
+            wraper.removeEventListener('touchmove',moveEvent)
+            return
+        }
         degX += moveX / keyNum;
         degY += - moveY / keyNum;
-        degX %= 360;
-        degY %= 360;
         wraper.removeEventListener('touchmove',moveEvent)
     };
 
