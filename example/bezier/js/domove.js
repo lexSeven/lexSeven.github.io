@@ -83,7 +83,6 @@ function getNum(min,max,num){//获取随机数  最小值，最大值，数量
 
 
 /*
-
     t : time 已经运动的时间
     b : begin 起始点
     c : count 运动总量

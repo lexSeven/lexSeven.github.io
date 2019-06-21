@@ -1,0 +1,199 @@
+html {
+  font-size: 10rem;
+  height: 100%;
+}
+body {
+  margin: 0;
+  height: 100%;
+}
+.box {
+  width: 100%;
+  height: 100%;
+  perspective: 26.66666667rem;
+  position: relative;
+  background: #fff;
+}
+.rotateBox {
+  transform-style: preserve-3d;
+  width: 0.4rem;
+  height: 1.6rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.roundBox {
+  transform-style: preserve-3d;
+  width: 2.66666667rem;
+  height: 2.66666667rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -1.33333333rem 0 0 -1.33333333rem;
+  transform: rotateY(90deg);
+}
+.roundBox .item {
+  width: 0.13333333rem;
+  height: 0.05333333rem;
+  background: #ffae00;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  backface-visibility: hidden;
+}
+.roundBox .item:nth-child(1) {
+  transform: rotateZ(7.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(2) {
+  transform: rotateZ(14.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(3) {
+  transform: rotateZ(21.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(4) {
+  transform: rotateZ(28.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(5) {
+  transform: rotateZ(36deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(6) {
+  transform: rotateZ(43.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(7) {
+  transform: rotateZ(50.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(8) {
+  transform: rotateZ(57.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(9) {
+  transform: rotateZ(64.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(10) {
+  transform: rotateZ(72deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(11) {
+  transform: rotateZ(79.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(12) {
+  transform: rotateZ(86.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(13) {
+  transform: rotateZ(93.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(14) {
+  transform: rotateZ(100.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(15) {
+  transform: rotateZ(108deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(16) {
+  transform: rotateZ(115.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(17) {
+  transform: rotateZ(122.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(18) {
+  transform: rotateZ(129.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(19) {
+  transform: rotateZ(136.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(20) {
+  transform: rotateZ(144deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(21) {
+  transform: rotateZ(151.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(22) {
+  transform: rotateZ(158.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(23) {
+  transform: rotateZ(165.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(24) {
+  transform: rotateZ(172.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(25) {
+  transform: rotateZ(180deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(26) {
+  transform: rotateZ(187.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(27) {
+  transform: rotateZ(194.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(28) {
+  transform: rotateZ(201.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(29) {
+  transform: rotateZ(208.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(30) {
+  transform: rotateZ(216deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(31) {
+  transform: rotateZ(223.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(32) {
+  transform: rotateZ(230.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(33) {
+  transform: rotateZ(237.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(34) {
+  transform: rotateZ(244.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(35) {
+  transform: rotateZ(252deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(36) {
+  transform: rotateZ(259.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(37) {
+  transform: rotateZ(266.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(38) {
+  transform: rotateZ(273.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(39) {
+  transform: rotateZ(280.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(40) {
+  transform: rotateZ(288deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(41) {
+  transform: rotateZ(295.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(42) {
+  transform: rotateZ(302.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(43) {
+  transform: rotateZ(309.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(44) {
+  transform: rotateZ(316.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(45) {
+  transform: rotateZ(324deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(46) {
+  transform: rotateZ(331.2deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(47) {
+  transform: rotateZ(338.4deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(48) {
+  transform: rotateZ(345.6deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(49) {
+  transform: rotateZ(352.8deg) translateX(0.66666667rem) rotateY(90deg);
+}
+.roundBox .item:nth-child(50) {
+  transform: rotateZ(360deg) translateX(0.66666667rem) rotateY(90deg);
+}
+/*# sourceMappingURL=css.css.map */

@@ -4,7 +4,7 @@ var bezier = {
 
         /*{
             point:[],曲线要穿过的点，数组
-            k:0~2, //控制曲线弯曲程度 0~1 越小转角弯曲程度越大
+            k:0.2, //控制曲线弯曲程度 0~1 越小转角弯曲程度越大
             interval:1~20+ //控制曲线平滑程度，越大越不平滑
             element:canvas //绘制的canvas对象
             canvas:canvasElement.getContext('2d'),canvas绘画环境
@@ -17,13 +17,6 @@ var bezier = {
         }*/
 
         /*
-
-        Flash  很遗憾，他被css动画干死了
-        jQuery  二维动画，快死了
-        CSS3    animate  transition  简单，流畅
-        Canvas 允许我们在网页上渲染任何场景
-        webGL  可以让我们在canvas上建立3D空间
-
             原理分析：
                 穿过任意几个点画曲线，首先假设这任意的几个点是可以组合成一个几何图形的，暂且先不管这个图形是什么样子的。
                 第一步，先把所有的点连接起来形成一条线。

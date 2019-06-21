@@ -24,6 +24,7 @@
             border-radius: 50%;
             position: absolute;
             top: 0;
+            transition: transform 1s 1s linear;
         }
 
         .left .round{
@@ -32,23 +33,23 @@
             border-color: #e6cb33;
             border-top-color: transparent;
             border-right-color: transparent;
-            transition: transform 1s linear;
+            /*transition: transform 1s linear;*/
         }
         .right .round{
             transform: rotate(45deg);
             right: 0;
             border-top-color: transparent;
             border-right-color: transparent;
-            transition: transform 1s 1s linear;
+            /*transition: transform 1s 1s linear;*/
         }
 
         .box:hover .right .round{
             transform: rotate(225deg);
-            transition: transform 1s linear;
+            /*transition: transform 1s linear;*/
         }
         .box:hover .left .round{
             transform: rotate(45deg);
-            transition: transform 1s 1s linear;
+            /*transition: transform 1s 1s linear;*/
         }
     </style>
 </head>

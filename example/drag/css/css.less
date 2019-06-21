@@ -1,0 +1,61 @@
+html{
+  font-size: 10rem;
+  height: 100%;
+}
+@rem:75rem;
+body{
+  margin: 0;
+  height: 100%;
+}
+.box{
+  width: 100%;
+  height: 100%;
+  perspective: 2000/@rem;
+  position: relative;
+  background: #fff;
+}
+.rotateBox{
+  transform-style: preserve-3d;
+  width: 30/@rem;
+  height: 120/@rem;
+  //background: #899;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.roundBox{
+  transform-style: preserve-3d;
+  width: 200/@rem;
+  height: 200/@rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -100/@rem 0 0 -100/@rem;
+  transform: rotateY(90deg);
+
+  .item{
+    width: 10/@rem;
+    height: 4/@rem;
+    background: #ffae00;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    backface-visibility: hidden;
+  }
+
+  .loop(@a)when( @a > 0){
+    .loop(@a - 1);
+    .item:nth-child(@{a}){
+      transform: rotateZ((360deg/50*@a)) translateX(50/@rem) rotateY(90deg);
+    }
+  }
+
+  .loop(50);
+
+}
