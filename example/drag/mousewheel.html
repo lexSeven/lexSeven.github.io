@@ -131,7 +131,7 @@
             _this.audioCtx = new AudioContext();
 
             // 发出的声音频率数据，表现为音调的高低
-            _this.arrFrequency = [261.63]
+            _this.arrFrequency = [361.63]
             _this.arrFrequencys = [196.00, 220.00, 246.94, 261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
 
             // 音调依次递增或者递减处理需要的参数
@@ -178,9 +178,9 @@
             // 音调从当前时间开始播放
             oscillator.start(_this.audioCtx.currentTime);
             // 1秒内声音慢慢降低，是个不错的停止声音的方法
-            gainNode.gain.exponentialRampToValueAtTime(0.001, _this.audioCtx.currentTime + 0.5);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, _this.audioCtx.currentTime + 0.1);
             // 1秒后完全停止声音
-            oscillator.stop(_this.audioCtx.currentTime + 1);
+            oscillator.stop(_this.audioCtx.currentTime + 0.3);
         }
     };
     sound.init();

@@ -45,6 +45,7 @@ body {
   bottom: 0;
   margin: auto;
   backface-visibility: hidden;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
 }
 .roundBox .item:nth-child(1) {
   transform: rotateZ(7.2deg) translateX(0.66666667rem) rotateY(90deg);
