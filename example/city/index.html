@@ -17,17 +17,16 @@
 <script>
     var box = document.querySelector('.box');
     var glass = document.querySelector('.glass');
+    console.log(window.outerHeight);
     window.onscroll = function () {
         var boxTop = box.getBoundingClientRect().top
-        if(boxTop < window.innerHeight && boxTop > -box.offsetHeight){
-            glass.style.backgroundPositionY = boxTop + 'px';
+        if(boxTop < (window.outerHeight - box.offsetHeight) && boxTop > 50){
+
             glass.style.top = boxTop - 100 + 'px'
         }
-
-        // if(boxTop > (window.innerHeight/2) - (box.offsetHeight/2)){
-        //     glass.style.top = boxTop + 'px'
-        // }
-
+        if(boxTop < window.outerHeight && boxTop > - box.offsetHeight){
+            glass.style.backgroundPositionY = boxTop + 'px';
+        }
     }
 </script>
 

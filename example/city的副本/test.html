@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 120%;
+        }
+        body{
+            perspective: 1000px;
+            margin: 0;
+        }
+        .box{
+            width: 500px;
+            height: 500px;
+            background: rgba(0,0,0,0.3);
+            transform-style: preserve-3d;
+            text-align: center;
+            transition: 0.5s;
+            position: absolute;
+            top: -200px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            overflow: hidden;
+        }
+        .box:before{
+            content: '';
+            height: 100%;
+            width: 0;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 0;
+        }
+        .box img{
+            width: 50%;
+            height: 50%;
+            display: inline-block;
+            vertical-align: middle;
+            transform: rotateX(30deg);
+        }
+        .box:hover{
+            transform: rotateY(80deg);
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <img src="images/goods.jpg">
+</div>
+
+</body>
+</html>

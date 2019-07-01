@@ -1,0 +1,83 @@
+html{
+  font-size: 10vw;
+}
+
+@font-face {
+  font-family: 'AvantGardeDemi';
+  src: url('../fonts/AvantGardeDemi.eot');
+  src: url('../fonts/AvantGardeDemi.eot') format('embedded-opentype'),
+  url('../fonts/AvantGardeDemi.woff2') format('woff2'),
+  url('../fonts/AvantGardeDemi.woff') format('woff'),
+  url('../fonts/AvantGardeDemi.ttf') format('truetype'),
+  url('../fonts/AvantGardeDemi.svg#AvantGardeDemi') format('svg');
+}
+
+@rem: 75rem;
+
+body{
+  margin: 0;
+  background: url("../images/line.jpg") repeat-y;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  height: 4000/@rem;
+  perspective: 1000/@rem;
+}
+
+.font{
+  background: #000;
+  font-family: AvantGardeDemi;
+  font-size: 80/@rem;
+  color: #fff;
+  word-break: break-all;
+  line-height: 100/@rem;
+}
+
+.box{
+  width: 750/@rem;
+  height: 750/@rem;
+  background:url("../images/box_bg.jpg") no-repeat;
+  background-size:100% 100%;
+  position: absolute;
+  top: 1500/@rem;
+  transform-style: preserve-3d;
+
+  .glass{
+    position: absolute;
+    top: 600/@rem;
+    left: 0;
+    width: 650/@rem;
+    height: 540/@rem;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transform:translateZ(280px) rotateY(45deg) rotateX(5deg);
+    //transition: top 5s;
+    overflow: hidden;
+
+    img{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 2;
+    }
+
+  }
+
+  .wapper{
+    width: 650/@rem;
+    height: 540/@rem;
+    transform-style: preserve-3d;
+  }
+
+  .goods{
+    position: fixed;
+    top: 0;
+    width: 750/@rem;
+    height: 750/@rem;
+    background:url("../images/box_bg.jpg") no-repeat fixed;
+    background-size:750/@rem 750/@rem;
+    transform-origin: left center;
+    transform:translateZ(-360px) rotateY(-43deg) rotateX(-5deg) rotateZ(2.6deg) translateX(256px) translateY(-50px);
+  }
+
+}

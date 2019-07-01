@@ -1,0 +1,67 @@
+html {
+  font-size: 10vw;
+}
+@font-face {
+  font-family: 'AvantGardeDemi';
+  src: url('../fonts/AvantGardeDemi.eot');
+  src: url('../fonts/AvantGardeDemi.eot') format('embedded-opentype'), url('../fonts/AvantGardeDemi.woff2') format('woff2'), url('../fonts/AvantGardeDemi.woff') format('woff'), url('../fonts/AvantGardeDemi.ttf') format('truetype'), url('../fonts/AvantGardeDemi.svg#AvantGardeDemi') format('svg');
+}
+body {
+  margin: 0;
+  background: url("../images/line.jpg") repeat-y;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  height: 53.33333333rem;
+  perspective: 13.33333333rem;
+}
+.font {
+  background: #000;
+  font-family: AvantGardeDemi;
+  font-size: 1.06666667rem;
+  color: #fff;
+  word-break: break-all;
+  line-height: 1.33333333rem;
+}
+.box {
+  width: 10rem;
+  height: 10rem;
+  background: url("../images/box_bg.jpg") no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 20rem;
+  transform-style: preserve-3d;
+}
+.box .glass {
+  position: absolute;
+  top: 8rem;
+  left: 0;
+  width: 8.66666667rem;
+  height: 7.2rem;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transform: translateZ(280px) rotateY(45deg) rotateX(5deg);
+  overflow: hidden;
+}
+.box .glass img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+.box .wapper {
+  width: 8.66666667rem;
+  height: 7.2rem;
+  transform-style: preserve-3d;
+}
+.box .goods {
+  position: fixed;
+  top: 0;
+  width: 10rem;
+  height: 10rem;
+  background: url("../images/box_bg.jpg") no-repeat fixed;
+  background-size: 10rem 10rem;
+  transform-origin: left center;
+  transform: translateZ(-360px) rotateY(-43deg) rotateX(-5deg) rotateZ(2.6deg) translateX(256px) translateY(-50px);
+}
+/*# sourceMappingURL=style2.css.map */

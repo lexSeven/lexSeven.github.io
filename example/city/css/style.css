@@ -35,9 +35,9 @@ body {
   position: absolute;
   top: 8rem;
   left: 0;
-  width: 8.66666667rem;
-  height: 7.2rem;
-  background: url("../images/box_bg.jpg") no-repeat fixed 2rem 20rem;
+  width: 8rem;
+  height: 5.33333333rem;
+  background: url("../images/goods3.png") no-repeat fixed 2.66666667rem 20rem;
   background-size: 10rem 10rem;
   background-clip: content-box;
   -webkit-background-clip: content-box;
