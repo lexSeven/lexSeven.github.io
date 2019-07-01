@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="box">
+    <div class="glass">
+        <img src="images/glass2.png">
+    </div>
+</div>
+
+<script>
+    var box = document.querySelector('.box');
+    var glass = document.querySelector('.glass');
+    window.onscroll = function () {
+        var boxTop = box.getBoundingClientRect().top
+        if(boxTop < window.innerHeight && boxTop > -box.offsetHeight){
+            glass.style.backgroundPositionY = boxTop + 'px';
+            glass.style.top = boxTop - 100 + 'px'
+        }
+
+        // if(boxTop > (window.innerHeight/2) - (box.offsetHeight/2)){
+        //     glass.style.top = boxTop + 'px'
+        // }
+
+    }
+</script>
+
+</body>
+</html>

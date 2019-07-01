@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'AvantGardeDemi';
+    src: url('fonts/AvantGardeDemi.eot');
+    src: url('fonts/AvantGardeDemi.eot') format('embedded-opentype'),
+         url('fonts/AvantGardeDemi.woff2') format('woff2'),
+         url('fonts/AvantGardeDemi.woff') format('woff'),
+         url('fonts/AvantGardeDemi.ttf') format('truetype'),
+         url('fonts/AvantGardeDemi.svg#AvantGardeDemi') format('svg');
+}

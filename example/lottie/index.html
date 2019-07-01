@@ -9,8 +9,8 @@
             background: #ffc730;
         }
         #lottie{
-            width:10vw;
-            height:10vw;
+            width:100vw;
+            height:100vw;
             position: absolute;
             top: 0;
             left: 0;
@@ -36,7 +36,7 @@
         prerender: false,
         autoplay: true,
         autoloadSegments: false,
-        path: 'js/data.json'
+        path: 'img/data.json'
     };
 
     var anim;
@@ -44,7 +44,7 @@
 
 
     anim = bodymovin.loadAnimation(animData);
-    anim.setSpeed(1.2)
+    anim.setSpeed(1)
     anim.addEventListener('DOMLoaded', startAnimation);
     click_r.onclick = hitRight;
     click_l.onclick = hitLeft;
@@ -81,8 +81,8 @@
 
     function startAnimation() {
         anim.playSegments([
-            [0, 85],
-            [0, 85]
+            [0, 20],
+            [0, 20]
         ], true);
     }
 </script>
