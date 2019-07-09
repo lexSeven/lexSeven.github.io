@@ -285,80 +285,387 @@
         /*# sourceMappingURL=style.css.map */
     </style>
     <script type="text/javascript" src="//mstatic.secooimg.com/js/tingyun-rum.js"></script>
+
     <style>
-        .downloadAppBanner {
-            position: fixed;
-            left: 50%;
-            top: 0;
-            z-index: 100;
-            transform: translateX(-50%);
-            max-width: 10rem;
-            width: 100%;
-            height: 20px;
+        :not(input,textarea), input[type=search] {
+            -webkit-tap-highlight-color: rgba(111, 111, 111, 0)
         }
-        .newUserCallApp {
-            position: absolute;
-            border-bottom: 1px solid #f5f5f5;
-            width: 100%;
-            height: 1.49333rem;
-            font-size: 0;
-            color: #000;
-            background-color: #fff;
+
+        body, html {
+            font-size: 0
         }
-        .newUserCallApp:before{
-            content: '';
-            width: 0;
-            height: 100%;
-            display: inline-block;
-            vertical-align: middle;
+
+        .header_iconfont, b, em {
+            font-style: normal
         }
-        .newUserCallApp img {
-            margin-left: 0.4rem;
-            width: 1.2rem;
-            height: 1.2rem;
-            display: inline-block;
-            vertical-align: middle;
+
+        #header .title, * {
+            margin: 0;
+            padding: 0
         }
-        .newUserCallApp .text{
-            display: inline-block;
-            vertical-align: middle;
-            padding-left: 0.32rem;
-            width: 5.7rem;
-        }
-        .newUserCallApp h2 {
-            font-size: 0.42667rem;
-            line-height: 0.53333rem;
-        }
-        .newUserCallApp p {
-            padding-top: 0.08rem;
-            font-size: 0.32rem;
-            line-height: 0.4rem;
-            color: #666;
-        }
-        .downloadBtn {
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 0.4rem;
-            border: 1px solid #000;
-            width: 1.86667rem;
-            line-height: 0.69333rem;
-            font-size: 0.37333rem;
+
+        #header .title, #header > div {
             text-align: center;
+            line-height: 1.173333rem
         }
+
+        dd, dl, dt, li, ol, ul {
+            list-style: none;
+            border: 0
+        }
+
+        :not(input,textarea) {
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-drag: none
+        }
+
+        input, textarea {
+            -webkit-tap-highlight-color: rgba(111, 111, 111, .5)
+        }
+
+        body {
+            font-family: STHeiti, Helvetica Neue
+        }
+
+        img {
+            max-width: 100%
+        }
+
+        html {
+            font-size: 10vw
+        }
+
+        @font-face {
+            font-family: header_iconfont;
+            src: url(../font/headerBar/iconfont.eot?t=1533890869724);
+            src: url(../font/headerBar/iconfont.eot?t=1533890869724#iefix) format('embedded-opentype'), url(data:application/x-font-woff;charset=utf-8;base64,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) format('woff'), url(../font/headerBar/iconfont.ttf?t=1533890869724) format('truetype'), url(../font/headerBar/iconfont.svg?t=1533890869724#iconfont) format('svg')
+        }
+
+        .header_iconfont {
+            font-family: header_iconfont !important;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale
+        }
+
+        .header_iconfont:before {
+            font-size: .613333rem
+        }
+
+        .header_icon_back:before {
+            content: "\e655"
+        }
+
+        .header_icon_menu:before {
+            content: "\e656"
+        }
+
+        .header_icon_index:before {
+            content: "\e657"
+        }
+
+        .header_icon_bag:before {
+            content: "\e658"
+        }
+
+        .header_icon_my:before {
+            content: "\e659"
+        }
+
+        body .downloadAppBanner {
+            position: relative;
+            height: 1.49333rem
+        }
+
+        .por {
+            position: relative
+        }
+
+        .poa {
+            position: absolute
+        }
+
+        .pof {
+            position: fixed
+        }
+
+        .fl {
+            float: left
+        }
+
+        .fr {
+            float: right
+        }
+
+        .dn {
+            display: none
+        }
+
+        .db {
+            display: block
+        }
+
+        .clearfix:after, .clearfix:before {
+            content: "\0020";
+            display: block;
+            height: 0;
+            overflow: hidden
+        }
+
+        .clearfix:after {
+            clear: both
+        }
+
+        .clearfix {
+            zoom: 1
+        }
+
+        #header {
+            height: 1.173333rem;
+            background-color: #fff;
+            display: -webkit-box;
+            position: relative;
+            z-index: 99999
+        }
+
+        #header .header_icon_menu, #header > * {
+            height: 100%;
+            background-color: #fff;
+            position: relative
+        }
+
+        #header .title {
+            -webkit-box-flex: 1;
+            overflow: hidden;
+            font-size: .453333rem;
+            z-index: 2;
+            font-weight: 400
+        }
+
+        #header > div {
+            width: 1.466667rem
+        }
+
+        #header > * {
+            color: #000
+        }
+
+        #header .header_icon_menu {
+            width: 100%;
+            display: block;
+            z-index: 2
+        }
+
+        #header ul {
+            overflow: hidden;
+            width: 3.546667rem;
+            background-color: #fff;
+            position: absolute;
+            right: 0;
+            opacity: 0;
+            -webkit-transform: translateY(-100%);
+            -ms-transform: translateY(-100%);
+            transform: translateY(-100%);
+            -webkit-transition: all .25s ease;
+            transition: all .25s ease
+        }
+
+        #header ul.show {
+            opacity: 1;
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0)
+        }
+
+        #header ul li {
+            color: #000;
+            line-height: 1.333333rem;
+            position: relative;
+            font-size: .373333rem;
+            text-align: left
+        }
+
+        #header ul li span:first-of-type {
+            padding: 0 .266667rem 0 .533333rem
+        }
+
+        #header ul li:after {
+            content: "";
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-bottom: 1px solid #E1E1E1;
+            -webkit-transform: scaleY(.5);
+            -ms-transform: scaleY(.5);
+            transform: scaleY(.5)
+        }
+
+        #header ul li:last-of-type:after {
+            border-bottom: 0
+        }
+
+        #header .rightBtn .header_iconfont:before {
+            font-size: .56rem
+        }
+
+
+        #header .rightBtn .input{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            transition: z-index 0.1s 0.1s;
+            background: #999;
+            opacity: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #header .rightBtn .input:hover ,#header .rightBtn .input:focus{
+            z-index: 1;
+        }
+
+        #header .rightBtn .input:hover ~ .bindEventList, #header .rightBtn .input:focus ~ .bindEventList{
+            opacity: 1;
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0)
+        }
+
+
+        .toast {
+            pointer-events: none;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 50%;
+            z-index: 400;
+            margin: 0 .666666rem
+        }
+
+        .toast span {
+            display: inline-block;
+            padding: .25rem .48rem;
+            color: #fff;
+            font-size: .3733335rem;
+            background-color: rgba(26, 25, 30, .94);
+            opacity: 0;
+            -webkit-transform: translate3d(0, 120%, 0);
+            transform: translate3d(0, 120%, 0);
+            border-radius: .08rem
+        }
+
+        @-webkit-keyframes toast {
+            11.54%, 87% {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0)
+            }
+            94% {
+                opacity: .9;
+                -webkit-transform: translate3d(0, 0, 0) scale(.9)
+            }
+            100% {
+                -webkit-transform: translate3d(0, 70%, 0) scale(.9)
+            }
+        }
+
+        @keyframes toast {
+            11.54%, 87% {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0)
+            }
+            94% {
+                opacity: .9;
+                -webkit-transform: translate3d(0, 0, 0) scale(.9);
+                transform: translate3d(0, 0, 0) scale(.9)
+            }
+            100% {
+                -webkit-transform: translate3d(0, 70%, 0) scale(.9);
+                transform: translate3d(0, 70%, 0) scale(.9)
+            }
+        }
+
+        .toast-enter-active {
+            -webkit-animation: toast 2.6s;
+            animation: toast 2.6s
+        }
+
+        @-webkit-keyframes slideOut {
+            0% {
+                opacity: 0
+            }
+            100% {
+                opacity: 1
+            }
+        }
+
+        @keyframes slideOut {
+            0% {
+                opacity: 0
+            }
+            100% {
+                opacity: 1
+            }
+        }
+
+        .shouqing_span {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 111;
+            background: rgba(0, 0, 0, .3);
+            font-size: 12px;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 40px;
+            display: none;
+            margin: -25px 0 0 -25px
+        }
+
+        .shouqin .shouqing_span {
+            display: block
+        }
+
+        .activtyApp_r {
+            width: 100%
+        }
+
+
     </style>
+
 </head>
 <body>
 
-<div class="downloadAppBanner">
-    <div class="newUserCallApp">
-        <img src="//mstatic.secooimg.com/images/2017/11/08/load_logo.png">
-        <div class="text">
-            <h2>寺库</h2>
-            <p>新用户注册送2500元大礼包</p>
-        </div>
-        <div id="downloadBtn" class="downloadBtn">立即打开</div>
+<header id="header">
+    <div class="leftBtn header_icon_back header_iconfont"></div>
+    <h1 class="title">3D展示</h1>
+    <div class="rightBtn por">
+        <input type="button" class="input">
+        <span class="icon header_iconfont header_icon_menu"></span>
+        <ul class="bindEventList">
+            <li eventdata="{&quot;type&quot;:&quot;url&quot;,&quot;url&quot;:&quot;//m.secoo.com&quot;}">
+                <span class="header_iconfont header_icon_index"></span>
+                <span>首页</span>
+            </li>
+            <li eventdata="{&quot;type&quot;:&quot;url&quot;,&quot;url&quot;:&quot;//m.secoo.com/v1/shoppingCart/&quot;}">
+                <span class="header_iconfont header_icon_bag"></span>
+                <span>购物袋</span>
+            </li>
+            <li eventdata="{&quot;type&quot;:&quot;url&quot;,&quot;url&quot;:&quot;//m.secoo.com/user.html&quot;}">
+                <span class="header_iconfont header_icon_my"></span>
+                <span>我的寺库</span>
+            </li>
+        </ul>
     </div>
-</div>
+</header>
 
 
 <div class="city">

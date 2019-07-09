@@ -7,12 +7,17 @@ html {
   src: url('../fonts/AvantGardeDemi.eot') format('embedded-opentype'), url('../fonts/AvantGardeDemi.woff2') format('woff2'), url('../fonts/AvantGardeDemi.woff') format('woff'), url('../fonts/AvantGardeDemi.ttf') format('truetype'), url('../fonts/AvantGardeDemi.svg#AvantGardeDemi') format('svg');
 }
 body {
+  width: 10rem;
   margin: 0;
-  background: url("../images/line.jpg") repeat-y;
+  background: url("https://pic12.secooimg.com/res/common/lexseven/line.jpg") repeat-y;
   -webkit-background-size: 100%;
   background-size: 100%;
   height: 53.33333333rem;
-  perspective: 13.33333333rem;
+  overflow-x: hidden;
+}
+img {
+  display: block;
+  width: 100%;
 }
 .font {
   background: #000;
@@ -22,30 +27,296 @@ body {
   word-break: break-all;
   line-height: 1.33333333rem;
 }
+.city {
+  width: 10rem;
+  height: 12.25333333rem;
+  background: url("https://pic12.secooimg.com/res/common/lexseven/city_light_01.png") no-repeat;
+  background-size: 100%;
+  animation: twinkle 5s 0.5s both;
+}
+.city img {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.active_des {
+  width: 10rem;
+  height: 9.92rem;
+  color: #fff;
+}
+.goods_section {
+  overflow: hidden;
+}
+.goods_section .navigation_box {
+  background: #000;
+  text-align: right;
+  line-height: 0.66666667rem;
+  padding: 0.26666667rem 0 0.13333333rem;
+  margin-bottom: 2rem;
+  margin-top: 0.53333333rem;
+  box-sizing: border-box;
+  font-size: 0;
+}
+.goods_section .navigation_box.align_left {
+  text-align: left;
+}
+.goods_section .navigation_box .nav_outbox {
+  width: 33%;
+  height: 1.24rem;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+}
+.goods_section .navigation_box .nav_outbox.longer {
+  width: auto;
+}
+.goods_section .navigation_box .nav_outbox.double {
+  width: 50%;
+}
+.goods_section .navigation_box .nav_outbox.left {
+  text-align: left;
+  padding-left: 0.66666667rem;
+}
+.goods_section .navigation_box .nav_outbox.right {
+  text-align: right;
+  padding-right: 0.50666667rem;
+  margin-right: 0;
+}
+.goods_section .navigation_box .nav {
+  height: 1.10666667rem;
+  font-family: AvantGardeDemi;
+  font-size: 0.53333333rem;
+  line-height: 0.93333333rem;
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+}
+.goods_section .navigation_box .nav.noRight:before {
+  display: none;
+}
+.goods_section .navigation_box .nav span {
+  height: 0.4rem;
+  width: 1.10666667rem;
+  background: url("https://pic12.secooimg.com/res/common/lexseven/buy_05.png") no-repeat;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  position: absolute;
+  right: 0;
+  bottom: -0.08rem;
+}
+.goods_section .navigation_box .nav:after {
+  content: '';
+  width: 100%;
+  height: 0.06666667rem;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0.26666667rem;
+}
 .box {
   width: 10rem;
-  height: 10rem;
-  background: url("../images/box_bg.jpg") no-repeat;
-  background-size: 100% 100%;
+  height: 11.2rem;
+  position: relative;
+  perspective: 13.33333333rem;
+}
+.box .search_box {
+  width: 4.58666667rem;
+  height: 0.94666667rem;
+  background: url("https://pic12.secooimg.com/res/common/lexseven/search_bg.png") no-repeat;
+  background-size: 100%;
   position: absolute;
-  top: 20rem;
-  transform-style: preserve-3d;
+  transform: translateZ(2px);
+  box-sizing: border-box;
+  padding-top: 0.25333333rem;
+  padding-left: 2.05333333rem;
+}
+.box .search_box:after {
+  content: '';
+  width: 1.12rem;
+  height: 1.16rem;
+  background: url("https://pic12.secooimg.com/res/common/lexseven/hand.png") no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 0.62666667rem;
+  right: -0.69333333rem;
+  animation: move 0.6s infinite;
+}
+.box .search_box img {
+  width: 2.13333333rem;
+  height: 0.41333333rem;
+}
+.box .search_box.left_top {
+  top: 1.25333333rem;
+  left: 0.26666667rem;
+}
+.box .search_box.right_top {
+  top: 2.4rem;
+  right: 0.90666667rem;
+}
+.box .search_box.right_bottom {
+  right: 0.90666667rem;
+  bottom: 1.38666667rem;
+}
+.box .search_box.left_bottom {
+  left: 0.46666667rem;
+  bottom: 1rem;
 }
 .box .glass {
   position: absolute;
-  top: 8rem;
+  top: 270px;
   left: 0;
-  width: 8rem;
-  height: 5.33333333rem;
-  background: url("../images/goods3.png") no-repeat fixed 2.66666667rem 20rem;
-  background-size: 10rem 10rem;
+  width: 6.66666667rem;
+  height: 4.8rem;
+  transform-origin: left center;
+  transform: translateZ(3.73333333rem) rotateY(36deg) rotateX(5deg);
+  transition: opacity 0.2s;
+}
+.box .glass.first {
+  background: url("https://pic12.secooimg.com/res/common/lexseven/goods4.png") no-repeat;
+  background-size: 13.33333333rem 13.33333333rem;
+  background-position: right -6.26666667rem;
   background-clip: content-box;
   -webkit-background-clip: content-box;
-  transform-origin: left center;
-  transform: translateZ(280px) rotateY(45deg) rotateX(5deg);
+}
+.box .glass.second {
+  background: url("https://pic12.secooimg.com/res/common/lexseven/goods5.png") no-repeat;
+  background-size: 13.33333333rem 13.33333333rem;
+  background-position: 1.06666667rem -6.26666667rem;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
+}
+.box .glass.third {
+  background: url("https://pic12.secooimg.com/res/common/lexseven/goods6.png") no-repeat;
+  background-size: 13.33333333rem 13.33333333rem;
+  background-position: right -6.26666667rem;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
+}
+.box .glass.fourth {
+  background: url("https://pic12.secooimg.com/res/common/lexseven/goods7.png") no-repeat;
+  background-size: 13.33333333rem 13.33333333rem;
+  background-position: 1.06666667rem -6.26666667rem;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
+}
+.box .glass.fifth {
+  background: url("https://pic12.secooimg.com/res/common/lexseven/goods8.png") no-repeat;
+  background-size: 13.33333333rem 13.33333333rem;
+  background-position: right -6.26666667rem;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
+}
+.box .glass.sixth {
+  background: url("https://pic12.secooimg.com/res/common/lexseven/goods9.png") no-repeat;
+  background-size: 13.33333333rem 13.33333333rem;
+  background-position: 1.06666667rem -6.26666667rem;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
+}
+.box .glass.seventh {
+  background: url("https://pic12.secooimg.com/res/common/lexseven/goods10.png") no-repeat;
+  background-size: 13.33333333rem 13.33333333rem;
+  background-position: right -6.26666667rem;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
+}
+.box .glass.right {
+  left: auto;
+  right: 0;
+  transform-origin: right center;
+  transform: translateZ(3.73333333rem) rotateY(-36deg) rotateX(-5deg);
 }
 .box .glass img {
   width: 100%;
   height: 100%;
+}
+.bottom {
+  height: 3.2rem;
+  width: 10rem;
+  text-align: center;
+  font-size: 0;
+  line-height: 0;
+}
+.bottom:before {
+  content: '';
+  height: 100%;
+  width: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+.bottom img {
+  width: 4.26666667rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes twinkle {
+  0% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  2% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  4% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  7% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  10% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  15% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  16% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  29% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  30% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  45% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  46% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  79% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  80% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  100% {
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+}
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0.08rem, 0.08rem);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 /*# sourceMappingURL=style.css.map */

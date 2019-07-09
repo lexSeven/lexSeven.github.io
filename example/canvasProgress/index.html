@@ -102,6 +102,9 @@
         }
     }
 
+
+
+
     progress.init()
     var i = 0;
     var inputDom = document.querySelector('.input');
@@ -116,11 +119,11 @@
         var timer = setInterval(function(){
             i++;
             progress.setCanvas()
-            progress.setPro(i/100*360)
+            progress.setPro(i/1000*360)
             if(i>=num){
                 clearInterval(timer)
             }
-        },20)
+        },10)
     }
 </script>
 

@@ -8,57 +8,22 @@
             height: 120%;
         }
         body{
-            perspective: 1000px;
+            height: 2000px;
             margin: 0;
         }
         .wapper{
+            margin-top: 1000px;
             width: 500px;
             height: 500px;
-            position: absolute;
-            top: -200px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            overflow: hidden;
-            /*transform: rotateX(30deg);*/
-        }
-        .box{
-            width: 500px;
-            height: 500px;
-            background: rgba(0,0,0,0.3);
-            transform-style: preserve-3d;
-            text-align: center;
-            transition: 0.5s;
-
-        }
-        .box:before{
-            content: '';
-            height: 100%;
-            width: 0;
-            display: inline-block;
-            vertical-align: middle;
-            font-size: 0;
-        }
-        .box img{
-            width: 50%;
-            height: 50%;
-            display: inline-block;
-            vertical-align: middle;
-            transform: rotateX(30deg);
-        }
-        .box:hover{
-            transform: rotateY(80deg);
+            background: url("images/box_bg.jpg") no-repeat fixed;
+            background-position: 0 400px;
+            border: 1px solid #899;
         }
     </style>
 </head>
 <body>
 
-<div class="wapper">
-    <div class="box">
-        <img src="images/goods.jpg">
-    </div>
-</div>
+<div class="wapper"></div>
 
 
 </body>

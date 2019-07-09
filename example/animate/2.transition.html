@@ -33,23 +33,23 @@
             border-color: #e6cb33;
             border-top-color: transparent;
             border-right-color: transparent;
-            /*transition: transform 1s linear;*/
+            transition: transform 1s linear;
         }
         .right .round{
             transform: rotate(45deg);
             right: 0;
             border-top-color: transparent;
             border-right-color: transparent;
-            /*transition: transform 1s 1s linear;*/
+            transition: transform 1s 1s linear;
         }
 
         .box:hover .right .round{
             transform: rotate(225deg);
-            /*transition: transform 1s linear;*/
+            transition: transform 1s linear;
         }
         .box:hover .left .round{
             transform: rotate(45deg);
-            /*transition: transform 1s 1s linear;*/
+            transition: transform 1s 1s linear;
         }
     </style>
 </head>
@@ -59,10 +59,20 @@
     <div class="left">
         <div class="round"></div>
     </div>
-    <div class="right">
+    <div class="right" id="obj">
         <div class="round"></div>
     </div>
 </div>
+
+<script>
+    var obj = [];
+    console.log(typeoff(obj));
+
+    function typeoff(obj, target) {
+        var type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+        return target? type === target: type;
+    }
+</script>
 
 </body>
 </html>

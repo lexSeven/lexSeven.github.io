@@ -15,12 +15,18 @@ html{
 @rem: 75rem;
 
 body{
+  width: 750/@rem;
   margin: 0;
-  background: url("../images/line.jpg") repeat-y;
+  background: url("https://pic12.secooimg.com/res/common/lexseven/line.jpg") repeat-y;
   -webkit-background-size: 100%;
   background-size: 100%;
   height: 4000/@rem;
-  perspective: 1000/@rem;
+  overflow-x: hidden;
+}
+
+img{
+  display: block;
+  width: 100%;
 }
 
 .font{
@@ -32,33 +38,340 @@ body{
   line-height: 100/@rem;
 }
 
+.city{
+  width: 750/@rem;
+  height: 919/@rem;
+  background: url("https://pic12.secooimg.com/res/common/lexseven/city_light_01.png") no-repeat;
+  background-size: 100%;
+  animation: twinkle 5s 0.5s both;
+
+  img{
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.active_des{
+  width: 750/@rem;
+  height: 744/@rem;
+  color: #fff;
+}
+
+.goods_section{
+  overflow: hidden;
+  .navigation_box{
+    background: #000;
+    text-align: right;
+    line-height: 50/@rem;
+    padding: 20/@rem 0 10/@rem;
+    margin-bottom: 150/@rem;
+    margin-top: 40/@rem;
+    box-sizing: border-box;
+    font-size: 0;
+
+    &.align_left{
+      text-align: left;
+    }
+
+    .nav_outbox{
+      width: 33%;
+      height: 93/@rem;
+      display: inline-block;
+      text-align: center;
+      box-sizing: border-box;
+
+      &.longer{
+        width: auto;
+      }
+
+      &.double{
+        width: 50%;
+      }
+
+      &.left{
+        text-align: left;
+        padding-left: 50/@rem;
+      }
+
+      &.right{
+        text-align: right;
+        padding-right: 38/@rem;
+        margin-right: 0;
+      }
+    }
+
+    .nav{
+      height: 83/@rem;
+      font-family: AvantGardeDemi;
+      font-size: 40/@rem;
+      line-height: 70/@rem;
+      color: #fff;
+      display: inline-block;
+      position: relative;
+      white-space: nowrap;
+
+      &.noRight{
+        &:before{
+          display: none;
+        }
+      }
+
+
+      span{
+        height: 30/@rem;
+        width: 83/@rem;
+        background: url("https://pic12.secooimg.com/res/common/lexseven/buy_05.png") no-repeat;
+        -webkit-background-size: 100%;
+        background-size: 100%;
+        position: absolute;
+        right: 0;
+        bottom: -6/@rem;
+      }
+
+      &:after{
+        content: '';
+        width: 100%;
+        height: 5/@rem;
+        background: #fff;
+        position: absolute;
+        left: 0;
+        bottom: 20/@rem;
+      }
+    }
+
+  }
+}
+
 .box{
   width: 750/@rem;
-  height: 750/@rem;
-  background:url("../images/box_bg.jpg") no-repeat;
-  background-size:100% 100%;
-  position: absolute;
-  top: 1500/@rem;
-  transform-style: preserve-3d;
+  height: 840/@rem;
+  position: relative;
+  perspective: 1000/@rem;
+
+  .search_box{
+    width: 344/@rem;
+    height: 71/@rem;
+    background: url("https://pic12.secooimg.com/res/common/lexseven/search_bg.png") no-repeat;
+    background-size: 100%;
+    position: absolute;
+    transform: translateZ(2px);
+    box-sizing: border-box;
+    padding-top: 19/@rem;
+    padding-left: 154/@rem;
+
+    &:after{
+      content: '';
+      width: 84/@rem;
+      height: 87/@rem;
+      background: url("https://pic12.secooimg.com/res/common/lexseven/hand.png") no-repeat;
+      background-size: 100%;
+      position: absolute;
+      top: 47/@rem;
+      right: -52/@rem;
+      animation: move 0.6s infinite;
+    }
+
+    img{
+      width: 160/@rem;
+      height: 31/@rem;
+    }
+
+    &.left_top{
+      top: 94/@rem;
+      left: 20/@rem;
+    }
+
+    &.right_top{
+      top: 180/@rem;
+      right: 68/@rem;
+    }
+
+    &.right_bottom{
+      right: 68/@rem;
+      bottom: 104/@rem;
+    }
+
+    &.left_bottom{
+      left: 35/@rem;
+      bottom: 75/@rem;
+    }
+  }
 
   .glass{
     position: absolute;
-    top: 600/@rem;
+    top: 270px;
     left: 0;
-    width: 600/@rem;
-    height: 400/@rem;
-    background:url("../images/goods3.png") no-repeat fixed 200/@rem 1500/@rem;
-    background-size:750/@rem 750/@rem;
-    background-clip: content-box;
-    -webkit-background-clip: content-box;
+    width: 500/@rem;
+    height: 360/@rem;
     transform-origin: left center;
-    transform:translateZ(280px) rotateY(45deg) rotateX(5deg);
-    //transition: top 5s;
+    transform:translateZ(280/@rem) rotateY(36deg) rotateX(5deg);
+    transition: opacity 0.2s;
+    //opacity: 0;
+
+    @positionY: -470/@rem;
+
+    &.first{
+      background:url("https://pic12.secooimg.com/res/common/lexseven/goods4.png") no-repeat;
+      background-size:1000/@rem 1000/@rem;
+      background-position: right @positionY;
+      background-clip: content-box;
+      -webkit-background-clip: content-box;
+    }
+
+    &.second{
+      background:url("https://pic12.secooimg.com/res/common/lexseven/goods5.png") no-repeat;
+      background-size:1000/@rem 1000/@rem;
+      background-position: 80/@rem @positionY;
+      background-clip: content-box;
+      -webkit-background-clip: content-box;
+    }
+
+    &.third{
+      background:url("https://pic12.secooimg.com/res/common/lexseven/goods6.png") no-repeat;
+      background-size:1000/@rem 1000/@rem;
+      background-position: right @positionY;
+      background-clip: content-box;
+      -webkit-background-clip: content-box;
+    }
+
+    &.fourth{
+      background:url("https://pic12.secooimg.com/res/common/lexseven/goods7.png") no-repeat;
+      background-size:1000/@rem 1000/@rem;
+      background-position: 80/@rem @positionY;
+      background-clip: content-box;
+      -webkit-background-clip: content-box;
+    }
+
+    &.fifth{
+      background:url("https://pic12.secooimg.com/res/common/lexseven/goods8.png") no-repeat;
+      background-size:1000/@rem 1000/@rem;
+      background-position: right @positionY;
+      background-clip: content-box;
+      -webkit-background-clip: content-box;
+    }
+
+    &.sixth{
+      background:url("https://pic12.secooimg.com/res/common/lexseven/goods9.png") no-repeat;
+      background-size:1000/@rem 1000/@rem;
+      background-position: 80/@rem @positionY;
+      background-clip: content-box;
+      -webkit-background-clip: content-box;
+    }
+
+    &.seventh{
+      background:url("https://pic12.secooimg.com/res/common/lexseven/goods10.png") no-repeat;
+      background-size:1000/@rem 1000/@rem;
+      background-position: right @positionY;
+      background-clip: content-box;
+      -webkit-background-clip: content-box;
+    }
+
+    &.right{
+      left: auto;
+      right: 0;
+      transform-origin: right center;
+      transform:translateZ(280/@rem) rotateY(-36deg) rotateX(-5deg);
+    }
 
     img{
       width: 100%;
       height: 100%;
     }
 
+  }
+}
+
+.bottom{
+  height: 240/@rem;
+  width: 750/@rem;
+  text-align: center;
+  font-size: 0;
+  line-height: 0;
+
+  &:before{
+    content: '';
+    height: 100%;
+    width: 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  img{
+    width: 320/@rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+}
+
+@keyframes twinkle {
+  0%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  2%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  4%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  7%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  10%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  15%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  16%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  29%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  30%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  45%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light2.png") no-repeat;
+    background-size: 100%;
+  }
+  46%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  79%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  80%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+  100%{
+    background: url("https://pic12.secooimg.com/res/common/lexseven/city_light3.png") no-repeat;
+    background-size: 100%;
+  }
+}
+
+@keyframes move {
+  0%{
+    transform: translate(0,0);
+  }
+  50%{
+    transform: translate(6/@rem,6/@rem);
+  }
+  100%{
+    transform: translate(0,0);
   }
 }

@@ -40,7 +40,6 @@ body {
   transform-origin: left center;
   transform-style: preserve-3d;
   transform: translateZ(280px) rotateY(45deg) rotateX(5deg);
-  overflow: hidden;
 }
 .box .glass img {
   width: 100%;
