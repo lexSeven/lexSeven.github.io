@@ -38,7 +38,7 @@
             z-index: 3;
             transition: z-index 0.1s 0.1s;
             background: #999;
-            opacity: 0;
+            /*opacity: 0;*/
             -webkit-tap-highlight-color: transparent;
         }
         .box .arrow{
@@ -58,7 +58,7 @@
             content: '';
             border-width: 10px 10px 0;
             border-style: solid;
-            border-color: #f00 transparent;
+            border-color: #899 transparent;
             display: inline-block;
             vertical-align: middle;
         }
@@ -69,15 +69,17 @@
 
         .box input:hover ~ ul, .box input:focus ~ ul{
             opacity: 1;
-            transform: translateY(0);
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0)
         }
 
-        .box input:focus ~ .mask, .box input:hover ~ .mask{
-            transition: opacity 0.5s, transform 0s;
-            transform: translateY(0);
-            /*display: block;*/
-            opacity: 1;
-        }
+        /*.box input:focus ~ .mask, .box input:hover ~ .mask{*/
+            /*transition: opacity 0.5s, transform 0s;*/
+            /*transform: translateY(0);*/
+            /*!*display: block;*!*/
+            /*opacity: 1;*/
+        /*}*/
 
         .box ul{
             margin: 0;
@@ -90,6 +92,8 @@
             width: 100%;
             opacity: 0;
             transition: 0.2s;
+            -webkit-transform: translateY(-100%);
+            -ms-transform: translateY(-100%);
             transform: translateY(-100%);
             line-height: 36px;
             z-index: 1;
@@ -99,18 +103,18 @@
             background: #eee;
         }
 
-        .mask{
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.3);
-            opacity: 0;
-            /*display: none;*/
-            transition: opacity 0.5s, transform 0.5s 0.5s;
-            transform: translateY(-100%);
-        }
+        /*.mask{*/
+            /*position: fixed;*/
+            /*top: 0;*/
+            /*left: 0;*/
+            /*right: 0;*/
+            /*bottom: 0;*/
+            /*background: rgba(0,0,0,0.3);*/
+            /*opacity: 0;*/
+            /*!*display: none;*!*/
+            /*transition: opacity 0.5s, transform 0.5s 0.5s;*/
+            /*transform: translateY(-100%);*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -126,7 +130,7 @@
             <li><span class="icon"></span><span>选项四</span></li>
             <li><span class="icon"></span><span>选项五</span></li>
         </ul>
-        <div class="mask"></div>
+        <!--<div class="mask"></div>-->
     </div>
 </div>
 
