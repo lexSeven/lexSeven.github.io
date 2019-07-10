@@ -121,7 +121,7 @@
 
 <div class="wrap">
     <div class="box">
-        <input type="button">
+        <input type="button" id="open">
         <div class="arrow"></div>
         <ul>
             <li><span class="icon"></span><span>选项一</span></li>
@@ -136,7 +136,8 @@
 
 
 <script>
-    document.addEventListener('touchstart', function(){}, false);
+    // document.addEventListener('touchstart', function(){}, false);
+    open.addEventListener('touchstart', function(ev){ ev.preventDefault() }, false);
 </script>
 
 
