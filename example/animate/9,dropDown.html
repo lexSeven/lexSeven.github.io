@@ -64,6 +64,7 @@
         }
 
         .box input:hover, .box input:focus{
+            transition: z-index 0.1s 0.3s;
             z-index: 1;
         }
 
@@ -137,7 +138,6 @@
 
 <script>
     document.addEventListener('touchstart', function(){}, false);
-    open.addEventListener('touchstart', function(ev){ ev.preventDefault() }, false);
 </script>
 
 
