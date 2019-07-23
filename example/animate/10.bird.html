@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        .main{
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .box{
+            width: 500px;
+            height: 500px;
+            background: #000;
+            border-radius: 45% 55% 45% 55%/ 55% 50% 50% 45%;
+            box-shadow: inset -10px 5px 35px 10px rgba(255,255,255,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .box:before{
+            content: '';
+            width: inherit;
+            height: inherit;
+            background-color: #474642;
+            border-radius: inherit;
+            position: absolute;
+            top: 76%;
+            left: 12%;
+        }
+
+        .eyes:before,
+        .eyes:after{
+            content: '';
+            position: absolute;
+            top: 110px;
+            width: 100px;
+            height: 100px;
+            background-color: #4e4e4e;
+            border-radius: 50%;
+            background-image:
+                    radial-gradient(circle at var(--left1), white 1px, transparent 1px),
+                    radial-gradient(circle at var(--left2), black 10px, transparent 11px),
+                    radial-gradient(circle at var(--left3), white 30px, transparent 31px);
+        }
+
+        .eyes:before{
+            left: 26%;
+            --left1: 84px;
+            --left2: 80px;
+            --left3: 64px;
+        }
+
+        .eyes:after{
+            right: 15%;
+            --left1: 16px;
+            --left2: 19px;
+            --left3: 36px;
+        }
+
+        .eyebrow:before,
+        .eyebrow:after{
+            content: '';
+            width: 220px;
+            height: 20px;
+            background: #f00;
+            top: 100px;
+            position: absolute;
+        }
+
+        .eyebrow:before{
+            left: 30px;
+            transform: rotate(10deg) skew(10deg);
+        }
+
+        .eyebrow:after{
+            top: 104px;
+            right: -20px;
+            transform: rotate(-8deg) skew(-4deg);
+        }
+
+        .mouth:before,
+        .mouth:after{
+            content: '';
+            position: absolute;
+            top: 170px;
+        }
+
+        .mouth:before{
+            right: 160px;
+            width: 120px;
+            height: 120px;
+            background: #f8bb25;
+            border-radius: 50px 160px 100px 80px/100px 160px 0 80px;
+            transform: rotate(-60deg);
+        }
+
+        .mouth:after{
+            left: 200px;
+            top: 205px;
+            width: 200px;
+            height: 100px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            transform: rotate(-11deg);
+        }
+
+        .tail{
+            width: 30px;
+            height: 80px;
+            background: #000;
+            transform: rotate(-10deg) skew(30deg);
+            position: absolute;
+            top: -120px;
+            left: 24%;
+        }
+
+        .tail:before{
+            content: '';
+            width: 26px;
+            height: 16px;
+            position: absolute;
+            top: 4px;
+            left: 2px;
+            background: #fff;
+        }
+
+        .tail:after{
+            content: '';
+            position: absolute;
+            top: 99%;
+            width: 0;
+            height: 0;
+            border-width: 150px 15px 0;
+            border-style: solid;
+            border-color: #000 transparent;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <div class="box">
+        <div class="eyes"></div>
+    </div>
+    <div class="eyebrow"></div>
+    <div class="mouth"></div>
+    <div class="tail"></div>
+</div>
+
+
+</body>
+</html>

@@ -3,22 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!--<link rel="stylesheet" href="css/style.css">-->
+    <style>
+        .mark{
+            margin-top: 2000px;
+            width: 300px;
+            height: 200px;
+            background: #899;
+        }
+    </style>
 </head>
-<body>
+<body style="height: 3000px;">
 
-<div class="mark"></div>
-<div class="box1">
-    <div class="leftTop"></div>
-    <div class="top"></div>
-    <div class="rightTop"></div>
-    <div class="right"></div>
-    <div class="rightBottom"></div>
-    <div class="bottom"></div>
-    <div class="leftBottom"></div>
-    <div class="left"></div>
-</div>
-<div class="box2"></div>
+<div class="mark" id="mark">mark</div>
+<!--<div class="box1">-->
+    <!--<div class="leftTop"></div>-->
+    <!--<div class="top"></div>-->
+    <!--<div class="rightTop"></div>-->
+    <!--<div class="right"></div>-->
+    <!--<div class="rightBottom"></div>-->
+    <!--<div class="bottom"></div>-->
+    <!--<div class="leftBottom"></div>-->
+    <!--<div class="left"></div>-->
+<!--</div>-->
+<!--<div class="box2"></div>-->
+
+<script>
+
+    Object.prototype.lexShow = function (option) {
+        var _this = this;
+        _this.exposureStart = false;
+        _this.exposureOver = false;
+        _this.exposureTop = option.tio || 0
+        window.addEventListener('scroll', function () {
+            if(_this.getBoundingClientRect().top - window.innerHeight < _this.exposureTop && _this.exposureStart){
+                _this.exposureStart = true
+                option.startExposure && option.startExposure(_this)
+            }
+            if(_this.getBoundingClientRect().top - window.innerHeight < -_this.offsetHeight && !_this.exposureOver){
+                _this.exposureOver = true
+                option.fn && option.fn(_this)
+            }
+        })
+    }
+
+    var mark = document.querySelector('.mark');
+    console.dir(mark)
+    mark.lexShow({
+        top:0,
+        fn:function () {
+            console.log('曝光了');
+        }
+    })
+
+
+
+</script>
 
 </body>
 </html>
