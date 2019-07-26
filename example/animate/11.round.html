@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .box{
+            width: 50px;
+            height: 50px;
+            background: #899;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .round{
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-width: 0;
+            border-style: solid;
+            border-color: #f00;
+            border-radius: 50%;
+            animation: zoom 1s infinite;
+        }
+        @keyframes zoom {
+            0%{
+                width: 0;
+                height: 0;
+                border-width: 50px;
+            }
+            100%{
+                width: 300px;
+                height: 300px;
+                border-width: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="round"></div>
+</div>
+
+</body>
+</html>
