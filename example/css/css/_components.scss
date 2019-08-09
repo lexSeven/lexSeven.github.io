@@ -1,0 +1,6 @@
+
+$primaryColor:#899;
+
+@mixin border($color:$primaryColor){
+  border: 1px solid $color;
+}

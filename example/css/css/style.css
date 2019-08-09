@@ -1,0 +1,56 @@
+.box {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #899;
+  border-radius: 50%;
+  position: relative;
+}
+.box .item {
+  width: 2px;
+  height: 10px;
+  background: #899;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.box .item:nth-child(1) {
+  transform: rotate(30deg) translateY(-96px);
+}
+.box .item:nth-child(2) {
+  transform: rotate(60deg) translateY(-96px);
+}
+.box .item:nth-child(3) {
+  transform: rotate(90deg) translateY(-96px);
+}
+.box .item:nth-child(4) {
+  transform: rotate(120deg) translateY(-96px);
+}
+.box .item:nth-child(5) {
+  transform: rotate(150deg) translateY(-96px);
+}
+.box .item:nth-child(6) {
+  transform: rotate(180deg) translateY(-96px);
+}
+.box .item:nth-child(7) {
+  transform: rotate(210deg) translateY(-96px);
+}
+.box .item:nth-child(8) {
+  transform: rotate(240deg) translateY(-96px);
+}
+.box .item:nth-child(9) {
+  transform: rotate(270deg) translateY(-96px);
+}
+.box .item:nth-child(10) {
+  transform: rotate(300deg) translateY(-96px);
+}
+.box .item:nth-child(11) {
+  transform: rotate(330deg) translateY(-96px);
+}
+.box .item:nth-child(12) {
+  transform: rotate(360deg) translateY(-96px);
+}
+
+/*# sourceMappingURL=style.css.map */

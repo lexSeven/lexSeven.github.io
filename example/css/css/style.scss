@@ -1,0 +1,25 @@
+.box{
+  width: 200px;
+  height: 200px;
+  border: 1px solid #899;
+  border-radius: 50%;
+  position: relative;
+
+  .item{
+    width: 2px;
+    height: 10px;
+    background: #899;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  @for $num from 1 through 12 {
+    .item:nth-child(#{$num}){
+      transform: rotate((360deg/12)*$num) translateY(-96px);
+    }
+  }
+}
