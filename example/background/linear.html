@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .progress{
+            width: 100px;
+            height: 20px;
+            border: 1px solid #0a3b98;
+            border-radius: 10px;
+            top: 50px;
+            left: 20px;
+            position: relative;
+            background: #9acfea;
+            animation: move 2s forwards;
+        }
+
+        .box{
+            width: 100px;
+            height: 20px;
+            border: 1px solid #0a3b98;
+            border-radius: 10px;
+            top: 50px;
+            left: 20px;
+            position: relative;
+            background: #9acfea;
+            animation: move 2s 1s linear infinite forwards;
+            margin: 10px 0;
+        }
+
+        .main{
+            width: 100px;
+            height: 20px;
+            border: 1px solid #0a3b98;
+            border-radius: 10px;
+            top: 50px;
+            left: 20px;
+            position: relative;
+            background: #9acfea;
+            animation: move 2s cubic-bezier(.43,.17,.5,1.41) forwards;
+        }
+
+        .line{
+            width: 1px;
+            height: 400px;
+            background: #000;
+            position: absolute;
+            left: 310px;
+            top: 0;
+        }
+
+        @keyframes move {
+            0%{
+                left: 20px;
+            }
+            100%{
+                left: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="line"></div>
+<div class="progress"></div>
+<div class="box"></div>
+<div class="main"></div>
+
+</body>
+</html>

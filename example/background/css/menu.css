@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  background: #ccc;
+}
+
+.box {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+  position: absolute;
+  top: 100%;
+  transform: translateY(-100%);
+  background: #fff;
+  height: 40px;
+  width: 100%;
+}
+.box .input {
+  width: 20%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+}
+.box .input:nth-of-type(1) {
+  left: 0%;
+}
+.box .input:nth-of-type(1):focus ~ .last {
+  left: 2%;
+}
+.box .input:nth-of-type(2) {
+  left: 20%;
+}
+.box .input:nth-of-type(2):focus ~ .last {
+  left: 22%;
+}
+.box .input:nth-of-type(3) {
+  left: 40%;
+}
+.box .input:nth-of-type(3):focus ~ .last {
+  left: 42%;
+}
+.box .input:nth-of-type(4) {
+  left: 60%;
+}
+.box .input:nth-of-type(4):focus ~ .last {
+  left: 62%;
+}
+.box .input:nth-of-type(5) {
+  left: 80%;
+}
+.box .input:nth-of-type(5):focus ~ .last {
+  left: 82%;
+}
+.box .item {
+  width: 20%;
+  display: inline-block;
+  box-sizing: border-box;
+  border-right: 1px solid #999;
+  font-size: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.box .item.last {
+  width: 16%;
+  height: 120%;
+  background: #ccc;
+  border-radius: 50%;
+  position: absolute;
+  left: 42%;
+  top: -25px;
+  transition: 0.5s;
+  border-right: none;
+}
+
+/*# sourceMappingURL=menu.css.map */

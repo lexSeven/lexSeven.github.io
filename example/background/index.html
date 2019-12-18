@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        body,html{
+            height: 100%;
+        }
+
+        body{
+            perspective: 500px;
+        }
+
+        .box{
+            border: 1px solid #0b2e13;
+            width: 500px;
+            height: 300px;
+            text-align: center;
+            font-size: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            transition: 2s;
+            background: rgba(255,143,90,0.2);
+            transform-style: preserve-3d;
+            transform-origin: left center;
+        }
+
+        .box:hover{
+            transform: rotateY(-70deg);
+        }
+
+        .box img{
+            vertical-align: middle;
+            transform: rotateX(70deg);
+        }
+
+        .box:before{
+            content: '';
+            width: 0;
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <img src="img/1.png">
+</div>
+
+</body>
+</html>

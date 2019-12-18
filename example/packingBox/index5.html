@@ -181,9 +181,9 @@
     function box (imgs) {
         let cube = document.querySelector(".cube"),
             downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
-        let boxX = 190,
-            boxY = 90,
-            boxZ = 140,
+        let boxX = 200,
+            boxY = 80,
+            boxZ = 200,
             activeZ = 50,
             keyNum = 3;
         /*
@@ -525,7 +525,7 @@
     }
     // setTimeout(removeOut2,1000)
     function removeOut2(){
-        css([eleArr.outFont,eleArr.outTop,eleArr.outEnd,eleArr.outBottom],{
+        css([eleArr.outFont,eleArr.outTop,eleArr.outEnd,eleArr.outBottom,eleArr.outLeft,eleArr.outRight],{
             opacity: 0
         })
     }
@@ -545,16 +545,14 @@
             cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + initDegX + "deg) rotatey(" + initDegY + "deg)";
             degX = initDegY;
             degY = initDegX;
-
-
         },100);
 
         setTimeout(function(){
             cube.style.transition = '0s'
             setTimeout(removeOut,100)
             setTimeout(removeOut2,1000)
-            setTimeout(removeCover,1500)
-        },1000);
+            // setTimeout(removeCover,1500)
+        },400);
     }
     }
 </script>

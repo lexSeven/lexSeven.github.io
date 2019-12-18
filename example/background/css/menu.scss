@@ -1,0 +1,59 @@
+body{
+  margin: 0;
+  background: #ccc;
+}
+
+.box{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+  position: absolute;
+  top: 100%;
+  transform: translateY(-100%);
+  background: #fff;
+  height: 40px;
+  width: 100%;
+
+  .input{
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+
+    @for $num from 1 through 5{
+      &:nth-of-type(#{$num}){
+        left: ($num - 1)*20%;
+
+        &:focus ~ .last{
+          left: ($num - 1)*20% + 2%;
+        }
+
+      }
+    }
+
+  }
+
+  .item{
+    width: 20%;
+    display: inline-block;
+    box-sizing: border-box;
+    border-right: 1px solid #999;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+
+    &.last{
+      width: 16%;
+      height: 120%;
+      background: #ccc;
+      border-radius: 50%;
+      position: absolute;
+      left: 42%;
+      top: -25px;
+      transition: 0.5s;
+      border-right: none;
+    }
+
+  }
+}

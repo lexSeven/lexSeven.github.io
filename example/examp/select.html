@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        label{
+            display: block;
+            width: 20px;
+        }
+        input{
+            display: none;
+        }
+
+        span{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #0b2e13;
+            padding: 5px;
+        }
+
+        .box{
+            width: 0;
+            height: 0;
+            border-width: 300px 150px 0;
+            border-style: solid;
+            border-color: transparent #f1bec4 transparent #9acfea;
+            border-radius: 0.1px;
+        }
+    </style>
+</head>
+<body>
+
+<label>
+    <input type="file">
+    <span></span>
+</label>
+
+<div class="box"></div>
+
+</body>
+</html>

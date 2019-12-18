@@ -63,18 +63,18 @@
             vertical-align: middle;
         }
 
-        .box input:hover, .box input:focus{
+        .box input:focus{
             z-index: 1;
         }
 
-        .box input:hover ~ ul, .box input:focus ~ ul{
+        .box input:focus ~ ul{
             opacity: 1;
             -webkit-transform: translateY(0);
             -ms-transform: translateY(0);
             transform: translateY(0)
         }
 
-        .box input:focus ~ .mask, .box input:hover ~ .mask{
+        .box input:focus ~ .mask{
             transition: opacity 0.5s, transform 0s;
             transform: translateY(0);
             /*display: block;*/

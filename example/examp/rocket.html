@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html{
+            height: 100%;
+        }
+        body{
+            margin: 0;
+            background: #333333;
+            overflow: hidden;
+        }
+
+        .box{
+            position: absolute;
+            width: 423px;
+            height: 423px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            transform: rotate(0deg);
+            transform-origin: left bottom;
+            animation: rocket 1s;
+        }
+
+        @keyframes rocket {
+            0%{
+                transform: rotate(-20deg);
+            }
+            10%{
+                transform: rotate(16deg);
+            }
+            20%{
+                transform: rotate(-16deg);
+            }
+            30%{
+                transform: rotate(12deg);
+            }
+            40%{
+                transform: rotate(-12deg);
+            }
+            50%{
+                transform: rotate(8deg);
+            }
+            60%{
+                transform: rotate(-8deg);
+            }
+            70%{
+                transform: rotate(4deg);
+            }
+            80%{
+                transform: rotate(-4deg);
+            }
+            90%{
+                transform: rotate(1deg);
+            }
+            100%{
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <img src="img/rocket.png">
+</div>
+
+</body>
+</html>

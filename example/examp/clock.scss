@@ -1,0 +1,201 @@
+.round{
+  width: 300px;
+  height: 300px;
+  border: 1px solid #0b2e13;
+  border-radius: 50%;
+  position: relative;
+
+  &:after{
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0b2e13;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
+
+.hours{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .item{
+    width: 10px;
+    height: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #0a3b98;
+  }
+
+  @for $num from 1 through 12 {
+    .item:nth-child(#{$num}){
+      transform: rotate(360/12*$num*1deg) translateX(146px);
+    }
+  }
+
+  .needle{
+    width: 100px;
+    height: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #0a3b98;
+    transform: translateX(50px);
+    animation: move 43200s steps(60) infinite;
+
+    &:before{
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 5px;
+      right: 100%;
+      background: #f3972b;
+    }
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 5px;
+      left: 100%;
+      background: #f3972b;
+    }
+
+  }
+}
+
+.min{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .item{
+    width: 5px;
+    height: 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #0a3b98;
+  }
+
+  @for $num from 1 through 60 {
+    .item:nth-child(#{$num}){
+      transform: rotate(360/60*$num*1deg) translateX(146px);
+    }
+  }
+
+  .needle{
+    width: 120px;
+    height: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #2D64E0;
+    transform: translateX(60px);
+    animation: moveMin 3600s linear infinite;
+
+    &:before{
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 3px;
+      right: 100%;
+      background: #f3972b;
+    }
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 3px;
+      left: 100%;
+      background: #f3972b;
+    }
+
+  }
+}
+
+
+.sec{
+  .needle{
+    width: 140px;
+    height: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #00adb3;
+    transform: translateX(70px);
+    animation: moveSec 60s steps(60) infinite;
+
+    &:before{
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      right: 100%;
+      background: #f3972b;
+    }
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      left: 100%;
+      background: #f3972b;
+    }
+  }
+}
+
+@keyframes move {
+  0%{
+    transform:rotate(0deg) translateX(50px);
+  }
+  100%{
+    transform:rotate(360deg) translateX(50px);
+  }
+}
+
+@keyframes moveMin {
+  0%{
+    transform:rotate(20deg) translateX(60px);
+  }
+  100%{
+    transform:rotate(380deg) translateX(60px);
+  }
+}
+
+@keyframes moveSec {
+  0%{
+    transform:rotate(-90deg) translateX(70px);
+  }
+  100%{
+    transform:rotate(270deg) translateX(70px);
+  }
+}

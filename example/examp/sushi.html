@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 900px;
+            height: 180px;
+            border: 2px solid #0b2e13;
+            overflow: hidden;
+        }
+
+        .box ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 2700px;
+        }
+
+        .item{
+            float: left;
+            transform: translateX(0);
+            animation: left 10s linear infinite;
+        }
+
+        .box .item img{
+            width: 300px;
+        }
+
+        @keyframes left {
+            to{
+                transform: translateX(-1800px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <ul>
+        <li class="item"><img src="update/sushi1.png"></li>
+        <li class="item"><img src="update/sushi2.png"></li>
+        <li class="item"><img src="update/sushi3.png"></li>
+        <li class="item"><img src="update/sushi4.png"></li>
+        <li class="item"><img src="update/sushi5.png"></li>
+        <li class="item"><img src="update/sushi6.png"></li>
+        <li class="item"><img src="update/sushi1.png"></li>
+        <li class="item"><img src="update/sushi2.png"></li>
+        <li class="item"><img src="update/sushi3.png"></li>
+    </ul>
+</div>
+
+
+</body>
+</html>

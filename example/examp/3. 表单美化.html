@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            display: none;
+        }
+        span{
+            width: 34px;
+            height: 34px;
+            display: inline-block;
+            border: 1px solid #0b2e13;
+            border-radius: 10px;
+            padding: 2px;
+            text-align: center;
+            color: #fff;
+        }
+
+        input:checked ~ span{
+            background: #0b2e13;
+            background-clip: content-box;
+        }
+    </style>
+</head>
+<body>
+
+<label>
+    <input type="checkbox">
+    <span></span>
+</label>
+
+</body>
+</html>
