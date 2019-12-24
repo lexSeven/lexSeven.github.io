@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
         body{
             margin: 0;
@@ -16,7 +19,8 @@
         }
 
         .navContent{
-            width: 1400px;
+            padding: 0 4%;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -38,27 +42,64 @@
         }
 
         .content{
-            width: 1400px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        .item{
+        .line{
             margin: 0 100px 60px;
         }
 
-        a{
-            padding: 0 20px;
-            height: 40px;
+        .item{
+            width: 200px;
+            min-height: 40px;
             display: inline-block;
-            border-radius: 5px;
-            background: rgba(0,220,224,0.9);
-            color: #fff;
+            vertical-align: middle;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .item p{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,220,224,0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
             line-height: 40px;
-            margin-right: 10px;
-            text-decoration: none;
+            color: #fff;
+            margin: 0;
+        }
+
+        .item p:before{
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: bottom;
+            width: 0;
+        }
+
+        .item p em{
+            display: inline-block;
+            vertical-align: bottom;
+            width: 100%;
+            text-align: center;
+            background: rgba(0,0,0,0.7);
+            font-style: normal;
+            line-height: 40px;
+        }
+
+        .item img{
+            width: 100%;
+        }
+
+        a{
+            display: block;
         }
         span{
             display: inline-block;
+            vertical-align: middle;
             width: 100px;
             text-align: right;
         }
@@ -75,54 +116,146 @@
 </div>
 
 <div class="content">
-    <div class="item">
-        <span>css技巧：</span>
-        <a href="10.bird.html">愤怒的小鸟abcd</a>
-        <a href="9,dropDown.html">神奇的伪类</a>
-    </div>
-    <div class="item">
-        <span>css动画：</span>
-        <a href="1.steps.html">steps</a>
-    </div>
-    <div class="item">
-        <span>css滤镜：</span>
-        <a href="../photo/">照片美颜</a>
-    </div>
-    <div class="item">
+    <div class="line">
         <span>animation：</span>
-        <a href="2.transition.html">环形进度条</a>
-        <a href="../canvasProgress/">Canvas环形进度条</a>
-        <a href="3.cssSlide.html">无限自动轮播</a>
-        <a href="4.cssSlide.html">点击切换</a>
+        <div class="item">
+            <a href="2.transition.html">
+                <img src="img/case/progress.png">
+                <p><em>环形进度条</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="../canvasProgress/">
+                <img src="img/case/canvas.png">
+                <p><em>Canvas环形进度条</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="3.cssSlide.html">
+                <img src="img/case/silder.png">
+                <p><em>无限自动轮播</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="4.cssSlide.html">
+                <img src="img/case/change.png">
+                <p><em>点击切换</em></p>
+            </a>
+        </div>
     </div>
-    <div class="item">
+    <div class="line">
         <span>3D：</span>
-        <a href="5.Cube.html">魔方</a>
-        <a href="https://m.secoo.com/appActivity/giftBox.shtml?pageid=2505&productid=17264677&specId=20614436&height=90&width=140&length=190&order=0">3D礼盒</a>
-        <a href="http://lexseven.github.io/nativeWeb/">音频</a>
+        <div class="item">
+            <a href="5.Cube.html">
+                <img src="img/case/box.png">
+                <p><em>魔方</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="https://m.secoo.com/appActivity/giftBox.shtml?pageid=2505&productid=33392642&specId=10566&height=90&width=150&length=190&order=1">
+                <img src="img/case/3d.png">
+                <p><em>3D礼盒</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="http://lexseven.github.io/nativeWeb/">
+                <img src="img/case/desk.png">
+                <p><em>音频</em></p>
+            </a>
+        </div>
     </div>
-    <div class="item">
+    <div class="line">
         <span>曲线：</span>
-        <a href="../load/">贝塞尔初级应用</a>
-        <a href="../bezier/dot3.html">拖动变形_贝塞尔</a>
-        <a href="../bezier/sinLine.html">利用曲线调整动画过程</a>
-        <a href="../slides3D/indexMoreFaster.html">水波纹slide</a>
+        <div class="item">
+            <a href="../load/">
+                <img src="img/case/load.png">
+                <p><em>贝塞尔初级应用</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="../bezier/dot3.html">
+                <img src="img/case/bezier.png">
+                <p><em>拖动变形_贝塞尔</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="../bezier/sinLine.html">
+                <img src="img/case/line.png">
+                <p><em>利用曲线调整动画过程</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="../slides3D/indexMoreFaster.html">
+                <img src="img/case/change1.png">
+                <p><em>水波纹幻灯片</em></p>
+            </a>
+        </div>
     </div>
-    <div class="item">
+    <div class="line">
+        <span>css技巧：</span>
+        <div class="item">
+            <a href="10.bird.html">
+                <img src="img/case/bird.png">
+                <p><em>愤怒的小鸟</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="9,dropDown.html">
+                <img src="img/case/hover.png">
+                <p><em>神奇的伪类</em></p>
+            </a>
+        </div>
+    </div>
+    <div class="line">
+        <span>css动画：</span>
+        <div class="item">
+            <a href="1.steps.html">
+                <img src="img/case/hover.png">
+                <p><em>steps</em></p>
+            </a>
+        </div>
+    </div>
+    <div class="line">
+        <span>css滤镜：</span>
+        <div class="item">
+            <a href="img">
+                <img src="img/case/bui.png">
+                <p><em>照片美颜</em></p>
+            </a>
+        </div>
+    </div>
+    <div class="line">
         <span>三角函数：</span>
-        <a href="../roundSlides/">三角函数应用</a>
-        <a href="../gameCanvas/">小游戏</a>
+        <div class="item">
+            <a href="../roundSlides/">
+                <img src="img/case/change2.png">
+                <p><em>三角函数应用</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="../gameCanvas/">
+                <img src="img/case/game.png">
+                <p><em>小游戏</em></p>
+            </a>
+        </div>
     </div>
-    <div class="item">
+    <div class="line">
         <span>lottie：</span>
-        <a href="https://github.com/airbnb/lottie-web">用软件做动画</a>
-        <a href="http://airbnb.io/lottie/#/web">lottieAPI</a>
-        <a href="https://codepen.io/collection/nVYWZR/">lottieExample</a>
-    </div>
-    <div class="item">
-        <span>一些收藏：</span>
-        <a href="http://next.36kr.com/posts">不错过好应用</a>
-        <a href="https://tinypng.com/">图片压缩</a>
+        <div class="item">
+            <a href="https://github.com/airbnb/lottie-web">
+                <p><em>用软件做动画</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="http://airbnb.io/lottie/#/web">
+                <p><em>lottieAPI</em></p>
+            </a>
+        </div>
+        <div class="item">
+            <a href="https://codepen.io/collection/nVYWZR/">
+                <p><em>lottieExample</em></p>
+            </a>
+        </div>
     </div>
 </div>
 

@@ -466,13 +466,13 @@ em {
   background: #efefef;
   background-clip: content-box;
   border-radius: 1px;
+  line-height: 0;
 }
 .qqMProgress .playLine .proMain span {
-  height: 100%;
+  height: 2px;
   width: 0%;
   background: #31c27c;
   display: block;
-  transition: 0.2s;
 }
 .qqMProgress .fnBtn {
   padding: 0 13px;
