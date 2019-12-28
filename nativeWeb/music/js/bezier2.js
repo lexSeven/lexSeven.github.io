@@ -48,6 +48,8 @@ var bezier = {
         }
         _this.lastPosition = [];//计算完成之后曲线上每一个点的坐标
         _this.findControl();
+
+        // 判断是否需要执行绘画动画，不需要的话直接调用canvas绘制贝塞尔曲线的方法。有需要才会去调用贝塞尔曲线解析公式，计算出曲线中每一个点的坐标
         if(_this.drawFunction){
             _this.getlastPosition();
         }else{

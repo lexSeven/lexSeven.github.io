@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .control{
+            width:500px;
+            display: flex;
+            justify-content: space-between;
+            margin:10px 0;
+        }
+        .btn{
+            border:1px solid #1b6d85;
+            border-radius: 2px;
+            padding:5px 10px;
+            width:60px;
+            text-align: center;
+        }
+
+        .time{
+            padding:5px 10px;
+        }
+        .line{
+            height:2px;
+            border-radius: 2px;
+            background: #cfcfcf;
+            float: left;
+            width:500px;
+            line-height:0;
+            overflow: hidden;
+        }
+        .line span{
+            display: inline-block;
+            height:100%;
+            width:0%;
+            background: #e15671;
+            line-height: 0;
+            vertical-align: top;
+        }
+        .dot{
+            width:800px;
+            height: 400px;
+            border-bottom:1px solid #1b6d85;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+        .dot span{
+            width:10px;
+            height:300px;
+            background:url("img/line.png") no-repeat bottom;
+        }
+
+        #c{
+            position: absolute;
+            top:50px;
+            left:100px;
+            z-index:1;
+            transform: scale(0.5);
+            transform-origin: left top;
+        }
+    </style>
+    <script src="js/bezier2.js"></script>
+</head>
+<body>
+
+<div class="control">
+    <div class="btn play">播放</div>
+    <div class="btn stop">暂停</div>
+    <div class="btn replay">继续</div>
+    <div class="btn next">下一首</div>
+    <span class="time">00:00/00:00</span>
+</div>
+
+<canvas id="c"></canvas>
+
+<script>
+
+    var music = {
+        init:function(){
+            let _this = this;
+
+            _this.playBtn = document.querySelector('.play');
+            _this.stopBtn = document.querySelector('.stop');
+            _this.replay = document.querySelector('.replay');
+            _this.time = document.querySelector('.time');
+            _this.proLine = document.querySelector('.line');
+            _this.proBtn = document.querySelector('.line span');
+            _this.next = document.querySelector('.next');
+            _this.dotBox = document.querySelector('.dot');
+            _this.audio = new Audio();
+            _this.addEvent();
+
+            _this.c = document.getElementById('c');
+            _this.c.width = 1600;
+            _this.c.height = 1600;
+            _this.C1 = c.getContext('2d');
+
+            _this.C1.strokeStyle= "#899";
+            _this.C1.fillStyle = "#899";
+
+            _this.radius = 300; //半径
+            _this.dotx = 800; //圆心点
+            _this.doty = 800;
+            _this.num = 50;
+            _this.setinitialPosition();
+        },
+        musicList:[
+            'img/jianao.mp3',
+            'img/Rihanna - Only Girl (In The World).mp3',
+            'img/Remix.mp3',
+            'img/Neptune Illusion Dennis Kuo .mp3'
+        ],
+        addEvent:function(){
+            var _this = music;
+            _this.playBtn.onclick = _this.play;
+            _this.proLine.onclick = function(ev){
+                _this.setPro(ev,this);
+            }
+            _this.stopBtn.onclick = function(){
+                _this.audio.pause();
+            }
+            _this.replay.onclick = function(){
+                _this.audio.play();
+            }
+            _this.next.onclick = function(){
+                _this.now ++;
+                _this.play();
+            }
+        },
+        reset:function(){
+            var _this = music;
+            _this.audio.pause();
+            _this.audio = null;
+            _this.audio = new Audio();
+            _this.audioContext = null;
+            _this.analyser = null;
+            _this.sourceNode = null;
+            _this.freqArray = null;
+            cancelAnimationFrame(_this.getData);
+        },
+        play:function(){
+            var _this = music;
+            _this.reset();
+            _this.audio.src = _this.musicList[_this.now];
+            _this.audio.addEventListener("canplay", function() {
+                _this.audio.play();
+
+                var duraMin = parseInt(_this.audio.duration/60);
+                duraMin = duraMin<10?'0'+duraMin:duraMin;
+                var durSec = parseInt(_this.audio.duration%60);
+                durSec = durSec<10?'0'+durSec:durSec;
+                _this.musicStatic = {
+                    durationMin:duraMin + ':' + durSec,
+                    duration:parseInt(_this.audio.duration)
+                };
+
+                _this.createObj();
+            }, false);
+        },
+        createObj:function(){
+            var _this = music;
+            _this.audioContext = _this.audioContext || new AudioContext();
+            _this.analyser = (_this.analyser || _this.audioContext.createAnalyser());
+            _this.sourceNode = _this.audioContext.createMediaElementSource(_this.audio);
+            _this.sourceNode.connect(_this.analyser);
+            _this.sourceNode.connect(_this.audioContext.destination);
+            _this.position = [];
+            _this.getData();
+        },
+        getData:function(){
+            var _this = music;
+            //得到的音频是一个二进制的，需要，解析数据
+            _this.freqArray = new Uint8Array(_this.analyser.frequencyBinCount);
+            //得到数组
+            _this.analyser.getByteFrequencyData(_this.freqArray);
+            // _this.move(_this.freqArray);
+            _this.step = Math.round(_this.freqArray.length/_this.listNum);
+            var x = 0,y = 0,ang = 2*Math.PI/_this.num;
+            _this.position = [];
+
+            for(var i=0;i<num;i++){
+                x = Math.cos(ang*i)*_this.freqArray[i*_this.step] + _this.dotx;
+                y = Math.sin(ang*i)*_this.freqArray[i*_this.step] + _this.doty;
+                _this.position.push([x,y]);
+            }
+
+            bezier.init({
+                point:_this.position,
+                element:_this.c,
+                canvas:_this.C1,
+                isFull:true,
+                k:'0.4',
+                drawFunction:false,
+                speed:1
+            });
+            requestAnimationFrame(_this.getData);
+        },
+        drawLine:function(){
+            let _this = this;
+            _this.C1.clearRect(0,0,_this.c.offsetWidth,_this.c.offsetHeight);
+            _this.C1.beginPath();
+            _this.C1.moveTo(_this.position[0][0],_this.position[0][1]);
+
+            for(var i=1;i<_this.num;i++){
+                _this.C1.lineTo(_this.position[i][0],_this.position[i][1]);
+            }
+
+            _this.C1.stroke();
+        }
+    }
+
+    music.init();
+</script>
+
+</body>
+</html>
