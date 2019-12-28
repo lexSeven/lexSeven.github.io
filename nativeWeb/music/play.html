@@ -166,7 +166,7 @@
         move:function(data){
             var _this = music;
 
-
+            console.log(data);
             var currMin = parseInt(_this.audio.currentTime/60);
             currMin = currMin<10?'0'+currMin:currMin;
             var currSec = parseInt(_this.audio.currentTime%60);
