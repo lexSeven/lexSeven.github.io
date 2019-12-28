@@ -107,7 +107,7 @@
             _this.C1.strokeStyle = _this.D1.strokeStyle = _this.E1.strokeStyle = "#899";
             _this.C1.fillStyle = _this.D1.fillStyle = _this.E1.fillStyle = "#899";
 
-            _this.radius = 300; //半径
+            _this.radius = 100; //半径
             _this.dotx = 800; //圆心点
             _this.doty = 800;
             _this.num = 50;
@@ -187,10 +187,13 @@
             _this.listNum = [];
             _this.position2 = [];
             _this.listNum2 = [];
+            _this.position3 = [];
+            _this.listNum3 = [];
 
             for(var a=0;a<_this.num;a++){
                 _this.listNum.push(_this.freqArray[_this.radom[a]*_this.step]/5);
-                _this.listNum2.push(_this.freqArray[_this.radom[a]*_this.step]/6);
+                _this.listNum2.push(_this.freqArray[_this.radom[a]*_this.step]/7);
+                _this.listNum3.push(_this.freqArray[_this.radom[a]*_this.step]/10);
             }
 
             for(var i=0;i<_this.num;i++){
@@ -203,6 +206,11 @@
                 var x2 = Math.cos(ang*i)* radius2 + _this.dotx;
                 var y2 = Math.sin(ang*i)* radius2 + _this.doty;
                 _this.position2.push([x2,y2]);
+
+                var radius3 = _this.listNum3[i] + _this.radius;
+                var x3 = Math.cos(ang*i)* radius3 + _this.dotx;
+                var y3 = Math.sin(ang*i)* radius3 + _this.doty;
+                _this.position3.push([x3,y3]);
             }
 
             bezier.init({
@@ -219,6 +227,16 @@
                 element:_this.d,
                 canvas:_this.D1,
                 isFull:false,
+                k:'0.6',
+                drawFunction:false,
+                speed:1
+            });
+
+            bezier.init({
+                point:_this.position3,
+                element:_this.d,
+                canvas:_this.D1,
+                isFull:true,
                 k:'0.6',
                 drawFunction:false,
                 speed:1
