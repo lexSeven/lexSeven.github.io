@@ -52,7 +52,7 @@
             background:url("img/line.png") no-repeat bottom;
         }
 
-        #c{
+        .canvas{
             position: absolute;
             top:50px;
             left:100px;
@@ -73,7 +73,8 @@
     <span class="time">00:00/00:00</span>
 </div>
 
-<canvas id="c"></canvas>
+<canvas class="canvas" id="c"></canvas>
+<canvas class="canvas" id="d"></canvas>
 
 <script>
 
@@ -94,12 +95,14 @@
             _this.now = 0;
 
             _this.c = document.getElementById('c');
-            _this.c.width = 1600;
-            _this.c.height = 1600;
-            _this.C1 = c.getContext('2d');
+            _this.d = document.getElementById('d');
+            _this.c.width = _this.d.width = 1600;
+            _this.c.height = _this.d.height = 1600;
+            _this.C1 = _this.c.getContext('2d');
+            _this.D1 = _this.d.getContext('2d');
 
-            _this.C1.strokeStyle= "#899";
-            _this.C1.fillStyle = "#899";
+            _this.C1.strokeStyle = _this.D1.strokeStyle = "#899";
+            _this.C1.fillStyle = _this.D1.fillStyle = "#899";
 
             _this.radius = 300; //半径
             _this.dotx = 800; //圆心点
@@ -210,8 +213,8 @@
             });
             bezier.init({
                 point:_this.position2,
-                element:_this.c,
-                canvas:_this.C1,
+                element:_this.d,
+                canvas:_this.D1,
                 isFull:false,
                 k:'0.4',
                 drawFunction:false,
