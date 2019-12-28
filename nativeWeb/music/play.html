@@ -105,6 +105,8 @@
             _this.dotx = 800; //圆心点
             _this.doty = 800;
             _this.num = 50;
+
+            _this.radom = getNum(1,_this.num);
         },
         musicList:[
             'img/jianao.mp3',
@@ -179,10 +181,8 @@
             _this.listNum = [];
 
             for(var a=0;a<_this.num;a++){
-                _this.listNum.push(_this.freqArray[a*_this.step]);
+                _this.listNum.push(_this.freqArray[_this.radom[a]*_this.step]);
             }
-            console.log(_this.listNum);
-            _this.listNum.sort(randomsort);
 
             for(var i=0;i<_this.num;i++){
                 var radius = _this.listNum[i] + _this.radius;
@@ -221,6 +221,22 @@
     function randomsort(a, b) {
         return Math.random()>.5 ? -1 : 1;
         //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
+    }
+
+    function getNum(min,max,num){
+        var n = num || max-(min-1);
+        var newNum = Math.round(Math.random()*max);
+        var arr = [];
+        var json = {};
+
+        while(arr.length < n ){
+            newNum = Math.round(Math.random()*max);
+            if(newNum >= min  && !json[newNum]){
+                arr.push(newNum);
+                json[newNum] = 1;
+            }
+        }
+        return arr;
     }
 </script>
 
