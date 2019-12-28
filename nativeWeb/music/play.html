@@ -51,7 +51,17 @@
             height:300px;
             background:url("img/line.png") no-repeat bottom;
         }
+
+        #c{
+            position: absolute;
+            top:0;
+            left:0;
+            z-index:1;
+            transform: scale(0.5);
+            transform-origin: left top;
+        }
     </style>
+    <script src="js/bezier2.js"></script>
 </head>
 <body>
 
@@ -66,6 +76,9 @@
 <div class="line"><span></span></div>
 
 <div class="dot"></div>
+
+
+<canvas id="c"></canvas>
 
 
 <script>
@@ -84,6 +97,11 @@
             _this.addEvent();
             _this.listNum = 50;
             _this.now = 0;
+
+            _this.c = document.getElementById('c');
+            c.width = document.documentElement.clientWidth*2;
+            c.height = document.documentElement.clientHeight*2;
+            _this.C1 = c.getContext('2d');
         },
         musicList:[
             'img/jianao.mp3',
@@ -152,7 +170,7 @@
             _this.sourceNode = _this.audioContext.createMediaElementSource(_this.audio);
             _this.sourceNode.connect(_this.analyser);
             _this.sourceNode.connect(_this.audioContext.destination);
-            _this.position = {};
+            _this.position = [];
             _this.getData();
         },
         getData:function(){
@@ -161,12 +179,25 @@
             _this.freqArray = new Uint8Array(_this.analyser.frequencyBinCount);
             //得到数组
             _this.analyser.getByteFrequencyData(_this.freqArray);
-            _this.move(_this.freqArray);
+            // _this.move(_this.freqArray);
             _this.step = Math.round(_this.freqArray.length/_this.listNum);
             for(var a=0;a<_this.listNum;a++){
-                _this.position[a] = [10*a,_this.freqArray[a*_this.step]];
+                _this.position.push([10*a,_this.freqArray[a*_this.step]]);
             }
-            console.log(_this.position);
+
+
+            bezier.init({
+                point:_this.position,
+                element:_this.c,
+                canvas:_this.C1,
+                isFull:false,
+                k:'0.6',
+                drawFunction:false,
+                speed:1
+            });
+
+            _this.position = [];
+
             requestAnimationFrame(_this.getData);
         },
         move:function(data){

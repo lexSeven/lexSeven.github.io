@@ -62,7 +62,7 @@
 <!--<div class="dot"></div>-->
 <canvas id="c"></canvas>
 
-<script src="js/domove.js"></script>
+<!--<script src="js/domove.js"></script>-->
 <script src="js/bezier2.js"></script>
 <script>
     var dot = document.querySelectorAll('.dot');
@@ -72,7 +72,7 @@
     c.width = document.documentElement.clientWidth*2;
     c.height = document.documentElement.clientHeight*2;
     var C1 = c.getContext('2d');
-
+/*
     Array.from(dot).forEach(function(item,index){
         item.index = index;
         var x = item.offsetLeft + item.offsetWidth/2;
@@ -121,7 +121,7 @@
     //     10:[42,4],
     //     11:[0,38],
     //     12:[17,21]
-    // }
+    // }*/
 
     var point = {
         0:[307,741],
@@ -145,7 +145,7 @@
             canvas:C1,
             isFull:true,
             k:'0.6',
-            drawFunction:false,
+            drawFunction:true,
             speed:1
         });
     }
