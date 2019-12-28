@@ -104,7 +104,6 @@
             _this.dotx = 800; //圆心点
             _this.doty = 800;
             _this.num = 50;
-            _this.setinitialPosition();
         },
         musicList:[
             'img/jianao.mp3',
@@ -115,9 +114,6 @@
         addEvent:function(){
             var _this = music;
             _this.playBtn.onclick = _this.play;
-            _this.proLine.onclick = function(ev){
-                _this.setPro(ev,this);
-            }
             _this.stopBtn.onclick = function(){
                 _this.audio.pause();
             }
