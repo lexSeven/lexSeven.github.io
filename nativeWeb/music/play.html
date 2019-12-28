@@ -182,8 +182,9 @@
             // _this.move(_this.freqArray);
             _this.step = Math.round(_this.freqArray.length/_this.listNum);
             _this.position = [];
+            _this.position.push([0,500]);
             for(var a=0;a<_this.listNum;a++){
-                _this.position.push([10*a,_this.freqArray[a*_this.step]]);
+                _this.position.push([20*a,500-_this.freqArray[a*_this.step]]);
             }
 
             bezier.init({
