@@ -164,7 +164,7 @@
             _this.move(_this.freqArray);
             _this.step = Math.round(_this.freqArray.length/_this.listNum);
             for(var a=0;a<_this.listNum;a++){
-                _this.position[a] = [10*a,_this.freqArray[i*_this.step]];
+                _this.position[a] = [10*a,_this.freqArray[a*_this.step]];
             }
             console.log(_this.position);
             requestAnimationFrame(_this.getData);
