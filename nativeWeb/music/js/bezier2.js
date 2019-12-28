@@ -69,7 +69,6 @@ var bezier = {
     },
     findControl:function(){
         var _this = this;
-        console.log(_this.point);
         _this.dummyControlDot = _this.findDummyControl(_this.point);
         var controlMiddle = _this.findDummyControl(_this.dummyControlDot);//把控制点连接起来，形成控制线 一步找到控制线的中点
         _this.lastControl = [];

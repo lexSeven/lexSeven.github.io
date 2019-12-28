@@ -173,7 +173,7 @@
             //得到数组
             _this.analyser.getByteFrequencyData(_this.freqArray);
             // _this.move(_this.freqArray);
-            _this.step = Math.round(_this.freqArray.length/_this.listNum);
+            _this.step = Math.round(_this.freqArray.length/_this.num);
             var x = 0,y = 0,ang = 2*Math.PI/_this.num;
             _this.position = [];
 
@@ -182,6 +182,8 @@
                 y = Math.sin(ang*i)*_this.freqArray[i*_this.step] + _this.doty;
                 _this.position.push([x,y]);
             }
+
+            console.log(_this.position);
 
             bezier.init({
                 point:_this.position,
