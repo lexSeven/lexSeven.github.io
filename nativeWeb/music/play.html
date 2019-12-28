@@ -54,7 +54,7 @@
 
         #c{
             position: absolute;
-            top:0;
+            top:50px;
             left:0;
             z-index:1;
             transform: scale(0.5);
@@ -185,6 +185,7 @@
                 _this.position.push([10*a,_this.freqArray[a*_this.step]]);
             }
 
+            console.log(_this.position);
 
             bezier.init({
                 point:_this.position,
