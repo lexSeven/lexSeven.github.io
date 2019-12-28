@@ -73,18 +73,14 @@
     <span class="time">00:00/00:00</span>
 </div>
 
-<div class="line"><span></span></div>
-
-<div class="dot"></div>
-
-
 <canvas id="c"></canvas>
 
-
 <script>
+
     var music = {
         init:function(){
-            var _this = music;
+            let _this = this;
+
             _this.playBtn = document.querySelector('.play');
             _this.stopBtn = document.querySelector('.stop');
             _this.replay = document.querySelector('.replay');
@@ -95,13 +91,20 @@
             _this.dotBox = document.querySelector('.dot');
             _this.audio = new Audio();
             _this.addEvent();
-            _this.listNum = 100;
-            _this.now = 0;
 
             _this.c = document.getElementById('c');
-            c.width = 2000;
-            c.height = 600;
+            _this.c.width = 1600;
+            _this.c.height = 1600;
             _this.C1 = c.getContext('2d');
+
+            _this.C1.strokeStyle= "#899";
+            _this.C1.fillStyle = "#899";
+
+            _this.radius = 300; //半径
+            _this.dotx = 800; //圆心点
+            _this.doty = 800;
+            _this.num = 50;
+            _this.setinitialPosition();
         },
         musicList:[
             'img/jianao.mp3',
@@ -156,13 +159,6 @@
                 _this.createObj();
             }, false);
         },
-        setPro:function(ev,obj){
-            var _this = music;
-            var width = obj.getBoundingClientRect().width;
-            var left = obj.getBoundingClientRect().left;
-            var time = (ev.clientX-left)/width * _this.audio.duration;
-            _this.audio.currentTime=time;
-        },
         createObj:function(){
             var _this = music;
             _this.audioContext = _this.audioContext || new AudioContext();
@@ -181,13 +177,14 @@
             _this.analyser.getByteFrequencyData(_this.freqArray);
             // _this.move(_this.freqArray);
             _this.step = Math.round(_this.freqArray.length/_this.listNum);
+            var x = 0,y = 0,ang = 2*Math.PI/_this.num;
             _this.position = [];
-            _this.position.push([0,500]);
-            _this.position.push([0,500]);
-            for(var a=0;a<_this.listNum;a++){
-                _this.position.push([20*a,500-_this.freqArray[a*_this.step]]);
+
+            for(var i=0;i<num;i++){
+                x = Math.cos(ang*i)*_this.freqArray[i*_this.step] + _this.dotx;
+                y = Math.sin(ang*i)*_this.freqArray[i*_this.step] + _this.doty;
+                _this.position.push([x,y]);
             }
-            _this.position.push([20*a,500]);
 
             bezier.init({
                 point:_this.position,
@@ -200,28 +197,21 @@
             });
             requestAnimationFrame(_this.getData);
         },
-        move:function(data){
-            var _this = music;
-            var currMin = parseInt(_this.audio.currentTime/60);
-            currMin = currMin<10?'0'+currMin:currMin;
-            var currSec = parseInt(_this.audio.currentTime%60);
-            currSec = currSec<10?'0'+currSec:currSec;
-            _this.time.innerText = currMin + ':' + currSec + ' / ' + _this.musicStatic.durationMin;
-            _this.proBtn.style.width = (_this.audio.currentTime/_this.musicStatic.duration)*100+'%';
+        drawLine:function(){
+            let _this = this;
+            _this.C1.clearRect(0,0,_this.c.offsetWidth,_this.c.offsetHeight);
+            _this.C1.beginPath();
+            _this.C1.moveTo(_this.position[0][0],_this.position[0][1]);
 
-            _this.dotBox.innerHTML = '';
-            var height = 0;
-            var str = '';
-            for(var i=0;i<_this.listNum;i++){
-                height = data[i*_this.step];
-                str +='<span style="height:'+ height +'px"></span>'
+            for(var i=1;i<_this.num;i++){
+                _this.C1.lineTo(_this.position[i][0],_this.position[i][1]);
             }
-            _this.dotBox.innerHTML = str;
+
+            _this.C1.stroke();
         }
-    };
+    }
 
     music.init();
-
 </script>
 
 </body>
