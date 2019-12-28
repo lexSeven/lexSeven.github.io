@@ -75,6 +75,7 @@
 
 <canvas class="canvas" id="c"></canvas>
 <canvas class="canvas" id="d"></canvas>
+<canvas class="canvas" id="e"></canvas>
 
 <script>
 
@@ -96,13 +97,15 @@
 
             _this.c = document.getElementById('c');
             _this.d = document.getElementById('d');
-            _this.c.width = _this.d.width = 1600;
-            _this.c.height = _this.d.height = 1600;
+            _this.e = document.getElementById('e');
+            _this.c.width = _this.d.width = _this.e.width = 1600;
+            _this.c.height = _this.d.height = _this.e.height = 1600;
             _this.C1 = _this.c.getContext('2d');
             _this.D1 = _this.d.getContext('2d');
+            _this.E1 = _this.e.getContext('2d');
 
-            _this.C1.strokeStyle = _this.D1.strokeStyle = "#899";
-            _this.C1.fillStyle = _this.D1.fillStyle = "#899";
+            _this.C1.strokeStyle = _this.D1.strokeStyle = _this.E1.strokeStyle = "#899";
+            _this.C1.fillStyle = _this.D1.fillStyle = _this.E1.fillStyle = "#899";
 
             _this.radius = 300; //半径
             _this.dotx = 800; //圆心点
@@ -196,7 +199,7 @@
                 y = Math.sin(ang*i)* radius + _this.doty;
                 _this.position.push([x,y]);
 
-                var radius2 = _this.listNum2[i] + _this.radius-2;
+                var radius2 = _this.listNum2[i] + _this.radius;
                 var x2 = Math.cos(ang*i)* radius2 + _this.dotx;
                 var y2 = Math.sin(ang*i)* radius2 + _this.doty;
                 _this.position2.push([x2,y2]);
@@ -216,7 +219,7 @@
                 element:_this.d,
                 canvas:_this.D1,
                 isFull:false,
-                k:'0.4',
+                k:'0.6',
                 drawFunction:false,
                 speed:1
             });
