@@ -183,6 +183,7 @@
             _this.step = Math.round(_this.freqArray.length/_this.listNum);
             _this.position = [];
             _this.position.push([0,500]);
+            _this.position.push([0,500]);
             for(var a=0;a<_this.listNum;a++){
                 _this.position.push([20*a,500-_this.freqArray[a*_this.step]]);
             }
@@ -191,7 +192,7 @@
                 point:_this.position,
                 element:_this.c,
                 canvas:_this.C1,
-                isFull:false,
+                isFull:true,
                 k:'0.6',
                 drawFunction:false,
                 speed:1
