@@ -162,7 +162,7 @@
             //得到数组
             _this.analyser.getByteFrequencyData(_this.freqArray);
             _this.move(_this.freqArray);
-            _this.step = Math.round(data.length/_this.listNum);
+            _this.step = Math.round(_this.freqArray.length/_this.listNum);
             for(var a=0;a<_this.listNum;a++){
                 _this.position[a] = [10*a,_this.freqArray[i*_this.step]];
             }
