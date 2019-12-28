@@ -152,6 +152,7 @@
             _this.sourceNode = _this.audioContext.createMediaElementSource(_this.audio);
             _this.sourceNode.connect(_this.analyser);
             _this.sourceNode.connect(_this.audioContext.destination);
+            _this.position = {};
             _this.getData();
         },
         getData:function(){
@@ -161,12 +162,15 @@
             //得到数组
             _this.analyser.getByteFrequencyData(_this.freqArray);
             _this.move(_this.freqArray);
+            _this.step = Math.round(data.length/_this.listNum);
+            for(var a=0;a<_this.listNum;a++){
+                _this.position[a] = [10*a,_this.freqArray[i*_this.step]];
+            }
+            console.log(_this.position);
             requestAnimationFrame(_this.getData);
         },
         move:function(data){
             var _this = music;
-
-            console.log(data);
             var currMin = parseInt(_this.audio.currentTime/60);
             currMin = currMin<10?'0'+currMin:currMin;
             var currSec = parseInt(_this.audio.currentTime%60);
@@ -175,11 +179,10 @@
             _this.proBtn.style.width = (_this.audio.currentTime/_this.musicStatic.duration)*100+'%';
 
             _this.dotBox.innerHTML = '';
-            var step = Math.round(data.length/_this.listNum);
             var height = 0;
             var str = '';
             for(var i=0;i<_this.listNum;i++){
-                height = data[i*step];
+                height = data[i*_this.step];
                 str +='<span style="height:'+ height +'px"></span>'
             }
             _this.dotBox.innerHTML = str;
