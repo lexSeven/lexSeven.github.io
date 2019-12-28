@@ -179,9 +179,12 @@
             var x = 0,y = 0,ang = 2*Math.PI/_this.num;
             _this.position = [];
             _this.listNum = [];
+            _this.position2 = [];
+            _this.listNum2 = [];
 
             for(var a=0;a<_this.num;a++){
-                _this.listNum.push(_this.freqArray[_this.radom[a]*_this.step]/10);
+                _this.listNum.push(_this.freqArray[_this.radom[a]*_this.step]/5);
+                _this.listNum2.push(_this.freqArray[_this.radom[a]*_this.step]/6);
             }
 
             for(var i=0;i<_this.num;i++){
@@ -189,10 +192,24 @@
                 x = Math.cos(ang*i)* radius + _this.dotx;
                 y = Math.sin(ang*i)* radius + _this.doty;
                 _this.position.push([x,y]);
+
+                var radius2 = _this.listNum2[i] + _this.radius-2;
+                var x2 = Math.cos(ang*i)* radius2 + _this.dotx;
+                var y2 = Math.sin(ang*i)* radius2 + _this.doty;
+                _this.position2.push([x2,y2]);
             }
 
             bezier.init({
                 point:_this.position,
+                element:_this.c,
+                canvas:_this.C1,
+                isFull:false,
+                k:'0.4',
+                drawFunction:false,
+                speed:1
+            });
+            bezier.init({
+                point:_this.position2,
                 element:_this.c,
                 canvas:_this.C1,
                 isFull:false,
