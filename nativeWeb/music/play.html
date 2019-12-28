@@ -95,12 +95,12 @@
             _this.dotBox = document.querySelector('.dot');
             _this.audio = new Audio();
             _this.addEvent();
-            _this.listNum = 200;
+            _this.listNum = 100;
             _this.now = 0;
 
             _this.c = document.getElementById('c');
-            c.width = 600;
-            c.height = 500;
+            c.width = 2000;
+            c.height = 600;
             _this.C1 = c.getContext('2d');
         },
         musicList:[
@@ -193,7 +193,7 @@
                 element:_this.c,
                 canvas:_this.C1,
                 isFull:true,
-                k:'0.2',
+                k:'0.4',
                 drawFunction:false,
                 speed:1
             });
