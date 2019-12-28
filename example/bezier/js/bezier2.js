@@ -70,7 +70,7 @@ var bezier = {
         _this.dummyControlDot = _this.findDummyControl(_this.point);
         var controlMiddle = _this.findDummyControl(_this.dummyControlDot);//把控制点连接起来，形成控制线 一步找到控制线的中点
         _this.lastControl = [];
-        _this.finishDot = [[vertex[0][0],vertex[0][1]]];//把起始点放进去
+        _this.finishDot = [[_this.point[0][0],_this.point[0][1]]];//把起始点放进去
 
         for(var i=0;i<_this.point.length;i++){//把控制线平移到控制线的中点和顶点重合，那么这时候的控制点才是最终的控制点
             var prevDot = i-1<0?_this.point.length-1:i-1;

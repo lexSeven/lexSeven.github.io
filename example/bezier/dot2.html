@@ -67,7 +67,7 @@
 <script>
     var dot = document.querySelectorAll('.dot');
     var position = {};
-    vertex = [];
+    var vertexs = [];
     var c = document.getElementById('c');
     c.width = document.documentElement.clientWidth*2;
     c.height = document.documentElement.clientHeight*2;
@@ -133,14 +133,14 @@
 
 
     function move(position){
-        vertex = [];
+        vertexs = [];
         for(var a in position){
-            vertex.push([(position[a][0]+10),(position[a][1]+10)]);
+            vertexs.push([(position[a][0]+10),(position[a][1]+10)]);
             // vertex.push([(position[a][0]*2),(position[a][1]*2)]);
         }
 
         bezier.init({
-            point:vertex,
+            point:vertexs,
             element:c,
             canvas:C1,
             isFull:true,
