@@ -178,12 +178,11 @@
             _this.position = [];
 
             for(var i=0;i<_this.num;i++){
-                x = Math.cos(ang*i)*_this.freqArray[i*_this.step] + _this.dotx;
-                y = Math.sin(ang*i)*_this.freqArray[i*_this.step] + _this.doty;
+                var radius = _this.freqArray[i*_this.step] + _this.radius;
+                x = Math.cos(ang*i)* radius + _this.dotx;
+                y = Math.sin(ang*i)* radius + _this.doty;
                 _this.position.push([x,y]);
             }
-
-            console.log(_this.position);
 
             bezier.init({
                 point:_this.position,
