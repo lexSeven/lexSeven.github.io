@@ -249,9 +249,9 @@
     }
 
     .des{
-      padding-top: 17rem/$re;
+      padding-top: 25rem/$re;
       text-align: center;
-      @include font(18rem/$re,25rem/$re,#999999);
+      @include font(18rem/$re,30rem/$re,#999999);
 
       em{
         font-size: 24rem/$re;

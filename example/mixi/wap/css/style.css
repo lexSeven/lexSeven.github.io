@@ -308,9 +308,9 @@ img {
   max-height: 100%;
 }
 .first_item .des {
-  padding-top: 0.5666666667rem;
+  padding-top: 0.8333333333rem;
   text-align: center;
-  font: 0.6rem/0.8333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  font: 0.6rem/1rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #999999;
 }
 .first_item .des em {
