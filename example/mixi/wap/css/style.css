@@ -550,10 +550,15 @@ img {
   background: #ff9711;
   display: inline-block;
 }
+.fifth .outbox {
+  height: 10.3333333333rem;
+  width: 24rem;
+  overflow: hidden;
+  margin-left: 1rem;
+}
 .fifth .scroll {
   width: 24rem;
   overflow-x: scroll;
-  margin-left: 1rem;
 }
 .fifth_course {
   width: 30.3333333333rem;
@@ -622,7 +627,7 @@ img {
   text-align: center;
 }
 .fifth_model .item .title .small {
-  padding-top: 10px;
+  padding-top: 0.3333333333rem;
   font: 0.6rem/1rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #fff;
 }

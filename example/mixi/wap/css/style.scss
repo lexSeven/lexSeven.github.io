@@ -505,10 +505,16 @@
     }
   }
 
+  .outbox{
+    height: 310rem/$re;
+    width: 720rem/$re;
+    overflow: hidden;
+    margin-left: 30rem/$re;
+  }
+
   .scroll{
     width: 720rem/$re;
     overflow-x: scroll;
-    margin-left: 30rem/$re;
   }
 
   &_course{
@@ -582,7 +588,7 @@
         text-align: center;
 
         .small{
-          padding-top: 10px;
+          padding-top: 10rem/$re;
           @include font(18rem/$re,30rem/$re,#fff);
         }
 
