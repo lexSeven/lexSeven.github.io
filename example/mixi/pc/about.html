@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <base target="_blank">
+</head>
+<body>
+
+<div class="topline">
+    <div class="wrap">
+        <h1 class="logo">
+            <a href="index.html" target="_self">
+                <img src="img/logo.png">
+            </a>
+        </h1>
+        <ul class="menu">
+            <li class="menu_item"><a href="index.html" target="_self">首页</a></li>
+            <li class="menu_item"><a href="#" target="_self">课程体系</a></li>
+            <li class="menu_item"><a href="#" target="_self">米犀名师</a></li>
+            <li class="menu_item active"><a href="about.html" target="_self">院校简介</a></li>
+            <li class="menu_item"><a href="#" target="_self">联系我们</a></li>
+        </ul>
+    </div>
+</div>
+<div class="banner">
+    <ul class="scroll">
+        <li class="item"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1"><img src="img/banner_01.png"></a></li>
+        <li class="item"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1"><img src="img/banner_02.png"></a></li>
+        <li class="item"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1"><img src="img/banner_03.png"></a></li>
+    </ul>
+
+    <div class="dotBox">
+        <span class="active">1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+</div>
+
+<div class="wrap about">
+
+    <p>&nbsp;</p>
+    <p>关于我们</p>
+    <p>
+        武汉米犀教育咨询有限公司创立于九省通衢的武汉，教育基地驻扎在“中国最杰出的大学之一”的武汉大学研究生园区内。旗下的米犀电竞学院自办学以来秉承“以人为本、开发潜能、立足未来”的核心理念，积极探索适应电竞行业的学员培养模式，努力向电竞产业源源不断输出“高素质、创新型、宽口径”的专业人才。米犀电竞学院——成就你的电竞梦想。
+    </p>
+    <p>
+        米犀电竞学院自有3000平米教学面积，空调多媒体教室20余间，可容纳3000人同时上课，自有5栋可供4000余人的住宿区及3200平方的标准化学生食堂，校区内有超市、书店、篮球场、水果店等，满足学生日常所需。
+    </p>
+    <p>
+        2019年，米犀电竞和武汉现代科技职业学校强强联合，引进行业领先的师资力量，采用科学的教学模式，尊重学生差异，打造个性化课堂，传递先进的电竞理念，提供最好的就业服务平台。在帮助怀揣电竞梦想的爱好者们提升专业素质的同时也能够获得学历的提升。
+    </p>
+    <p>&nbsp;</p>
+    <p>企业资质</p>
+    <img src="img/license.png">
+</div>
+
+<div class="footer">
+    <div class="wrap">
+        <div class="footer_main">
+            <div class="footer_item">
+                <div class="icon"><img src="img/mi_39.jpg"></div>
+                <div class="text">
+                    <span>联系我们：<br>400-883-1606（9:00-16:00）</span>
+                    <a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1" class="online">在线客服</a>
+                </div>
+            </div>
+            <div class="footer_item">
+                <div class="icon"><img src="img/mi_36.jpg"></div>
+                <div class="text">
+                    <span>公司地址：<br>北京市海淀区海淀文化艺术大厦A座10层米犀电竞学院</span>
+                </div>
+            </div>
+            <h2 class="footer_logo">
+                <a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+                    <img src="img/logo.png">
+                </a>
+            </h2>
+        </div>
+        <div class="footer_copyright">
+            Copyright © 2019 Tedu.cn All Rights Reserved 京ICP备08000853号-56 米犀科技集团有限公司 版权所有
+        </div>
+    </div>
+</div>
+
+<script>
+
+    (function() {var _53code = document.createElement("script");_53code.src = "https://tb.53kf.com/code/code/f0118c7641abadc9c9b414afb82afbeb5/1";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(_53code, s);})();
+
+    silder(document.querySelector('.banner'));
+
+    function silder(obj){
+        var time = 3000;
+        var item = obj.querySelector('ul');
+        var dot = obj.querySelectorAll('.dotBox span');
+        var length = item.querySelectorAll('li').length;
+        var width = window.getComputedStyle(item.querySelector('li')).width.replace(/[^0-9]/ig,"");
+        var n = 0;
+        var change = null;
+
+        obj.onmouseover = function(){
+            clearInterval(change);
+        }
+
+        obj.onmouseout = run;
+
+        for(var i=0;i<dot.length;i++){
+            dot[i].index = i;
+            dot[i].onclick = function(){
+                n = this.index;
+                runTo(n);
+            }
+        }
+
+        run();
+        function run(){
+            change = setInterval(function(){
+                n++;
+                n%=length;
+                runTo(n);
+            },time);
+        }
+
+        function runTo(n){
+            item.style.left = n * -width + 'px';
+            for(var i=0;i<dot.length;i++){
+                dot[i].className = '';
+            }
+            dot[n].className = 'active';
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1081 @@
+@charset "UTF-8";
+@import url(iconfont.css);
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+@media all and (max-width: 1000px) {
+  body {
+    overflow-x: scroll;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+em, i {
+  font-style: normal;
+}
+
+input {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.wrap {
+  width: 1000px;
+  margin: 0 auto;
+}
+.wrap img {
+  max-width: 100%;
+}
+
+.currency_title {
+  padding-top: 65px;
+  text-align: center;
+}
+.currency_title h2 {
+  font: 36px/44px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333;
+}
+.currency_title span {
+  color: #ff9711;
+}
+.currency_title p {
+  font: 18px/26px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #999;
+}
+.currency_title.while h2 {
+  font: 36px/44px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+}
+.currency_title.while span {
+  color: #f0ff00;
+}
+.currency_title.while p {
+  font: 18px/26px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #ffe7c9;
+}
+.currency_normalBtn {
+  width: 260px;
+  height: 50px;
+  margin: 50px auto 0;
+  background: #ff9711;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 0;
+  line-height: 0;
+  color: #fff;
+}
+.currency_normalBtn > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 24px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: inherit;
+}
+.currency_normalBtn:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.currency_normalBtn a {
+  width: 90%;
+  height: 100%;
+}
+.currency_normalBtn span {
+  font: 18px/50px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+}
+.currency_normalBtn.while {
+  background: #fff;
+  color: #ff9711;
+}
+.currency_normalBtn.while span {
+  color: #ff9711;
+}
+
+.topline {
+  width: 100%;
+  height: 100px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  background: url("../img/top_bg.png") repeat-x;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+.topline .logo {
+  width: 252px;
+  height: 100%;
+  float: left;
+}
+.topline .menu {
+  float: right;
+  height: 100%;
+}
+.topline .menu_item {
+  padding: 0 24px;
+  height: 100%;
+  float: left;
+  border-top: 1px solid transparent;
+  font: 16px/100px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+}
+.topline .menu_item:hover {
+  border-top-color: #fff;
+}
+.topline .menu_item.active {
+  border-top-color: #fff;
+}
+
+.banner {
+  width: 1920px;
+  height: 600px;
+  position: relative;
+  left: 50%;
+  margin-left: -960px;
+  overflow: hidden;
+  text-align: center;
+}
+.banner .scroll {
+  display: flex;
+  float: left;
+  position: absolute;
+  left: 0;
+  transition: 0.5s;
+}
+.banner .dotBox {
+  display: inline-block;
+  position: relative;
+  top: 550px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  line-height: 16px;
+  padding: 0 5px;
+}
+.banner .dotBox span {
+  width: 12px;
+  height: 12px;
+  background: #ff9711;
+  margin: 0 4px;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+  border-radius: 50%;
+}
+.banner .dotBox span:hover {
+  background: #ccc;
+}
+.banner .dotBox span.active {
+  background: #fff;
+}
+
+.first {
+  height: 715px;
+  background: #fff;
+}
+.first_title {
+  text-align: center;
+}
+.first_title h2 {
+  font: 36px/44px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333;
+}
+.first_title span {
+  color: #ff9711;
+}
+.first_title p {
+  font: 18px/26px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #999;
+}
+.first_main {
+  padding-top: 46px;
+  display: flex;
+  justify-content: space-between;
+}
+.first_item {
+  width: 270px;
+  height: 364px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
+  margin: 0 15px;
+  position: relative;
+}
+.first_item .close {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #ff9711;
+  text-align: center;
+  line-height: 0;
+  position: absolute;
+  right: 40px;
+  top: 15px;
+  border-radius: 50%;
+}
+.first_item .close:before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 2px;
+  background: #ff9711;
+}
+.first_item .btn {
+  width: 12px;
+  height: 12px;
+  background: #ff9711;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+.first_item .title {
+  padding-top: 50px;
+  height: 40px;
+  text-align: center;
+  line-height: 10px;
+}
+.first_item .title.promise {
+  background: url("../img/promise.png") no-repeat bottom;
+}
+.first_item .title.demand {
+  background: url("../img/demand.png") no-repeat bottom;
+}
+.first_item .title.include {
+  background: url("../img/include.png") no-repeat bottom;
+}
+.first_item .title span {
+  display: inline-block;
+  width: 100%;
+  font: 24px/24px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333333;
+  font-weight: bold;
+}
+.first_item .title:after {
+  content: '';
+  display: inline-block;
+  width: 35px;
+  height: 4px;
+  background: #ff9711;
+}
+.first_item .imgbox {
+  padding-top: 33px;
+  height: 150px;
+  text-align: center;
+}
+.first_item .imgbox img {
+  max-height: 100%;
+}
+.first_item .des {
+  padding-top: 17px;
+  text-align: center;
+  font: 16px/25px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #999999;
+}
+.first_item .des em {
+  font-size: 24px;
+  color: #ff9711;
+}
+
+.second {
+  height: 893px;
+  background: url("../img/mi_14.jpg") no-repeat center;
+}
+.second .table {
+  width: 735px;
+  height: 400px;
+  background: #ff9711 url("../img/repeatBg_01.png");
+  border-radius: 50px 0 0;
+  margin: 47px 0 190px;
+  padding: 0 25px 0 40px;
+}
+.second .table_des {
+  height: 90px;
+  font-size: 0;
+  line-height: 0;
+}
+.second .table_des > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 24px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: inherit;
+}
+.second .table_des:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.second .table_des span {
+  font: 16px/25px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+  text-indent: 2em;
+}
+.second .table_main {
+  width: 940px;
+  height: 450px;
+  background: #fff;
+  border-radius: 50px 0;
+}
+.second .table_main .title {
+  height: 70px;
+  font: 18px/70px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #ff9711;
+  font-weight: bold;
+}
+.second .table_main .title .item:first-child {
+  color: #ff9711;
+}
+.second .table_main .line {
+  height: 50px;
+  font: 18px/50px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #999999;
+}
+.second .table_main .line:nth-of-type(4n) {
+  background: #fff;
+}
+.second .table_main .line:nth-of-type(4n-1) {
+  background: #fff4e6;
+}
+.second .table_main .line:nth-of-type(4n-2) {
+  background: #fff;
+}
+.second .table_main .line:nth-of-type(4n-3) {
+  background: #eee;
+}
+.second .table_main .item {
+  width: 218px;
+  border-right: 1px solid #eeeeee;
+  text-indent: 27px;
+  display: inline-block;
+}
+.second .table_main .item:first-child {
+  padding-left: 18px;
+  color: #333333;
+}
+.second .table_main .item:last-child {
+  border: none;
+}
+
+.third {
+  height: 972px;
+}
+.third_main {
+  padding-top: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+.third_main .item {
+  margin-top: 40px;
+  width: 300px;
+  height: 290px;
+  border-radius: 50px 10px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+}
+.third_main .imgbox {
+  height: 190px;
+  border-radius: 50px 10px;
+  overflow: hidden;
+  background: #eee;
+}
+.third_main .imgbox img {
+  width: 100%;
+  height: 100%;
+}
+.third_main .des {
+  padding: 15px 0 0 28px;
+  line-height: 0;
+  position: relative;
+}
+.third_main .des .arrow {
+  position: absolute;
+  right: 30px;
+  bottom: 0;
+  font-size: 26px;
+  color: #ff9711;
+}
+.third_main .des span {
+  font: 24px/32px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333;
+  display: inline-block;
+  width: 100%;
+}
+.third_main .des em {
+  font: 18px/24px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #eee;
+  text-transform: uppercase;
+}
+
+.fourth {
+  height: 1119px;
+  background: url("../img/mi_16.jpg") no-repeat center;
+}
+.fourth .nav {
+  padding-top: 22px;
+  margin-left: -50px;
+}
+.fourth .text {
+  height: 132px;
+  padding-top: 32px;
+}
+.fourth .text .item {
+  float: left;
+  width: 45%;
+  padding-right: 5%;
+}
+.fourth .text .title {
+  height: 22px;
+  border-left: 2px solid #f0ff00;
+  font: 22px/22px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+  font-weight: bold;
+  padding-left: 10px;
+}
+.fourth .text .title span {
+  font: 16px/22px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.fourth .text .main {
+  padding-top: 20px;
+  font: 18px/24px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #ffe8ca;
+}
+.fourth .text .main span {
+  color: #fff;
+  display: inline-block;
+  width: 100%;
+}
+.fourth .imgBox {
+  height: 466px;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+.fourth .imgBox_item {
+  width: 230px;
+  height: 233px;
+  text-align: center;
+}
+.fourth .imgBox_item img {
+  width: 230px;
+  height: 173px;
+  background: #333;
+  border-radius: 5px;
+}
+.fourth .imgBox_item span {
+  font: 18px/47px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+}
+.fourth .imgBox_item:nth-child(2) {
+  margin-right: 20px;
+}
+.fourth .imgBox_item:nth-child(5) {
+  width: 480px;
+  margin-right: 20px;
+}
+.fourth .imgBox_item:nth-child(5) img {
+  width: 480px;
+}
+
+.fifth {
+  height: 1074px;
+  background: url("../img/repeatBg_02.png");
+}
+.fifth_title {
+  height: 67px;
+  padding-top: 35px;
+  text-align: center;
+  line-height: 0;
+}
+.fifth_title span {
+  display: inline-block;
+  width: 100%;
+  font: 24px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333333;
+}
+.fifth_title:after {
+  content: '';
+  width: 60px;
+  height: 2px;
+  background: #ff9711;
+  display: inline-block;
+}
+.fifth_course {
+  height: 323px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.fifth_course .item {
+  width: 220px;
+  height: 300px;
+  border-radius: 5px;
+  background: #ff9917;
+  box-shadow: 0 5px 20px 0 rgba(255, 151, 17, 0.3);
+  text-align: center;
+}
+.fifth_course .item img {
+  padding-top: 39px;
+  width: 80px;
+  height: 70px;
+}
+.fifth_course .item .text {
+  padding-top: 28px;
+}
+.fifth_course .item .name {
+  font: 24px/32px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+  font-weight: bold;
+}
+.fifth_course .item .des {
+  font: 18px/26px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+}
+.fifth_course .item .btn {
+  display: inline-block;
+  margin-top: 29px;
+  width: 180px;
+  height: 45px;
+  background: #d67800;
+  font: 18px/45px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+  border-radius: 30px;
+}
+.fifth_model {
+  height: 270px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.fifth_model .item {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: #999;
+  overflow: hidden;
+  position: relative;
+}
+.fifth_model .item:hover .btn {
+  transform: translate(-50%, -50%) scale(1.3) rotate(-360deg);
+  opacity: 0;
+}
+.fifth_model .item:hover .title {
+  top: 0;
+}
+.fifth_model .item:hover .title .big {
+  height: 100px;
+  opacity: 0;
+}
+.fifth_model .item .btn {
+  width: 74px;
+  height: 74px;
+  background: #fff;
+  -webkit-background-clip: content-box;
+  -moz-background-clip: content-box;
+  background-clip: content-box;
+  border-radius: 50%;
+  padding: 7px;
+  border: 1px solid #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 0;
+  line-height: 0;
+  transition: 0.3s;
+}
+.fifth_model .item .btn > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 24px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: inherit;
+}
+.fifth_model .item .btn:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.fifth_model .item .btn span {
+  font: 18px/20px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #ff9917;
+}
+.fifth_model .item .title {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  text-align: center;
+  transition: 0.5s;
+}
+.fifth_model .item .title .small {
+  font: 18px/30px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+}
+.fifth_model .item .title .big {
+  overflow: hidden;
+  font-weight: bold;
+  transition: 0.5s;
+  font: 24px/130px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+}
+
+.teacher {
+  height: 600px;
+  padding-top: 13px;
+}
+.teacher_main {
+  padding-top: 50px;
+}
+.teacher_main:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.teacher_imgbox {
+  width: 217px;
+  height: 273px;
+  border-radius: 10px 10px 50px;
+  background: #333;
+  margin: 53px 42px 0 20px;
+  float: left;
+  overflow: hidden;
+}
+.teacher_imgbox img {
+  width: 100%;
+  height: 100%;
+}
+.teacher_content {
+  float: left;
+  width: 700px;
+  position: relative;
+}
+.teacher_content .leftIcon {
+  width: 50px;
+  height: 50px;
+  background: url("../img/left.png") no-repeat;
+  position: absolute;
+  top: 0;
+  left: -80px;
+}
+.teacher_content .rightIcon {
+  width: 50px;
+  height: 50px;
+  background: url("../img/right.png") no-repeat;
+  position: absolute;
+  bottom: 90px;
+  right: 0;
+}
+.teacher_content .des {
+  font: 16px/25px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #4f535f;
+  padding: 25px 0;
+}
+.teacher_content .btn {
+  width: 150px;
+  height: 42px;
+  background: #ff9711;
+  border-radius: 0 40px 40px;
+  text-align: center;
+  font-size: 0;
+  line-height: 0;
+}
+.teacher_content .btn > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 24px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: inherit;
+}
+.teacher_content .btn:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.teacher_content .btn span {
+  font: 18px/22px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+}
+.teacher_content .list {
+  margin-top: 50px;
+  height: 54px;
+  position: relative;
+}
+.teacher_content .list_item {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 22px;
+}
+.teacher_content .list:after {
+  content: '';
+  width: 1px;
+  height: 0;
+  border-width: 0 6px 7px;
+  border-style: solid;
+  border-color: transparent transparent #ff9711;
+  position: absolute;
+  top: 110%;
+  left: 20px;
+}
+.teacher_title {
+  height: 76px;
+  border-bottom: 1px solid #e1e3ec;
+  font-size: 0;
+  line-height: 0;
+}
+.teacher_title > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 24px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: inherit;
+}
+.teacher_title:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.teacher_title span {
+  font: 30px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333333;
+  padding-right: 20px;
+}
+.teacher_title .btn {
+  display: inline-block;
+  width: 85px;
+  height: 29px;
+  background: #ff9711;
+  border-radius: 15px;
+  font: 14px/29px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+  text-align: center;
+}
+
+.environment {
+  height: 820px;
+  background: url("../img/mi_31.jpg") no-repeat;
+}
+.environment .imgbox {
+  width: 967px;
+  height: 408px;
+  padding: 30px 21px;
+  background: #fff;
+  margin-top: 50px;
+}
+.environment .item {
+  background: #333;
+  border-radius: 5px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  float: left;
+  overflow: hidden;
+}
+.environment .item img {
+  width: 100%;
+  height: 100%;
+}
+.environment .item:nth-child(1) {
+  width: 369px;
+  height: 159px;
+  float: left;
+}
+.environment .item:nth-child(2) {
+  width: 306px;
+  height: 285px;
+  float: left;
+}
+.environment .item:nth-child(3) {
+  width: 286px;
+  height: 285px;
+  float: left;
+  margin-right: 0;
+}
+.environment .item:nth-child(4) {
+  width: 369px;
+  height: 246px;
+  float: left;
+  margin-bottom: 0;
+  margin-top: -126px;
+}
+.environment .item:nth-child(5) {
+  width: 595px;
+  height: 120px;
+  float: left;
+  margin: 0;
+}
+
+.history {
+  height: 778px;
+}
+.history_main {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 45px;
+}
+.history .item {
+  width: 466px;
+  height: 428px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.history .name {
+  height: 50px;
+  padding: 0 50px;
+  border-radius: 0 10px 10px 0;
+  background: #ff9711;
+  position: absolute;
+  top: 32px;
+  left: -12px;
+  font: 24px/50px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+}
+.history .name:before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-width: 12px 0 12px 12px;
+  border-style: solid;
+  border-color: transparent transparent #a35c00 transparent;
+}
+.history .imgbox {
+  height: 198px;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.history .imgbox img {
+  width: 100%;
+  height: 100%;
+}
+.history .text {
+  font: 18px/22px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #999999;
+  padding: 15px 30px 0;
+  text-indent: 2em;
+}
+
+.login {
+  height: 475px;
+  background: url("../img/mi_33.jpg") no-repeat;
+  padding-top: 84px;
+}
+.login .left {
+  width: 565px;
+  float: left;
+}
+.login .right {
+  width: 430px;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  float: left;
+  height: 400px;
+}
+.login .title {
+  padding-top: 18px;
+  height: 93px;
+  font-size: 0;
+  line-height: 0;
+  text-align: center;
+}
+.login .title > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 24px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: inherit;
+}
+.login .title:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.login .title span {
+  font: 30px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333;
+  font-weight: bold;
+}
+.login .input {
+  width: 328px;
+  height: 56px;
+  border-radius: 30px;
+  border: 1px solid #7f7e8b;
+  margin: 0 auto 20px;
+  font-size: 0;
+  line-height: 0;
+  line-height: 0;
+}
+.login .input > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 24px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: inherit;
+}
+.login .input:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.login .input .icon {
+  width: 67px;
+  height: 15px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 16px;
+  border-right: 1px solid #7f7e8b;
+  color: #7f7e8b;
+}
+.login .input input {
+  width: 230px;
+  height: 24px;
+  line-height: 24px;
+  margin-left: 15px;
+  font-size: 18px;
+  color: #727483;
+}
+.login .btn {
+  width: 330px;
+  height: 58px;
+  border-radius: 30px;
+  background: #ff9711;
+  margin: 45px auto 0;
+  font: 22px/58px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+.login .btn a {
+  display: block;
+}
+
+.footer {
+  height: 200px;
+  background: #282828;
+  position: relative;
+}
+.footer_main {
+  height: 143px;
+  padding-top: 10px;
+  border-bottom: 1px solid #444444;
+  position: relative;
+}
+.footer_item {
+  padding-top: 15px;
+  height: 44px;
+}
+.footer_item .icon {
+  width: 44px;
+  height: 44px;
+  float: left;
+  padding-right: 15px;
+}
+.footer_item .text {
+  float: left;
+  font-size: 0;
+  line-height: 0;
+  position: relative;
+}
+.footer_item .text > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 24px/40px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: inherit;
+}
+.footer_item .text:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.footer_item .text .online {
+  width: 90px;
+  height: 30px;
+  border-radius: 5px;
+  background: #ff9711;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  font: 14px/30px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #fff;
+  text-align: center;
+}
+.footer_item .text span {
+  font: 14px/23px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #999;
+}
+.footer_logo {
+  position: absolute;
+  right: 0;
+  top: 25px;
+}
+.footer_logo img {
+  width: 251px;
+  height: 100px;
+}
+.footer_copyright {
+  font: 14px/46px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #999;
+  text-align: center;
+}
+
+.about {
+  font: 16px/30px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #666;
+}
+.about p {
+  padding-top: 20px;
+  text-indent: 2em;
+}
+
+/*# sourceMappingURL=index.css.map */
