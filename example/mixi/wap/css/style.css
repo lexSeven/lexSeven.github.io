@@ -147,7 +147,7 @@ img {
 .banner {
   width: 23rem;
   height: 12.9333333333rem;
-  margin: 0 1rem;
+  margin: 0 auto;
   overflow: hidden;
   text-align: center;
   position: relative;
