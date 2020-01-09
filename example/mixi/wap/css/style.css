@@ -74,7 +74,7 @@ img {
 }
 .topline .menu .item {
   padding: 0 0.3333333333rem;
-  font: 0.5333333333rem/1.6666666667rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  font: 0.8rem/1.6666666667rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #333;
 }
 
@@ -172,12 +172,26 @@ img {
 .banner .dotBox {
   display: inline-block;
   position: relative;
-  top: 11.3333333333rem;
+  top: 10.8666666667rem;
   height: 0.6666666667rem;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 0.6666666667rem;
-  line-height: 0.5333333333rem;
   padding: 0 0.1666666667rem;
+  font-size: 0;
+  line-height: 0;
+}
+.banner .dotBox > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 0.8rem/1.3333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  color: inherit;
+}
+.banner .dotBox:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 .banner .dotBox span {
   width: 0.4rem;
@@ -296,7 +310,7 @@ img {
 .first_item .des {
   padding-top: 0.5666666667rem;
   text-align: center;
-  font: 0.5333333333rem/0.8333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  font: 0.6rem/0.8333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #999999;
 }
 .first_item .des em {
@@ -335,7 +349,7 @@ img {
   vertical-align: middle;
 }
 .second .table_des span {
-  font: 0.5333333333rem/0.8333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  font: 0.6666666667rem/0.8333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #fff;
   text-indent: 2em;
 }
@@ -461,13 +475,13 @@ img {
 .fourth .text .title {
   height: 0.7333333333rem;
   border-left: 0.0666666667rem solid #f0ff00;
-  font: 0.7333333333rem/0.7333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  font: 0.8rem/0.7333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #fff;
   font-weight: bold;
   padding-left: 0.3333333333rem;
 }
 .fourth .text .title span {
-  font: 0.5333333333rem/0.7333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  font: 0.6rem/0.7333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: rgba(255, 255, 255, 0.3);
   font-weight: bold;
   text-transform: uppercase;
@@ -608,15 +622,16 @@ img {
   text-align: center;
 }
 .fifth_model .item .title .small {
+  padding-top: 10px;
   font: 0.6rem/1rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #fff;
 }
 .fifth_model .item .title .big {
-  overflow: hidden;
   font-weight: bold;
-  padding-top: 1.5rem;
+  padding-top: 1.3333333333rem;
   font: 0.8rem/1.6666666667rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #fff;
+  font-weight: bold;
   position: relative;
 }
 .fifth_model .item .title .big:before {
@@ -1009,7 +1024,7 @@ img {
   position: absolute;
   left: 100%;
   bottom: 0;
-  font: 0.4666666667rem/1.4666666667rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  font: 0.6666666667rem/1.4666666667rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #fff;
   text-align: center;
 }
@@ -1027,7 +1042,7 @@ img {
   height: 3.3333333333rem;
 }
 .footer_copyright {
-  font: 0.4666666667rem/1rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  font: 0.6666666667rem/1rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #999;
   padding: 0.3333333333rem 1rem 0;
   text-align: center;

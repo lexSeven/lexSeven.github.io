@@ -25,7 +25,7 @@
 
     .item{
       padding: 0 10rem/$re;
-      @include font(16rem/$re,50rem/$re,#333);
+      @include font(24rem/$re,50rem/$re,#333);
     }
   }
 }
@@ -116,12 +116,12 @@
   .dotBox{
     display: inline-block;
     position: relative;
-    top: 340rem/$re;
+    top: 326rem/$re;
     height: 20rem/$re;
     background: rgba(0,0,0,0.3);
     border-radius: 20rem/$re;
-    line-height: 16rem/$re;
     padding: 0 5rem/$re;
+    @include center;
 
     span{
       width: 12rem/$re;
@@ -251,7 +251,7 @@
     .des{
       padding-top: 17rem/$re;
       text-align: center;
-      @include font(16rem/$re,25rem/$re,#999999);
+      @include font(18rem/$re,25rem/$re,#999999);
 
       em{
         font-size: 24rem/$re;
@@ -278,7 +278,7 @@
       @include center;
 
       span{
-        @include font(16rem/$re,25rem/$re,#fff);
+        @include font(20rem/$re,25rem/$re,#fff);
         text-indent: 2em;
       }
     }
@@ -423,12 +423,12 @@
     .title{
       height: 22rem/$re;
       border-left: 2rem/$re solid #f0ff00;
-      @include font(22rem/$re,22rem/$re,#fff);
+      @include font(24rem/$re,22rem/$re,#fff);
       font-weight: bold;
       padding-left: 10rem/$re;
 
       span{
-        @include font(16rem/$re,22rem/$re,rgba(255,255,255,0.3));
+        @include font(18rem/$re,22rem/$re,rgba(255,255,255,0.3));
         font-weight: bold;
         text-transform: uppercase;
       }
@@ -582,14 +582,15 @@
         text-align: center;
 
         .small{
+          padding-top: 10px;
           @include font(18rem/$re,30rem/$re,#fff);
         }
 
         .big{
-          overflow: hidden;
           font-weight: bold;
-          padding-top: 45rem/$re;
+          padding-top: 40rem/$re;
           @include font(24rem/$re,50rem/$re,#fff);
+          font-weight: bold;
           position: relative;
 
           &:before{
@@ -946,7 +947,7 @@
         position: absolute;
         left: 100%;
         bottom: 0;
-        @include font(14rem/$re,44rem/$re,#fff);
+        @include font(20rem/$re,44rem/$re,#fff);
         text-align: center;
       }
 
@@ -968,7 +969,7 @@
   }
 
   &_copyright{
-    @include font(14rem/$re,30rem/$re,#999);
+    @include font(20rem/$re,30rem/$re,#999);
     padding: 10rem/$re 30rem/$re 0;
     text-align: center;
   }

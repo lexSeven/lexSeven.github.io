@@ -9,6 +9,10 @@
         var obj = {
             //设置页面rem
             setRem: function() {
+
+                document.write('<meta name="viewport"\n' +
+                    '          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">')
+
                 var docEl = document.documentElement,
                     resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
                     recalc = function () {
