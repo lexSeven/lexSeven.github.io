@@ -1,4 +1,5 @@
 @import "global";
+@import "iconfont.css";
 
 body{}
 
@@ -41,6 +42,7 @@ body{}
     border-radius: 30px;
     text-align: center;
     @include center();
+    color: #fff;
 
     a{
       width: 90%;
@@ -53,7 +55,7 @@ body{}
 
     &.while{
       background: #fff;
-
+      color: #ff9711;
       span{
         color: #ff9711;
       }
@@ -108,6 +110,7 @@ body{}
     float: left;
     position: absolute;
     left: 0;
+    transition: 0.5s;
   }
 
   .dotBox{
@@ -367,6 +370,16 @@ body{}
     .des{
       padding: 15px 0 0 28px;
       line-height: 0;
+      position: relative;
+
+      .arrow{
+        position: absolute;
+        right: 30px;
+        bottom: 0;
+        font-size: 26px;
+        color: #ff9711;
+      }
+
       span{
         @include font(24px,32px,#333);
         display: inline-block;
@@ -374,6 +387,7 @@ body{}
       }
       em{
         @include font(18px,24px,#eee);
+        text-transform: uppercase;
       }
     }
 
@@ -540,6 +554,69 @@ body{}
       height: 260px;
       border-radius: 50%;
       background: #999;
+      overflow: hidden;
+      position: relative;
+
+      &:hover{
+        .btn{
+          transform: translate(-50%,-50%) scale(1.3) rotate(-360deg);
+          opacity: 0;
+        }
+
+        .title{
+          top: 0;
+
+          .big{
+            height: 100px;
+            opacity: 0;
+          }
+        }
+      }
+
+      .btn{
+        width: 74px;
+        height: 74px;
+        background: #fff;
+        -webkit-background-clip: content-box;
+        -moz-background-clip: content-box;
+        background-clip: content-box;
+        border-radius: 50%;
+        padding: 7px;
+        border: 1px solid #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        @include center;
+        transition: 0.3s;
+
+        span {
+          @include font(18px,20px,#ff9917);
+        }
+      }
+
+      .title{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        position: absolute;
+        top: 50%;
+        left: 0;
+        text-align: center;
+        transition: 0.5s;
+
+        .small{
+          @include font(18px,30px,#fff);
+        }
+
+        .big{
+          overflow: hidden;
+          font-weight: bold;
+          transition: 0.5s;
+          @include font(24px,130px,#fff);
+        }
+      }
     }
   }
 }
@@ -560,11 +637,36 @@ body{}
     background: #333;
     margin: 53px 42px 0 20px;
     float: left;
+    overflow: hidden;
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &_content{
     float: left;
     width: 700px;
+    position: relative;
+
+    .leftIcon{
+      width: 50px;
+      height: 50px;
+      background: url('../img/left.png') no-repeat;
+      position: absolute;
+      top: 0;
+      left: -80px;
+    }
+
+    .rightIcon{
+      width: 50px;
+      height: 50px;
+      background: url('../img/right.png') no-repeat;
+      position: absolute;
+      bottom: 90px;
+      right: 0;
+    }
 
     .des{
       @include font(16px,25px,#4f535f);
@@ -694,8 +796,7 @@ body{}
 }
 
 .history{
-  height: 728px;
-  padding-top: 50px;
+  height: 778px;
 
   &_main{
     display: flex;
@@ -789,6 +890,28 @@ body{}
     border-radius: 30px;
     border: 1px solid #7f7e8b;
     margin: 0 auto 20px;
+    @include center;
+    line-height: 0;
+
+    .icon{
+      width: 67px;
+      height: 15px;
+      font-size: 30px;
+      text-align: center;
+      line-height: 16px;
+      border-right: 1px solid #7f7e8b;
+      color: #7f7e8b;
+    }
+
+    input{
+      width: 230px;
+      height: 24px;
+      line-height: 24px;
+      margin-left: 15px;
+      font-size: 18px;
+      color: #727483;
+    }
+
   }
 
   .btn{
