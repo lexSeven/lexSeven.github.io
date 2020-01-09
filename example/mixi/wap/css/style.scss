@@ -20,12 +20,11 @@
   .menu{
     float: right;
     display: flex;
-    align-items: center;
     height: 100%;
 
     .item{
       padding: 0 10rem/$re;
-      @include font(24rem/$re,50rem/$re,#333);
+      @include font(24rem/$re,110rem/$re,#333);
     }
   }
 }
@@ -181,7 +180,7 @@
       height: 10rem/$re;
       border: 1rem/$re solid #ff9711;
       text-align: center;
-      line-height: 0;
+      line-height: 4rem/$re;
       position: absolute;
       right: 40rem/$re;
       top: 15rem/$re;
@@ -190,6 +189,7 @@
       &:before{
         content: '';
         display: inline-block;
+        vertical-align: middle;
         width: 6rem/$re;
         height: 2rem/$re;
         background: #ff9711;
@@ -319,11 +319,11 @@
       }
 
       .item{
-        width: 230rem/$re;
+        width: 200rem/$re;
         border-right: 1rem/$re solid #eeeeee;
         display: inline-block;
-        transform: scale(0.8);
-        margin-right: -30rem/$re;
+        //transform: scale(0.8);
+        //margin-right: -30rem/$re;
 
         &:first-child{
           padding-left: 18rem/$re;
