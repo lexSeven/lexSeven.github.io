@@ -247,13 +247,27 @@ img {
   height: 0.3333333333rem;
   border: 0.0333333333rem solid #ff9711;
   text-align: center;
-  line-height: 0.1333333333rem;
   position: absolute;
   right: 1.3333333333rem;
   top: 0.5rem;
   border-radius: 50%;
+  font-size: 0;
+  line-height: 0;
+}
+.first_item .close > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 0.8rem/1.3333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  color: inherit;
 }
 .first_item .close:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.first_item .close:after {
   content: '';
   display: inline-block;
   vertical-align: middle;
@@ -454,7 +468,7 @@ img {
 
 .fourth {
   height: 63.5333333333rem;
-  background: #de891b;
+  background: #ff9711;
 }
 .fourth .nav {
   padding: 0.7333333333rem 0 1rem;

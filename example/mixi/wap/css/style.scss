@@ -180,13 +180,13 @@
       height: 10rem/$re;
       border: 1rem/$re solid #ff9711;
       text-align: center;
-      line-height: 4rem/$re;
       position: absolute;
       right: 40rem/$re;
       top: 15rem/$re;
       border-radius: 50%;
+      @include center;
 
-      &:before{
+      &:after{
         content: '';
         display: inline-block;
         vertical-align: middle;
@@ -401,7 +401,7 @@
 
 .fourth{
   height: 1906rem/$re;
-  background: #de891b;
+  background: #ff9711;
 
   .nav{
     padding: 22rem/$re 0 30rem/$re;
