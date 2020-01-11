@@ -170,7 +170,9 @@
 
                     var kefu = e.target ? e.target.getAttribute('data-qq') : e.srcElement.getAttribute('data-qq');
 
-                    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) || /(Android)/i.test(navigator.userAgent)) {
+                    if(isWeiXin()){
+                        window.open(kefu101);
+                    }else if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) || /(Android)/i.test(navigator.userAgent)) {
 
                         window.open(kefu102);
                     }else {
@@ -178,6 +180,15 @@
                     }
                 }
             })(i);
+        }
+    }
+
+    function isWeiXin(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+            return true;
+        }else{
+            return false;
         }
     }
 
