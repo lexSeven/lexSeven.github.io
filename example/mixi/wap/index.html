@@ -611,7 +611,7 @@
         </a>
     </div>
     <div class="bottom_item">
-        <a href="http://wpa.qq.com/msgrd?v=3&uin=1435734567&site=qq&menu=yes" target="_blank">
+        <a onclick="openQQ(1435734567)">
             <i class="iconfont icon-user1"></i>
             <span>QQ客服</span>
         </a>
@@ -634,6 +634,10 @@
             },
         });
     };
+
+    function openQQ(num) {
+        window.open('http://wpa.qq.com/msgrd?v=3&uin='+num+'&site=qq&menu=yes','_brank');
+    }
 </script>
 
 </body>
