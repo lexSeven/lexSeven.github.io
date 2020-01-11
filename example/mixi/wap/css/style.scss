@@ -115,12 +115,11 @@
   .dotBox{
     display: inline-block;
     position: relative;
-    top: 326rem/$re;
-    height: 20rem/$re;
+    top: 347rem/$re;
+    height: 12rem/$re;
     background: rgba(0,0,0,0.3);
     border-radius: 20rem/$re;
-    padding: 0 5rem/$re;
-    @include center;
+    padding: 4rem/$re 5rem/$re;
 
     span{
       width: 12rem/$re;
@@ -128,7 +127,7 @@
       background: #ff9711;
       margin: 0 4rem/$re;
       display: inline-block;
-      vertical-align: middle;
+      vertical-align: top;
       font-size: 0;
       border-radius: 50%;
 

@@ -174,26 +174,11 @@ img {
 .banner .dotBox {
   display: inline-block;
   position: relative;
-  top: 10.8666666667rem;
-  height: 0.6666666667rem;
+  top: 11.5666666667rem;
+  height: 0.4rem;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 0.6666666667rem;
-  padding: 0 0.1666666667rem;
-  font-size: 0;
-  line-height: 0;
-}
-.banner .dotBox > * {
-  display: inline-block;
-  vertical-align: middle;
-  font: 0.8rem/1.3333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
-  color: inherit;
-}
-.banner .dotBox:before {
-  content: '';
-  width: 0;
-  height: 100%;
-  display: inline-block;
-  vertical-align: middle;
+  padding: 0.1333333333rem 0.1666666667rem;
 }
 .banner .dotBox span {
   width: 0.4rem;
@@ -201,7 +186,7 @@ img {
   background: #ff9711;
   margin: 0 0.1333333333rem;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   font-size: 0;
   border-radius: 50%;
 }
