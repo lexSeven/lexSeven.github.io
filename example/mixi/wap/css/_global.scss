@@ -18,11 +18,14 @@ dd{
 
 body{
   overflow-x: hidden;
+  max-width: 750px;
+  margin: 0 auto;
 }
 
 a{
   text-decoration: none;
   color: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ul{

@@ -18,11 +18,14 @@ dd {
 
 body {
   overflow-x: hidden;
+  max-width: 750px;
+  margin: 0 auto;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ul {
@@ -997,6 +1000,7 @@ img {
 .footer {
   background: #282828;
   position: relative;
+  padding-bottom: 6.6666666667rem;
 }
 .footer_main {
   height: 4.7666666667rem;
@@ -1061,7 +1065,7 @@ img {
 .footer_copyright {
   font: 0.6666666667rem/1rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
   color: #999;
-  padding: 0.3333333333rem 1rem 0;
+  padding: 0.3333333333rem 1rem;
   text-align: center;
 }
 
@@ -1073,6 +1077,81 @@ img {
 .about p {
   padding-top: 0.6666666667rem;
   text-indent: 2em;
+}
+
+.bottom {
+  width: 23rem;
+  padding: 0 1rem;
+  height: 3.3rem;
+  border-top: 0.0333333333rem solid #ddd;
+  position: fixed;
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  line-height: 0;
+}
+.bottom_item {
+  text-align: center;
+  padding-top: 0.4333333333rem;
+  flex: 1;
+}
+.bottom_item .now {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border-width: 0.0333333333rem;
+  border-style: solid;
+  border-color: #ddd #ddd transparent transparent;
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+  background: #fff;
+}
+.bottom_item .now .btn {
+  width: 3.2666666667rem;
+  height: 3.2666666667rem;
+  background: linear-gradient(to right bottom, #feae47, #f48e09);
+  position: absolute;
+  top: 0.3333333333rem;
+  left: 0.3666666667rem;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  font-size: 0;
+  line-height: 0;
+}
+.bottom_item .now .btn > * {
+  display: inline-block;
+  vertical-align: middle;
+  font: 0.8rem/1.3333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  color: inherit;
+}
+.bottom_item .now .btn:before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.bottom_item .now .btn i {
+  color: #fff;
+  font-size: 2.3333333333rem;
+}
+.bottom_item i {
+  font-size: 1.3333333333rem;
+  line-height: 1.4666666667rem;
+}
+.bottom_item span {
+  display: inline-block;
+  width: 100%;
+  font: 0.6rem/1.1333333333rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+  color: #666666;
+}
+.bottom_item span.middle {
+  padding-top: 1.4666666667rem;
+  color: #ff9918;
 }
 
 /*# sourceMappingURL=style.css.map */
