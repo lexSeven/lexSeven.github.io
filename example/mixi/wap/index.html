@@ -577,7 +577,7 @@
         </div>
     </div>
     <div class="footer_copyright">
-        Copyright © 2019 Tedu.cn All Rights Reserved 京ICP备08000853号-56 米犀科技集团有限公司 版权所有
+        Copyright © 2019 Tedu.cn All Rights Reserved 鄂ICP备19031701号 米犀科技集团有限公司 版权所有
     </div>
 </div>
 
@@ -651,7 +651,9 @@
 
                     var kefu = e.target ? e.target.getAttribute('data-qq') : e.srcElement.getAttribute('data-qq');
 
-                    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) || /(Android)/i.test(navigator.userAgent)) {
+                    if(isWeiXin()){
+                        window.open(kefu101);
+                    }else if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) || /(Android)/i.test(navigator.userAgent)) {
 
                         window.open(kefu102);
                     }else {
@@ -659,6 +661,15 @@
                     }
                 }
             })(i);
+        }
+    }
+
+    function isWeiXin(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+            return true;
+        }else{
+            return false;
         }
     }
 
