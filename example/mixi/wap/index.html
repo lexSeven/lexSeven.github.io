@@ -611,7 +611,7 @@
         </a>
     </div>
     <div class="bottom_item">
-        <a onclick="openQQ(1435734567)">
+        <a id="numberHref_6" target="_blank" href="javascript: Mobi.openQQ(1435734567);">
             <i class="iconfont icon-user1"></i>
             <span>QQ客服</span>
         </a>
@@ -635,9 +635,25 @@
         });
     };
 
-    function openQQ(num) {
-        window.open('http://wpa.qq.com/msgrd?v=3&uin='+num+'&site=qq&menu=yes','_brank');
+
+    var Mobi = {};
+
+    Mobi.openQQ=function(e){
+        var t="http://wpa.qq.com/msgrd?v=3&uin="+e+"&site=qq&menu=yes";
+        Mobi.isWechat() ||Mobi.isPC() ||(t="mqqwpa://im/chat?chat_type=wpa&uin="+e,isiOS&&(t="mqqwpa://im/chat?chat_type=wpa&uin="+e+"&version=1&src_type=web&web_src=oicqzone.com")),
+            window.location.href=t
+
     }
+    Mobi.isWechat=function(){
+        return"micromessenger"==window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i)
+    },
+    Mobi.isPC=function(){
+        for(var e=navigator.userAgent,t=["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"],i=!0,o=0;o<t.length;o++)if(e.indexOf(t[o])>0){i=!1;break}return i}
+
+
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 </script>
 
 </body>
