@@ -1072,7 +1072,8 @@ img {
   position: fixed;
   background: #fff;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   line-height: 0;
