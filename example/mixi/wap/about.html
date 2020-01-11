@@ -48,15 +48,15 @@
     </ul>
 </div>
 
-<div class="banner">
-    <ul class="scroll">
-        <li class="item"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1"><img src="img/banner_01.png"></a></li>
-        <li class="item"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1"><img src="img/banner_02.png"></a></li>
-        <li class="item"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1"><img src="img/banner_03.png"></a></li>
+<div class="banner swiper-container">
+    <ul class="scroll swiper-wrapper">
+        <li class="item swiper-slide"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1"><img src="img/banner_01.png"></a></li>
+        <li class="item swiper-slide"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1"><img src="img/banner_02.png"></a></li>
+        <li class="item swiper-slide"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1"><img src="img/banner_03.png"></a></li>
     </ul>
 
-    <div class="dotBox">
-        <span class="active">1</span>
+    <div class="dotBox swiper-pagination">
+        <span class="swiper-pagination-bullet active">1</span>
         <span>2</span>
         <span>3</span>
     </div>
@@ -138,77 +138,19 @@
     </div>
 </div>
 
-
+<script src="js/swiper.min.js"></script>
 <script>
     window.onload = function (){
         (function() {var _53code = document.createElement("script");_53code.src = "https://tb.53kf.com/code/code/f0118c7641abadc9c9b414afb82afbeb5/1";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(_53code, s);})();
+
+        var swiper = new Swiper('.swiper-container', {
+            autoplay:true,
+            loop : true,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
     };
-
-    silder(document.querySelector('.banner'));
-
-    function silder(obj){
-        var time = 3000;
-        var item = obj.querySelector('ul');
-        var dot = obj.querySelectorAll('.dotBox span');
-        var length = item.querySelectorAll('li').length;
-        var width = window.getComputedStyle(item.querySelector('li')).width.replace(/px/ig,"");
-
-        width = Math.floor(width);
-
-        var n = 0;
-        var change = null;
-
-        obj.onmouseover = function(){
-            clearInterval(change);
-        }
-
-        obj.onmouseout = run;
-
-        for(var i=0;i<dot.length;i++){
-            dot[i].index = i;
-            dot[i].onclick = function(){
-                n = this.index;
-                runTo(n);
-            }
-        }
-
-        run();
-        function run(){
-            change = setInterval(function(){
-                n++;
-                n%=length;
-                runTo(n);
-            },time);
-        }
-
-        function runTo(n){
-            item.style.left = n * -width + 'px';
-            for(var i=0;i<dot.length;i++){
-                dot[i].className = '';
-            }
-            dot[n].className = 'active';
-        }
-    }
-
-    // tab(document.querySelector('.list'));
-    function tab(obj){
-        var menu = obj.querySelectorAll('.list_title .item');
-        var moveObj = obj.querySelector('.scrollbox');
-        var moveWidth = window.innerWidth > 750 ? 750 : window.innerWidth;
-        //obj.querySelector('.item_main').offsetWidth;
-
-        for(var i=0;i<menu.length;i++){
-            menu[i].index = i;
-            menu[i].ontouchend = menu[i].onclick = function(){
-                for(var i=0;i<menu.length;i++){
-                    menu[i].className = 'item';
-                }
-                this.className = 'item active'
-                moveObj.style.left = this.index * - moveWidth + 'px';
-            }
-        }
-    }
-
 </script>
 
 </body>

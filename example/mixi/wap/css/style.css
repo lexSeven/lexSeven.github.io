@@ -208,7 +208,7 @@ img {
 .banner .dotBox span:hover {
   background: #ccc;
 }
-.banner .dotBox span.active {
+.banner .dotBox span.swiper-pagination-bullet-active {
   background: #fff;
 }
 
