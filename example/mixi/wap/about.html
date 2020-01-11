@@ -144,7 +144,9 @@
         (function() {var _53code = document.createElement("script");_53code.src = "https://tb.53kf.com/code/code/f0118c7641abadc9c9b414afb82afbeb5/1";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(_53code, s);})();
 
         var swiper = new Swiper('.swiper-container', {
-            autoplay:true,
+            autoplay: {
+                disableOnInteraction: false,
+            },
             loop : true,
             pagination: {
                 el: '.swiper-pagination',
