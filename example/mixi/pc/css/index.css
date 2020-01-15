@@ -152,6 +152,9 @@ body {
   font: 16px/100px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
   color: #fff;
 }
+.topline .menu_item a {
+  display: block;
+}
 .topline .menu_item:hover {
   border-top-color: #fff;
 }
@@ -660,8 +663,8 @@ body {
 }
 
 .teacher {
-  height: 600px;
   padding-top: 13px;
+  padding-bottom: 50px;
 }
 .teacher_main {
   padding-top: 50px;
@@ -706,6 +709,7 @@ body {
   right: 0;
 }
 .teacher_content .des {
+  height: 175px;
   font: 16px/25px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
   color: #4f535f;
   padding: 25px 0;
@@ -736,6 +740,18 @@ body {
   font: 18px/22px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
   color: #fff;
 }
+.teacher_content .list1:after {
+  left: 20px;
+}
+.teacher_content .list2:after {
+  left: 96px;
+}
+.teacher_content .list3:after {
+  left: 172px;
+}
+.teacher_content .list4:after {
+  left: 248px;
+}
 .teacher_content .list {
   margin-top: 50px;
   height: 54px;
@@ -757,7 +773,6 @@ body {
   border-color: transparent transparent #ff9711;
   position: absolute;
   top: 110%;
-  left: 20px;
 }
 .teacher_title {
   height: 76px;
@@ -792,6 +807,12 @@ body {
   font: 14px/29px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
   color: #fff;
   text-align: center;
+}
+.teacher .hide {
+  display: none;
+}
+.teacher .show {
+  display: block;
 }
 
 .environment {
@@ -1076,6 +1097,133 @@ body {
 .about p {
   padding-top: 20px;
   text-indent: 2em;
+}
+
+.detail_top {
+  padding: 23px 0;
+  font: 24px/36px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333333;
+  text-align: center;
+}
+.detail_top em {
+  color: #fd962c;
+}
+.detail_type {
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+.detail_type_item {
+  width: 186px;
+  height: 198px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 0;
+}
+.detail_type_item:nth-child(2n) {
+  background: #f9f9f9;
+}
+.detail_type_item img {
+  margin-top: 21px;
+}
+.detail_type_item span {
+  font: 20px/50px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333333;
+  display: inline-block;
+  width: 100%;
+}
+.detail_tab {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+  margin: 70px 0;
+  overflow: hidden;
+}
+.detail_tab .title {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+.detail_tab .title_item {
+  padding-top: 20px;
+  width: 33.2%;
+  background: #dddddd;
+  text-align: center;
+  cursor: pointer;
+}
+.detail_tab .title_item.active {
+  background: #fd962c;
+}
+.detail_tab .title_item.active .title_name {
+  color: #fff;
+}
+.detail_tab .title_item.active .title_des {
+  color: #fff;
+}
+.detail_tab .title_name {
+  font: 24px/35px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #222222;
+}
+.detail_tab .title_des {
+  font: 14px/23px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #666666;
+}
+.detail_tab .content {
+  padding: 30px;
+  display: none;
+}
+.detail_tab .content.active {
+  display: block;
+}
+.detail_tab .content .item {
+  font: 18px/34px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #333333;
+  background: url("../img/dot.png") no-repeat left center;
+  padding-left: 30px;
+  margin-top: 15px;
+}
+.detail_tab .content .des {
+  font: 18px/30px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #999999;
+  padding-left: 30px;
+}
+.detail_tab .content .table {
+  margin: 30px 0;
+  width: 938px;
+  border-color: #ddd;
+  border-radius: 5px;
+  border-spacing: 0;
+}
+.detail_tab .content .table .line {
+  height: 49px;
+}
+.detail_tab .content .table .box {
+  height: 100%;
+  font: 14px/49px "PingFangSC-Light", "SourceHanSansCN Regular", "微软雅黑";
+  color: #666666;
+  border-collapse: collapse;
+}
+.detail_tab .content .table .d5 {
+  width: 5%;
+  text-align: center;
+}
+.detail_tab .content .table .d10 {
+  width: 10%;
+  text-align: center;
+}
+.detail_tab .content .table .d15 {
+  width: 15%;
+  padding: 0 5px;
+}
+.detail_tab .content .table .d20 {
+  width: 20%;
+  text-align: left;
+  padding-left: 10px;
+}
+.detail_tab .content .table .right {
+  text-align: right;
+  padding-right: 10px;
 }
 
 /*# sourceMappingURL=index.css.map */
