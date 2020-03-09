@@ -191,13 +191,13 @@
             _this.listNum3 = [];
 
             for(var a=0;a<_this.num;a++){
-                _this.listNum.push(_this.freqArray[_this.radom[a]*_this.step]/4);
-                _this.listNum2.push(_this.freqArray[_this.radom[a]*_this.step]/7);
+                _this.listNum.push(_this.freqArray[_this.radom[a]*_this.step]/2);
+                _this.listNum2.push(_this.freqArray[_this.radom[a]*_this.step]/5);
                 _this.listNum3.push(_this.freqArray[_this.radom[a]*_this.step]/10);
             }
 
             for(var i=0;i<_this.num;i++){
-                var radius = _this.listNum[i] + _this.radius;
+                var radius = _this.listNum[i] + _this.radius - 20;
                 x = Math.cos(ang*i)* radius + _this.dotx;
                 y = Math.sin(ang*i)* radius + _this.doty;
                 _this.position.push([x,y]);
@@ -218,7 +218,7 @@
                 element:_this.c,
                 canvas:_this.C1,
                 isFull:false,
-                k:'0.4',
+                k:'0.2',
                 drawFunction:false,
                 speed:1
             });

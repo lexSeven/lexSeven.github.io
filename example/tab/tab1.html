@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        body{
+            margin: 0;
+            background: #f1f1f1;
+            perspective: 1000px;
+            color: #fff;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 600px;
+            height: 400px;
+            border: 10px solid rgba(255,255,255,0.5);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background: linear-gradient(to right bottom, #bb73e0,#ff8ddb);
+            box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+        }
+        .nav{
+            height: 40px;
+            border-bottom: 3px solid rgba(255,255,255,0.6);
+            display: flex;
+            text-align: center;
+            line-height: 40px;
+            position: relative;
+        }
+        .nav .menu{
+            width: 25%;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .nav .active{
+            position: absolute;
+            width: 25%;
+            height: 40px;
+            background: rgba(255,255,255,0.3);
+            left: 0;
+            transition: 0.5s;
+        }
+
+        .list{
+            height: 360px;
+            display: flex;
+            float: left;
+            position: relative;
+            left: 0;
+            transition: 0.5s;
+        }
+
+        .list .item{
+            width: 600px;
+            height: 100%;
+            background: linear-gradient(to right bottom, #f9957f,#f2f5d0);
+            color: transparent;
+            -webkit-background-clip: text;
+            box-shadow: inset 2px 2px 5px 0 rgba(0,0,0,0.2);
+            font-size: 300px;
+            text-align: center;
+            line-height: 400px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/iconfont.css">
+</head>
+<body>
+
+<div class="box">
+    <ul class="nav">
+        <li class="menu">Insist</li>
+        <li class="menu">Will</li>
+        <li class="menu">Diligence</li>
+        <li class="menu">Originality</li>
+        <li class="active"></li>
+    </ul>
+    <ul class="list">
+        <li class="item">
+            <i class="iconfont icon-eluosi"></i>
+        </li>
+        <li class="item">
+            <i class="iconfont icon-helan"></i>
+        </li>
+        <li class="item">
+            <i class="iconfont icon-huzhao"></i>
+        </li>
+        <li class="item">
+            <i class="iconfont icon-xiangbin"></i>
+        </li>
+    </ul>
+</div>
+
+<script>
+    let tab = {
+        init:function(obj){
+            let _this = tab;
+            let menu = '.menu',
+                content = '.list',
+                indicator = '.active';
+            _this.obj = document.querySelector(obj);
+            // 先找到最外层，后面所有的元素都在最外层里面进行查找
+            _this.menu = _this.obj.querySelectorAll(menu);
+            // 然后找到菜单，菜单是多个
+            _this.menuIndicator = _this.obj.querySelector(indicator);
+            // 菜单上的指示器
+            _this.content = _this.obj.querySelector(content);
+            // 所有内容的父级，这里是在切换的时候让父级左右滑动，所以直接找父级就可以了
+            _this.now = 0;
+            // 默认显示第一个，所以直接给0;
+            _this.menuWidth = _this.menuIndicator.clientWidth;
+            // 菜单的宽度，用于计算
+            _this.contentWidth = _this.obj.clientWidth;
+            // 单个内容区的宽度
+            _this.bindEvent();
+        },
+        bindEvent:function(){
+            let _this = tab;
+            _this.menu.forEach((item,index)=>{
+                item.onclick = ()=>{
+                    _this.now = index;
+                    _this.menuIndicator.style.left = _this.menuWidth * _this.now + 'px';
+                    _this.content.style.left = -_this.contentWidth * _this.now + 'px';
+                }
+            })
+        }
+    }
+
+    tab.init('.box');
+</script>
+
+</body>
+</html>
