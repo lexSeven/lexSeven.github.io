@@ -122,8 +122,7 @@
             _this.menu = _this.obj.querySelectorAll(menu);
             // 然后找到菜单，菜单是多个
             _this.contentItem = _this.obj.querySelectorAll(item);
-            // _this.menuIndicator = _this.obj.querySelector(indicator);
-            // 菜单上的指示器
+            // 每一个内容区块
             _this.content = _this.obj.querySelector(content);
             // 所有内容的父级，这里是在切换的时候让父级上下滑动，所以直接找父级就可以了
             _this.now = 0;
@@ -139,13 +138,10 @@
         bindEvent:function(){
             let _this = tab;
             _this.menu.forEach((item,index)=>{
-                console.log(item);
                 item.onclick = ()=>{
-                    console.log(1);
-                    _this.menu[_this.now].style.right = '30%';
-
-                    _this.now = index;
                     item.style.right = 0;
+                    _this.menu[_this.now].style.right = '30%';
+                    _this.now = index;
                     _this.content.style.top = -_this.contentHeight * _this.now + 'px';
                 }
             })
