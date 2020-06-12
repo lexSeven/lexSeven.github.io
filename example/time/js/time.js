@@ -54,9 +54,11 @@ export default class myCom extends HTMLElement {
         this._data.date =  year + '年' + month + '月' + date + '日';
         this._data.time = d.getHours() + ':' + addZero(d.getMinutes()) + ':' + addZero(d.getSeconds());
 
+        // this.addMusic();
         setInterval(function(){
             let d = new Date();
             _this._data.time = d.getHours() + ':' + addZero(d.getMinutes()) + ':' + addZero(d.getSeconds());
+            // _this.musicPlay();
         },1000);
 
         function addZero(n){
@@ -111,6 +113,40 @@ export default class myCom extends HTMLElement {
                 wscript.SendKeys("{F11}");
             }
         }
+    }
+    addMusic(){
+        if (!window.AudioContext) {
+            alert('当前浏览器不支持Web Audio API');
+            return;
+        }
+
+        // 创建新的音频上下文接口
+        this.audioCtx = new AudioContext();
+
+        // 发出的声音频率数据，表现为音调的高低
+        this.arrFrequency = [196.00, 220.00, 246.94, 261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
+        this.start = 0;
+        this.direction = 1;
+    }
+    musicPlay(){
+        let frequency = this.arrFrequency[this.start];
+        if (!frequency) {
+            this.direction = -1 * this.direction;
+            this.start = this.start + 2 * this.direction;
+            frequency = this.arrFrequency[this.start];
+        }
+        this.start = this.start + this.direction;
+        let oscillator = this.audioCtx.createOscillator();
+        let gainNode = this.audioCtx.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioCtx.destination);
+        oscillator.type = 'sine';
+        oscillator.frequency.value = frequency;
+        gainNode.gain.setValueAtTime(0, this.audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(1, this.audioCtx.currentTime + 0.01);
+        oscillator.start(this.audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 1);
+        oscillator.stop(this.audioCtx.currentTime + 1);
     }
 }
 
