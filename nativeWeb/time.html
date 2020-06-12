@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: #000;
+            color: #fff;
+            font-size: 180px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="date"></div>
+<div class="time"></div>
+<script>
+    showDate();
+
+    function showDate(){
+        var dateBox = document.querySelector('.date');
+        var timeBox = document.querySelector('.time');
+
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth()+1;
+        var date = d.getDate();
+
+        int();
+        function int(){
+            dateBox.innerHTML = year + '年' + month + '月' + date + '日';
+            timeBox.innerHTML = d.getHours() + ':' + addZero(d.getMinutes()) + ':' + addZero(d.getSeconds());
+            setInterval(function(){
+                var d = new Date();
+                timeBox.innerHTML = d.getHours() + ':' + addZero(d.getMinutes()) + ':' + addZero(d.getSeconds());
+            },1000);
+        }
+
+        function addZero(n){
+            return n < 10 ? '0' + n : n;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        body{
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .wraper{
+            width: 80%;
+            height: 80%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .box{
+            display: grid;
+            grid-template-columns: repeat(21,40px);
+            grid-template-rows: repeat(21,40px);
+            /*grid-gap: 1px;*/
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            transform-style: preserve-3d;
+        }
+
+        .item{
+            background: #899;
+            /*border-radius: 2px;*/
+        }
+    </style>
+    <script src="js/anime.js"></script>
+</head>
+<body>
+<!--<div class="wraper"></div>-->
+<div class="box"><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span><span class="item"></span><span class="item"></span><span
+        class="item"></span><span class="item"></span></div>
+
+<script>
+    // anime({
+    //     targets: '.box .item',
+    //     scale: [
+    //         {value: .1, easing: 'easeOutSine', duration: 500},
+    //         {value: 1, easing: 'easeInOutQuad', duration: 1000}
+    //     ],
+    //     delay: anime.stagger(200, {grid: [20, 20], from: 1}),
+    //     // loop:true
+    // });
+    const grid = [21, 21];
+
+    let getColor = function(){
+        return 'rgba('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.random()+')'
+    };
+
+    document.querySelectorAll('.item').forEach(function(item,index){
+
+        item.onclick = function(){
+            const staggersAnimation = anime.timeline({
+                targets: '.box .item',
+                easing: 'easeInOutSine',
+                delay: anime.stagger(50),
+                loop: false,
+                autoplay: false
+            })
+            .add({
+                translateX: [
+                    {value: anime.stagger('-.1rem', {grid: grid, from: index, axis: 'x'}) },
+                    {value: anime.stagger('.1rem', {grid: grid, from: index, axis: 'x'}) },
+                    {value: anime.stagger('0', {grid: grid, from: index, axis: 'x'}) }
+                ],
+                translateY: [
+                    {value: anime.stagger('-.1rem', {grid: grid, from: index, axis: 'y'}) },
+                    {value: anime.stagger('.1rem', {grid: grid, from: index, axis: 'y'}) },
+                    {value: anime.stagger('0', {grid: grid, from: index, axis: 'y'}) }
+                ],
+                translateZ: [
+                    {value: .1, easing: 'easeOutSine', duration: 500},
+                    {value: 1.05, easing: 'easeInOutQuad', duration: 1000},
+                    {value: .6, easing: 'easeOutSine', duration: 500,delay:80},
+                    {value: 1.02, easing: 'easeInOutQuad', duration: 800},
+                    {value: 0.97, easing: 'easeInOutQuad', duration: 200},
+                    {value: 1, easing: 'easeInOutQuad', duration: 200}
+                ],
+                scale: [
+                    {value: .1, easing: 'easeOutSine', duration: 500},
+                    {value: 1.05, easing: 'easeInOutQuad', duration: 1000},
+                    {value: .6, easing: 'easeOutSine', duration: 500,delay:80},
+                    {value: 1.02, easing: 'easeInOutQuad', duration: 800},
+                    {value: 0.97, easing: 'easeInOutQuad', duration: 200},
+                    {value: 1, easing: 'easeInOutQuad', duration: 200}
+                ],
+                // background:getColor(),
+                duration: 1000,
+                delay: anime.stagger(100, {grid: grid, from: index})
+            })
+
+            staggersAnimation.play();
+        }
+    });
+
+    class drag3d {
+        constructor(option){
+            let obj = {
+                wraper : '',
+                cube : '',
+                downX : 0,
+                downY : 0,
+                moveX : 0,
+                moveY : 0,
+                tempX : 0,
+                tempY : 0,
+                degX : 0,
+                degY : 0,
+                isBack : false,
+                keyNum : 3,
+                translateZ : 0
+            }
+            this.obj = Object.assign(obj,option);
+            this.obj.cube.parentNode.style.perspective = '2000px';
+            this.obj.cube.style.transformStyle = 'preserve-3d';
+            this.obj.wraper.style.zIndex = 3;
+            this.bindEvent();
+        }
+        bindEvent(){
+            this.obj.wraper.addEventListener('mousedown',(e)=>{
+                this.startEvent.call(this,e);
+            });
+            this.obj.wraper.addEventListener('mouseup',(e)=>{
+                this.endEvent.call(this,e);
+            });
+        }
+        startEvent(e){
+            this.obj.downX = e.clientX;
+            this.obj.downY = e.clientY;
+            let caseY = (this.obj.degY / 90) % 4;
+            if(caseY > 1 && caseY < 3 || caseY < -1 && caseY > -3){
+                this.obj.isBack = true;
+            }else{
+                this.obj.isBack = false;
+            }
+            this.obj.wraper.onmousemove = (e)=>{
+                this.moveEvent.call(this,e);
+            };
+            e.preventDefault();
+        }
+        moveEvent(e){
+            let touch = e;
+            this.obj.moveX = touch.clientX - this.obj.downX;
+            this.obj.moveY = touch.clientY - this.obj.downY;
+
+            if(this.obj.isBack){
+                this.obj.moveX = -this.obj.moveX;
+            }
+
+            this.obj.tempX = this.obj.degX + this.obj.moveX / this.obj.keyNum;
+            this.obj.tempY = this.obj.degY - this.obj.moveY / this.obj.keyNum;
+            this.obj.cube.style.transform = "translateZ("+ this.obj.translateZ +"px) rotatex(" + this.obj.tempY + "deg) rotatey(" + -this.obj.tempX + "deg)";
+        }
+        endEvent () {
+            this.obj.degX += this.obj.moveX / this.obj.keyNum;
+            this.obj.degY += - this.obj.moveY / this.obj.keyNum;
+            this.obj.degX %= 360;
+            this.obj.degY %= 360;
+            this.obj.wraper.onmousemove = '';
+        };
+    }
+
+    let map = new drag3d({
+        wraper:document.querySelector('.box'),
+        cube:document.querySelector('.box')
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/choumei.css">
+</head>
+<body>
+
+<div class="swiper-container swiper-container-horizontal">
+    <div id="header">
+        <img src="images/header.png">
+    </div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide swiper-slide-prev">
+            <img src="images/shouye_nvsheng_washblow_one.png" class="main-img">
+        </div>
+        <div class="swiper-slide swiper-slide-active">
+            <img src="images/shouye_nvsheng_washcutblow_two.png" class="main-img">
+        </div>
+        <div class="swiper-slide swiper-slide-next">
+            <img src="images/shouye_nvsheng_hairperm_three.png" class="main-img">
+        </div>
+        <div class="swiper-slide">
+            <img src="images/shouye_nvsheng_hairdye_four.png" class="main-img">
+        </div>
+        <div class="swiper-slide">
+            <img src="images/shouye_nvsheng_haircare_five.png" class="main-img">
+        </div>
+        <div class="swiper-slide">
+            <img src="images/shouye_nvsheng_packeage_six.png" class="main-img">
+        </div>
+    </div>
+</div>
+
+<div class="swiper-pagination swiper-pagination-clickable" id="pagination">
+    <span class="swiper-pagination-bullet"><i>洗</i></span>
+    <span class="swiper-pagination-bullet swiper-pagination-bullet-active"><i>剪</i></span>
+    <span class="swiper-pagination-bullet"><i>烫</i></span>
+    <span class="swiper-pagination-bullet"><i>染</i></span>
+    <span class="swiper-pagination-bullet"><i>护</i></span>
+    <span class="swiper-pagination-bullet"><i>套</i></span>
+</div>
+
+<div id="footer">
+    <img src="images/footer.png">
+</div>
+
+<script src="js/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper(".swiper-container", {
+        slidesPerView: "auto",
+        centeredSlides: !0,
+        watchSlidesProgress: !0,
+        pagination: ".swiper-pagination",
+        paginationClickable: !0,
+        paginationBulletRender: function (a, b) {
+            switch (a) {
+                case 0:
+                    name = "洗";
+                    break;
+                case 1:
+                    name = "剪";
+                    break;
+                case 2:
+                    name = "烫";
+                    break;
+                case 3:
+                    name = "染";
+                    break;
+                case 4:
+                    name = "护";
+                    break;
+                case 5:
+                    name = "套";
+                    break;
+                default:
+                    name = ""
+            }
+            return '<span class="' + b + '"><i>' + name + "</i></span>"
+        },
+        onProgress: function (a) {
+            var b, c, d;
+            for (b = 0; b < a.slides.length; b++){
+                c = a.slides[b], d = c.progress, scale = 1 - Math.min(Math.abs(.2 * d), 1), es = c.style,
+                    es.opacity = 1 - Math.min(Math.abs(d / 2), 1),
+                    es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = "translate3d(0px,0," + -Math.abs(150 * d) + "px)"
+            }
+        },
+        onSetTransition: function (a, b) {
+            for (var c = 0; c < a.slides.length; c++) es = a.slides[c].style, es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = b + "ms"
+        }
+    });
+</script>
+
+</body>
+</html>
