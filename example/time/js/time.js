@@ -130,16 +130,21 @@ body{
     color: #fff;
     overflow: hidden;
 }
-em{
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
+
+my-com{
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 span{
     font-size: 130px;
     line-height: 130px;
     display: inline-block;
-    vertical-align: middle;
     color: #fff;
 }
 span small{
@@ -183,20 +188,5 @@ span small{
     left: -7px;
 }
 
-.alert{
-    width: 290px;
-    height: 50px;
-    border-radius: 3px;
-    background: #2a2e34;
-    font-size: 16px;
-    color: #fff;
-    line-height: 50px;
-    text-align:center;
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    margin-left:-145px;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.7);
-    cursor: pointer;
-}
+
 `;
