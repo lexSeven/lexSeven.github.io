@@ -23,7 +23,7 @@
                         class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
                 </div>
                 <i class="iconfont icon-gongwenbao"></i>
-                <span class="item_text">0行业前景</span>
+                <span class="item_text">行业前景</span>
             </div>
             <div class="item active">
                 <i class="firstCircle"></i>
@@ -37,7 +37,7 @@
                         class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
                 </div>
                 <i class="iconfont icon-hangye"></i>
-                <span class="item_text">1人才需求</span>
+                <span class="item_text">人才需求</span>
             </div>
             <div class="item">
                 <i class="firstCircle"></i>
@@ -51,58 +51,114 @@
                         class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
                 </div>
                 <i class="iconfont icon-qianbao"></i>
-                <span class="item_text">2就业薪资</span>
+                <span class="item_text">就业薪资</span>
             </div>
+        </div>
+    </div>
+    <div class="lexSeven_box_right">
+        <div class="dataName">人才<br>需求</div>
+        <div class="dataBox"></div>
+        <div class="textbox">
+            <div class="textbox_title">人才需求</div>
+            <div class="textbox_subtitle">Java语言人才缺口大</div>
+            <div class="textbox_line">
+                <i class="dot red"></i>
+                <span>参差不齐人员<em>（5%）</em></span>
+            </div>
+            <div class="textbox_line">
+                <i class="dot yellow"></i>
+                <span>实际从业人员<em>（35%）</em></span>
+            </div>
+            <div class="textbox_line">
+                <i class="dot green"></i>
+                <span>Java工程师缺口<em>（60%）</em></span>
+            </div>
+            <div class="textbox_desc">85464个，Java工程师占软件行业<em>60%</em>， 市场人才缺口率达<em>45%</em></div>
         </div>
     </div>
 </div>
 
+<script src="js/echarts.min.js"></script>
 <script>
-    let parend = document.querySelector('.lexSeven_box');
-    let dotbox = document.querySelector('.lexSeven_box .dotBox');
-    let children = dotbox.querySelectorAll('.lexSeven_box .item');
-    let nowNum = 0;
-    let nowDom = 0;
-    let finish = true;
-    let timer = null;
 
-    dotbox.onclick = add;
+    lexSevenchange();
+    function lexSevenchange(){
+        let parend = document.querySelector('.lexSeven_box');
+        let dotbox = document.querySelector('.lexSeven_box .dotBox');
+        let children = dotbox.querySelectorAll('.lexSeven_box .item');
+        let nowNum = 0;
+        let nowDom = 0;
+        let finish = true;
+        let timer = null;
 
-    parend.onmouseover = function(){
-        clearInterval(timer)
-    }
-    parend.onmouseout = function(){
+        dotbox.onclick = add;
         timer = setInterval(add,2000);
-    }
 
-    function add(){
-        if(finish){
-            nowDom = (3 - nowNum)%3;
-            finish = false;
-            nowNum++;
-            domove(1);
+        parend.onmouseover = function(){
+            clearInterval(timer)
         }
-    }
-
-    function domove(num){
-        let deg = nowNum*120-30;
-        dotbox.style.transition = 'transform '+ num +'s';
-        dotbox.style.transform = 'rotate('+ deg +'deg)';
-
-        for(let i=0;i<children.length;i++){
-            children[i].className = 'item';
-            children[i].style.transition = num +'s';
-            children[i].style.transform = 'rotate('+ -deg +'deg)';
+        parend.onmouseout = function(){
+            timer = setInterval(add,2000);
         }
-        setTimeout(function(){
-            finish = true;
-            nowNum%=3;
-            if(!nowNum){
-                domove(0);
+
+        function add(){
+            if(finish){
+                nowDom = (3 - nowNum)%3;
+                finish = false;
+                nowNum++;
+                domove(1);
             }
-        },1000);
-        children[nowDom].classList.add('active');
+        }
+
+        function domove(num){
+            let deg = nowNum*120-30;
+            dotbox.style.transition = 'transform '+ num +'s';
+            dotbox.style.transform = 'rotate('+ deg +'deg)';
+
+            for(let i=0;i<children.length;i++){
+                children[i].className = 'item';
+                children[i].style.transition = num +'s';
+                children[i].style.transform = 'rotate('+ -deg +'deg)';
+            }
+            setTimeout(function(){
+                finish = true;
+                nowNum%=3;
+                if(!nowNum){
+                    domove(0);
+                }
+            },1000);
+            children[nowDom].classList.add('active');
+        }
     }
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.querySelector('.lexSeven_box_right .dataBox'));
+
+    // 指定图表的配置项和数据
+    option = {
+        series: [
+            {
+                name: '半径模式',
+                type: 'pie',
+                radius: [50, 100],
+                center: ['50%', '50%'],
+                roseType: 'radius',
+                label: {
+                    show: false
+                },
+                color:['#30d16c',  '#fbd84b','#ff2c27',],
+                data: [
+                    {value: 60, name: 'java工程师缺口'},
+                    {value: 35, name: '实际从业人员'},
+                    {value: 5, name: '参差不齐人员'}
+                ]
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
 </script>
 
 </body>

@@ -4,7 +4,6 @@ body{
 .lexSeven_box{
   width: 1100px;
   height: 570px;
-  border: 1px solid #0a3b98;
   margin: 0 auto;
   display: flex;
 
@@ -28,7 +27,6 @@ body{
     .dotBox{
       width: 290px;
       height: 290px;
-      //background: #899;
       position: absolute;
       left: 0;
       top: 50%;
@@ -49,7 +47,6 @@ body{
         margin: auto;
         box-shadow: 0 0 50px 50px #fff;
         background: linear-gradient(135deg, #999, #999, #0ac61c, #86e990) 0 0/300px 300px;
-        //background-size: 300px 300px;
         transition: 0.5s;
         text-align: center;
         color: #fff;
@@ -114,7 +111,6 @@ body{
           transform: scale(0.79);
           transition: 1s;
           @include circle(#f0f0f0,dashed);
-          //animation: reversemove 60s infinite linear;
         }
 
         .clockDot{
@@ -208,7 +204,167 @@ body{
   }
 
   &_right{
+    width: 660px;
+    height: 460px;
+    box-sizing: border-box;
+    border: 10px solid #f9fafc;
+    position: relative;
+    top: 65px;
+    display: flow-root;
 
+    &:before{
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      box-sizing: border-box;
+      border-top: 16px solid #dddddd;
+      border-left: 16px solid #dddddd;
+      left: -10px;
+      top: -10px;
+    }
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      box-sizing: border-box;
+      border-right: 16px solid #dddddd;
+      border-bottom: 16px solid #dddddd;
+      right: -10px;
+      bottom: -10px;
+    }
+
+    .dataName{
+      width: 60px;
+      height: 60px;
+      //background: #999;
+      position: absolute;
+      top: 185px;
+      left: 110px;
+      font-size: 24px;
+    }
+
+    .dataBox{
+      width: 266px;
+      height: 434px;
+      float: left;
+      position: relative;
+
+      &:before{
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        box-sizing: border-box;
+        border-top: 6px solid #eeeeee;
+        border-left: 6px solid #eeeeee;
+        left: 11px;
+        top: 11px;
+      }
+    }
+
+    .textbox{
+      width: 363px;
+      height: 434px;
+      float: right;
+
+      &:after{
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        box-sizing: border-box;
+        border-right: 6px solid #eeeeee;
+        border-bottom: 6px solid #eeeeee;
+        right: 11px;
+        bottom: 11px;
+      }
+
+      &_title{
+        padding-top: 35px;
+        line-height: 43px;
+        font-size: 24px;
+        color: #333333;
+        position: relative;
+        float: left;
+
+        &:after{
+          content: '';
+          position: absolute;
+          width: 30px;
+          height: 5px;
+          background: #333333;
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%);
+        }
+      }
+
+      &_subtitle{
+        line-height: 33px;
+        padding-top: 58px;
+        font-size: 18px;
+        color: #333333;
+        clear: both;
+      }
+
+      &_line{
+        line-height: 25px;
+        padding-top: 16px;
+        font-size: 14px;
+        color: #333;
+
+        .item{
+          width: 175px;
+        }
+        em{
+          color: #999999;
+          font-style: normal;
+        }
+        .dot{
+          width: 10px;
+          height: 10px;
+          display: inline-block;
+          vertical-align: middle;
+          border-radius: 50%;
+
+          &.red{
+            background: #ff2c27;
+          }
+
+          &.blue{
+            background: #275fff;
+          }
+
+          &.green{
+            background: #30d16c;
+          }
+
+          &.violet{
+            background: #a01df3;
+          }
+          
+          &.yellow{
+            background: #fbd84b;
+          }
+
+        }
+      }
+
+      &_desc{
+        line-height: 21px;
+        padding-top: 40px;
+        font-size: 18px;
+        width: 330px;
+
+        em{
+          color: #ff0f0f;
+          font-style: normal;
+        }
+      }
+    }
   }
 }
 

@@ -5,7 +5,6 @@ body {
 .lexSeven_box {
   width: 1100px;
   height: 570px;
-  border: 1px solid #0a3b98;
   margin: 0 auto;
   display: flex;
 }
@@ -284,6 +283,148 @@ body {
   position: absolute;
   left: 26px;
   top: 20px;
+}
+.lexSeven_box_right {
+  width: 660px;
+  height: 460px;
+  box-sizing: border-box;
+  border: 10px solid #f9fafc;
+  position: relative;
+  top: 65px;
+  display: flow-root;
+}
+.lexSeven_box_right:before {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  border-top: 16px solid #dddddd;
+  border-left: 16px solid #dddddd;
+  left: -10px;
+  top: -10px;
+}
+.lexSeven_box_right:after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  border-right: 16px solid #dddddd;
+  border-bottom: 16px solid #dddddd;
+  right: -10px;
+  bottom: -10px;
+}
+.lexSeven_box_right .dataName {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 185px;
+  left: 110px;
+  font-size: 24px;
+}
+.lexSeven_box_right .dataBox {
+  width: 266px;
+  height: 434px;
+  float: left;
+  position: relative;
+}
+.lexSeven_box_right .dataBox:before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  border-top: 6px solid #eeeeee;
+  border-left: 6px solid #eeeeee;
+  left: 11px;
+  top: 11px;
+}
+.lexSeven_box_right .textbox {
+  width: 363px;
+  height: 434px;
+  float: right;
+}
+.lexSeven_box_right .textbox:after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  border-right: 6px solid #eeeeee;
+  border-bottom: 6px solid #eeeeee;
+  right: 11px;
+  bottom: 11px;
+}
+.lexSeven_box_right .textbox_title {
+  padding-top: 35px;
+  line-height: 43px;
+  font-size: 24px;
+  color: #333333;
+  position: relative;
+  float: left;
+}
+.lexSeven_box_right .textbox_title:after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 5px;
+  background: #333333;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+.lexSeven_box_right .textbox_subtitle {
+  line-height: 33px;
+  padding-top: 58px;
+  font-size: 18px;
+  color: #333333;
+  clear: both;
+}
+.lexSeven_box_right .textbox_line {
+  line-height: 25px;
+  padding-top: 16px;
+  font-size: 14px;
+  color: #333;
+}
+.lexSeven_box_right .textbox_line .item {
+  width: 175px;
+}
+.lexSeven_box_right .textbox_line em {
+  color: #999999;
+  font-style: normal;
+}
+.lexSeven_box_right .textbox_line .dot {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+.lexSeven_box_right .textbox_line .dot.red {
+  background: #ff2c27;
+}
+.lexSeven_box_right .textbox_line .dot.blue {
+  background: #275fff;
+}
+.lexSeven_box_right .textbox_line .dot.green {
+  background: #30d16c;
+}
+.lexSeven_box_right .textbox_line .dot.violet {
+  background: #a01df3;
+}
+.lexSeven_box_right .textbox_line .dot.yellow {
+  background: #fbd84b;
+}
+.lexSeven_box_right .textbox_desc {
+  line-height: 21px;
+  padding-top: 40px;
+  font-size: 18px;
+  width: 330px;
+}
+.lexSeven_box_right .textbox_desc em {
+  color: #ff0f0f;
+  font-style: normal;
 }
 
 @keyframes move {
