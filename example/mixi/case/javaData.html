@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="lexSeven_box">
+    <div class="lexSeven_box_left">
+        <div class="lexSeven_box_left_circle"></div>
+        <div class="dotBox">
+            <div class="item">
+                <i class="firstCircle"></i>
+                <i class="secondCircle"></i>
+                <i class="thirdCircle"></i>
+                <div class="clockDot">
+                    <i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
+                </div>
+                <i class="iconfont icon-gongwenbao"></i>
+                <span class="item_text">行业前景</span>
+            </div>
+            <div class="item active">
+                <i class="firstCircle"></i>
+                <i class="secondCircle"></i>
+                <i class="thirdCircle"></i>
+                <div class="clockDot">
+                    <i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
+                </div>
+                <i class="iconfont icon-hangye"></i>
+                <span class="item_text">人才需求</span>
+            </div>
+            <div class="item">
+                <i class="firstCircle"></i>
+                <i class="secondCircle"></i>
+                <i class="thirdCircle"></i>
+                <div class="clockDot">
+                    <i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
+                </div>
+                <i class="iconfont icon-qianbao"></i>
+                <span class="item_text">就业薪资</span>
+            </div>
+            <div class="item">
+                <i class="firstCircle"></i>
+                <i class="secondCircle"></i>
+                <i class="thirdCircle"></i>
+                <div class="clockDot">
+                    <i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
+                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
+                </div>
+                <i class="iconfont icon-service"></i>
+                <span class="item_text">联系客服</span>
+            </div>
+        </div>
+        <div class="next"></div>
+        <div class="prev"></div>
+    </div>
+
+</div>
+
+<script>
+    let dotbox = document.querySelector('.lexSeven_box .dotBox');
+    let children = dotbox.querySelectorAll('.lexSeven_box .item');
+    let nextBox = document.querySelector('.lexSeven_box .next');
+    let prevBox = document.querySelector('.lexSeven_box .prev');
+    let nowNum = 1;
+    nextBox.onclick = function(){
+        if(nowNum>0){
+            nowNum--;
+            domove();
+        }
+    }
+    prevBox.onclick = function(){
+        if(nowNum<2){
+            nowNum ++;
+            domove();
+        }
+    }
+
+    function domove(){
+        let deg = nowNum*90-45;
+        let nowDom = children[Math.abs(nowNum-2)];
+        dotbox.style.transform = 'rotate('+ deg +'deg)';
+        for(let i=0;i<children.length;i++){
+            children[i].className = 'item';
+            children[i].style.transform = 'rotate('+ -deg +'deg)';
+        }
+        nowDom.classList.add('active')
+    }
+</script>
+
+</body>
+</html>

@@ -12,7 +12,8 @@ export default class popEvent {
         this.eventObj = option.obj;
         this.target = option.target || this.eventObj;
         this.eventType = option.eventType || 'click';
-        this.popup = option.popup || true;
+        this.popup = option.popup !== undefined?option.popup:true;
+        console.log(this.popup);
         this.bindEvent();
     }
     bindEvent() {
@@ -30,7 +31,6 @@ export default class popEvent {
                 num = Object.keys(dataset).length;
                 parent = obj.parentNode;
                 if (num < 1) {
-                    popup(parent);
                     num = 0;
                 } else {
                     for (b in dataset) {
@@ -43,8 +43,8 @@ export default class popEvent {
                             });
                         }
                     }
-                    _this.popup && popup(parent);
                 }
+                _this.popup && popup(parent);
             }
         })
     }

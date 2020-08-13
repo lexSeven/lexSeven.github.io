@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+<meta name="format-detection" content="telephone=no" />
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<link rel="stylesheet" type="text/css" href="{dede:global.cfg_templets_skin/}/css/css/style.css">
+<script src="{dede:global.cfg_templets_skin/}/js/js/autofontsize.min.js"></script>
+<script src="{dede:global.cfg_templets_skin/}/js/js/jquery.js"></script>
+</head>
+<body>
+<!--顶部开始-->
+<!-- {dede:include filename='head_m.htm'/}   -->
+
+<div class="topline">
+  <h1 class="logo">
+    <a href="/"><img src="img/logo.png"></a>
+  </h1>
+  <ul class="menu">
+    <li class="item"><a href="/">首页</a></li>
+    <li class="item"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">课程体系</a></li>
+    <li class="item"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">米犀名师</a></li>
+    <li class="item"><a href="about.html">关于我们</a></li>
+  </ul>
+</div>
+
+
+
+<img style="width:100%;" src="{dede:global.cfg_templets_skin/}/images/images/m_ab_banner.jpg"/>
+
+
+<!--位置开始-->
+{dede:include filename='location_m.htm'/} 
+<!--位置结束--> 
+<!--单页内容开始-->
+<section class="aboutPage" style="background:url({dede:global.cfg_templets_skin/}/images/images/m_about_bg.png) no-repeat bottom center; background-size:100% auto;">
+  <div class="txtcon" id="imgsy"> {dede:field.content/} </div>
+</section>
+<!--单页内容结束-->
+
+{dede:include filename='footer_m.htm'/}
+</body>
+</html>

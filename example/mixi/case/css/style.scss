@@ -1,0 +1,263 @@
+body{
+  margin: 0;
+}
+.lexSeven_box{
+  width: 1100px;
+  height: 570px;
+  border: 1px solid #0a3b98;
+  margin: 0 auto;
+  display: flex;
+
+  &_left{
+    width: 440px;
+    position: relative;
+    overflow: hidden;
+
+    &_circle{
+      width: 544px;
+      height: 455px;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(-232px, -50%);
+      box-sizing: border-box;
+      border: 24px solid #e0f8e9;
+      border-radius: 50%;
+    }
+
+    .dotBox{
+      width: 290px;
+      height: 290px;
+      //background: #899;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin: -145px 0 0 -60px;
+      transition: transform 1s;
+      transform:rotate(45deg);
+
+      .item{
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        position: absolute;
+        box-shadow: 0 0 50px 50px #fff;
+        transform:rotate(-45deg);
+        background: linear-gradient(135deg, #999, #999);
+        transition: 0.5s;
+        text-align: center;
+        color: #fff;
+
+        .iconfont{
+          width: 40px;
+          height: 40px;
+          padding-top: 14px;
+          display: inline-block;
+          font-size: 40px;
+        }
+
+        &_text{
+          display: inline-block;
+          width: 100%;
+          line-height: 24px;
+          font-size: 14px;
+        }
+
+        @mixin circle($color,$style:solid){
+          border: 1px $style $color;
+          border-radius: 50%;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+        }
+
+        .firstCircle{
+          width: 114px;
+          height: 114px;
+          margin: -58px 0 0 -58px;
+          transition: 1s;
+          @include circle(#999999);
+        }
+
+        .secondCircle{
+          width: 156px;
+          height: 156px;
+          margin: -79px 0 0 -79px;
+          transform: scale(0.73);
+          transition: 1s;
+          @include circle(#999999);
+        }
+
+        .thirdCircle{
+          width: 198px;
+          height: 198px;
+          margin: -100px 0 0 -100px;
+          transform: scale(0.79);
+          transition: 1s;
+          @include circle(#f0f0f0,dashed);
+          //animation: reversemove 60s infinite linear;
+        }
+
+        .clockDot{
+          width: 148px;
+          height: 148px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          margin: -74px 0 0 -74px;
+          transform: rotate(0deg);
+
+          .d{
+            width: 4px;
+            height: 10px;
+            background: #999999;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -5px 0 0 -2px;
+
+            &:nth-child(-n+11){
+              display: none;
+            }
+          }
+
+          $i:0;
+          @while($i<24){
+            $i:$i+1;
+            .d:nth-child(#{$i}){
+              transition: $i*0.1s;
+              transform:rotate($i * (360/24) *1deg) translateY(-68px);
+            }
+          }
+
+        }
+
+        &.active{
+          background: linear-gradient(135deg, #0ac61c, #86e990);
+
+          .firstCircle{
+            transform: scale(1);
+            @include circle(#36d271);
+          }
+
+          .secondCircle{
+            transform: scale(1);
+            @include circle(#96e7b4);
+          }
+
+          .thirdCircle{
+            @include circle(#96e7b4,dashed);
+            animation: reversemove 60s infinite linear;
+          }
+
+          .clockDot{
+            animation: move 20s infinite linear;
+
+            .d{
+              width: 4px;
+              height: 10px;
+              background: #6fdb7a;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              margin: -5px 0 0 -2px;
+
+              &:nth-child(-n+11){
+                display: block;
+              }
+            }
+
+          }
+        }
+
+        &:nth-child(1){
+          left: 0;
+          top: 0;
+          margin: -48px 0 0 -48px;
+        }
+        &:nth-child(2){
+          right: 0;
+          top: 0;
+          margin: -48px -48px 0 0;
+        }
+        &:nth-child(3){
+          right: 0;
+          bottom: 0;
+          margin: 0 -48px -48px 0;
+        }
+        &:nth-child(4){
+          left: 0;
+          bottom: 0;
+          margin: 0 0 -48px -48px;
+        }
+      }
+    }
+
+    .next{
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      bottom: 20px;
+      left: 26px;
+    }
+    .prev{
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      left: 26px;
+      top: 20px;
+    }
+  }
+
+  &_right{
+
+  }
+}
+
+@keyframes move {
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reversemove {
+  0%{
+    transform:scale(1) rotate(0deg);
+  }
+  100%{
+    transform:scale(1) rotate(-360deg);
+  }
+}
+
+@font-face {font-family: "iconfont";
+  src: url('../font/iconfont.eot?t=1597307735473'); /* IE9 */
+  src: url('../font/iconfont.eot?t=1597307735473#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2'),
+  url('../font/iconfont.woff?t=1597307735473') format('woff'),
+  url('../font/iconfont.ttf?t=1597307735473') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('../font/iconfont.svg?t=1597307735473#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-service:before {
+  content: "\e649";
+}
+
+.icon-hangye:before {
+  content: "\e64c";
+}
+
+.icon-gongwenbao:before {
+  content: "\e64d";
+}
+
+.icon-qianbao:before {
+  content: "\e64e";
+}
+

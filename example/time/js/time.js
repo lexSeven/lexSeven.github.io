@@ -17,12 +17,19 @@ export default class myCom extends HTMLElement {
         this._data = {
             date: attr.date ? attr.date.value : '日期还没计算好',
             time: attr.time ? attr.time.value : '时间是很宝贵的，不能轻易展示出来',
+            music: attr.music ? attr.music.value : false,
         }
         this.render();
         this.compileNode(this);
         this.observe(this._data);
         this.bindEvent();
         this.updateTime();
+        // this.addEvent = this.__proto__;
+
+        this._data.music && this.addMusic();
+    }
+    addEvent(name,fn){
+        this.__proto__[name] = fn;
     }
     observe(data) {
         let _this = this;
@@ -38,7 +45,8 @@ export default class myCom extends HTMLElement {
     }
     bindEvent() {
         this.event = new popEvent({
-            obj: this
+            obj: this,
+            popup: false
         });
     }
     render() {
@@ -58,7 +66,7 @@ export default class myCom extends HTMLElement {
         setInterval(function(){
             let d = new Date();
             _this._data.time = d.getHours() + ':' + addZero(d.getMinutes()) + ':' + addZero(d.getSeconds());
-            // _this.musicPlay();
+            _this._data.music && _this.musicPlay();
         },1000);
 
         function addZero(n){
