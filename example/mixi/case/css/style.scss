@@ -14,12 +14,12 @@ body{
     overflow: hidden;
 
     &_circle{
-      width: 544px;
-      height: 455px;
+      width: 380px;
+      height: 380px;
       position: absolute;
       left: 0;
       top: 50%;
-      transform: translate(-232px, -50%);
+      transform: translate(-72px, -50%);
       box-sizing: border-box;
       border: 24px solid #e0f8e9;
       border-radius: 50%;
@@ -32,21 +32,40 @@ body{
       position: absolute;
       left: 0;
       top: 50%;
-      margin: -145px 0 0 -60px;
+      margin: -145px 0 0 10px;
       transition: transform 1s;
-      transform:rotate(45deg);
+      border-radius: 50%;
+      transform:rotate(-30deg);
 
       .item{
         width: 96px;
         height: 96px;
         border-radius: 50%;
         position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
         box-shadow: 0 0 50px 50px #fff;
-        transform:rotate(-45deg);
-        background: linear-gradient(135deg, #999, #999);
+        background: linear-gradient(135deg, #999, #999, #0ac61c, #86e990) 0 0/300px 300px;
+        //background-size: 300px 300px;
         transition: 0.5s;
         text-align: center;
         color: #fff;
+        transform:rotate(30deg);
+
+        &:nth-child(1){
+          top: -295px;
+        }
+        &:nth-child(2){
+          top: 142px;
+          left: 224px;
+        }
+        &:nth-child(3){
+          top: 143px;
+          left: -255px;
+        }
 
         .iconfont{
           width: 40px;
@@ -133,7 +152,7 @@ body{
         }
 
         &.active{
-          background: linear-gradient(135deg, #0ac61c, #86e990);
+          background-position: right bottom;
 
           .firstCircle{
             transform: scale(1);
@@ -168,27 +187,6 @@ body{
             }
 
           }
-        }
-
-        &:nth-child(1){
-          left: 0;
-          top: 0;
-          margin: -48px 0 0 -48px;
-        }
-        &:nth-child(2){
-          right: 0;
-          top: 0;
-          margin: -48px -48px 0 0;
-        }
-        &:nth-child(3){
-          right: 0;
-          bottom: 0;
-          margin: 0 -48px -48px 0;
-        }
-        &:nth-child(4){
-          left: 0;
-          bottom: 0;
-          margin: 0 0 -48px -48px;
         }
       }
     }

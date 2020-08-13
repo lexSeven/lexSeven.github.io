@@ -23,7 +23,7 @@
                         class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
                 </div>
                 <i class="iconfont icon-gongwenbao"></i>
-                <span class="item_text">行业前景</span>
+                <span class="item_text">0行业前景</span>
             </div>
             <div class="item active">
                 <i class="firstCircle"></i>
@@ -37,7 +37,7 @@
                         class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
                 </div>
                 <i class="iconfont icon-hangye"></i>
-                <span class="item_text">人才需求</span>
+                <span class="item_text">1人才需求</span>
             </div>
             <div class="item">
                 <i class="firstCircle"></i>
@@ -51,57 +51,57 @@
                         class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
                 </div>
                 <i class="iconfont icon-qianbao"></i>
-                <span class="item_text">就业薪资</span>
-            </div>
-            <div class="item">
-                <i class="firstCircle"></i>
-                <i class="secondCircle"></i>
-                <i class="thirdCircle"></i>
-                <div class="clockDot">
-                    <i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
-                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
-                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
-                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i
-                        class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i>
-                </div>
-                <i class="iconfont icon-service"></i>
-                <span class="item_text">联系客服</span>
+                <span class="item_text">2就业薪资</span>
             </div>
         </div>
-        <div class="next"></div>
-        <div class="prev"></div>
     </div>
-
 </div>
 
 <script>
+    let parend = document.querySelector('.lexSeven_box');
     let dotbox = document.querySelector('.lexSeven_box .dotBox');
     let children = dotbox.querySelectorAll('.lexSeven_box .item');
-    let nextBox = document.querySelector('.lexSeven_box .next');
-    let prevBox = document.querySelector('.lexSeven_box .prev');
-    let nowNum = 1;
-    nextBox.onclick = function(){
-        if(nowNum>0){
-            nowNum--;
-            domove();
-        }
+    let nowNum = 0;
+    let nowDom = 0;
+    let finish = true;
+    let timer = null;
+
+    dotbox.onclick = add;
+
+    parend.onmouseover = function(){
+        clearInterval(timer)
     }
-    prevBox.onclick = function(){
-        if(nowNum<2){
-            nowNum ++;
-            domove();
+    parend.onmouseout = function(){
+        timer = setInterval(add,2000);
+    }
+
+    function add(){
+        if(finish){
+            nowDom = (3 - nowNum)%3;
+            finish = false;
+            nowNum++;
+            domove(1);
         }
     }
 
-    function domove(){
-        let deg = nowNum*90-45;
-        let nowDom = children[Math.abs(nowNum-2)];
+    function domove(num){
+        let deg = nowNum*120-30;
+        dotbox.style.transition = 'transform '+ num +'s';
         dotbox.style.transform = 'rotate('+ deg +'deg)';
+
         for(let i=0;i<children.length;i++){
             children[i].className = 'item';
+            children[i].style.transition = num +'s';
             children[i].style.transform = 'rotate('+ -deg +'deg)';
         }
-        nowDom.classList.add('active')
+        setTimeout(function(){
+            finish = true;
+            nowNum%=3;
+            if(!nowNum){
+                domove(0);
+            }
+        },1000);
+        children[nowDom].classList.add('active');
     }
 </script>
 
