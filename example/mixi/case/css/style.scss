@@ -34,172 +34,157 @@ body{
       transition: transform 1s;
       border-radius: 50%;
       transform:rotate(-30deg);
+    }
 
-      .item{
-        width: 96px;
-        height: 96px;
+    .item{
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      box-shadow: 0 0 50px 50px #fff;
+      background: linear-gradient(135deg, #999, #999, #0ac61c, #86e990) 0 0/300px 300px;
+      transition: 0.5s;
+      text-align: center;
+      color: #fff;
+      transform:rotate(30deg);
+
+      &:nth-child(1){
+        top: -295px;
+      }
+      &:nth-child(2){
+        top: 142px;
+        left: 224px;
+      }
+      &:nth-child(3){
+        top: 143px;
+        left: -255px;
+      }
+
+      .iconfont{
+        width: 40px;
+        height: 40px;
+        padding-top: 14px;
+        display: inline-block;
+        font-size: 40px;
+      }
+
+      &_text{
+        display: inline-block;
+        width: 100%;
+        line-height: 24px;
+        font-size: 14px;
+      }
+
+      @mixin circle($color,$style:solid){
+        border: 1px $style $color;
         border-radius: 50%;
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        box-shadow: 0 0 50px 50px #fff;
-        background: linear-gradient(135deg, #999, #999, #0ac61c, #86e990) 0 0/300px 300px;
-        transition: 0.5s;
-        text-align: center;
-        color: #fff;
-        transform:rotate(30deg);
+        left: 50%;
+        top: 50%;
+      }
 
-        &:nth-child(1){
-          top: -295px;
-        }
-        &:nth-child(2){
-          top: 142px;
-          left: 224px;
-        }
-        &:nth-child(3){
-          top: 143px;
-          left: -255px;
-        }
+      .firstCircle{
+        width: 114px;
+        height: 114px;
+        margin: -58px 0 0 -58px;
+        transition: 1s;
+        @include circle(#999999);
+      }
 
-        .iconfont{
-          width: 40px;
-          height: 40px;
-          padding-top: 14px;
-          display: inline-block;
-          font-size: 40px;
-        }
+      .secondCircle{
+        width: 156px;
+        height: 156px;
+        margin: -79px 0 0 -79px;
+        transform: scale(0.73);
+        transition: 1s;
+        @include circle(#999999);
+      }
 
-        &_text{
-          display: inline-block;
-          width: 100%;
-          line-height: 24px;
-          font-size: 14px;
-        }
+      .thirdCircle{
+        width: 198px;
+        height: 198px;
+        margin: -100px 0 0 -100px;
+        transform: scale(0.79);
+        transition: 1s;
+        @include circle(#f0f0f0,dashed);
+      }
 
-        @mixin circle($color,$style:solid){
-          border: 1px $style $color;
-          border-radius: 50%;
+      .clockDot{
+        width: 148px;
+        height: 148px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -74px 0 0 -74px;
+        transform: rotate(0deg);
+
+        .d{
+          width: 4px;
+          height: 10px;
+          background: #999999;
           position: absolute;
-          left: 50%;
           top: 50%;
+          left: 50%;
+          margin: -5px 0 0 -2px;
+
+          &:nth-child(-n+11){
+            display: none;
+          }
         }
+
+        $i:0;
+        @while($i<24){
+          $i:$i+1;
+          .d:nth-child(#{$i}){
+            transition: $i*0.1s;
+            transform:rotate($i * (360/24) *1deg) translateY(-68px);
+          }
+        }
+
+      }
+
+      &.active{
+        background-position: right bottom;
 
         .firstCircle{
-          width: 114px;
-          height: 114px;
-          margin: -58px 0 0 -58px;
-          transition: 1s;
-          @include circle(#999999);
+          transform: scale(1);
+          @include circle(#36d271);
         }
 
         .secondCircle{
-          width: 156px;
-          height: 156px;
-          margin: -79px 0 0 -79px;
-          transform: scale(0.73);
-          transition: 1s;
-          @include circle(#999999);
+          transform: scale(1);
+          @include circle(#96e7b4);
         }
 
         .thirdCircle{
-          width: 198px;
-          height: 198px;
-          margin: -100px 0 0 -100px;
-          transform: scale(0.79);
-          transition: 1s;
-          @include circle(#f0f0f0,dashed);
+          @include circle(#96e7b4,dashed);
+          animation: reversemove 60s infinite linear;
         }
 
         .clockDot{
-          width: 148px;
-          height: 148px;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          margin: -74px 0 0 -74px;
-          transform: rotate(0deg);
+          animation: move 20s infinite linear;
 
           .d{
             width: 4px;
             height: 10px;
-            background: #999999;
+            background: #6fdb7a;
             position: absolute;
             top: 50%;
             left: 50%;
             margin: -5px 0 0 -2px;
 
             &:nth-child(-n+11){
-              display: none;
+              display: block;
             }
           }
 
-          $i:0;
-          @while($i<24){
-            $i:$i+1;
-            .d:nth-child(#{$i}){
-              transition: $i*0.1s;
-              transform:rotate($i * (360/24) *1deg) translateY(-68px);
-            }
-          }
-
-        }
-
-        &.active{
-          background-position: right bottom;
-
-          .firstCircle{
-            transform: scale(1);
-            @include circle(#36d271);
-          }
-
-          .secondCircle{
-            transform: scale(1);
-            @include circle(#96e7b4);
-          }
-
-          .thirdCircle{
-            @include circle(#96e7b4,dashed);
-            animation: reversemove 60s infinite linear;
-          }
-
-          .clockDot{
-            animation: move 20s infinite linear;
-
-            .d{
-              width: 4px;
-              height: 10px;
-              background: #6fdb7a;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              margin: -5px 0 0 -2px;
-
-              &:nth-child(-n+11){
-                display: block;
-              }
-            }
-
-          }
         }
       }
-    }
-
-    .next{
-      width: 120px;
-      height: 120px;
-      position: absolute;
-      bottom: 20px;
-      left: 26px;
-    }
-    .prev{
-      width: 120px;
-      height: 120px;
-      position: absolute;
-      left: 26px;
-      top: 20px;
     }
   }
 
@@ -207,10 +192,12 @@ body{
     width: 660px;
     height: 460px;
     box-sizing: border-box;
-    border: 10px solid #f9fafc;
+    //border: 10px solid #f9fafc;
+    box-shadow: inset 0 0 0 10px #f9fafc;
     position: relative;
     top: 65px;
     display: flow-root;
+    overflow: hidden;
 
     &:before{
       content: '';
@@ -220,8 +207,8 @@ body{
       box-sizing: border-box;
       border-top: 16px solid #dddddd;
       border-left: 16px solid #dddddd;
-      left: -10px;
-      top: -10px;
+      left: 0;
+      top: 0;
     }
 
     &:after{
@@ -232,8 +219,30 @@ body{
       box-sizing: border-box;
       border-right: 16px solid #dddddd;
       border-bottom: 16px solid #dddddd;
-      right: -10px;
-      bottom: -10px;
+      right: 0;
+      bottom: 0;
+    }
+
+    .rightBox{
+      width: 640px;
+      height: 440px;
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      transition: 0.5s;
+
+      &.show{
+        left: 10px;
+        opacity: 1;
+      }
+      &.hide{
+        left: 100%;
+        opacity: 0;
+      }
+      &.ready{
+        left: -100%;
+        opacity: 0;
+      }
     }
 
     .dataName{
@@ -252,6 +261,30 @@ body{
       float: left;
       position: relative;
 
+      &.last{
+        width: 640px;
+        height: 240px;
+        background: url("../images/data_03.png") no-repeat center
+      top;
+
+        &:before{
+          display: none;
+        }
+
+        &:after{
+          content: '';
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          box-sizing: border-box;
+          border-right: 6px solid #eeeeee;
+          border-bottom: 6px solid #eeeeee;
+          right: 11px;
+          bottom: -10px;
+        }
+
+      }
+
       &:before{
         content: '';
         position: absolute;
@@ -267,8 +300,33 @@ body{
 
     .textbox{
       width: 363px;
-      height: 434px;
+      height: 440px;
       float: right;
+      position: relative;
+      z-index: 2;
+
+      &.last{
+        float: none;
+        height: 177px;
+        width: 640px;
+        text-align: center;
+
+        &:after{
+          display: none;
+        }
+
+        &:before{
+          content: '';
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          box-sizing: border-box;
+          border-top: 6px solid #eeeeee;
+          border-left: 6px solid #eeeeee;
+          left: 11px;
+          top: 11px;
+        }
+      }
 
       &:after{
         content: '';
@@ -290,6 +348,11 @@ body{
         position: relative;
         float: left;
 
+        &.last{
+          float: none;
+          display: inline-block;
+        }
+
         &:after{
           content: '';
           position: absolute;
@@ -308,6 +371,10 @@ body{
         font-size: 18px;
         color: #333333;
         clear: both;
+
+        &.last{
+          padding-top: 48px;
+        }
       }
 
       &_line{
@@ -315,10 +382,13 @@ body{
         padding-top: 16px;
         font-size: 14px;
         color: #333;
+        display: flex;
+        align-items: center;
 
         .item{
           width: 175px;
         }
+
         em{
           color: #999999;
           font-style: normal;

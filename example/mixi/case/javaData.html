@@ -56,24 +56,74 @@
         </div>
     </div>
     <div class="lexSeven_box_right">
-        <div class="dataName">人才<br>需求</div>
-        <div class="dataBox"></div>
-        <div class="textbox">
-            <div class="textbox_title">人才需求</div>
-            <div class="textbox_subtitle">Java语言人才缺口大</div>
-            <div class="textbox_line">
-                <i class="dot red"></i>
-                <span>参差不齐人员<em>（5%）</em></span>
+        <div class="rightBox ready">
+            <div class="dataName">就职<br>范围</div>
+            <div class="dataBox" data-name="range"></div>
+            <div class="textbox">
+                <div class="textbox_title">行业前景</div>
+                <div class="textbox_subtitle">Java语言就职范围广</div>
+                <div class="textbox_line">
+                    <div class="item">
+                        <i class="dot red"></i>
+                        <span>互联网<em>（30%）</em></span>
+                    </div>
+                    <div class="item">
+                        <i class="dot blue"></i>
+                        <span>酒店旅游<em>（15%）</em></span>
+                    </div>
+                </div>
+                <div class="textbox_line">
+                    <div class="item">
+                        <i class="dot green"></i>
+                        <span>金融<em>（20%）</em></span>
+                    </div>
+                    <div class="item">
+                        <i class="dot violet"></i>
+                        <span>其他<em>（10%）</em></span>
+                    </div>
+                </div>
+                <div class="textbox_line">
+                    <div class="item">
+                        <i class="dot yellow"></i>
+                        <span>电子科技<em>（25%）</em></span>
+                    </div>
+                </div>
+                <div class="textbox_desc">Java语言使用最多，高达<em>45.4%</em>！</div>
             </div>
-            <div class="textbox_line">
-                <i class="dot yellow"></i>
-                <span>实际从业人员<em>（35%）</em></span>
+        </div>
+        <div class="rightBox show">
+            <div class="dataName">人才<br>需求</div>
+            <div class="dataBox" data-name="demand"></div>
+            <div class="textbox">
+                <div class="textbox_title">人才需求</div>
+                <div class="textbox_subtitle">Java语言人才缺口大</div>
+                <div class="textbox_line">
+                    <div class="item">
+                        <i class="dot red"></i>
+                        <span>参差不齐人员<em>（5%）</em></span>
+                    </div>
+                </div>
+                <div class="textbox_line">
+                    <div class="item">
+                        <i class="dot yellow"></i>
+                        <span>实际从业人员<em>（35%）</em></span>
+                    </div>
+                </div>
+                <div class="textbox_line">
+                    <div class="item">
+                        <i class="dot green"></i>
+                        <span>Java工程师缺口<em>（60%）</em></span>
+                    </div>
+                </div>
+                <div class="textbox_desc">85464个，Java工程师占软件行业<em>60%</em>， 市场人才缺口率达<em>45%</em></div>
             </div>
-            <div class="textbox_line">
-                <i class="dot green"></i>
-                <span>Java工程师缺口<em>（60%）</em></span>
+        </div>
+        <div class="rightBox hide">
+            <div class="textbox last">
+                <div class="textbox_title last">就业薪资</div>
+                <div class="textbox_subtitle last">Java工程师薪资高（且数据显示JAVA起点高，没有上限！）</div>
             </div>
-            <div class="textbox_desc">85464个，Java工程师占软件行业<em>60%</em>， 市场人才缺口率达<em>45%</em></div>
+            <div class="dataBox last" data-name="salary"></div>
         </div>
     </div>
 </div>
@@ -86,23 +136,26 @@
         let parend = document.querySelector('.lexSeven_box');
         let dotbox = document.querySelector('.lexSeven_box .dotBox');
         let children = dotbox.querySelectorAll('.lexSeven_box .item');
+        let rightChild = document.querySelectorAll('.lexSeven_box_right .rightBox');
         let nowNum = 0;
-        let nowDom = 0;
+        let nowDom = 1;
         let finish = true;
         let timer = null;
+        let prevNum = 1;
 
         dotbox.onclick = add;
-        timer = setInterval(add,2000);
+        timer = setInterval(add,3500);
 
         parend.onmouseover = function(){
             clearInterval(timer)
         }
         parend.onmouseout = function(){
-            timer = setInterval(add,2000);
+            timer = setInterval(add,3500);
         }
 
         function add(){
             if(finish){
+                prevNum = nowDom;
                 nowDom = (3 - nowNum)%3;
                 finish = false;
                 nowNum++;
@@ -116,6 +169,7 @@
             dotbox.style.transform = 'rotate('+ deg +'deg)';
 
             for(let i=0;i<children.length;i++){
+                rightChild[i].className = 'rightBox ready';
                 children[i].className = 'item';
                 children[i].style.transition = num +'s';
                 children[i].style.transform = 'rotate('+ -deg +'deg)';
@@ -128,14 +182,18 @@
                 }
             },1000);
             children[nowDom].classList.add('active');
+            rightChild[nowDom].className = 'rightBox show';
+            console.log(nowDom,prevNum);
+            rightChild[prevNum].className = 'rightBox hide';
         }
     }
 
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.querySelector('.lexSeven_box_right .dataBox'));
+    let demandChart = echarts.init(document.querySelector('.lexSeven_box_right [data-name="demand"]'));
+    let rangeChart = echarts.init(document.querySelector('.lexSeven_box_right [data-name="range"]'));
 
     // 指定图表的配置项和数据
-    option = {
+    demandOption = {
         series: [
             {
                 name: '半径模式',
@@ -156,8 +214,32 @@
         ]
     };
 
+    rangeOption = {
+        series: [
+            {
+                name: '半径模式',
+                type: 'pie',
+                radius: [50, 100],
+                center: ['50%', '50%'],
+                roseType: 'radius',
+                label: {
+                    show: false
+                },
+                color:['#ff2c27','#275fff','#30d16c','#a01df3','#fbd84b'],
+                data: [
+                    {value: 30, name: '互联网'},
+                    {value: 25, name: '电子科技'},
+                    {value: 20, name: '金融'},
+                    {value: 15, name: '酒店旅游'},
+                    {value: 10, name: '其他'}
+                ]
+            }
+        ]
+    };
+
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    demandChart.setOption(demandOption);
+    rangeChart.setOption(rangeOption);
 
 </script>
 
