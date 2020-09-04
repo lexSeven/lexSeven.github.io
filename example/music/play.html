@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .control{
+            width:500px;
+            display: flex;
+            justify-content: space-between;
+            margin:10px 0;
+        }
+        .btn{
+            border:1px solid #1b6d85;
+            border-radius: 2px;
+            padding:5px 10px;
+            width:60px;
+            text-align: center;
+        }
+
+        .time{
+            padding:5px 10px;
+        }
+        .line{
+            height:2px;
+            border-radius: 2px;
+            background: #cfcfcf;
+            float: left;
+            width:500px;
+            line-height:0;
+            overflow: hidden;
+        }
+        .line span{
+            display: inline-block;
+            height:100%;
+            width:0%;
+            background: #e15671;
+            line-height: 0;
+            vertical-align: top;
+        }
+        .dot{
+            width:800px;
+            height: 400px;
+            border-bottom:1px solid #1b6d85;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+        .dot span{
+            width:10px;
+            height:300px;
+            background:url("img/line.png") no-repeat bottom;
+        }
+    </style>
+</head>
+<body>
+
+<div class="control">
+    <div class="btn play">播放</div>
+    <div class="btn stop">暂停</div>
+    <div class="btn replay">继续</div>
+    <div class="btn next">下一首</div>
+    <span class="time">00:00/00:00</span>
+</div>
+
+<div class="line"><span></span></div>
+
+<div class="dot"></div>
+
+
+<script>
+    var music = {
+        init:function(){
+            var _this = music;
+            _this.playBtn = document.querySelector('.play');
+            _this.stopBtn = document.querySelector('.stop');
+            _this.replay = document.querySelector('.replay');
+            _this.time = document.querySelector('.time');
+            _this.proLine = document.querySelector('.line');
+            _this.proBtn = document.querySelector('.line span');
+            _this.next = document.querySelector('.next');
+            _this.dotBox = document.querySelector('.dot');
+            _this.audio = new Audio();
+            _this.addEvent();
+            _this.listNum = 50;
+            _this.now = 0;
+        },
+        musicList:[
+            'img/mo.mp3',
+            'img/Rihanna - Only Girl (In The World).mp3',
+            'img/Remix.mp3',
+            'img/Neptune Illusion Dennis Kuo .mp3'
+        ],
+        addEvent:function(){
+            var _this = music;
+            _this.playBtn.onclick = _this.play;
+            _this.proLine.onclick = function(ev){
+                _this.setPro(ev,this);
+            }
+            _this.stopBtn.onclick = function(){
+                _this.audio.pause();
+            }
+            _this.replay.onclick = function(){
+                _this.audio.play();
+            }
+            _this.next.onclick = function(){
+                _this.now ++;
+                _this.play();
+            }
+        },
+        reset:function(){
+            var _this = music;
+            _this.audio.pause();
+            _this.audio = null;
+            _this.audio = new Audio();
+            _this.audioContext = null;
+            _this.analyser = null;
+            _this.sourceNode = null;
+            _this.freqArray = null;
+        },
+        play:function(){
+            var _this = music;
+            _this.reset();
+            _this.audio.src = _this.musicList[_this.now];
+            _this.audio.addEventListener("canplay", function() {
+                _this.audio.play();
+
+                var duraMin = parseInt(_this.audio.duration/60);
+                duraMin = duraMin<10?'0'+duraMin:duraMin;
+                var durSec = parseInt(_this.audio.duration%60);
+                durSec = durSec<10?'0'+durSec:durSec;
+                _this.musicStatic = {
+                    durationMin:duraMin + ':' + durSec,
+                    duration:parseInt(_this.audio.duration)
+                };
+
+                _this.createObj();
+            }, false);
+        },
+        setPro:function(ev,obj){
+            var _this = music;
+            var width = obj.getBoundingClientRect().width;
+            var left = obj.getBoundingClientRect().left;
+            var time = (ev.clientX-left)/width * _this.audio.duration;
+            _this.audio.currentTime=time;
+        },
+        createObj:function(){
+            var _this = music;
+            _this.audioContext = _this.audioContext || new AudioContext();
+            _this.analyser = (_this.analyser || _this.audioContext.createAnalyser());
+            _this.sourceNode = _this.audioContext.createMediaElementSource(_this.audio);
+            _this.sourceNode.connect(_this.analyser);
+            _this.sourceNode.connect(_this.audioContext.destination);
+            _this.getData();
+        },
+        getData:function(){
+            var _this = music;
+            //得到的音频是一个二进制的，需要，解析数据
+            _this.freqArray = new Uint8Array(_this.analyser.frequencyBinCount);
+            //得到数组
+            _this.analyser.getByteFrequencyData(_this.freqArray);
+            _this.move(_this.freqArray);
+            requestAnimationFrame(_this.getData);
+        },
+        move:function(data){
+            var _this = music;
+
+
+            var currMin = parseInt(_this.audio.currentTime/60);
+            currMin = currMin<10?'0'+currMin:currMin;
+            var currSec = parseInt(_this.audio.currentTime%60);
+            currSec = currSec<10?'0'+currSec:currSec;
+            _this.time.innerText = currMin + ':' + currSec + ' / ' + _this.musicStatic.durationMin;
+            _this.proBtn.style.width = (_this.audio.currentTime/_this.musicStatic.duration)*100+'%';
+
+            _this.dotBox.innerHTML = '';
+            var step = Math.round(data.length/_this.listNum);
+            var height = 0;
+            var str = '';
+            for(var i=0;i<_this.listNum;i++){
+                height = data[i*step];
+                str +='<span style="height:'+ height +'px"></span>'
+            }
+            _this.dotBox.innerHTML = str;
+        }
+    };
+
+    music.init();
+
+</script>
+
+</body>
+</html>

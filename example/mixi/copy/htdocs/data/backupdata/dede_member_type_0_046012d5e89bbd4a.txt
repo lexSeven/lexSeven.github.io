@@ -1,0 +1,1 @@
+INSERT INTO `dede_member_type` VALUES('1','50','中级会员半年','100','7');

@@ -1,0 +1,4 @@
+INSERT INTO `dede_shops_delivery` VALUES('1','送货上门','10.21','送货上门,领取商品时付费.','0');
+INSERT INTO `dede_shops_delivery` VALUES('2','特快专递（EMS）','25.00','特快专递（EMS）,要另收手续费.','0');
+INSERT INTO `dede_shops_delivery` VALUES('3','普通邮递','5.00','普通邮递','0');
+INSERT INTO `dede_shops_delivery` VALUES('4','邮局快邮','12.00','邮局快邮','0');

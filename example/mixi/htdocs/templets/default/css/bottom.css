@@ -1,0 +1,116 @@
+
+.bottom {
+    width: 6.9rem;
+    padding: 0 0.3rem;
+    height: 1rem;
+    border-top: 0.01rem solid #ddd;
+    position: fixed;
+    background: #fff;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    line-height: 0;
+    z-index: 9;
+}
+.bottom_item {
+    text-align: center;
+    /*padding-top: 0.1rem;*/
+    flex: 1;
+}
+.bottom_item .now {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    border-width: 0.01rem;
+    border-style: solid;
+    border-color: #ddd #ddd transparent transparent;
+    position: absolute;
+    top: -0.64rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    background: #fff;
+}
+.bottom_item .now .btn {
+    width: 0.99rem;
+    height: 0.99rem;
+    background: linear-gradient(to right bottom, #fe7e47, #f41009);
+    position: absolute;
+    top: 0.1rem;
+    left: 0.1rem;
+    border-radius: 50%;
+    transform: rotate(45deg);
+    font-size: 0;
+    line-height: 0;
+}
+.bottom_item .now .btn > * {
+    display: inline-block;
+    vertical-align: middle;
+    font: 0.18rem/0.9rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+    color: inherit;
+}
+.bottom_item .now .btn:before {
+    content: '';
+    width: 0;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.bottom_item .now .btn i {
+    color: #fff;
+    font-size: 0.6rem;
+}
+.bottom_item i {
+    font-size: 0.48rem;
+    line-height: 0.6rem;
+}
+.bottom_item span {
+    display: inline-block;
+    width: 100%;
+    font: 0.18rem/0.3rem "PingFangSC-Light", "PingFangSC-Medium", "微软雅黑";
+    color: #666666;
+}
+.bottom_item span.middle {
+    padding-top: 0.57rem;
+    color: #ff9918;
+    position:relative;
+}
+
+
+.dialog {
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 100%;
+    opacity: 0;
+    transition: 0.5s;
+    z-index: 11;
+}
+.dialog.active {
+    top: 0;
+    opacity: 1;
+}
+.dialog.active .main {
+    margin-top: 0;
+    opacity: 1;
+}
+.dialog .main {
+    width: 3.94rem;
+    height: 4.48rem;
+    border: 0.3rem solid #fff;
+    background: #fff url("../images/code_03.png") center center/100%;
+    border-radius: 0.06rem;
+    margin-top: -4rem;
+    opacity: 0;
+    transition: 1s;
+}
+
+.dialog .main img{
+    width: 100%;
+}

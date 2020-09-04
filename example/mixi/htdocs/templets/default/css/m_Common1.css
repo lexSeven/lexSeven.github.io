@@ -2507,4 +2507,484 @@ dddddd
 }
 
 
+
+.lexSeven_box {
+    width: 100%;
+}
+
+.lexSeven_box_Menu {
+    height: 3.7rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0.36rem 0;
+}
+.lexSeven_box_Menu .item {
+    width: 1.13rem;
+    height: 1.13rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0.5rem 0.5rem #fff;
+    background: linear-gradient(135deg, #999, #999, #0ac61c, #86e990) 0 0/3rem 3rem;
+    transition: background 0.5s;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+.lexSeven_box_Menu .item.active {
+    background-position: right bottom;
+}
+.lexSeven_box_Menu .item.active .item_text {
+    color: #36d271;
+}
+.lexSeven_box_Menu .item.active .arrow {
+    top: 2.7rem;
+    opacity: 1;
+}
+.lexSeven_box_Menu .item.active .firstCircle {
+    transform: scale(1);
+    border: 1px solid #36d271;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.lexSeven_box_Menu .item.active .secondCircle {
+    transform: scale(1);
+    border: 1px solid #96e7b4;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.lexSeven_box_Menu .item.active .thirdCircle {
+    border: 1px dashed #96e7b4;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    animation: reversemove 60s infinite linear;
+}
+.lexSeven_box_Menu .item.active .clockDot {
+    animation: move 20s infinite linear;
+}
+.lexSeven_box_Menu .item.active .clockDot .d {
+    background: #6fdb7a;
+}
+.lexSeven_box_Menu .item.active .clockDot .d:nth-child(-n+11) {
+    display: block;
+}
+.lexSeven_box_Menu .item .iconfont {
+    width: 0.8rem;
+    height: 0.8rem;
+    padding-top: 0.14rem;
+    display: inline-block;
+    font-size: 0.8rem;
+    vertical-align: top;
+}
+.lexSeven_box_Menu .item .item_text {
+    width: 1.6rem;
+    height: 0.4rem;
+    font-size: 0.3rem;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 2rem;
+    margin-left: -0.8rem;
+    color: #999;
+}
+.lexSeven_box_Menu .item .arrow {
+    width: 0.52rem;
+    height: 0.6rem;
+    background: url("../images/arrow.png") no-repeat center center/100%;
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    margin-left: -0.26rem;
+    opacity: 0;
+    transition: 1s;
+}
+.lexSeven_box_Menu .firstCircle {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin: -0.66rem 0 0 -0.66rem;
+    transition: 1s;
+    border: 1px solid #999999;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.lexSeven_box_Menu .secondCircle {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin: -0.91rem 0 0 -0.91rem;
+    transform: scale(0.73);
+    transition: 1s;
+    border: 1px solid #999999;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.lexSeven_box_Menu .thirdCircle {
+    width: 2.3rem;
+    height: 2.3rem;
+    margin: -1.15rem 0 0 -1.15rem;
+    transform: scale(0.79);
+    transition: 1s;
+    border: 1px dashed #f0f0f0;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.lexSeven_box_Menu .clockDot {
+    width: 1.7rem;
+    height: 1.7rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -0.85rem 0 0 -0.85rem;
+    transform: rotate(0deg);
+}
+.lexSeven_box_Menu .clockDot .d {
+    width: 0.04rem;
+    height: 0.12rem;
+    background: #999999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -0.06rem 0 0 -0.02rem;
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(-n+11) {
+    display: none;
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(1) {
+    transition: 0.1s;
+    transform: rotate(15deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(2) {
+    transition: 0.2s;
+    transform: rotate(30deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(3) {
+    transition: 0.3s;
+    transform: rotate(45deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(4) {
+    transition: 0.4s;
+    transform: rotate(60deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(5) {
+    transition: 0.5s;
+    transform: rotate(75deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(6) {
+    transition: 0.6s;
+    transform: rotate(90deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(7) {
+    transition: 0.7s;
+    transform: rotate(105deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(8) {
+    transition: 0.8s;
+    transform: rotate(120deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(9) {
+    transition: 0.9s;
+    transform: rotate(135deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(10) {
+    transition: 1s;
+    transform: rotate(150deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(11) {
+    transition: 1.1s;
+    transform: rotate(165deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(12) {
+    transition: 1.2s;
+    transform: rotate(180deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(13) {
+    transition: 1.3s;
+    transform: rotate(195deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(14) {
+    transition: 1.4s;
+    transform: rotate(210deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(15) {
+    transition: 1.5s;
+    transform: rotate(225deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(16) {
+    transition: 1.6s;
+    transform: rotate(240deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(17) {
+    transition: 1.7s;
+    transform: rotate(255deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(18) {
+    transition: 1.8s;
+    transform: rotate(270deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(19) {
+    transition: 1.9s;
+    transform: rotate(285deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(20) {
+    transition: 2s;
+    transform: rotate(300deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(21) {
+    transition: 2.1s;
+    transform: rotate(315deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(22) {
+    transition: 2.2s;
+    transform: rotate(330deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(23) {
+    transition: 2.3s;
+    transform: rotate(345deg) translateY(-0.77rem);
+}
+.lexSeven_box_Menu .clockDot .d:nth-child(24) {
+    transition: 2.4s;
+    transform: rotate(360deg) translateY(-0.77rem);
+}
+.lexSeven_box_content {
+    width: 6.9rem;
+    height: 4.6rem;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 0 0.1rem #f9fafc;
+    position: relative;
+    margin: 0 auto;
+}
+.lexSeven_box_content:before {
+    content: '';
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    box-sizing: border-box;
+    border-top: 0.16rem solid #dddddd;
+    border-left: 0.16rem solid #dddddd;
+    left: 0;
+    top: 0;
+}
+.lexSeven_box_content:after {
+    content: '';
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    box-sizing: border-box;
+    border-right: 0.16rem solid #dddddd;
+    border-bottom: 0.16rem solid #dddddd;
+    right: 0;
+    bottom: 0;
+}
+.lexSeven_box_content .rightBox {
+    width: 6.7rem;
+    height: 4.4rem;
+    position: absolute;
+    left: 0.1rem;
+    top: 0.1rem;
+    transition: 0.5s;
+}
+.lexSeven_box_content .rightBox.show {
+    opacity: 1;
+}
+.lexSeven_box_content .rightBox.hide {
+    opacity: 0;
+}
+.lexSeven_box_content .dataName {
+    width: 0.6rem;
+    height: 0.6rem;
+    position: absolute;
+    top: 1.86rem;
+    left: 1.11rem;
+    font-size: 0.24rem;
+}
+.lexSeven_box_content .dataBox {
+    width: 2.66rem;
+    height: 4.34rem;
+    float: left;
+    position: relative;
+}
+.lexSeven_box_content .dataBox.last {
+    width: 6.7rem;
+    height: 2.40rem;
+    background: url("../images/data_03.png") no-repeat center top/96%;
+}
+.lexSeven_box_content .dataBox.last:before {
+    display: none;
+}
+.lexSeven_box_content .dataBox.last:after {
+    content: '';
+    position: absolute;
+    width: 0.3rem;
+    height: 0.3rem;
+    box-sizing: border-box;
+    border-right: 0.06rem solid #eeeeee;
+    border-bottom: 0.06rem solid #eeeeee;
+    right: 0.14rem;
+    bottom: -0.1rem;
+}
+.lexSeven_box_content .dataBox:before {
+    content: '';
+    position: absolute;
+    width: 0.3rem;
+    height: 0.3rem;
+    box-sizing: border-box;
+    border-top: 0.06rem solid #eeeeee;
+    border-left: 0.06rem solid #eeeeee;
+    left: 0.11rem;
+    top: 0.11rem;
+}
+.lexSeven_box_content .textbox {
+    width: 3.8rem;
+    height: 4.4rem;
+    float: right;
+    position: relative;
+}
+.lexSeven_box_content .textbox.last {
+    float: none;
+    height: 1.77rem;
+    width: 6.9rem;
+    text-align: center;
+    line-height: 0;
+}
+.lexSeven_box_content .textbox.last:after {
+    display: none;
+}
+.lexSeven_box_content .textbox.last:before {
+    content: '';
+    position: absolute;
+    width: 0.3rem;
+    height: 0.3rem;
+    box-sizing: border-box;
+    border-top: 0.06rem solid #eeeeee;
+    border-left: 0.06rem solid #eeeeee;
+    left: 0.11rem;
+    top: 0.11rem;
+}
+.lexSeven_box_content .textbox:after {
+    content: '';
+    position: absolute;
+    width: 0.3rem;
+    height: 0.3rem;
+    box-sizing: border-box;
+    border-right: 0.06rem solid #eeeeee;
+    border-bottom: 0.06rem solid #eeeeee;
+    right: 0.11rem;
+    bottom: 0.11rem;
+}
+.lexSeven_box_content .textbox_title {
+    padding-top: 0.35rem;
+    line-height: 0.5rem;
+    font-size: 0.24rem;
+    color: #333333;
+    position: relative;
+    float: left;
+}
+.lexSeven_box_content .textbox_title.last {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+.lexSeven_box_content .textbox_title:after {
+    content: '';
+    position: absolute;
+    width: 0.3rem;
+    height: 0.05rem;
+    background: #333333;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+.lexSeven_box_content .textbox_subtitle {
+    line-height: 0.46rem;
+    padding-top: 0.44rem;
+    font-size: 0.3rem;
+    color: #333333;
+    clear: both;
+}
+.lexSeven_box_content .textbox_subtitle.last {
+    padding-top: 0.4rem;
+    font-size: 0.24rem;
+    width: 100%;
+}
+.lexSeven_box_content .textbox_line {
+    line-height: 0.3rem;
+    height: 0.3rem;
+    padding-top: 0.12rem;
+    font-size: 0.2rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+.lexSeven_box_content .textbox_line .item {
+    min-width: 1.8rem;
+    height: 0.3rem;
+}
+.lexSeven_box_content .textbox_line em {
+    color: #999999;
+    font-style: normal;
+}
+.lexSeven_box_content .textbox_line span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.lexSeven_box_content .textbox_line .dot {
+    width: 0.13rem;
+    height: 0.13rem;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+.lexSeven_box_content .textbox_line .dot.red {
+    background: #ff2c27;
+}
+.lexSeven_box_content .textbox_line .dot.blue {
+    background: #275fff;
+}
+.lexSeven_box_content .textbox_line .dot.green {
+    background: #30d16c;
+}
+.lexSeven_box_content .textbox_line .dot.violet {
+    background: #a01df3;
+}
+.lexSeven_box_content .textbox_line .dot.yellow {
+    background: #fbd84b;
+}
+.lexSeven_box_content .textbox_desc {
+    line-height: 0.35rem;
+    padding-top: 0.2rem;
+    font-size: 0.2rem;
+    width: 3.7rem;
+}
+.lexSeven_box_content .textbox_desc em {
+    color: #ff0f0f;
+    font-style: normal;
+}
+
+@keyframes move {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes reversemove {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    100% {
+        transform: scale(1) rotate(-360deg);
+    }
+}
+
+
+
+
+
  

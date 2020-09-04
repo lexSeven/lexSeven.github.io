@@ -1,0 +1,2 @@
+INSERT INTO `dede_member_stowtype` VALUES('sys','系统收藏','archives_do.php');
+INSERT INTO `dede_member_stowtype` VALUES('book','小说收藏','/book/book.php?bid');

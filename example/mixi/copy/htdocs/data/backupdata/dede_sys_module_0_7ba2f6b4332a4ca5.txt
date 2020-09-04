@@ -1,0 +1,6 @@
+INSERT INTO `dede_sys_module` VALUES('1','0cce60bc0238aa03804682c801584991','百度新闻','','','0','');
+INSERT INTO `dede_sys_module` VALUES('2','1f35620fb42d452fa2bdc1dee1690f92','文件管理器','','','0','');
+INSERT INTO `dede_sys_module` VALUES('4','b437d85a7a7bc778c9c79b5ec36ab9aa','友情链接','','','0','');
+INSERT INTO `dede_sys_module` VALUES('5','acb8b88eb4a6d4bfc375c18534f9439e','投票模块','','','0','');
+INSERT INTO `dede_sys_module` VALUES('6','572606600345b1a4bb8c810bbae434cc','挑错管理','','','0','');
+INSERT INTO `dede_sys_module` VALUES('7','533c5b843ded8752b9857cc7c8e5b455','得德广告模块','','','0','<m:top name=\'德得广告\' display=\'block\'>\r\n<m:item name=\'德得模块\' link=\'mda_main.php\' rank=\'plus_广告管理\' target=\'main\'/>\r\n<m:item name=\'广告管理\' link=\'mda_main.php?dopost=place\' rank=\'plus_广告管理\' target=\'main\'/>\r\n<m:item name=\'查看报表\' link=\'mda_main.php?dopost=report\' rank=\'plus_广告管理\' target=\'main\'/>\r\n<m:item name=\'结算中心\' link=\'mda_main.php?dopost=account\' rank=\'plus_广告管理\' target=\'main\'/>\r\n<m:item name=\'德得设置\' link=\'mda_main.php?dopost=setting\' rank=\'plus_广告管理\' target=\'main\'/>\r\n</m:top>');

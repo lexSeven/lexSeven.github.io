@@ -1,0 +1,4 @@
+INSERT INTO `dede_plus_mda_setting` VALUES('version','0.0.1','0');
+INSERT INTO `dede_plus_mda_setting` VALUES('channel_uuid','','0');
+INSERT INTO `dede_plus_mda_setting` VALUES('channel_secret','','0');
+INSERT INTO `dede_plus_mda_setting` VALUES('email','','0');

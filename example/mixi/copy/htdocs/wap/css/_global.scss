@@ -1,0 +1,115 @@
+html{
+  font-size: 4vw;
+}
+
+$re: 30;
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+dl,
+dd{
+  margin: 0;
+}
+
+body{
+  overflow-x: hidden;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+em,i{
+  font-style: normal;
+}
+
+input{
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+img{
+  max-width: 100%;
+  vertical-align: top;
+}
+
+@mixin place($color,$num:10%){
+  input::-webkit-input-placeholder{
+    color: darken($color, $num);
+  }
+  input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color: darken($color, $num);
+  }
+  input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color: darken($color, $num);
+  }
+  input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: darken($color, $num);
+  }
+}
+
+
+
+@mixin clear{
+  &:after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+
+
+@mixin clear{
+  &:after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin font($size:24rem/$re,$height:40rem/$re,$color:inherit){
+  font:$size#{'/'}$height  'PingFangSC-Light', 'PingFangSC-Medium', '微软雅黑';
+  color:$color;
+}
+
+@mixin center($center:false){
+  font-size: 0;
+  line-height: 0;
+
+  @if $center{
+    text-align: center;
+  }
+
+  & > *{
+    display: inline-block;
+    vertical-align: middle;
+    @include font();
+  }
+
+  &:before{
+    content: '';
+    width: 0;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

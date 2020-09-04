@@ -1,0 +1,1908 @@
+<!doctype html>
+<html class="no-js">
+  
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>米犀学院——JAVA-移动版</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="stylesheet" href="/templets/default/css/m_Common1.css">
+	<link rel="stylesheet" href="/templets/default/css/swiper.min.css">
+
+	<script src="/templets/default/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+	<!-- <script src="/templets/default/js/startMove.js" type="text/javascript"></script> -->
+	<script src="/templets/default/js/swiper.min.js" type="text/javascript"></script>
+
+		<style>
+
+			html {
+			
+			  overflow-y: scroll;
+			
+			}		 
+			
+			:root {
+			
+			  overflow-y: auto;
+			
+			  overflow-x: hidden;
+			
+			}	
+			 
+			
+			:root body {
+			
+			  position: absolute;
+			
+			}	
+			 
+			
+			body {
+			
+			  width: 100vw;
+			
+			  overflow: hidden;
+			
+			}
+
+			.swiper-container ，.swiper-container1 {
+				width: 100%;
+				height: 100%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		
+			.swiper-slide {
+				text-align: center;
+				font-size: 0.18rem;
+				/* background: #fff; */
+		
+				/* Center slide text vertically */
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			}
+		</style>
+
+	
+		<style>
+			@media only screen and (min-width: 1200px) {
+				.blog-g-fixed {
+					max-width: 1200px;
+				}
+			}
+
+			@media only screen and (min-width: 641px) {
+				.blog-sidebar {
+					font-size: 1.4rem;
+				}
+			}
+
+			.blog-footer {
+				padding: 10px 0;
+				text-align: center;
+			}
+		</style>
+
+</head>
+
+<body>
+
+	<!-- 头部 -->
+ 
+
+	<div class="header">
+	
+		<div class="clear"></div>
+		<div class="header_btm">
+			<div class="container">
+				<h1>
+					<a href="/">
+						<img src="/templets/default/images/m_logo.png" alt="">
+					</a>
+				</h1>
+	
+	
+				<div class="rtel">
+					<img src="/templets/default/images/m_head_tel.png" alt="">
+					
+				</div>
+	
+	
+			</div>
+
+
+			<div class="nav_box">
+				<ul class="nav">
+					<li class="li01"><a href="/">首页</a></li>
+
+	
+					<li class="jt" id="jt1" onclick="toggleNav('h_erjinav1','jt1')" style="background-size: 0.16rem 0.09rem;">
+						<a href="javascript:void(0)">课程分类</a>
+					
+						<div class="h_erjinav" id="h_erjinav1">
+							<div>
+								<ul>
+					
+									<li><a href="/m/java/">Java</a></li>
+					
+									<li><a href="/m/web/">web前端</a></li>
+					
+									<li><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">全栈工程师</a></li>
+					
+									<li><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">Python</a></li>
+					
+									<li><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">大数据</a></li>
+					
+									<li><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">区块链</a></li>
+					
+									<li><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">软件测试</a></li>
+					
+					
+								</ul>
+							</div>
+						</div>
+					
+					</li>
+					
+					
+					<li class="jt" id="jt2" onclick="toggleNav('h_erjinav2','jt2')" style="background-size: 0.16rem 0.09rem;">
+						<a href="javascript:void(0)">班型设置</a>
+						<div class="h_erjinav" id="h_erjinav2">
+							<div>
+								<ul style="height: 0.6rem;">
+					
+									<li style="padding: 0 0.15rem;">
+										<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">培优班</a></li>
+					
+									<li style="padding: 0 0.15rem;">
+										<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">就业班</a></li>
+					
+								</ul>
+							</div>
+						</div>
+					</li>
+	
+					<li><a href="#a01">大咖讲师</a></li>
+	
+					<li><a href="/wap/about.html">关于我们</a></li>
+	
+					
+	
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+	<script type="text/javascript">
+		initCommonHeader();
+		if (MARK == "") var MARK = "index";
+		initCommonHeaderKeywords(MARK);
+	</script>
+
+	<!-- <div class="header">
+	
+		<div class="clear"></div>
+		<div class="header_btm">
+			<div class="container">
+				<h1>
+					<a href="/">
+						<img src="/templets/default/images/m_logo.png" alt="">
+					</a>
+				</h1>
+	
+	
+				<div class="rtel">
+					<img src="/templets/default/images/m_head_tel.png" alt="">
+					
+				</div>
+	
+	
+			</div>
+
+
+			<div class="nav_box">
+				<ul class="nav">
+					<li class="li01"><a href="/">首页</a></li>
+
+	
+					<li class="jt" id="jt1" onclick="toggleNav('h_erjinav1','jt1')"><a href="javascript:void(0)">课程分类</a>
+					
+						<div class="h_erjinav" id="h_erjinav1">
+							<div>
+								<ul>
+					
+									<li><a href="/">Java</a></li>
+					
+									<li><a href="/">web前端</a></li>
+					
+									<li><a href="/">全栈工程师</a></li>
+					
+									<li><a href="/">Python</a></li>
+					
+									<li style="background: none;"><a href="/">大数据</a></li>
+					
+									<li><a href="/">区块链</a></li>
+					
+									<li><a href="/">软件测试</a></li>
+					
+					
+								</ul>
+							</div>
+						</div>
+					
+					</li>
+					
+					
+					<li class="jt" id="jt2" onclick="toggleNav('h_erjinav2','jt2')"><a href="javascript:void(0)">班型设置</a>
+						<div class="h_erjinav" id="h_erjinav2">
+							<div>
+								<ul style="height: 0.6rem;">
+					
+									<li style="padding: 0 0.15rem;"><a href="/">培优班</a></li>
+					
+									<li style="padding: 0 0.15rem;"><a href="/">就业班</a></li>
+					
+								</ul>
+							</div>
+						</div>
+					</li>
+	
+					<li><a href="#a01">大咖讲师</a></li>
+	
+					<li><a href="/">关于我们</a></li>
+	
+					
+	
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+	<script type="text/javascript">
+		initCommonHeader();
+		if (MARK == "") var MARK = "index";
+		initCommonHeaderKeywords(MARK);
+	</script> -->
+
+ 
+	<!-- banner图开始 -->
+
+	<div id="flashs">
+
+		<div title="" alt="" onclick="window.open('/m')" class="bgitem" id="flashbg0" style="background: url('/templets/default/images/m_banner01.jpg') no-repeat scroll center top;
+                  height: 100%; width: 100%; cursor: pointer; margin: 0 auto; background-size: 100% 100%;">
+		</div>
+
+		<div title="" alt="" onclick="window.open('/m')" class="bgitem" id="flashbg1" style="background: url('/templets/default/images/m_banner02.jpg') no-repeat scroll center top;
+                  height: 100%; width: 100%; cursor: pointer; margin: 0 auto; background-size: 100% 100%;">
+		</div>
+
+		<div title="" alt="" onclick="window.open('/m')" class="bgitem" id="flashbg2" style="background: url('/templets/default/images/m_banner03.jpg') no-repeat scroll center top;
+                  height: 100%; width: 100%; cursor: pointer; margin: 0 auto; background-size: 100% 100%;">
+		</div>
+
+		<script type="text/javascript" src="/templets/default/js/flash.js"></script>
+
+	</div>
+
+
+
+	<!-- 详情开始 -->
+
+
+	<div class="xq container">
+
+		<div class="container ct" style="text-align: center;">
+			<h2>Java-编程界的王者！</h2>
+			<em>待遇好地位高，就业前景一片光明</em>
+			<img src="/templets/default/images/biaotit.png" alt="">
+		</div>
+
+		<!-- 内容 -->
+		<div class="xq_center container">
+
+			<img src="/templets/default/images/m_javabox.png" alt="">
+
+		</div>
+
+		<div class="db_botton">
+			<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+			<img src="/templets/default/images/m_db_botton01.png" alt=""></a>
+		</div>
+
+	</div>
+	<div class="clear"></div>
+
+
+
+	<!-- 就业薪资 -->
+
+	<div class="bxfl">
+
+		<div class="container">
+
+			<div class="container ct" style="text-align: center;">
+				<h2>工资翻3倍，米犀学院追求业界就业高薪资</h2>
+				<em>2020年5月份,毕业生平均就业薪资可达18.2K</em>
+				<img src="/templets/default/images/biaotit.png" alt="">
+			</div>
+
+			<div class="bx_fl">
+
+				<div class="bx_xzbt">
+					<p>2020年全国JAVA就业薪资调查数据</p>
+        </div>
+      
+				<ul>
+					<li class="bx_fl_box" style="padding-bottom: 0.4rem;">
+						<img src="/templets/default/images/m_ico_bx_01.png" alt="">
+						<p class="one" style="#543400">月薪14K-17K</p>
+					</li>
+
+					<li class="bx_fl_box" style="padding-bottom: 0.4rem;">
+						<img src="/templets/default/images/m_ico_bx_02.png" alt="">
+						<p class="two" style="#131737">月薪20K以上</p>
+					</li>
+
+					<li class="bx_fl_box">
+						<img src="/templets/default/images/m_ico_bx_03.png" alt="">
+						<p class="three" style="#0f4311">月薪19K-20K</p>
+					</li>
+
+					<li class="bx_fl_box">
+						<img src="/templets/default/images/m_ico_bx_04.png" alt="">
+						<p class="four" style="#35150f">月薪17K-19K</p>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="db_botton clear" style="padding-top: 0.5rem;">
+			<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+			<img src="/templets/default/images/m_db_botton02.png" alt=""></a>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+
+
+	<!-- 就业新闻 -->
+
+	<div class="news">
+		<div class="news_start container">
+
+			<div class="container ct" style="text-align: center;">
+				<h2>米犀部分就业信息展示</h2>
+				<em>IT需求越来越大，缺口越来越多</em>
+				<img src="/templets/default/images/biaotit.png" alt="">
+			</div>
+
+			<div class="plan">
+
+				<div>
+					<div class="plan_c">
+
+						<div class="swiper-pagination22" style="width: 100%;">
+						
+						</div>
+
+						<div class="swiper-container22">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="plan_c1 pr">
+									
+										<dl>
+
+
+											<dt>
+
+												<div class="plan_c1_box2 fl">
+													<div class="l1">
+
+														<em>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<p>陈**</p></em>
+														<em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：<p>专科</p></em>
+														<em>就业地点：<p>北京市</p></em>
+														<em>就业企业：<p>宏昆集团</p></em>
+														<em>就业时间：<p>2019.08.09</p></em>
+
+													</div>
+												</div>
+
+												<div class="plan_c1_box fl">
+													<div class="l2">
+
+														<img src="/templets/default/images/m_xinzi01.png" alt="">
+														<h3>数据来自学员真实就业<br>拒绝以偏概全</h3>
+
+													</div>
+												</div>
+
+											</dt>
+
+										</dl>
+
+										<div class="plan_c1l">
+											<div class="plan_c1l_head">
+												<p>姓名</p>
+												<p>学历</p>
+												<p>就业企业</p>
+												<p>就业薪资</p>
+											</div>
+											<ul>
+
+												<li>
+													<p>王**</p>
+													<p>本科</p>
+													<p>字节跳动</p>
+													<p>26000</p>
+												</li>
+												<li>
+													<p>邵**</p>
+													<p>本科</p>
+													<p>九恒星科技</p>
+													<p>20000</p>
+												</li>
+												<li>
+													<p>许**</p>
+													<p>专科</p>
+													<p>今日头条</p>
+													<p>20000</p>
+												</li>
+												<li>
+													<p>陈**</p>
+													<p>专科</p>
+													<p>宏昆集团</p>
+													<p>19500</p>
+												</li>
+												<li>
+													<p>余**</p>
+													<p>专科</p>
+													<p>联想集团</p>
+													<p>19000</p>
+												</li>
+											</ul>
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="swiper-slide">
+
+									<div class="plan_c1 pr">
+										<dl>
+
+
+											<dt>
+												<div class="plan_c1_box2 fl">
+													<div class="l1">
+
+														<em>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<p>王**</p></em>
+														<em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：<p>本科</p></em>
+														<em>就业地点：<p>北京市</p></em>
+														<em>就业企业：<p>北京佳付通</p></em>
+														<em>就业时间：<p>2020.04.13</p></em>
+
+													</div>
+												</div>
+
+												<div class="plan_c1_box fl">
+													<div class="l2">
+
+														<img src="/templets/default/images/m_xinzi02.png" alt="">
+														<h3>数据来自学员真实就业<br>拒绝以偏概全</h3>
+
+													</div>
+												</div>
+											</dt>
+
+										</dl>
+
+										<div class="plan_c1l">
+											<div class="plan_c1l_head">
+												<p>姓名</p>
+												<p>学历</p>
+												<p>就业企业</p>
+												<p>就业薪资</p>
+											</div>
+											<ul>
+
+												<li>
+													<p>李**</p>
+													<p>本科</p>
+													<p>京东集团</p>
+													<p>19500</p>
+												</li>
+												<li>
+													<p>郭**</p>
+													<p>专科</p>
+													<p>兆尹信息科技</p>
+													<p>18000</p>
+												</li>
+												<li>
+													<p>王**</p>
+													<p>本科</p>
+													<p>北京佳付通</p>
+													<p>20000</p>
+												</li>
+												<li>
+													<p>邓**</p>
+													<p>专科</p>
+													<p>文思海辉</p>
+													<p>17300</p>
+												</li>
+												<li>
+													<p>王**</p>
+													<p>专科</p>
+													<p>乾坤科技</p>
+													<p>16000</p>
+												</li>
+											</ul>
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+							<!-- Add Pagination -->
+							
+							<!-- Add Arrows -->
+							<!-- <div class="swiper-button-next"></div> -->
+							<!-- <div class="swiper-button-prev"></div> -->
+						</div>
+
+
+						<script>
+							var swiper = new Swiper('.swiper-container22', {
+								pagination: '.swiper-pagination22',
+								// nextButton: '.swiper-button-next',
+								// prevButton: '.swiper-button-prev',
+								slidesPerView: 1,
+								paginationClickable: true,
+								spaceBetween: 30,
+								loop: true
+							});
+						</script>
+
+
+
+					</div>
+				</div>
+			</div>
+
+			<div class="db_botton">
+				<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+				<img src="/templets/default/images/m_db_botton03.png" alt=""></a>
+			</div>
+		</div>
+	</div>
+
+	
+	<div class="clear"></div>
+
+
+
+
+
+	<!-- 课程大纲 -->
+
+	<div class="kcdg">
+
+		<div class="kcdg_box container">
+
+			<div class="container ct" style="text-align: center;">
+				<h2 style="color: #fff;">米犀进阶式项目制教学体系、分级教学</h2>
+				<em style="color: #dddddd;">同一Jave课程,根据不同基础进行分级进阶教学</em>
+				<img src="/templets/default/images/biaotit.png" alt="">
+			</div>
+
+		 <div class="kcdg_kc">
+
+			<div class="swiper-container6 gallery-thumbs">
+				<div class="swiper-wrapper">
+
+					<div class="swiper-slide">
+						<img src="/templets/default/images/m_ico_jd_01.png" alt="">
+					</div>
+
+					<div class="swiper-slide">
+						<img src="/templets/default/images/m_ico_jd_02.png" alt="">
+					</div>
+
+					<div class="swiper-slide">
+						<img src="/templets/default/images/m_ico_jd_03.png" alt="">
+					</div>
+
+					<div class="swiper-slide">
+						<img src="/templets/default/images/m_ico_jd_04.png" alt="">
+					</div>
+
+					<div class="swiper-slide">
+						<img src="/templets/default/images/m_ico_jd_05.png" alt="">
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Swiper -->
+			<div class="swiper-container6 gallery-top">
+				<div class="swiper-wrapper">
+
+
+					<div class="swiper-slide li2">
+					
+						<div class="kcdg_kc_r">
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>Java语言入门主要内容</p>
+								<em>Java基础语法 ·面向对象基础 ·API基础 ·集合基础</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可解决的现实问题</p>
+								<em>基础语法是学习任何编程语言的第一课，学好基础语法，才能更好的学习后面的课程知识点。</em>
+							</div>
+					
+					
+					
+							<!-- <div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可掌握的核心能力</p>
+								<em>掌握Java基本面向对象知识:掌握常用类String、 ArrayList等的使用.掌握学生管理系统编写</em>
+							</div> -->
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>市场价值</p>
+								<em>本阶段课程顺应互联网发展趋势，根据市场需求及区块链的火热制定了一套企业型区块链项目，学员可选择互联网公司、区块链公司，根据市场反馈数据来看，薪资可达25000元/月左右</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可从事岗位</p>
+								<em>超大型互联网项目开发 资深研发工程师 区块链项目高级开发工程师 初中级Python开发工程师</em>
+							</div>
+					
+						</div>
+					
+					</div>
+					
+					<div class="swiper-slide  li2">
+					
+						<div class="kcdg_kc_r">
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>Java语言入门主要内容</p>
+								<em>• Git• 面向对象进阶• 常用API• 异常• 集合• IO• 多线程• 网络编程• Lambda• 反射• 基础加强</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可解决的现实问题</p>
+								<em>具备JavaSE基本的开发能力，可以实现简单单机应用程序，对企业JavaWeb开发又进一步，也为JavaWeb的学习提供基础。</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>市场价值</p>
+								<em>掌握Javaweb开发基础知识，熟悉Java基本开发环境，熟悉项目管理工具使用及Linux服务器使用，满足Java软件开发行业的中级需求，根据市场反馈数据来看，薪资可达8000元/月左右</em>
+							</div>
+					
+					
+					
+							<!-- <div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>市场价值</p>
+								<em>具有JavaSE基本开发能力，但是还不能满足企业用人需求，可为后续Javaweb的学习打下坚实基础，薪资可让5000元/月左右</em>
+							</div>
+					 -->
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可从事岗位</p>
+								<em>中级开发工程师</em>
+							</div>
+					
+						</div>
+					
+					</div>
+					
+					
+					<div class="swiper-slide  li2">
+					
+						<div class="kcdg_kc_r">
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>Java语言入门主要内容</p>
+								<em>• Linux• HTML5&CSS&Nginx• Web服务器基础• Servlet• Cookie&Session• JSP• EL• JSTL• Filter&Listener• 文件上传和下载• MySQL• JDBC• MyBatis• JavaScript• jQuery• Ajax• VUE• ElementUI+案例• Redis• Maven基础</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可解决的现实问题</p>
+								<em>具备基本的JavaWeb开发能力，熟悉Linux服务器及相关软件的使用。</em>
+							</div>
+					
+					
+					
+							<!-- <div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可掌握的核心能力</p>
+								<em>掌握Java基本面向对象知识:掌握常用类String、 ArrayList等的使用.掌握学生管理系统编写</em>
+							</div> -->
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>市场价值</p>
+								<em>掌握本阶段课程，可应对Java互联网开发的高级岗位，根据市场反馈数据来看，薪资可达12000元/元左右</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可从事岗位</p>
+								<em>常见中小型互联网项目开发OA/CRM/ERP系统开发APP服务端开发等等 中高级工程师</em>
+							</div>
+					
+						</div>
+					
+					</div>
+					
+					<div class="swiper-slide  li2">
+					
+						<div class="kcdg_kc_r">
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>Java语言入门主要内容</p>
+								<em>• Spring• SpringMVC• Maven高级• Zookeeper• Dubbo• Redis高级• SpringBoot• RabbitMQ• RocketMQ• Mybatis-Plus</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可解决的现实问题</p>
+								<em>对热门的框架和SOA架构应用，便可掌握项目的构建并能够搭建企业级JavaWeb项目，为后期的项目做铺垫。</em>
+							</div>
+					
+					
+					
+							<!-- <div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可掌握的核心能力</p>
+								<em>掌握Java基本面向对象知识:掌握常用类String、 ArrayList等的使用.掌握学生管理系统编写</em>
+							</div> -->
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>市场价值</p>
+								<em>本阶段课程顺应Java开发市场发展趋势，学员可轻松应用Java互联网开发大部分岗位，根据市场反馈，薪资可达16000元/月左右</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可从事岗位</p>
+								<em>大型超大型互联网项目开发 高级工程师</em>
+							</div>
+					
+						</div>
+					
+					</div>
+					
+					<div class="swiper-slide li2">
+					
+						<div class="kcdg_kc_r">
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>课程内容</p>
+								<em>区块链相关知识，Python操作及模式面试</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可解决的现实问题</p>
+								<em>建立学员组件化、服务化和中台化架构思想；讲解多种组件服务的实现原理和方法</em>
+							</div>
+					
+					
+					
+							<!-- <div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可掌握的核心能力</p>
+								<em>掌握Java基本面向对象知识:掌握常用类String、 ArrayList等的使用.掌握学生管理系统编写</em>
+							</div> -->
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>市场价值</p>
+								<em>具有JavaSE基本开发能力，但是还不能满足企业用人需求，可为后续Javaweb的学习打下坚实基础，薪资可让5000元/月左右</em>
+							</div>
+					
+					
+					
+							<div class="kcdg_kc_li">
+								<img src="/templets/default/images/ico_jd_dt.png" alt="">
+								<p>可从事岗位</p>
+								<em>数据采集与嵌入式交互获取数据简单爬虫</em>
+							</div>
+					
+						</div>
+					
+					</div>
+
+					
+				</div>
+			</div>
+				
+
+		</div>
+
+
+		
+	
+
+			<script>
+				var galleryTop = new Swiper('.gallery-top', {
+					// nextButton: '.swiper-button-next',
+					// prevButton: '.swiper-button-prev',
+					spaceBetween: 30,
+					
+				});
+				var galleryThumbs = new Swiper('.gallery-thumbs', {
+					spaceBetween: 10,
+					centeredSlides: true,
+					slidesPerView: 'auto',
+					touchRatio: 0.2,
+					slideToClickedSlide: true
+				});
+				galleryTop.params.control = galleryThumbs;
+				galleryThumbs.params.control = galleryTop;
+
+			</script>	
+
+ 
+
+		</div>
+
+		<div class="db_botton clear" style="padding-top: 0.5rem;">
+			<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+			<img src="/templets/default/images/m_db_botton04.png" alt=""></a>
+		</div>
+
+	</div>
+
+	<div class="clear"></div>
+
+
+	<!-- 名师 -->
+
+	<div class="msdk" id="a01">
+		<div class="msdk_box container">
+
+			<div class="container ct" style="text-align: center; margin-bottom: 0.5rem;">
+				<h2>米犀名师大咖，倾囊相授</h2>
+				<em>米犀讲师出身名企，实战能力强</em>
+				<img src="/templets/default/images/biaotit.png" alt="">
+			</div>
+		
+			<div class="swiper-container15">
+				<div class="swiper-wrapper">
+
+					<div class="swiper-slide" style="background: url(/templets/default/images/m_ico_ms01.png) no-repeat center;
+    					background-size: 100% 100%;">
+						<dl>
+						<dt>
+					
+							<h3>李老师</h3>
+							<b>授课科目：<i>JAVA高端教学</i></b>
+					
+						</dt>
+						<dd>
+					
+					
+							<div>
+								<p>老师介绍：
+								<em>先后在中软、文思创新、人人网等担任过高级软件开发工程师、技术总监等职务。熟悉Java
+									EE(JSP/Servlet、JDBC、Struts2、Spring、Hibernate)应用开发。曾主持参与开发基于移动平台的视频点播、手机电视、无线点餐、人人网等项目。</em></p>
+							</div>
+					
+					
+						</dd>
+						</dl>
+					</div>
+
+					<div class="swiper-slide" style="background: url(/templets/default/images/m_ico_ms02.png) no-repeat center;
+    background-size: 100% 100%;">
+						<dl>
+							<dt>
+						
+								<h3>王老师</h3>
+								<b>授课科目：<i>JAVA高端教学</i></b>
+						
+							</dt>
+							<dd>
+						
+						
+								<div>
+									<p>老师介绍：
+									<em>北大计算机毕业，曾在中科软信息担任系统架构和设计工作，并有丰富的授课经验，精通常用算法数据结构、JavaEE相关技术，尤其是当前流行的框架技术(ibatis/Mybatis,struts1/2,spring,ajax/jquery/dwr)等。</em></p>
+								</div>
+						
+						
+							</dd>
+						</dl>
+					</div>
+
+					<div class="swiper-slide"  style="background: url(/templets/default/images/m_ico_ms03.png) no-repeat center;
+    background-size: 100% 100%;">
+						<dl>
+							<dt>
+						
+								<h3>彭老师</h3>
+								<b>授课科目：<i>JAVA高端教学</i></b>
+						
+							</dt>
+							<dd>
+						
+						
+								<div>
+									<p>老师介绍：
+									<em>10年企业一线开发经验，在多家企业担任高级工程师，架构师，项目经理等职位，参与或主持航信-航意险，中彩网，网上商城等项目的开发。专注于JavaEE开发，深入研究Spring全家桶、Mybatis、dobuo等流行框架，对分布式，微服务架构体系有独到的见解。</em></p>
+								</div>
+						
+						
+							</dd>
+						</dl>
+					</div>
+
+					<div class="swiper-slide"  style="background: url(/templets/default/images/m_ico_ms04.png) no-repeat center;
+    background-size: 100% 100%;">
+						
+						<dl>
+							<dt>
+						
+								<h3>曹老师</h3>
+								<b>授课科目：<i>JAVA高端教学</i></b>
+						
+							</dt>
+							<dd>
+						
+						
+								<div>
+									<p>老师介绍：
+									<em>7年Java软件开发及相关教育工作，熟悉JavaEE技术体系，精通Java开发技术（HTML、JSP/Servlet、JDBC、MySQL、Redis、jQuery、SSH框架、SSM框架、dubbo、zookpeer、vue、adminLTE等）。热衷于主流Java开源框架技术，尤以擅长JavaWEB技术和框架开发。</em></p>
+								</div>
+						
+						
+							</dd>
+						</dl>
+					
+					</div>
+
+
+					<div class="swiper-slide"  style="background: url(/templets/default/images/m_ico_ms05.png) no-repeat center;
+    background-size: 100% 100%;">
+						
+						<dl>
+							<dt>
+						
+								<h3>彭老师</h3>
+								<b>授课科目：<i>JAVA高端教学</i></b>
+						
+							</dt>
+							<dd>
+						
+						
+								<div>
+									<p>老师介绍：
+									<em>曾任职于猎豹移动区块链安全分析研发leader、高德地图旗下小贷SAAS平台项目经理，曾参与区块链DAPP、区块链钱包、区块链安全测评、供应链金融SAAS平台、电商平台、电影网站等互联网项目的开发6年的软件开发及项目管理经验、3年教学经验。</em></p>
+								</div>
+						
+						
+							</dd>
+						</dl>
+					
+					
+					</div>
+
+
+					<div class="swiper-slide"  style="background: url(/templets/default/images/m_ico_ms06.png) no-repeat center;
+    background-size: 100% 100%;">
+						
+						
+						<dl>
+							<dt>
+						
+								<h3>刘老师</h3>
+								<b>授课科目：<i>JAVA高端教学</i></b>
+						
+							</dt>
+							<dd>
+						
+						
+								<div>
+									<p>老师介绍：
+									<em>丰富的java项目经验，曾任至于外企和国内互联网金融公司，如: IBM，OPENJAW等。 具有三年以上的项目管理经验, 对javaSE, javaEE主流框架（SSM, SSH),数据库（Mysql，PGSQL）, Git, Maven, 等工具和技术有深入的了解。 熟练掌握分布式，微服务，性能调优等技术。有丰富的项目管理及教学经验</em></p>
+								</div>
+						
+						
+							</dd>
+						</dl>
+						</li>
+					
+					
+					</div>
+
+					
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination15"></div>
+				<!-- Add Arrows -->
+				<!-- <div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div> -->
+			</div>
+		
+			<script>
+				var swiper = new Swiper('.swiper-container15', {
+					 pagination: '.swiper-pagination15',
+					// nextButton: '.swiper-button-next',
+					// prevButton: '.swiper-button-prev',
+					slidesPerView: 1,
+					paginationClickable: true,
+					spaceBetween: 80,
+					loop: true,
+					speed:2000,
+					autoplay:4000
+				});
+			</script>
+
+		
+			<div class="msdk_xd">
+			
+				<ol id="ol1">
+			
+					<li class="active"><img src="/templets/default/images/m_ico_lstx1.png" alt=""></li>
+					<li><img src="/templets/default/images/m_ico_lstx2.png" alt=""></li>
+					<li><img src="/templets/default/images/m_ico_lstx3.png" alt=""></li>
+					<li><img src="/templets/default/images/m_ico_lstx4.png" alt=""></li>
+					<li><img src="/templets/default/images/m_ico_lstx5.png" alt=""></li>
+					<li><img src="/templets/default/images/m_ico_lstx6.png" alt=""></li>
+			
+				</ol>
+			
+			
+			
+			
+			</div>
+
+
+
+
+		</div>
+
+		<div class="db_botton clear" style="padding-top: 0.5rem; padding-bottom: 0.8rem;">
+			<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+			<img src="/templets/default/images/m_db_botton05.png" alt=""></a>
+		</div>
+
+
+	</div>
+
+	<div class="clear"></div>
+
+
+	<!-- 学院优势 -->
+
+	<div class="fwkb">
+
+		<div class="fwkb_box container">
+
+			<div class="container ct" style="text-align: center; padding-bottom: 0.5rem;">
+				<h2>米犀讲师全程面授，学员0问题离开课堂</h2>
+				<em>米犀讲师出身名企，实战能力强</em>
+				<img src="/templets/default/images/biaotit.png" alt="">
+			</div>
+
+			<div class="fwkb_box_kb">
+
+				<dl>
+
+					<dt style="margin-bottom: 0.1rem;">
+						<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+						<img src="/templets/default/images/m_ico_sk_1.png" alt=""></a>
+					</dt>
+
+					<dd>
+						<p>限制人数</p>
+						<img src="/templets/default/images/ico_skdt_1.png" alt="">
+						<em>每班人数不超30人<br>保证照顾到每位学员</em>
+					</dd>
+
+				</dl>
+
+				<dl>
+
+					<dd>
+						<p>面对面授课</p>
+						<img src="/templets/default/images/ico_skdt_2.png" alt="">
+						<em>根据学员反馈调整上课进度<br>保证学员学习效果</em>
+					</dd>
+
+					<dt style="margin-top: 0.1rem;">
+						<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+						<img src="/templets/default/images/m_ico_sk_2.png" alt=""></a>
+					</dt>
+
+
+
+				</dl>
+
+				<dl>
+
+					<dt style="margin-bottom: 0.1rem;">
+						<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+						<img src="/templets/default/images/m_ico_sk_3.png" alt=""></a>
+					</dt>
+
+					<dd>
+						<p>主讲老师辅导</p>
+						<img src="/templets/default/images/ico_skdt_3.png" alt="">
+						<em>面授课间休息时间<br>老师辅导学员, 0问题离开课堂</em>
+					</dd>
+
+				</dl>
+
+				<dl>
+
+					<dd>
+						<p>师生互动模式</p>
+						<img src="/templets/default/images/ico_skdt_4.png" alt="">
+						<em>面授课程老师与学生面对面<br>可真人互动，氛围好学习有动力</em>
+					</dd>
+
+					<dt style="margin-top: 0.1rem;">
+						<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+						<img src="/templets/default/images/m_ico_sk_4.png" alt=""></a>
+					</dt>
+
+				</dl>
+
+			</div>
+
+
+		</div>
+
+		<div class="db_botton clear">
+			<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+			<img src="/templets/default/images/m_db_botton06.png" alt=""></a>
+		</div>
+
+	</div>
+
+
+
+	<div class="clear"></div>
+
+
+
+	<!-- 服务保障 -->
+
+	<div class="fwbz">
+
+		<div class="fwbz_box">
+
+			<div class="container ct" style="text-align: center;">
+				<h2>米犀五大保障，助推学员更好发展</h2>
+				<em>不一样保障，只为学员更好的服务！</em>
+				<img src="/templets/default/images/biaotit.png" alt="">
+			</div>
+
+			<div class="fwbz_box_b">
+			
+			
+				<div class="swiper-container11">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+			
+							<div class="fwbz_li">
+								<div>
+									<img src="/templets/default/images/ico_bz_1.png" alt="">
+									<p>双师保障</p>
+									<i></i>
+									<em>讲师多为来自大型企业的架构师及项目经理，一师双能，精于技能，长于教学。</em>
+									<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+									<b>查看保障内容</b></a>
+								</div>
+								<img class="fwbz_ct" src="/templets/default/images/m_ico_bz_ct.png" alt="">
+							</div>
+			
+						</div>
+			
+						<div class="swiper-slide">
+							<div class="fwbz_li">
+								<div>
+									<img src="/templets/default/images/ico_bz_2.png" alt="">
+									<p>月末考核</p>
+									<i></i>
+									<em>通过严格的月末考核对学生学习掌握程度进行分析，准确的把握教学质量.若考核不
+										通过需末班重学。</em>
+										<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+									<b>查看考核内容</b></a>
+								</div>
+								<img class="fwbz_ct" src="/templets/default/images/m_ico_bz_ct.png" alt="">
+							</div>
+			
+			
+			
+						</div>
+			
+						<div class="swiper-slide">
+			
+							<div class="fwbz_li">
+								<div>
+									<img src="/templets/default/images/ico_bz_3.png" alt="">
+									<p>技能+表达能力保障</p>
+									<i></i>
+									<em>实训期间会有相应的老师针对每位学生进行表达辅导及考核，表达能力、面试效率。</em>
+									<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+									<b>查看保障内容</b></a>
+								</div>
+								<img class="fwbz_ct" src="/templets/default/images/m_ico_bz_ct.png" alt="">
+							</div>
+			
+						</div>
+			
+						<div class="swiper-slide">
+			
+							<div class="fwbz_li">
+								<div>
+									<img src="/templets/default/images/ico_bz_4.png" alt="">
+									<p>就业保障</p>
+									<i></i>
+									<em>正式入学即签订就业协议，毕业月薪不达到10000以上学费退还。</em>
+									<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+									<b>查看就业保障</b></a>
+								</div>
+								<img class="fwbz_ct" src="/templets/default/images/m_ico_bz_ct.png" alt="">
+							</div>
+			
+						</div>
+						<div class="swiper-slide">
+			
+							<div class="fwbz_li">
+								<div>
+									<img src="/templets/default/images/ico_bz_5.png" alt="">
+									<p>就业后保障</p>
+									<i></i>
+									<em>学生在大中型企业进行为期年的工作式学习,学生直接到大型软件企业工作，在工作中遇到困难时，老师会及时给予指导，积累实际开发经验。</em>
+									<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+									<b>查看就业后保障</b></a>
+								</div>
+							</div>
+			
+						</div>
+			
+					</div>
+					<!-- Add Pagination -->
+					<!-- <div class="swiper-pagination"></div> -->
+				</div>
+			
+
+				<script>
+					var swiper = new Swiper('.swiper-container11', {
+						pagination: '.swiper-pagination',
+						initialSlide: 1,
+						slidesPerView: 2.1,
+						centeredSlides: true,
+						paginationClickable: true,
+						spaceBetween: 30
+					});
+				</script>
+			
+			
+				<!-- <script>
+					var swiper = new Swiper('.swiper-container11', {
+						// pagination: '.swiper-pagination',
+						slidesPerView: 2,
+						paginationClickable: true,
+						spaceBetween: 30
+					});
+				</script>
+			 -->
+			
+			</div>
+
+
+
+
+
+
+		</div>
+
+
+
+
+
+	</div>
+
+	<div class="clear"></div>
+
+
+
+	<!-- 校区 -->
+
+	<div class="ldxq">
+
+		<div class="ldxq_box container">
+
+			<div class="container ct" style="text-align: center; padding-bottom: 0.5rem;">
+				<h2>米犀六大校区，全程为您贴心服务</h2>
+				<em>专注IT行业14年，只为专注做好一件事</em>
+				<img src="/templets/default/images/biaotit.png" alt="">
+			</div>
+
+
+
+			<div class="ldxq_xq" id="div2">
+
+
+				<div class="swiper-container1">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="ldxq_ri fl">
+							
+								<div class="ldxq_rit">
+							
+									<h3>米犀学院北京校区<i>北京</i></h3>
+									<img src="/templets/default/images/ico_xqht.png" alt="">
+							
+									<p>
+										<img src="/templets/default/images/ico_xqhd1.png" alt="">
+										北京市昌平区沙阳路18号
+									</p>
+							
+								</div>
+							
+								<div class="ldxq_rib">
+									<ul>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+											<img src="/templets/default/images/m_ico_bj01.png" alt=""></a>
+										</li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+											<img src="/templets/default/images/m_ico_bj02.png" alt=""></a></li>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+											<img src="/templets/default/images/m_ico_bj03.png" alt=""></a></li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+											<img src="/templets/default/images/m_ico_bj04.png" alt=""></a></li>
+									</ul>
+								</div>
+							
+							
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="ldxq_ri fl">
+							
+								<div class="ldxq_rit">
+							
+									<h3>米犀学院济南校区<i>济南</i></h3>
+									<img src="/templets/default/images/ico_xqht.png" alt="">
+							
+									<p>
+										<img src="/templets/default/images/ico_xqhd1.png" alt="">
+										山东省济南市解放东路58号
+									</p>
+							
+								</div>
+							
+								<div class="ldxq_rib">
+									<ul>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_jn01.png" alt=""></a>
+										</li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_jn02.png" alt=""></a></li>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_jn03.png" alt=""></a></li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_jn04.png" alt=""></a></li>
+									</ul>
+								</div>
+							
+							
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="ldxq_ri fl">
+							
+								<div class="ldxq_rit">
+							
+									<h3>米犀学院南京校区<i>南京</i></h3>
+									<img src="/templets/default/images/ico_xqht.png" alt="">
+							
+									<p>
+										<img src="/templets/default/images/ico_xqhd1.png" alt="">
+										江苏省南京市江宁区九竹路100号临港同策同德园
+									</p>
+							
+								</div>
+							
+								<div class="ldxq_rib">
+									<ul>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_nj01.png" alt=""></a>
+										</li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_nj02.png" alt=""></a></li>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_nj03.png" alt=""></a></li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_nj04.png" alt=""></a></li>
+									</ul>
+								</div>
+							
+							
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							
+							<div class="ldxq_ri fl">
+							
+								<div class="ldxq_rit">
+							
+									<h3>米犀学院郑州校区<i>郑州</i></h3>
+									<img src="/templets/default/images/ico_xqht.png" alt="">
+							
+									<p>
+										<img src="/templets/default/images/ico_xqhd1.png" alt="">
+										河南省郑州市中原区文竹西路与红松路交叉口260号
+									</p>
+							
+								</div>
+							
+								<div class="ldxq_rib">
+									<ul>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_zz01.png" alt=""></a>
+										</li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_zz02.png" alt=""></a></li>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_zz03.png" alt=""></a></li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_zz04.png" alt=""></a></li>
+									</ul>
+								</div>
+							
+							
+							</div>
+						
+						</div>
+
+
+						<div class="swiper-slide">
+							
+							<div class="ldxq_ri fl">
+							
+								<div class="ldxq_rit">
+							
+									<h3>米犀学院西安校区<i>西安</i></h3>
+									<img src="/templets/default/images/ico_xqht.png" alt="">
+							
+									<p>
+										<img src="/templets/default/images/ico_xqhd1.png" alt="">
+										陕西省西安市雁塔区富鱼路139号
+									</p>
+							
+								</div>
+							
+								<div class="ldxq_rib">
+									<ul>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_xa01.png" alt=""></a>
+										</li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_xa02.png" alt=""></a></li>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_xa03.png" alt=""></a></li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_xa04.png" alt=""></a></li>
+									</ul>
+								</div>
+							
+							
+							</div>
+						
+						</div>
+
+						<div class="swiper-slide">
+							
+							<div class="ldxq_ri fl">
+							
+								<div class="ldxq_rit">
+							
+									<h3>米犀学院沈阳校区<i>沈阳</i></h3>
+									<img src="/templets/default/images/ico_xqht.png" alt="">
+							
+									<p>
+										<img src="/templets/default/images/ico_xqhd1.png" alt="">
+										辽宁省沈阳市黄河北大街253号
+									</p>
+							
+								</div>
+							
+								<div class="ldxq_rib">
+									<ul>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_sy01.png" alt=""></a>
+										</li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_sy02.png" alt=""></a></li>
+										<li style="margin-right: 0.1rem;">
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_sy03.png" alt=""></a></li>
+										<li>
+											<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+												<img src="/templets/default/images/m_ico_sy04.png" alt=""></a></li>
+									</ul>
+								</div>
+							
+							
+							</div>
+						
+						</div>
+
+
+					</div>
+					
+
+				</div>
+
+				<div class="swiper-pagination1"></div>
+
+				<script>
+					var swiper = new Swiper('.swiper-container1', {
+						pagination: '.swiper-pagination1',
+						// nextButton: '.swiper-button-next',
+						// prevButton: '.swiper-button-prev',
+						slidesPerView: 1,
+						paginationClickable: true,
+						spaceBetween: 80,
+						loop: true,
+						speed: 2000,
+						autoplay: 5000
+					});
+				</script>
+
+
+
+
+			
+			</div>
+			
+			
+		</div>
+
+
+		<div class="db_botton clear">
+			<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+			<img src="/templets/default/images/m_db_botton07.png" alt=""></a>
+		</div>
+
+
+	</div>
+
+
+	<div class="clear"></div>
+
+
+
+	<!-- 就业服务 -->
+
+
+	<div class="jyfw">
+
+		<div class="jyfw_box container">
+
+			<div class="container ct" style="text-align: center;">
+				<h2>个性化就业服务体系，就业无压力!</h2>
+				<em>多家就业名企</em>
+				<img src="/templets/default/images/biaotit.png" alt="">
+			</div>
+
+			<div class="jyfw_box_mq">
+			
+				<ul>
+			
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy01.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy02.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy03.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy04.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy05.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy06.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy07.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy08.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy09.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy010.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy011.png" alt="">
+					</li>
+					<li>
+						<img class="" src="/templets/default/images/m_ico_qy012.png" alt="">
+					</li>
+			
+			
+			
+			
+				</ul>
+			</div>
+
+
+		</div>
+
+		<div class="db_botton clear">
+			<a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+			<img src="/templets/default/images/m_db_botton08.png" alt=""></a>
+		</div>
+
+	</div>
+
+
+
+	<!-- 试学 -->
+
+	<div class="mfsx">
+	
+		<div class="mfsx_box container">
+	
+			<div class="ltxt">
+				<h3>免费试学</h3>
+	
+				<p>让你的行动未来可期</p>
+	
+				<ul>
+	
+					<li>
+						<img src="/templets/default/images/m_ico_zx001.png" alt="">
+					</li>
+	
+					<li>
+						<img src="/templets/default/images/m_ico_bm001.png" alt="">
+					</li>
+	
+					<li>
+						<img src="/templets/default/images/m_ico_yh001.png" alt="">
+					</li>
+	
+					<li>
+						<img src="/templets/default/images/m_ico_st001.png" alt="">
+					</li>
+	
+				</ul>
+			</div>
+	
+			<div class="rtab">
+	
+				<div class="rtab_box">
+	
+	
+	
+					<h3>申请免费试学</h3>
+	
+	
+					<form action="/plus/diy.php" enctype="multipart/form-data" method="post">
+						<input type="hidden" name="action" value="post" />
+						<input type="hidden" name="diyid" value="1" />
+						<input type="hidden" name="do" value="2" />
+						<table style="width:97%;" cellpadding="0" cellspacing="1">
+							<tr>
+								<td align="right" valign="top"></td>
+								<td><input type='text' name='name' id='name' class='intxt' value=''
+										placeholder="请输入姓名" />
+								</td>
+							</tr>
+							<tr>
+								<td align="right" valign="top"></td>
+								<td><input type='text' name='tel' id='tel' class='intxt' value=''
+										placeholder="请输入电话" />
+								</td>
+							</tr>
+							<tr>
+								<td align="right" valign="top"></td>
+								<td><input type='text' name='wx' id='wx' class='intxt' value='' placeholder="请输入微信" />
+								</td>
+							</tr>
+							<tr>
+								<td align="right" valign="top"></td>
+								<td><select name='sub'>
+										<option value='' selected disabled label="想听的科目"></option>
+										<option value='Java'>Java</option>
+										<option value='web前端'>web前端</option>
+										<option value='全栈工程师'>全栈工程师</option>
+										<option value='Python'>Python</option>
+										<option value='大数据'>大数据</option>
+										<option value='区块链'>区块链</option>
+										<option value='软件测试'>软件测试</option>
+									</select>
+								</td>
+							</tr>
+							<input type="hidden" name="dede_fields" value="name,text;tel,text;wx,text;sub,select" />
+							<input type="hidden" name="dede_fieldshash" value="9816a8b473f4801d53fd15ad3b24eb51" />
+						</table>
+						<div align='center' style='height:0.3rem;padding-top:0.3rem;'>
+							<input type="submit" name="submit" value=" " class='coolbg anniu' />
+	
+	
+							&nbsp;
+							<!-- <input type="reset" name="reset" value="重 置" class='coolbg' /> -->
+						</div>
+					</form>
+	
+				</div>
+	
+	
+			</div>
+	
+	
+		</div>
+	
+	</div>
+
+
+
+	<!-- 底部 -->
+
+
+	<div class="foot">
+
+  <div class="footer_box container">
+
+    <div class="foot_top">
+
+      <div class="foot_top_o">
+
+        <img class="one" src="/templets/default/images/foot_tel.png" alt="">
+        <p>联系我们：400-883-1606（8:00-23:00）</p>
+
+      </div>
+
+      <div class="foot_top_t">
+
+        <img class="two" src="/templets/default/images/foot_add.png" alt="">
+        <p style="top: 0.4rem;">公司地址：北京市海淀区海淀文化艺术大厦A座10层米犀学院</p>
+
+      </div>
+
+
+
+
+
+    </div>
+
+    <img src="/templets/default/images/foot_ct.png" alt="" style="position: absolute;
+						display: block; width: 92%;">
+
+    <p style="line-height: 0.45rem;">Copyright © 2019 Tedu.cn All Rights Reserved <a href="http://beian.miit.gov.cn">京ICP备20031411号</a> 北京米犀教育科技有限公司 版权所有
+    </p>
+
+  </div>
+
+</div>
+
+
+<script>(function () { var _53code = document.createElement("script"); _53code.src = "https://tb.53kf.com/code/code/f0118c7641abadc9c9b414afb82afbeb5/1"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(_53code, s); })();</script>
+
+
+
+
+
+	
+
+		<script>
+			function toggleNav(el, elLi) {
+				var css = $("#" + el).css("display")
+				//console.log(css)
+				$(".h_erjinav").css("display", "none")
+				$(".jt").css("background", "none")
+
+				if (css == "none") {
+					$("#" + el).css("display", "block")
+					$("#" + elLi).css("background", "url(/templets/default/images/m_ico_dhjt2.png) no-repeat center right")
+					$("#" + elLi).css("background-size", "0.16rem 0.09rem")
+				}
+				//$(el).find(".h_erjinav").toggle();
+			}
+		</script>
+
+
+</body>
+
+</html>
