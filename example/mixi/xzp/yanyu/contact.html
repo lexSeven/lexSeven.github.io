@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>研遇——联系我们</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script>
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) || /(Android)/i.test(navigator.userAgent)) {
+            window.location.href = 'wap/contact.html';
+        }
+    </script>
+</head>
+<body>
+
+<header class="header">
+    <div class="content">
+        <h1 class="logo">
+            <a href="index.html"><img src="images/logo.png"></a>
+        </h1>
+
+        <ul class="menu">
+            <li>
+                <a href="index.html">首页</a>
+            </li>
+            <li>
+                <a href="#mentor">优秀教资</a>
+            </li>
+            <li>
+                <a href="#price">班型介绍</a>
+            </li>
+            <li>
+                <a href="#enroll">在线报名</a>
+            </li>
+            <li>
+                <a href="about.html">关于我们</a>
+            </li>
+            <li>
+                <a href="contact.html">联系我们</a>
+            </li>
+        </ul>
+
+        <div class="hotline">
+            <a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+                <img src="images/hotline.png">
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="banner">
+    <img src="images/con_02.png">
+</div>
+
+<div class="content">这里放联系我们的内容</div>
+
+<footer class="copyright">Copyright©2009-2020（yanyu.com)All Rights Reserved  本网站最终解释权归研遇所有</footer>
+
+<script>
+    tab(document.querySelectorAll('.teacher_main')[0])
+    tab(document.querySelectorAll('.teacher_main')[1])
+    tab(document.querySelectorAll('.teacher_main')[2])
+    function tab(obj){
+        var menu = obj.querySelectorAll('.list_item')
+        var img = obj.querySelectorAll('.teacher_imgbox img');
+        var title = obj.querySelectorAll('.teacher_title');
+        var des = obj.querySelectorAll('.des');
+
+        for(var i=0;i<menu.length;i++){
+            menu[i].index = i;
+            menu[i].onclick = function(){
+                for(var a=0;a<menu.length;a++){
+                    img[a].className = 'hide';
+                    title[a].className = 'teacher_title hide';
+                    des[a].className = 'des hide';
+                    menu[a].className = 'list_item';
+                }
+                img[this.index].className = 'show';
+                title[this.index].className = 'teacher_title show';
+                des[this.index].className = 'des show';
+
+                this.className = 'list_item active';
+                this.parentNode.className = 'list list'+(this.index+1);
+            }
+        }
+
+    }
+
+    tab2(
+        document.querySelectorAll('.environment .tabMenu .item'),
+        document.querySelectorAll('.environment .envScroll .item'));
+
+
+    tab2(
+        document.querySelectorAll('.mentor .tabMenu .item'),
+        document.querySelectorAll('.mentor .wrap'));
+
+    tab2(
+        document.querySelectorAll('.price .menu .menu_item'),
+        document.querySelectorAll('.price .main .box'));
+
+    function tab2(menu,target){
+        for(var i=0;i<menu.length;i++){
+            menu[i].index = i;
+            menu[i].onclick = function(){
+                for(var a=0;a<menu.length;a++){
+                    menu[a].classList.remove('active');
+                    target[a].classList.remove('active');
+                }
+                menu[this.index].classList.add('active');
+                target[this.index].classList.add('active');
+            }
+        }
+    }
+</script>
+
+<script>(function() {var _53code = document.createElement("script");_53code.src = "https://tb.53kf.com/code/code/f0118c7641abadc9c9b414afb82afbeb5/1";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(_53code, s);})();</script>
+</body>
+</html>
