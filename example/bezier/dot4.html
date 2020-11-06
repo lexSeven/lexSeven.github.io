@@ -156,7 +156,7 @@
                 }
 
                 document.onmouseup = item.onmouseup = function(){
-                    tweenMove({
+                    /*tweenMove({
                         obj:item,
                         oTarget:{
                             left:defaultPoint[item.index][0],
@@ -170,12 +170,13 @@
                             ];
                             move(position);
                         }
-                    })
+                    })*/
                     item.onmousemove = document.onmouseup = document.onmousemove = null;
                 }
             }
         });
 
+        vertex = [];
         for(let a in position){
             vertex.push([(position[a][0]*2),(position[a][1]*2)]);
         }
@@ -198,6 +199,21 @@
             dot.style.left = ev.clientX - 10 + 'px';
             dot.style.top = ev.clientY - 10 + 'px';
             document.body.appendChild(dot);
+
+            vertex.push([
+                (ev.clientX - 10)*2,
+                (ev.clientY - 10)*2
+            ]);
+
+            bezier.init({
+                point:vertex,
+                element:c,
+                canvas:C1,
+                isFull:true,
+                k:1.1,
+                drawFunction:true,
+                speed:3
+            });
         }
     }
 
