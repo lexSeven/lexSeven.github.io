@@ -1,3 +1,4 @@
+@import "iconfont.css";
 body{
   margin: 0;
   overflow-x: hidden;
@@ -65,6 +66,10 @@ a{
 
 .header{
   background: #1b1c1e;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 4;
 
   .content{
     width: 1100px;
@@ -140,6 +145,8 @@ a{
 
 
 .btnLine{
+  width: 1100px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
 }
@@ -181,6 +188,7 @@ a{
 
 .banner{
   height: 630px;
+  padding-top: 70px;
 
   img{
     position: relative;
@@ -433,7 +441,7 @@ a{
 
 .timeLine{
   height: 900px;
-  background: url("../images/con_21.png") no-repeat center;
+  background:#2c5ae9 url("../images/con_21.png") no-repeat center;
 
   .main{
     width: 1100px;
@@ -443,7 +451,7 @@ a{
 }
 
 .serves{
-  height: 1118px;
+  height: 1218px;
 
   .main{
     width: 1100px;
@@ -705,7 +713,7 @@ a{
 }
 
 .price{
-  height: 973px;
+  height: 1000px;
   background: #3d6dd7;
 
   .menu{
@@ -821,9 +829,67 @@ a{
   background: #f9f9f9;
 
   .main{
-    width: 1160px;
-    margin: 0 auto;
-  }
+     height: 274px;
+     width: 1072px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin: 47px auto 0;
+
+     &_item{
+       width: 210px;
+       height: 274px;
+       text-align: center;
+       transition: 0.5s;
+       color: #333333;
+
+       &.active,&:hover{
+         background: #fff;
+         border-radius: 30px 0 30px 0;
+         transform: scale(1.1);
+         box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
+         color: #1257d7;
+
+         .line{
+           background: #1257d7;
+         }
+       }
+
+       a{
+         display: block;
+       }
+     }
+
+     .icon{
+       width: 50px;
+       height: 74px;
+       padding: 50px 70px 0;
+       display: inline-block;
+       font-size: 40px;
+
+     }
+
+     .line{
+       width: 37px;
+       height: 5px;
+       background: #999999;
+       display: inline-block;
+       margin-bottom: 28px;
+     }
+
+     .name{
+       font: 24px/42px '';
+       display: inline-block;
+       width: 100%;
+     }
+
+     .des{
+       width: 100%;
+       font: 18px/36px '';
+       color: #999999;
+       display: inline-block;
+     }
+   }
 }
 
 .enroll{
@@ -915,6 +981,69 @@ a{
   text-align: center;
 }
 
-.content{
-  min-height: 200px;
+.other_content{
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+}
+
+.aside{
+  width: 270px;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  margin-top: -335px;
+  background: url("../images/asd_01.png") no-repeat 0 0, url('../images/asd_07.png') no-repeat bottom;
+  padding: 149px 0 53px;
+
+  .main{
+    height: 466px;
+    width: 204px;
+    margin-left: 35px;
+    border-bottom:2px solid #3787ff;
+    background: url('../images/asd2_04.png') repeat-y;
+
+    &_item{
+      height: 55px;
+      background: url('../images/asd_04.png') no-repeat bottom center;
+      color: #fff;
+      font-size:0;
+    }
+
+    span{
+      font: 16px/55px '';
+      padding-left: 22px;
+      width: 110px;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    em{
+      font: 18px/55px '';
+      display: inline-block;
+      color: #ffeb0b;
+      width: 60px;
+      overflow: hidden;
+      font-style: normal;
+    }
+
+    .text{
+      height: 52px;
+      font: 18px/53px '';
+      color: #ffeb0b;
+      text-align: center;
+      padding-top: 17px;
+    }
+
+    .btn{
+      margin: 0 auto;
+      width: 150px;
+      height: 36px;
+      background: #ffeb0b;
+      border-radius: 20px;
+      text-align: center;
+      font: 18px/36px '';
+      color: #146aeb;
+    }
+  }
 }

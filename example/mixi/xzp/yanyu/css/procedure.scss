@@ -1,0 +1,131 @@
+@import "iconfont.css";
+body{
+  margin: 0;
+  overflow-x: hidden;
+  background: #f9f9f9;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p{
+  margin: 0;
+}
+
+img{
+  vertical-align: top;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+@mixin font($size:24px,$height:40px,$color:inherit){
+  font:$size#{'/'}$height  'PingFangSC-Light', 'SourceHanSansCN Regular', '微软雅黑';
+  color:$color;
+}
+
+@mixin clear{
+  &:after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+
+@mixin center($center:false){
+  font-size: 0;
+  line-height: 0;
+
+  @if $center{
+    text-align: center;
+  }
+
+  & > *{
+    display: inline-block;
+    vertical-align: middle;
+    @include font();
+  }
+
+  &:before{
+    content: '';
+    width: 0;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.procedure{
+  .main{
+    height: 274px;
+    width: 1072px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+
+    &_item{
+      width: 210px;
+      height: 274px;
+      text-align: center;
+      transition: 0.5s;
+      color: #333333;
+
+      &.active,&:hover{
+        background: #fff;
+        border-radius: 30px 0 30px 0;
+        transform: scale(1.1);
+        box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
+        color: #1257d7;
+
+        .line{
+          background: #1257d7;
+        }
+      }
+
+      a{
+        display: block;
+      }
+    }
+
+    .icon{
+      width: 50px;
+      height: 74px;
+      padding: 50px 70px 0;
+      display: inline-block;
+      font-size: 40px;
+
+    }
+
+    .line{
+      width: 37px;
+      height: 5px;
+      background: #999999;
+      display: inline-block;
+      margin-bottom: 28px;
+    }
+
+    .name{
+      font: 24px/42px '';
+      display: inline-block;
+      width: 100%;
+    }
+
+    .des{
+      width: 100%;
+      font: 18px/36px '';
+      color: #999999;
+      display: inline-block;
+    }
+  }
+}

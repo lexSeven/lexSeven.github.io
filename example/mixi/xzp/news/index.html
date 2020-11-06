@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <title>
+      资讯列表-研遇寄宿考研
+    </title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/index.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script>
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) || /(Android)/i.test(navigator.userAgent)) {
+            window.location.href = 'http://m.aiyanyu.cn/about.html';
+        }
+    </script>
+</head>
+<body>
+
+<header class="header">
+    <div class="content">
+        <h1 class="logo">
+            <a href="/"><img src="/images/logo.png"></a>
+        </h1>
+
+        <ul class="menu">
+            <li>
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="/#mentor">优秀教资</a>
+            </li>
+            <li>
+                <a href="/#price">班型介绍</a>
+            </li>
+            <li>
+                <a href="/#enroll">在线报名</a>
+            </li>
+            <li>
+                <a href="/about">关于我们</a>
+            </li>
+            <li>
+                <a href="/contact">联系我们</a>
+            </li>
+        </ul>
+
+        <div class="hotline">
+            <a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">
+                <img src="/images/hotline.png">
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="banner">
+    <img src="/images/con_02.png">
+</div>
+
+<div class="other_content">
+   <span style="padding-left: 380px;line-height: 43px;text-align: 20px;/* padding: 300px; */">
+       <p>
+	<span style="font-size:18px;"><strong>&nbsp;研遇寄宿考研简介</strong><br />
+	研遇寄宿考研是济南研遇教育科技有限公司打造的教育网站，</span><span style="font-size: 18px;">以寄宿制为基础管理模式，以状态管理体系、进度管理体系、效果管理体系为主要内容，</span><span style="font-size: 18px;">为考研学子提供考研公寓,考研宿舍,考研自习室,为考研学生提供考研学习氛围和学习环境。</span></p>
+<p>
+	<span style="font-size:18px;"><strong>研遇寄宿考研愿景</strong><br />
+	研遇寄宿考研以&rdquo;重视教学、强调制度、严格管理、科学考研&rdquo;为办学宗旨，致力于打造寄宿+管理+教学三位于一体的寄宿考研新模式。</span></p>
+
+    </span>
+</div>
+
+<footer class="copyright">Copyright©2009-2020（yanyu.com)All Rights Reserved  本网站最终解释权归研遇所有     备案号:<a href="https://beian.miit.gov.cn/" rel="nofollow" target="_blank">鲁ICP备2020034908号</a> </footer>
+
+<!--侧边栏-->
+<div class="aside">
+    <ul class="main">
+        <li class="main_item">
+            <span>考研寄宿</span>
+            <em>·在线</em>
+        </li>
+        <li class="main_item">
+            <span>免费自习</span>
+            <em>·在线</em>
+        </li>
+        <li class="main_item">
+            <span>超级保录</span>
+            <em>·在线</em>
+        </li>
+        <li class="main_item">
+            <span>择校择专业</span>
+            <em>·在线</em>
+        </li>
+        <li class="main_item">
+            <span>同等学力考研</span>
+            <em>·在线</em>
+        </li>
+        <li class="main_item">
+            <span>在职考研</span>
+            <em>·在线</em>
+        </li>
+        <li class="text">2021届保录计划</li>
+        <li class="btn"><a href="https://tb.53kf.com/code/client/f0118c7641abadc9c9b414afb82afbeb5/1">点击咨询</a></li>
+    </ul>
+</div>
+
+<script>
+    tab(document.querySelectorAll('.teacher_main')[0])
+    tab(document.querySelectorAll('.teacher_main')[1])
+    tab(document.querySelectorAll('.teacher_main')[2])
+    function tab(obj){
+        var menu = obj.querySelectorAll('.list_item')
+        var img = obj.querySelectorAll('.teacher_imgbox img');
+        var title = obj.querySelectorAll('.teacher_title');
+        var des = obj.querySelectorAll('.des');
+
+        for(var i=0;i<menu.length;i++){
+            menu[i].index = i;
+            menu[i].onclick = function(){
+                for(var a=0;a<menu.length;a++){
+                    img[a].className = 'hide';
+                    title[a].className = 'teacher_title hide';
+                    des[a].className = 'des hide';
+                    menu[a].className = 'list_item';
+                }
+                img[this.index].className = 'show';
+                title[this.index].className = 'teacher_title show';
+                des[this.index].className = 'des show';
+
+                this.className = 'list_item active';
+                this.parentNode.className = 'list list'+(this.index+1);
+            }
+        }
+
+    }
+
+    tab2(
+        document.querySelectorAll('.environment .tabMenu .item'),
+        document.querySelectorAll('.environment .envScroll .item'));
+
+
+
+    tab2(
+        document.querySelectorAll('.mentor .tabMenu .item'),
+        document.querySelectorAll('.mentor .wrap'));
+
+    tab2(
+        document.querySelectorAll('.price .menu .menu_item'),
+        document.querySelectorAll('.price .main .box'));
+
+    function tab2(menu,target){
+        for(var i=0;i<menu.length;i++){
+            menu[i].index = i;
+            menu[i].onclick = function(){
+                for(var a=0;a<menu.length;a++){
+                    menu[a].classList.remove('active');
+                    target[a].classList.remove('active');
+                }
+                menu[this.index].classList.add('active');
+                target[this.index].classList.add('active');
+            }
+        }
+    }
+</script>
+
+<script>(function() {var _53code = document.createElement("script");_53code.src = "https://tb.53kf.com/code/code/f0118c7641abadc9c9b414afb82afbeb5/1";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(_53code, s);})();</script>
+</body>
+</html>/f0118c7641abadc9c9b414afb82afbeb5/1";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(_53code, s);})();</script>
+</body>
+</html>l>

@@ -1,0 +1,85 @@
+@import url(iconfont.css);
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #f9f9f9;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+img {
+  vertical-align: top;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.procedure .main {
+  height: 274px;
+  width: 1072px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+.procedure .main_item {
+  width: 210px;
+  height: 274px;
+  text-align: center;
+  transition: 0.5s;
+  color: #333333;
+}
+.procedure .main_item.active, .procedure .main_item:hover {
+  background: #fff;
+  border-radius: 30px 0 30px 0;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  color: #1257d7;
+}
+.procedure .main_item.active .line, .procedure .main_item:hover .line {
+  background: #1257d7;
+}
+.procedure .main_item a {
+  display: block;
+}
+.procedure .main .icon {
+  width: 50px;
+  height: 74px;
+  padding: 50px 70px 0;
+  display: inline-block;
+  font-size: 40px;
+}
+.procedure .main .line {
+  width: 37px;
+  height: 5px;
+  background: #999999;
+  display: inline-block;
+  margin-bottom: 28px;
+}
+.procedure .main .name {
+  font: 24px/42px '';
+  display: inline-block;
+  width: 100%;
+}
+.procedure .main .des {
+  width: 100%;
+  font: 18px/36px '';
+  color: #999999;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=procedure.css.map */

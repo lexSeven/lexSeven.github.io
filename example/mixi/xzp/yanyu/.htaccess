@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^m.aiyanyu.cn$ [NC]
+RewriteCond %{REQUEST_URI} !^/m
+RewriteRule ^(.*)$ /m/$1 [L]

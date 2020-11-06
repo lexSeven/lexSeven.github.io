@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        body{
+            background: #ddd;
+            overflow: hidden;
+        }
+        .dot{
+            width: 6px;
+            height:6px;
+            background: #000743;
+            background-clip: content-box;
+            padding:6px;
+            border:1px solid #000743;
+            position: absolute;
+            z-index: 3;
+        }
+        #c{
+            position: absolute;
+            top:0;
+            left:0;
+            transform: scale(0.5);
+            transform-origin: left top;
+        }
+        .btn{
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            border-bottom: 1px solid #555;
+            border-top: 1px solid #222;
+            font-size: 30px;
+            color: #999;
+        }
+        
+        .btn.active{
+            background: #444;
+        }
+
+        .tool{
+            width: 50px;
+            height: 100%;
+            background: #333;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+        }
+
+        .screen{
+            width: calc(100% - 50px);
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 2;
+            background: rgba(0,0,0,0.1);
+        }
+    </style>
+    <link rel="stylesheet" href="css/iconfont.css">
+
+</head>
+<body>
+
+<canvas id="c"></canvas>
+
+<div class="screen"></div>
+
+<div class="tool">
+    <div class="btn createBtn">
+        <i class="iconfont icongangbi"></i>
+    </div>
+    <div class="btn drawLineBtn">
+        <i class="iconfont iconlianxian_icon"></i>
+    </div>
+
+    <div class="btn clearBtn">
+        <i class="iconfont iconclear"></i>
+    </div>
+</div>
+
+<script src="js/startMove.js"></script>
+<script src="js/bezier2.js"></script>
+<script>
+
+    let createBtn = document.querySelector('.createBtn');
+    let drawLineBtn = document.querySelector('.drawLineBtn');
+    let screen = document.querySelector('.screen');
+    let clearBtn = document.querySelector('.clearBtn');
+    let isCreate = false;
+    let defaultPoint = [],position = [],vertex = [];
+    let c = document.getElementById('c');
+    c.width = document.documentElement.clientWidth*2;
+    c.height = document.documentElement.clientHeight*2;
+    let C1 = c.getContext('2d');
+    let dot = document.querySelectorAll('.dot');
+
+
+    createBtn.onclick = function(){
+        this.classList.add('active');
+        drawLineBtn.classList.remove('active');
+        isCreate = true;
+    };
+
+    clearBtn.onclick = function(){
+        C1.clearRect(0,0,c.width,c.height);
+        dot = document.querySelectorAll('.dot');
+        Array.from(dot).forEach((item)=>{
+            document.body.removeChild(item);
+        })
+        defaultPoint = [];
+        position = [];
+        vertex = [];
+    }
+
+    drawLineBtn.onclick = function(){
+        this.classList.add('active');
+        createBtn.classList.remove('active');
+        isCreate = false;
+
+        dot = document.querySelectorAll('.dot');
+        Array.from(dot).forEach(function(item,index){
+            item.index = index;
+            var x = item.offsetLeft + item.offsetWidth/2;
+            var y = item.offsetTop + item.offsetHeight/2;
+            defaultPoint[index] = position[index] = [x,y];
+
+            item.onmousedown = function(ev){
+                var ev = ev || event;
+                var downMouseX = ev.clientX;
+                var downMouseY = ev.clientY;
+                var defaultLeft = item.getBoundingClientRect().left;
+                var defaultTop = item.getBoundingClientRect().top;
+                var next = index+1==4?0:index+1;
+                var prev = index-1<0?3:index-1;
+
+                document.onmousemove = item.onmousemove = function(ev){
+                    var ev = ev || event;
+                    var changeX = (downMouseX - ev.clientX)/2;
+                    var changeY = (downMouseY - ev.clientY)/2;
+                    item.style.left = defaultLeft - changeX +'px';
+                    item.style.top = defaultTop - changeY +'px';
+                    position[index] = [
+                        (defaultLeft - changeX  + item.offsetWidth/2),
+                        (defaultTop - changeY + item.offsetHeight/2)
+                    ];
+                    move(position);
+                    ev.preventDefault();
+                }
+
+                document.onmouseup = item.onmouseup = function(){
+                    tweenMove({
+                        obj:item,
+                        oTarget:{
+                            left:defaultPoint[item.index][0],
+                            top:defaultPoint[item.index][1]
+                        },
+                        iType:'elasticOut',
+                        fnDuring:function(obj,b){
+                            position[item.index] = [
+                                (b.left  + item.offsetWidth/2),
+                                (b.top + item.offsetHeight/2)
+                            ];
+                            move(position);
+                        }
+                    })
+                    item.onmousemove = document.onmouseup = document.onmousemove = null;
+                }
+            }
+        });
+
+        for(let a in position){
+            vertex.push([(position[a][0]*2),(position[a][1]*2)]);
+        }
+
+        bezier.init({
+            point:vertex,
+            element:c,
+            canvas:C1,
+            isFull:true,
+            k:1.1,
+            drawFunction:true,
+            speed:1
+        });
+    };
+
+    screen.onclick = function(ev){
+        if(isCreate){
+            let dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = ev.clientX - 10 + 'px';
+            dot.style.top = ev.clientY - 10 + 'px';
+            document.body.appendChild(dot);
+        }
+    }
+
+
+
+    function move(position){
+        vertex = [];
+        for(let a in position){
+            vertex.push([(position[a][0]*2),(position[a][1]*2)]);
+        }
+
+        bezier.init({
+            point:vertex,
+            element:c,
+            canvas:C1,
+            isFull:true,
+            k:1.1,
+            // drawFunction:true,
+            speed:1
+        });
+    }
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
