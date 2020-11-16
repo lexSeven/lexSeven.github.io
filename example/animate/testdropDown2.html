@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+    <style>
+        html,body{
+            height: 100%;
+        }
+        
+        body {
+            margin: 0;
+            background: #ccc;
+        }
+        .wrap{
+            display: block;
+            background: #ccc;
+            width: 100%;
+            height: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .box{
+            width: 100%;
+            height: 50px;
+            position: relative;
+            float: right;
+        }
+        .box .open{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            background: rgba(255,255,255,0.8);
+            /*opacity: 0;*/
+            -webkit-tap-highlight-color: transparent;
+            transition: z-index 0.1s 0.3s;
+            outline: none;
+            font-size: 20px;
+        }
+        .box .arrow{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            background: rgba(255,255,255,0.8);
+            text-align: center;
+            line-height: 46px;
+            border-bottom: 1px solid #899;
+            transition: 0.2s;
+            will-change: background;
+        }
+
+        .box .arrow:before{
+            content: '';
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #899 transparent;
+            transform: rotate(180deg);
+            transition: 0.2s;
+            position: absolute;
+            right: 10%;
+            top: 40%;
+        }
+
+        .box .open:focus{
+            z-index: 1;
+        }
+
+        .box .open:focus ~ .arrow{
+            background: rgba(255,255,255,0.8);
+        }
+
+        .box .open:focus ~ .arrow:before{
+            content: '';
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #899 transparent;
+            transform: rotate(0deg);
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .box .open:focus ~ .listbox{
+            opacity: 1;
+            background: #999;
+        }
+
+        .box .listbox{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #fff;
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="box">
+        <input type="button" class="open" value="按钮">
+        <div class="arrow">按钮下去了</div>
+        <ul class="listbox">
+            <li>按钮被focus的时候，背景颜色是深色</li>
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>

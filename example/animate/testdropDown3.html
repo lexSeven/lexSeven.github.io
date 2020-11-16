@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: #eee;
+        }
+        .list{
+            width: 200px;
+            border: 1px solid #999;
+            margin: 100px;
+            padding: 0;
+            list-style: none;
+            position: relative;
+        }
+
+        .list li{
+            width: 200px;
+            height: 50px;
+            background: #fff;
+            line-height: 50px;
+        }
+
+        .list li:nth-child(2n){
+            background: #ddd;
+        }
+
+        .list li input{
+            display: none;
+        }
+
+        .list li label{
+            display: block;
+        }
+
+        .list li span:after{
+            content: ''attr(data-name)'';
+            position: absolute;
+            left: 0;
+            opacity: 0;
+        }
+
+        .list input:checked ~ span:after{
+            opacity: 1;
+            bottom: -50px;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="list">
+    <li>
+        <label>
+            <input type="radio" name="list">
+            <span data-name="选项一">选项一</span>
+        </label>
+    </li>
+    <li>
+        <label>
+            <input type="radio" name="list">
+            <span data-name="选项二">选项二</span>
+        </label>
+    </li>
+    <li>
+        <label>
+            <input type="radio" name="list">
+            <span data-name="选Three">选Three</span>
+        </label>
+    </li>
+    <li>
+        <label>
+            <input type="radio" name="list">
+            <span data-name="四四四四四">四四四四四</span>
+        </label>
+    </li>
+    <li>
+        <label>
+            <input type="radio" name="list">
+            <span data-name="这里是第五个">这里是第五个</span>
+        </label>
+    </li>
+</ul>
+
+</body>
+</html>
