@@ -5,22 +5,39 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
     <style>
-
         html,body{
             height: 100%;
         }
         
-        body{
+        body {
             margin: 0;
             background: #000;
         }
 
-        .wrap{
-            background: #ccc;
-            width: 100%;
-            height: 100%;
-            max-width: 500px;
-            margin: 0 auto;
+        @media all and (min-width: 1001px){
+            body{
+                text-align: center;
+            }
+            body:after{
+                content: '效果仅支持移动端哦';
+                color:#fff;
+                font-size: 40px;
+                line-height: 3;
+            }
+            .wrap{
+                display: none;
+            }
+        }
+
+        @media all and (max-width: 1000px) and (-webkit-min-device-pixel-ratio:2){
+            .wrap{
+                display: block;
+                background: #ccc;
+                width: 100%;
+                height: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
         }
         
         .box{
@@ -61,8 +78,6 @@
             border-width: 10px 10px 0;
             border-style: solid;
             border-color: #899 transparent;
-            /*display: inline-block;*/
-            /*vertical-align: middle;*/
             transform: rotate(180deg);
             transition: 0.2s;
             position: absolute;
@@ -88,7 +103,7 @@
             vertical-align: middle;
         }
 
-        .box .open:focus ~ ul{
+        .box .open:focus ~ .listbox{
             opacity: 1;
             transform: translateY(0);
             overflow: hidden;
@@ -97,11 +112,10 @@
         .box .open:focus ~ .mask{
             transition: opacity 0.5s, transform 0s;
             transform: translateY(0);
-            /*display: block;*/
             opacity: 1;
         }
 
-        .box ul{
+        .box .listbox{
             margin: 0;
             padding: 0;
             list-style: none;
@@ -116,15 +130,15 @@
             line-height: 50px;
             z-index: 1;
         }
-        .box ul li:nth-child(2n){
+        .box .listbox li:nth-child(2n){
             background: #eee;
         }
 
-        .box ul li span{
+        .box .listbox li span{
             padding: 0 20px;
         }
 
-        .box ul li span:after{
+        .box .listbox li span:after{
             content: ""attr(data-name)"";
             opacity:0;
         }
@@ -137,7 +151,6 @@
             bottom: 0;
             background: rgba(0,0,0,0.3);
             opacity: 0;
-            /*display: none;*/
             transition: opacity 0.5s, transform 0.5s 0.5s;
             transform: translateY(-100%);
         }
@@ -145,7 +158,7 @@
         .list{
             display: none;
         }
-        .list:checked + span:after{
+        .listbox .list:checked ~ span:after{
             background: #fff;
             position: absolute;
             bottom: -50px;
@@ -167,7 +180,7 @@
     <div class="box">
         <input type="button" class="open">
         <div class="arrow"></div>
-        <ul>
+        <ul class="listbox">
             <li>
                 <label>
                     <input type="radio" name="list" class="list">
