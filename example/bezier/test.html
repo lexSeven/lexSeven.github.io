@@ -1,176 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <style>
         body{
-            margin:0;
+            margin: 0;
         }
         .box{
-            width:20vw;
-            height:100vh;
-            position: absolute;
-            top:0;
-            z-index:1;
+            width: 80vw;
+            height: 80vh;
+            box-sizing: content-box;
+            border: 2px solid #FF00FF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
         }
-        .block{
-            width:100%;
-            height:5%;
-            box-sizing: border-box;
-            /*border:1px solid #6b6578;*/
-            position: relative;
-            text-align: right;
-            padding-right:20px;
-        }
-        #c{
-            position: absolute;
-            top:0;
-            left:0;
+
+        .item{
+            width: 200px;
+            height: 200px;
+            background: #000;
         }
     </style>
 </head>
 <body>
 
-<canvas id="c"></canvas>
-<div class="box" onselectstart="return false">
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
-    <div class="block">菜单内容</div>
+<div class="box">
+    <div class="item"></div>
 </div>
-
-<script src="js/domove.js"></script>
-<script src="js/bezier2.js"></script>
-<script>
-    var block = document.querySelectorAll('.block');
-    var box = document.querySelector('.box');
-    var mouseX = 0,mouseY = 0;
-    var position = {};
-    var c = document.getElementById('c');
-    c.width = document.documentElement.clientWidth;
-    c.height = document.documentElement.clientHeight;
-    var C1 = c.getContext('2d');
-    var point1 = [0,box.offsetTop];
-    var point2 = [box.offsetWidth,box.offsetTop];
-    var point3 = [box.offsetWidth,box.offsetHeight + box.offsetTop];
-    var point4 = [0,box.offsetHeight + box.offsetTop];
-
-    var vertex = [point1,point2];
-
-//    bezier.init({
-//        point:vertex,
-//        element:c,
-//        canvas:C1,
-//        isFull:true,
-//    });
-
-    /*document.onmousemove = function(ev){
-        var ev = ev || event;
-        mouseX = ev.clientX;
-        mouseY = ev.clientY;
-
-        Array.from(block).forEach(function(item){
-            var itemX = item.offsetLeft + item.offsetWidth;
-            var itemY = item.offsetTop + item.offsetHeight/2;
-            var a = mouseX - itemX;
-            var b = mouseY - itemY;
-            var c = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
-            item.innerText = c;
-            if(c < 300){
-                item.style.transform = 'translateX('+ (300-c) +'px)';
-            }else{
-                item.style.transform = 'translateX(0px)';
-            }
-        });
-
-    };*/
-
-    Array.from(block).forEach(function(item,index){
-        item.index = index;
-        var x = item.offsetLeft + item.offsetWidth;
-        var y = item.offsetTop + item.offsetHeight/2;
-        position[item.index] = [x,y];
-
-        item.onmousedown = function(ev){
-            var ev = ev || event;
-            var downMouseX = ev.clientX;
-            var downMouseY = ev.clientY;
-            var defaultLeft = item.getBoundingClientRect().left;
-
-            item.onmousemove = function(ev){
-                var ev = ev || event;
-                var changeX = downMouseX - ev.clientX;
-                Array.from(block).forEach(function(item){
-                    var itemX = item.offsetLeft + item.offsetWidth/2;
-                    var itemY = item.offsetTop + item.offsetHeight/2;
-                    var a = downMouseX - itemX;
-                    var b = downMouseY - itemY;
-                    var c = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
-//                    item.innerText = c;
-                    if(Math.abs(changeX) - c > 0){
-                        item.style.left = (Math.abs(changeX) - c)/1.4 +'px';
-                        x = item.offsetLeft + item.offsetWidth;
-                        y = item.offsetTop + item.offsetHeight/2;
-                    }
-                    position[item.index] = [x,y];
-                });
-                move(position);
-                ev.preventDefault();
-            }
-
-            document.onmouseup = item.onmouseup = function(){
-                Array.from(block).forEach(function(item){
-                    doMoveRequest({
-                        obj:item,
-                        attr:'left',
-                        target:0,
-                        duration:500,
-                        fx: 'bounceOut'
-                    });
-                });
-                item.onmousemove = null;
-            }
-
-        }
-    });
-
-    move(position);
-
-
-    function move(position){
-        vertex = [point1,point2];
-        for(var a in position){
-            vertex.push([position[a][0],position[a][1]]);
-        }
-        vertex.push(point3);
-        vertex.push(point4);
-
-        bezier.init({
-            point:vertex,
-            element:c,
-            canvas:C1,
-            isFull:true
-        });
-    }
-
-</script>
 
 </body>
 </html>

@@ -3,69 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        html,body{
-            height: 100%;
-        }
-        body{
-            background: #ddd;
-            overflow: hidden;
-        }
-        .dot{
-            width: 6px;
-            height:6px;
-            background: #000743;
-            background-clip: content-box;
-            padding:6px;
-            border:1px solid #000743;
-            position: absolute;
-            z-index: 3;
-        }
-        #c{
-            position: absolute;
-            top:0;
-            left:0;
-            transform: scale(0.5);
-            transform-origin: left top;
-        }
-        .btn{
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            line-height: 50px;
-            cursor: pointer;
-            border-bottom: 1px solid #555;
-            border-top: 1px solid #222;
-            font-size: 30px;
-            color: #999;
-        }
-        
-        .btn.active{
-            background: #444;
-        }
-
-        .tool{
-            width: 50px;
-            height: 100%;
-            background: #333;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 2;
-        }
-
-        .screen{
-            width: calc(100% - 50px);
-            height: 100%;
-            position: absolute;
-            right: 0;
-            top: 0;
-            z-index: 2;
-            background: rgba(0,0,0,0.1);
-        }
-    </style>
-    <link rel="stylesheet" href="css/iconfont.css">
-
+    <link rel="stylesheet" href="css/control.css">
 </head>
 <body>
 
@@ -74,12 +12,19 @@
 <div class="screen"></div>
 
 <div class="tool">
+
     <div class="btn createBtn">
         <i class="iconfont icongangbi"></i>
     </div>
+
     <div class="btn drawLineBtn">
         <i class="iconfont iconlianxian_icon"></i>
     </div>
+
+    <label class="btn clearBtn">
+        <i class="iconfont iconcontrol"></i>
+        <div class="controlBox"></div>
+    </label>
 
     <div class="btn clearBtn">
         <i class="iconfont iconclear"></i>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .list{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .item{
+            width: 100px;
+            height: 40px;
+            background: #0a6999;
+            margin-bottom: 5px;
+            font: 20px/40px '';
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<template class="list" id="list">
+    <ul>
+        <li class="item">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+        <li class="item">5</li>
+    </ul>
+</template>
+
+<script>
+
+    let list = document.getElementById('list');
+    console.dir(list);
+
+    /*let item = document.querySelectorAll('li');
+    Array.from(item).forEach((item,index)=>{
+        item.onclick = function(){
+            console.log(index);
+        }
+    })
+
+
+    let str = 'ahsda';
+    let reg = Array.from(str,(item)=>{
+        return item + '1';
+    });
+    console.log(reg);//["a1", "h1", "s1", "d1", "a1"]
+
+
+    let obj = {
+        a:1233
+    };
+    let arr = [obj,1,2,3];
+
+
+    // let arr3 = arr.concat(arr2,7,8,9);
+    // console.log(arr3);
+
+    let arr2 = [4,5,6];
+    let ite = arr2.entries();
+    for(item of ite){
+        console.log(item);
+    }
+
+    //[0, 4]
+    //[1, 5]
+    //[2, 6]
+     */
+
+    // let name = ['skincare', 'dior', 'chanel', 'armand', 'lancome'];
+    // let filterItems = function(query){
+    //     return name.find(el=>{
+    //         console.log(el);
+    //         return el.length>4;
+    //     });
+    // }
+    //
+    // console.log(filterItems());//"skincare";
+
+    // let arr2 = [1, 2, [3, 4, [5, 6]]];
+    // console.log(arr2.flat(12));
+    // [1, 2, 3, 4, [5, 6]]
+
+    let arr1 = [1, 2, 3, 4];
+
+    // arr1.map(x => [x * 2]);
+    // // [[2], [4], [6], [8]]
+
+    console.log(arr1.flatMap(x => [[x * 2]]));
+
+    let str = 'str arr item name';
+    console.log(str.split(' ')); //["str", "arr", "item", "name"]
+
+    let arr = [str,'console log','filter items'];
+    console.log(arr.map((item)=>{
+        return item.split(' ');
+    }));
+    //[["str", "arr", "item", "name"],["console", "log"],["filter", "items"]]
+
+    console.log(arr.flatMap((item)=>{
+        return item.split(' ');
+    }));
+    //["str", "arr", "item", "name", "console", "log", "filter", "items"]
+</script>
+
+</body>
+</html>

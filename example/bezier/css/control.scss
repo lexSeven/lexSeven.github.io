@@ -1,0 +1,75 @@
+@import "iconfont.css";
+
+html,body{
+  height: 100%;
+}
+body{
+  background: #ddd;
+  overflow: hidden;
+}
+#c{
+  position: absolute;
+  top:0;
+  left:0;
+  transform: scale(0.5);
+  transform-origin: left top;
+}
+.dot{
+  width: 6px;
+  height:6px;
+  background: #000743;
+  background-clip: content-box;
+  padding:6px;
+  border:1px solid #000743;
+  position: absolute;
+  z-index: 3;
+}
+
+.btn{
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  border-bottom: 1px solid #555;
+  border-top: 1px solid #222;
+  font-size: 30px;
+  color: #999;
+  display: inline-block;
+  position: relative;
+
+  &.active{
+    background: #444;
+  }
+}
+
+.controlBox{
+  width:258px;
+  height: 356px;
+  border: 2px solid #373737;
+  position: absolute;
+  left: 50px;
+  top: 0;
+  background: #4d4d4d;
+  box-shadow: 4px 0 4px -2px rgba(0,0,0,0.8);
+}
+
+.tool{
+  width: 50px;
+  height: 100%;
+  background: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.screen{
+  width: calc(100% - 50px);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  background: rgba(0,0,0,0.1);
+}
