@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <link rel="stylesheet" href="css/photo.css">-->
+    <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            margin: 0;
+            background: #7298a5;
+            perspective: 1000px;
+        }
+        .box {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg) rotateY(10deg) rotateZ(0deg);
+            transition: 20s;
+        }
+
+        .box:hover{
+            transform: rotateX(200deg) rotateY(1000deg) rotateZ(300deg);
+        }
+
+        .box_item {
+            width: 300px;
+            height: 300px;
+            background: rgba(206, 184, 62, 0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            line-height: 300px;
+            text-align: center;
+            font-size: 50px;
+            color: #fff;
+            box-sizing: border-box;
+            border: 1px solid #58ffd6;
+            transition: 1s;
+            opacity: 0.7;
+        }
+
+        .box_item:nth-child(1) {
+            background: linear-gradient(to right bottom, #eebd89, #d13abd);
+            transform: rotateY(0deg) translateZ(150px);
+        }
+
+        .box_item:nth-child(2) {
+            background: linear-gradient(to right bottom, #0ccda3, #cefcd3);
+            transform: rotateY(90deg) translateZ(150px);
+        }
+
+        .box_item:nth-child(3) {
+            background: linear-gradient(to right bottom, #849b5c, #bfffc7);
+            transform: rotateY(180deg) translateZ(150px);
+        }
+
+        .box_item:nth-child(4) {
+            background: linear-gradient(to right bottom, #f9957f, #f2f5d0);
+            transform: rotateY(270deg) translateZ(150px);
+        }
+
+        .box_item:nth-child(5) {
+            background: linear-gradient(to right bottom, #9fa5d5, #e8f5c8);
+            transform: rotateX(90deg) translateZ(150px);
+        }
+
+        .box_item:nth-child(6) {
+            background: linear-gradient(to right bottom, #acc0fe, #4b086d);
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+        .box_item:nth-child(1):before{
+            content: '1';
+        }
+        .box_item:nth-child(2):before{
+            content: '2';
+        }
+        .box_item:nth-child(3):before{
+            content: '3';
+        }
+        .box_item:nth-child(4):before{
+            content: '4';
+        }
+        .box_item:nth-child(5):before{
+            content: '5';
+        }
+        .box_item:nth-child(6):before{
+            content: '6';
+        }
+
+        .box_item:before {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="box_item active"></div>
+    <div class="box_item active"></div>
+    <div class="box_item active"></div>
+    <div class="box_item active"></div>
+    <div class="box_item active"></div>
+    <div class="box_item active"></div>
+</div>
+
+
+</body>
+</html>
