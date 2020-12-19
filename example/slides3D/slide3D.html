@@ -181,6 +181,8 @@
                 now -= distaince.x/Math.abs(distaince.x);
             }
             move(now);
+            distaince = {};
+            startpoint = {};
             list.onmousemove = list.onmouseup = list.onmouseout = null;
         }
     });
