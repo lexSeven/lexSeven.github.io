@@ -89,11 +89,29 @@
             z-index: 1;
         }
 
+        .box .open:hover{
+            z-index: 1;
+        }
+
         .box .open:focus ~ .arrow{
             background: rgba(255,255,255,1);
         }
 
+        .box .open:hover ~ .arrow{
+            background: rgba(255,255,255,1);
+        }
+
         .box .open:focus ~ .arrow:before{
+            content: '';
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #899 transparent;
+            transform: rotate(0deg);
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .box .open:hover ~ .arrow:before{
             content: '';
             border-width: 10px 10px 0;
             border-style: solid;
@@ -109,7 +127,19 @@
             overflow: hidden;
         }
 
+        .box .open:hover ~ .listbox{
+            opacity: 1;
+            transform: translateY(0);
+            overflow: hidden;
+        }
+
         .box .open:focus ~ .mask{
+            transition: opacity 0.5s, transform 0s;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .box .open:hover ~ .mask{
             transition: opacity 0.5s, transform 0s;
             transform: translateY(0);
             opacity: 1;
