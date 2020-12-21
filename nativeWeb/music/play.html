@@ -107,7 +107,7 @@
             _this.C1.strokeStyle = _this.D1.strokeStyle = _this.E1.strokeStyle = "#899";
             _this.C1.fillStyle = _this.D1.fillStyle = _this.E1.fillStyle = "#899";
 
-            _this.radius = 200; //半径
+            _this.radius = 500; //半径
             _this.dotx = 800; //圆心点
             _this.doty = 800;
             _this.num = 50;
@@ -189,6 +189,7 @@
             _this.listNum2 = [];
             _this.position3 = [];
             _this.listNum3 = [];
+            let color = 'rgba(0,0,0,0)';
 
             for(var a=0;a<_this.num;a++){
                 _this.listNum.push(_this.freqArray[_this.radom[a]*_this.step]/2);
@@ -201,7 +202,6 @@
                 x = Math.cos(ang*i)* radius + _this.dotx;
                 y = Math.sin(ang*i)* radius + _this.doty;
                 _this.position.push([x,y]);
-
                 var radius2 = _this.listNum2[i] + _this.radius;
                 var x2 = Math.cos(ang*i)* radius2 + _this.dotx;
                 var y2 = Math.sin(ang*i)* radius2 + _this.doty;
@@ -213,12 +213,14 @@
                 _this.position3.push([x3,y3]);
             }
 
+            // color = `rgba(${Math.floor(x3/2000*255)},${Math.floor(y3/2000*255)},${Math.floor(x3/y3*255)},x3/y3/2)`;
+
             bezier.init({
                 point:_this.position,
                 element:_this.c,
                 canvas:_this.C1,
                 isFull:false,
-                k:'0.2',
+                k:'1',
                 drawFunction:false,
                 speed:1
             });
@@ -236,7 +238,7 @@
                 point:_this.position3,
                 element:_this.e,
                 canvas:_this.E1,
-                isFull:false,
+                isFull:true,
                 k:'0.8',
                 drawFunction:false,
                 speed:1

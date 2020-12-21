@@ -13,22 +13,22 @@
 
 <div class="tool">
 
-    <div class="btn createBtn">
+    <div class="btn createBtn" title="draw">
         <i class="iconfont icongangbi"></i>
     </div>
 
-    <div class="btn drawLineBtn">
+    <div class="btn drawLineBtn" title="move">
         <i class="iconfont iconlianxian_icon"></i>
     </div>
-
-    <label class="btn clearBtn">
-        <i class="iconfont iconcontrol"></i>
-        <div class="controlBox"></div>
-    </label>
 
     <div class="btn clearBtn">
         <i class="iconfont iconclear"></i>
     </div>
+
+<!--    <label class="btn clearBtn">-->
+<!--        <i class="iconfont iconcontrol"></i>-->
+<!--        <div class="controlBox"></div>-->
+<!--    </label>-->
 </div>
 
 <script src="js/startMove.js"></script>
@@ -101,21 +101,6 @@
                 }
 
                 document.onmouseup = item.onmouseup = function(){
-                    /*tweenMove({
-                        obj:item,
-                        oTarget:{
-                            left:defaultPoint[item.index][0],
-                            top:defaultPoint[item.index][1]
-                        },
-                        iType:'elasticOut',
-                        fnDuring:function(obj,b){
-                            position[item.index] = [
-                                (b.left  + item.offsetWidth/2),
-                                (b.top + item.offsetHeight/2)
-                            ];
-                            move(position);
-                        }
-                    })*/
                     item.onmousemove = document.onmouseup = document.onmousemove = null;
                 }
             }
@@ -133,7 +118,7 @@
             isFull:true,
             k:1.1,
             drawFunction:true,
-            speed:1
+            speed:2
         });
     };
 
