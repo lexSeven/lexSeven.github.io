@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        body{
+            perspective: 1000px;
+            background: #7298a5;
+            overflow: hidden;
+        }
+
+        .wrap{
+            width: 400px;
+            height: 260px;
+            /*overflow: hidden;*/
+            transform-style: preserve-3d;
+            position: absolute;
+            /*background: #000;*/
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            transition: 2s;
+            transform:translateZ(0px) rotateX(0deg);
+        }
+
+        .wrap.hover{
+            transform:translateZ(-400px) rotateX(80deg);
+        }
+
+        .wrap:hover{
+            transition: 6s;
+            transform:translateZ(-200px) rotateX(20deg) rotateY(500deg);
+        }
+
+        .list{
+            padding: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            list-style: none;
+            transform-style: preserve-3d;
+            transition: 0.5s;
+        }
+
+        .item{
+            width: 400px;
+            height: 222px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            line-height: 240px;
+            text-align: center;
+            font-size: 50px;
+            color: #fff;
+            transition: 1s;
+        }
+
+        .item:nth-child(1).tran{
+            transform:rotateY(72deg);
+        }
+        .item:nth-child(1).hover{
+            transform: rotateY(72deg) translateZ(300px);
+        }
+
+        .item:nth-child(2).tran{
+            transform:rotateY(144deg);
+        }
+        .item:nth-child(2).hover{
+            transform: rotateY(144deg) translateZ(300px);
+        }
+
+        .item:nth-child(3).tran{
+            transform:rotateY(216deg);
+        }
+        .item:nth-child(3).hover{
+            transform: rotateY(216deg) translateZ(300px);
+        }
+
+        .item:nth-child(4).tran{
+            transform:rotateY(288deg);
+        }
+        .item:nth-child(4).hover{
+            transform: rotateY(288deg) translateZ(300px);
+        }
+
+        .item:nth-child(5).tran{
+            transform:rotateY(0deg);
+        }
+        .item:nth-child(5).hover{
+            transform: rotateY(0deg) translateZ(300px);
+        }
+
+        .item img{
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .btn{
+            width: 50px;
+            height: 40px;
+            background: #0A8CD2;
+            border-radius: 5px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+            margin: 6px;
+        }
+
+
+        .btn0{
+            width: 50px;
+            height: 40px;
+            background: #0A8CD2;
+            border-radius: 5px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+            margin: 6px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="btn0">0</div>
+<div class="btn btn1">1</div>
+<div class="btn btn1">2</div>
+<div class="btn btn1">3</div>
+<div class="btn btn1">4</div>
+<div class="btn btn1">5</div>
+<div class="wrap">
+    <ul class="list">
+        <li class="item"><img src="img/img01.png"></li>
+        <li class="item"><img src="img/img02.png"></li>
+        <li class="item"><img src="img/img03.png"></li>
+        <li class="item"><img src="img/img04.png"></li>
+        <li class="item"><img src="img/img05.png"></li>
+    </ul>
+</div>
+
+
+<script>
+    let wrap = document.querySelector('.wrap');
+    let list = document.querySelector('.list');
+    let items = list.querySelectorAll('.item');
+
+    let btn0 = document.querySelector('.btn0');
+    let btn = document.querySelectorAll('.btn');
+
+    btn0.onclick = function(){
+        wrap.classList.toggle('hover');
+    }
+
+    Array.from(btn).forEach((item,index)=>{
+        item.onclick = function(){
+            move(index);
+        }
+    })
+
+    function move(num){
+        if(items[num].index){
+            items[num].classList.add('hover');
+            items[num].index = false;
+        }else{
+            items[num].classList.remove('hover');
+            items[num].classList.add('tran');
+            items[num].index = true;
+        }
+    }
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/photo.css">
+</head>
+<body>
+
+<div class="box">
+    <div class="box_item"></div>
+    <div class="box_item"></div>
+    <div class="box_item"></div>
+    <div class="box_item"></div>
+    <div class="box_item"></div>
+    <div class="box_item"></div>
+
+    <div class="xLine"></div>
+    <div class="yLine"></div>
+    <div class="zLine"></div>
+</div>
+
+<div class="wrap"></div>
+
+<div class="btn"><em>展示</em></div>
+<div class="btn">
+    <em>组装</em>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span></div>
+<div class="btn"><em>拆开</em></div>
+
+<script>
+
+
+    var wraper = document.querySelector('.wrap'),
+        cube = document.querySelector(".box"),
+        showBtn = document.querySelectorAll('.btn')[0],
+        packageBtn = document.querySelectorAll('.btn span'),
+        breakBtn = document.querySelectorAll('.btn')[2],
+        item = document.querySelectorAll('.box_item'),
+        downX, downY, moveX, moveY, tempX, tempY, degX = 0, degY = 0;
+
+    var isBack = false,
+        keyNum = 3;
+
+    var translateZ = 0;  // 盒子的Z轴偏移量，值越大，盒子越大
+
+    showBtn.onclick = function(){
+        cube.classList.toggle('active');
+    }
+
+    for(var i=0;i<packageBtn.length;i++){
+        packageBtn[i].index = i;
+        packageBtn[i].onclick = function(){
+            item[this.index].classList.add('active');
+        }
+    }
+
+    breakBtn.onclick = function(){
+        cube.classList.toggle('hover');
+    }
+
+    wraper.addEventListener('mousedown',startEvent);
+    wraper.addEventListener('mouseup',endEvent);
+
+    function startEvent(e) {
+        e = e || event;
+        var touch = e;
+        downX = touch.clientX;
+        downY = touch.clientY;
+        var caseY = (degY / 90) % 4;
+        if(caseY > 1 && caseY < 3 || caseY < -1 && caseY > -3){
+            isBack = true;
+        }else{
+            isBack = false;
+        }
+        wraper.addEventListener('mousemove',moveEvent);
+        e.preventDefault();
+    };
+
+    function moveEvent(e){
+        e = e || event;
+        var touch = e;
+        moveX = touch.clientX - downX;
+        moveY = touch.clientY - downY;
+
+        if(isBack){
+            moveX = -moveX;
+        }
+
+        tempX = degX + moveX / keyNum;
+        tempY = degY - moveY / keyNum;
+        cube.style.transition = 'none';
+        cube.style.transform = "translateZ("+ translateZ +"px) rotatex(" + tempY + "deg) rotatey(" + tempX + "deg)";
+    }
+
+    function endEvent () {
+        degX += moveX / keyNum;
+        degY += - moveY / keyNum;
+        degX %= 360;
+        degY %= 360;
+        cube.style.transition = 'none';
+        wraper.removeEventListener('mousemove',moveEvent)
+    };
+</script>
+
+</body>
+</html>
